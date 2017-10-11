@@ -1,0 +1,10 @@
+Metadata.Census:Part of
+Metadata.Collection:Collection
+Metadata.Callnumber:Call number
+Metadata.Owner:Owner
+Metadata.Author:Author
+Metadata.Place:Place of publication
+Metadata.Date:Date of publication
+Metadata.Publisher:Publisher
+Metadata.PhysState:Physical description
+Metadata.Note:comment

@@ -1,0 +1,9 @@
+Manuscript.PI:Titel (aus Signatur)
+Manuscript.Objecttitel:Objekttitel
+Manuscript.Medium:Medium
+Manuscript.Material:Beschreibstoff
+Manuscript.Extent:Umfang
+Manuscript.Dimension:Abmessungen
+Manuscript.Language:Sprache
+Manuscript.Localisation:Lokalisierung
+Manuscript.Media:Manuscripta Mediaevalia
