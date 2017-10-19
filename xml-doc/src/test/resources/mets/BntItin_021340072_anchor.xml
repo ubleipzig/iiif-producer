@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mets:mets
+        xmlns:mets="http://www.loc.gov/METS/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-3.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/version17/mets.v1-7.xsd">
+    <mets:metsHdr CREATEDATE="2017-07-26T07:58:44">
+        <mets:agent OTHERTYPE="SOFTWARE" ROLE="CREATOR" TYPE="OTHER">
+            <mets:name>Goobi - UGH-1.11.0-7b3c2be - 26−March−2015</mets:name>
+            <mets:note>Goobi</mets:note>
+        </mets:agent>
+    </mets:metsHdr>
+    <mets:dmdSec ID="DMDLOG_0000">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:identifier type="goobi">4341</mods:identifier>
+                    <mods:relatedItem type="series">
+                        <mods:titleInfo>
+                            <mods:title lang="ger">VD16</mods:title>
+                        </mods:titleInfo>
+                    </mods:relatedItem>
+                    <mods:identifier type="swb-ppn">021339902</mods:identifier>
+                    <mods:extension>
+                        <slub:slub xmlns:slub="http://slub-dresden.de/">
+                            <slub:id
+                                    type="source">021339902
+                            </slub:id>
+                            <slub:id type="tsl-ats"
+                            >BntItin
+                            </slub:id>
+                        </slub:slub>
+                    </mods:extension>
+                    <mods:titleInfo>
+                        <mods:title>Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige
+                            Schrifft
+                        </mods:title>
+                        <mods:subTitle>in zwey Bücher getheilet</mods:subTitle>
+                    </mods:titleInfo>
+                    <mods:titleInfo type="alternative">
+                        <mods:title>Itinerarium sacrae scripturae, das ist ein Reisebuch uber die gantze heilige
+                            Schrifft
+                        </mods:title>
+                    </mods:titleInfo>
+                    <mods:language>
+                        <mods:languageTerm authority="rfc3066" type="code">ger</mods:languageTerm>
+                    </mods:language>
+                    <mods:originInfo>
+                        <mods:place>
+                            <mods:placeTerm type="text">Magdeburgk</mods:placeTerm>
+                        </mods:place>
+                        <mods:dateOther encoding="w3cdtf" type="order">15XX</mods:dateOther>
+                        <mods:publisher>in Verlegung Ambrosij Kirchners</mods:publisher>
+                    </mods:originInfo>
+                    <mods:name type="personal">
+                        <mods:role>
+                            <mods:roleTerm authority="marcrelator" type="code">aut</mods:roleTerm>
+                        </mods:role>
+                        <mods:namePart type="family">Bünting</mods:namePart>
+                        <mods:namePart type="given">Heinrich</mods:namePart>
+                        <mods:displayForm>Bünting, Heinrich</mods:displayForm>
+                    </mods:name>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:amdSec ID="AMD">
+        <mets:rightsMD ID="RIGHTS">
+            <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVRIGHTS">
+                <mets:xmlData>
+                    <dv:rights xmlns:dv="http://dfg-viewer.de/">
+                        <dv:owner>Leipzig University Library</dv:owner>
+                        <dv:ownerLogo>https://iiif.ub.uni-leipzig.de/ubl-logo.png</dv:ownerLogo>
+                        <dv:ownerSiteURL>https://ub.uni-leipzig.de</dv:ownerSiteURL>
+                        <dv:ownerContact>mailto:info@ub.uni-leipzig.de</dv:ownerContact>
+                    </dv:rights>
+                </mets:xmlData>
+            </mets:mdWrap>
+        </mets:rightsMD>
+        <mets:digiprovMD ID="DIGIPROV">
+            <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVLINKS">
+                <mets:xmlData>
+                    <dv:links xmlns:dv="http://dfg-viewer.de/">
+                        <dv:reference/>
+                        <dv:presentation/>
+                    </dv:links>
+                </mets:xmlData>
+            </mets:mdWrap>
+        </mets:digiprovMD>
+    </mets:amdSec>
+    <mets:structMap TYPE="LOGICAL">
+        <mets:div ADMID="AMD" DMDID="DMDLOG_0000" ID="LOG_0000"
+                  LABEL="Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft"
+                  ORDERLABEL="Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft"
+                  TYPE="multivolume_work">
+            <mets:div ID="LOG_0001" TYPE="volume">
+                <mets:mptr xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href=""/>
+            </mets:div>
+        </mets:div>
+    </mets:structMap>
+</mets:mets>

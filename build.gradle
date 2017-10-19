@@ -1,0 +1,201 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.junit.platform:junit-platform-gradle-plugin:1.0.1")
+    }
+}
+
+plugins {
+    id 'com.github.ben-manes.versions' version '0.15.0'
+    id 'com.github.hierynomus.license' version '0.13.1'
+    id 'net.researchgate.release' version '2.6.0'
+    id 'com.github.kt3k.coveralls' version '2.8.1'
+    id 'org.sonarqube' version '2.5'
+}
+
+ext {
+    moduleName = "de.ubleipzig.iiifproducer"
+    vendor = 'UB Leipzig'
+    license = 'Apache 2'
+}
+
+configurations {
+    buildToolsConfig
+}
+
+dependencies {
+    buildToolsConfig "cool.pandora:pandora-build-tools:0.1.3"
+}
+
+task processBuildTools(type: Copy) {
+    from {
+        configurations.buildToolsConfig.collect {
+            zipTree(it).matching {
+                include 'checkstyle/*.xml'
+                include 'license/*.txt'
+            }
+        }
+    }
+    into 'build'
+}
+
+configure(allprojects) { project ->
+    group 'de.ubleipzig'
+
+    apply plugin: 'maven'
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'idea'
+
+    idea {
+        module {
+            outputDir file('build/classes/main')
+            testOutputDir file('build/classes/test')
+        }
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+        flatDir {
+            dirs "$rootProject.projectDir/lib"
+        }
+    }
+
+
+    ext.commonsRdfVersion = '0.3.0-incubating'
+    ext.logbackVersion = '1.2.3'
+    ext.xbeamVersion = "1.4.8"
+    ext.jupiterVersion = "5.0.1"
+    ext.jacksonVersion = '2.9.1'
+    ext.mockitoVersion = '2.10.0'
+    ext.jaiImageIoVersion = "1.3.0"
+    ext.slf4jVersion = "1.7.25"
+
+    check.dependsOn processBuildTools
+}
+
+subprojects {
+    apply plugin: 'checkstyle'
+    apply plugin: 'com.github.hierynomus.license'
+    apply plugin: 'jacoco'
+
+    afterEvaluate {
+        repositories {
+            jcenter()
+        }
+
+        gradle.projectsEvaluated {
+            tasks.withType(JavaCompile) {
+                options.compilerArgs.add("-Xlint:unchecked")
+                options.compilerArgs.add("-Xlint:deprecation")
+            }
+        }
+
+        compileTestJava {
+            doFirst {
+                options.compilerArgs = [
+                        '-Xlint:deprecation'
+                ]
+            }
+        }
+    }
+
+    checkstyle {
+        configFile = rootProject.file('build/checkstyle/checkstyle.xml')
+        configProperties.checkstyleConfigDir = rootProject.file('build/checkstyle/')
+        toolVersion = "8.1"
+    }
+
+    jacoco {
+        toolVersion = "0.7.9"
+    }
+
+    license {
+        include "**/*.java"
+        header rootProject.file('build/license/HEADER.txt')
+        strictCheck true
+        mapping {
+            java = 'SLASHSTAR_STYLE'
+        }
+    }
+}
+
+project("producer") {
+    apply plugin: "application"
+    apply plugin: 'org.junit.platform.gradle.plugin'
+
+    mainClassName = "org.ubl.iiifproducer.producer.IIIFProducerDriver"
+    dependencies {
+        compile project(":storage")
+        compile project(":templates")
+        compile project(":xml-doc")
+        compile project(":vocabulary")
+        api group: 'org.apache.commons', name: 'commons-rdf-api', version: commonsRdfVersion
+        compile group: 'org.apache.commons', name: 'commons-rdf-simple', version: '0.3.0-incubating'
+        compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+        compile group: 'commons-io', name: 'commons-io', version: '2.5'
+        compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+        compile "com.github.jai-imageio:jai-imageio-core:${jaiImageIoVersion}"
+        compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+        testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jupiterVersion
+    }
+}
+
+project("storage") {
+    dependencies {
+        implementation group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+        compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.8-dmr'
+    }
+
+}
+
+project("templates") {
+    dependencies {
+        compile project(":vocabulary")
+        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+        implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion
+        compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
+        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jupiterVersion
+        testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
+        testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+    }
+}
+
+project("vocabulary") {
+    dependencies {
+        api group: 'org.apache.commons', name: 'commons-rdf-api', version: commonsRdfVersion
+        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
+    }
+}
+
+project("xml-doc") {
+    apply plugin: 'org.junit.platform.gradle.plugin'
+
+    dependencies {
+        compile project(":templates")
+        compile "org.xmlbeam:xmlprojector:${xbeamVersion}"
+        compile group: 'log4j', name: 'log4j', version: '1.2.17'
+        compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
+        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jupiterVersion
+
+    }
+}
+
+
+
+
+
