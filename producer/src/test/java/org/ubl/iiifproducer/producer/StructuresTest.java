@@ -20,7 +20,7 @@ class StructuresTest {
     @BeforeAll
     static void testBuildStructures() throws IOException {
         String path = get(".").toAbsolutePath().normalize().getParent().toString();
-        sourceFile = path + "/xml-doc/src/test/resources/mets/BlhDie_004285964.xml";
+        sourceFile = path + "/xml-doc/src/test/resources/mets/MS_187.xml";
     }
 
     @Test

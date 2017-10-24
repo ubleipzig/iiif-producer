@@ -25,16 +25,20 @@
 package org.ubl.iiifproducer.producer;
 
 import static java.util.Collections.synchronizedList;
+import static java.util.Comparator.comparing;
+import static java.util.Comparator.naturalOrder;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 import static org.ubl.iiifproducer.doc.MetsData.Logical;
 import static org.ubl.iiifproducer.doc.MetsData.Xlink;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getAttribution;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getFileIdForDiv;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getFileResources;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
-import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogical;
+import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
+import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogicalLastChildren;
+import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogicalLastDescendent;
+import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogicalLastParent;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogo;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getManuscriptType;
@@ -51,8 +55,13 @@ import static org.ubl.iiifproducer.producer.Constants.IIIF_RANGE;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.ubl.iiifproducer.doc.ManuscriptMetadata;
 import org.ubl.iiifproducer.doc.MetsData;
 import org.ubl.iiifproducer.doc.StandardMetadata;
@@ -129,8 +138,7 @@ public class MetsImpl implements MetsAccessor {
             List<TemplateMetadata> meta = new ArrayList<>();
             if (getManifestTitle(anchorDoc) != null && getManifestTitle(mets) != null) {
                 body.setLabel(getManifestTitle(anchorDoc) + ";" + getManifestTitle(mets));
-                meta.add(new TemplateMetadata(
-                        ANCHOR_KEY,
+                meta.add(new TemplateMetadata(ANCHOR_KEY,
                         getManifestTitle(anchorDoc) + ";" + getManifestTitle(mets)));
             }
             body.setMetadata(meta);
@@ -142,8 +150,8 @@ public class MetsImpl implements MetsAccessor {
         IRIUtils iri = new IRIUtils(this.config);
 
         List<String> canvases = new ArrayList<>();
-        List<String> physicals = xlinkmap.get(logical).stream().map(Xlink::getXLinkTo)
-                .collect(toList());
+        List<String> physicals =
+                xlinkmap.get(logical).stream().map(Xlink::getXLinkTo).collect(toList());
         physicals.forEach(physical -> {
             canvases.add(iri.buildCanvasIRIfromPhysical(physical));
         });
@@ -163,6 +171,7 @@ public class MetsImpl implements MetsAccessor {
         TemplateTopStructure st = new TemplateTopStructure();
         st.setStructureId(resourceContext + IIIF_RANGE + "/" + "r0");
         st.setStructureLabel("TOC");
+        ranges.sort(naturalOrder());
         st.setRanges(ranges);
         return st;
     }
@@ -170,29 +179,55 @@ public class MetsImpl implements MetsAccessor {
     @Override
     public List<TemplateStructure> buildStructures() {
         String resourceContext = config.getResourceContext();
-        List<Logical> logDivs = getLogical(mets);
-
-        Map<String, String> logicalLabelMap = logDivs.stream().collect(
-                toMap(Logical::getLogicalId, Logical::getLogicalLabel));
-
-        Map<String, String> logicalTypeMap = logDivs.stream().collect(
-                toMap(Logical::getLogicalId, Logical::getLogicalType));
-
         List<TemplateStructure> structures = synchronizedList(new ArrayList<>());
-        List<String> ranges = synchronizedList(new ArrayList<>());
-
+        List<TemplateStructure> descendents = synchronizedList(new ArrayList<>());
         xlinkmap.keySet().forEach(logical -> {
-            TemplateStructure st = new TemplateStructure();
-            String rangeId = resourceContext + IIIF_RANGE + "/" + logical;
-            st.setStructureId(rangeId);
-            st.setStructureLabel(logicalLabelMap.get(logical));
-            st.setStructureType(SC._Range);
-            st.setCanvases(getCanvases(logical));
-            ranges.add(0, rangeId);
-            //st.setRanges(ranges);
-            structures.add(0, st);
+            Logical last = getLogicalLastDescendent(mets, logical);
+            if (last != null) {
+                List<Logical> logicalLastParentList =
+                        getLogicalLastParent(mets, last.getLogicalId());
+                logicalLastParentList.forEach(logicalLastParent -> {
+                    String lastParentId = logicalLastParent.getLogicalId();
+                    List<Logical> lastChildren =
+                            getLogicalLastChildren(mets,lastParentId );
+                    //Map<String, String> logicalTypeMap = logDivs.stream().collect(
+                    //        toMap(Logical::getLogicalId, Logical::getLogicalType));
+
+                    List<String> ranges = synchronizedList(new ArrayList<>());
+                    lastChildren.forEach(desc -> {
+                        TemplateStructure descSt = new TemplateStructure();
+                        String descID = desc.getLogicalId().trim();
+                        String rangeId = resourceContext + IIIF_RANGE + "/" + descID;
+                        String descLabel = getLogicalLabel(mets, descID);
+                        ranges.add(0, rangeId);
+                        descSt.setStructureId(rangeId);
+                        descSt.setStructureLabel(descLabel);
+                        descSt.setStructureType(SC._Range);
+                        descSt.setCanvases(getCanvases(descID));
+                        descendents.add(0, descSt);
+                    });
+                    TemplateStructure st = new TemplateStructure();
+                    String structureIdDesc = resourceContext + IIIF_RANGE + "/" + lastParentId;
+                    st.setStructureId(structureIdDesc);
+                    String logicalLabel = getLogicalLabel(mets, lastParentId);
+                    st.setStructureLabel(logicalLabel);
+                    st.setStructureType(SC._Range);
+                    ranges.sort(naturalOrder());
+                    st.setRanges(ranges);
+                    st.setCanvases(getCanvases(lastParentId));
+                    if (!Objects.equals(st.getStructureId(), resourceContext + IIIF_RANGE + "/" + "LOG_0000")) {
+                        structures.add(0, st);
+                    }
+                });
+
+            }
         });
-        return structures;
+        Comparator<TemplateStructure> c= Comparator.comparing(TemplateStructure::getStructureId);
+        List<TemplateStructure> results = Stream.concat(structures.stream(), descendents.stream())
+                .filter(new ConcurrentSkipListSet<>(c)::add)
+                .collect(Collectors.toList());
+        results.sort(comparing(TemplateStructure::getStructureId));
+        return results;
     }
 
     @Override

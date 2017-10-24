@@ -19,8 +19,8 @@ class ArgParserTest {
         String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String[] args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i",
                 path + "/xml-doc/src/test/resources/mets"
-                        + "/BlhDie_004285964.xml",
-                "-o", "/tmp/test9.json"};
+                        + "/MS_187.xml",
+                "-o", "/tmp/test2.json"};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
     }

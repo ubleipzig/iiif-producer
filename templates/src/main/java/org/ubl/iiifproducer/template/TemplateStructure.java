@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * TemplateStructure.
@@ -46,7 +47,7 @@ public class TemplateStructure {
     @JsonProperty("label")
     private String label;
 
-    @JsonIgnore
+    @JsonProperty("ranges")
     private List<String> ranges;
 
     @JsonProperty("canvases")
@@ -78,5 +79,20 @@ public class TemplateStructure {
 
     public void setCanvases(List<String> canvases) {
         this.canvases = canvases;
+    }
+
+    @JsonIgnore
+    public String getStructureLabel() {
+        return this.label;
+    }
+
+    @JsonIgnore
+    public String getStructureId() {
+        return this.id;
+    }
+
+    @JsonIgnore
+    public List<String> getRanges() {
+        return this.ranges;
     }
 }

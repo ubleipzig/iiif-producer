@@ -61,7 +61,7 @@ public class ManuscriptMetadata {
         ArrayList<TemplateMetadata> meta = new ArrayList<>();
         meta.add(new TemplateMetadata("Titel (aus Signatur)", getManifestTitle(mets)));
         meta.add(new TemplateMetadata("Objekttitel", getSubtitle(mets)));
-        meta.add(new TemplateMetadata("Medium", getMedium(mets).orElse(null)));
+        meta.add(new TemplateMetadata("Medium", getMedium(mets)));
         meta.add(new TemplateMetadata("Beschreibstoff", getMaterial(mets)));
         meta.add(new TemplateMetadata("Umfang", getExtent(mets)));
         meta.add(new TemplateMetadata("Abmessungen", getDimension(mets)));
@@ -69,11 +69,11 @@ public class ManuscriptMetadata {
         meta.add(new TemplateMetadata("Lokalisierung", getLocation(mets)));
         meta.add(new TemplateMetadata("Manuscripta Mediaevalia", getRecordIdentifier(mets)));
         meta.add(new TemplateMetadata("Datierung", getDateCreated(mets)));
-        meta.add(new TemplateMetadata("Kitodo", getManuscriptIdByType(mets, "goobi").orElse(null)));
-        meta.add(new TemplateMetadata("URN", getManuscriptIdByType(mets, "urn").orElse(null)));
+        meta.add(new TemplateMetadata("Kitodo", getManuscriptIdByType(mets, "goobi")));
+        meta.add(new TemplateMetadata("URN", getManuscriptIdByType(mets, "urn")));
         meta.add(new TemplateMetadata(
                 "Signatur",
-                getManuscriptIdByType(mets, "shelfmark").orElse(null)));
+                getManuscriptIdByType(mets, "shelfmark")));
 
         return meta;
     }

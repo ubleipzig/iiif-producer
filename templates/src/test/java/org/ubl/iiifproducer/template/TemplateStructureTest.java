@@ -32,6 +32,7 @@ class TemplateStructureTest {
         mockStructure.setStructureLabel("TOC");
         mockStructure.setStructureId("http://test.org/12345/range/0");
         mockStructure.setRanges(ranges);
+        mockStructure.setCanvases(canvases);
         final Optional<String> json = serialize(mockStructure);
         assertTrue(json.isPresent());
         out.println(json.get());

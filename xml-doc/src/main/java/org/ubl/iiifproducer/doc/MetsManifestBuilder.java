@@ -80,12 +80,12 @@ public class MetsManifestBuilder {
         return mets.getManuscriptType();
     }
 
-    public static Optional<String> getManuscriptIdByType(final MetsData mets, String idType) {
+    public static String getManuscriptIdByType(final MetsData mets, String idType) {
         return mets.getManuscriptIdByType(idType);
     }
 
-    public static Optional<String> getMedium(final MetsData mets) {
-        return mets.getMedium();
+    public static String getMedium(final MetsData mets) {
+        return mets.getMedium().orElse("").trim();
     }
 
     public static String getMaterial(final MetsData mets) {
@@ -105,7 +105,7 @@ public class MetsManifestBuilder {
     }
 
     public static String getLocation(final MetsData mets) {
-        return mets.getLocation().trim();
+        return mets.getLocation().orElse("").trim();
     }
 
     public static String getRecordIdentifier(final MetsData mets) {
@@ -188,8 +188,20 @@ public class MetsManifestBuilder {
         return mets.getMimeTypeForFile(file);
     }
 
-    public static List<Logical> getLogical(final MetsData mets) {
-        return mets.getLogical();
+    public static Logical getLogicalLastDescendent(final MetsData mets, String id) {
+        return mets.getLogicalLastDescendent(id);
+    }
+
+    public static List<Logical> getLogicalLastParent(final MetsData mets, String id) {
+        return mets.getLogicalLastParent(id);
+    }
+
+    public static List<Logical> getLogicalLastChildren(final MetsData mets, String id) {
+        return mets.getLogicalLastChildren(id);
+    }
+
+    public static String getLogicalLabel(final MetsData mets, String id) {
+        return mets.getLogicalLabel(id);
     }
 
     public static List<Xlink> getXlinks(final MetsData mets) {

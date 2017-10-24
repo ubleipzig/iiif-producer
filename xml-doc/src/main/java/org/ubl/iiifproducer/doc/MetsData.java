@@ -48,7 +48,7 @@ public interface MetsData {
     String getManuscriptType();
 
     @XBRead("//*[local-name()='identifier'][@type='{0}']")
-    Optional<String> getManuscriptIdByType(String idType);
+    String getManuscriptIdByType(String idType);
 
     @XBRead("//*[local-name()='subtitle']")
     String getSubtitle();
@@ -69,7 +69,7 @@ public interface MetsData {
     String getLanguage();
 
     @XBRead("//*[local-name()='place'][@eventType='manufacture']")
-    String getLocation();
+    Optional<String> getLocation();
 
     @XBRead("//*[local-name()='recordIdentifier']")
     String getRecordIdentifier();
@@ -135,8 +135,17 @@ public interface MetsData {
     @XBRead("//*[local-name()='structLink']/*[local-name()='smLink']")
     List<Xlink> getXlinks();
 
-    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']/*[local-name()='div']")
-    List<Logical> getLogical();
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()='div'][@ID='{0}']/*[local-name()='div'][last()]")
+    Logical getLogicalLastDescendent(String id);
+
+    @XBRead("//*[local-name()='div'][@ID='{0}']/parent::node()")
+    List<Logical> getLogicalLastParent(String id);
+
+    @XBRead("//*[local-name()='div'][@ID='{0}']/*[local-name()='div']")
+    List<Logical> getLogicalLastChildren(String id);
+
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()='div'][@ID='{0}']/@LABEL")
+    String getLogicalLabel(String id);
 
     interface Xlink {
         @XBRead("@*[local-name()='from']")

@@ -61,11 +61,11 @@ public class StandardMetadata {
         ArrayList<TemplateMetadata> meta = new ArrayList<>();
         meta.add(new TemplateMetadata(
                 "Kitodo",
-                getManuscriptIdByType(mets, GOOBI_TYPE).orElse(null)));
-        meta.add(new TemplateMetadata("URN", getManuscriptIdByType(mets, URN_TYPE).orElse(null)));
+                getManuscriptIdByType(mets, GOOBI_TYPE)));
+        meta.add(new TemplateMetadata("URN", getManuscriptIdByType(mets, URN_TYPE)));
         meta.add(new TemplateMetadata(
                 "Source PPN (SWB)",
-                getManuscriptIdByType(mets, SWB_TYPE).orElse(null)));
+                getManuscriptIdByType(mets, SWB_TYPE)));
         meta.add(new TemplateMetadata("Collection", getCollection(mets).trim()));
         meta.add(new TemplateMetadata("Call number", getCallNumber(mets).trim()));
         meta.add(new TemplateMetadata("Owner", getOwner(mets).trim()));

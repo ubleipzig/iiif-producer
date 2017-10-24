@@ -1,0 +1,28 @@
+<mets:structMap TYPE="LOGICAL">
+    <mets:div ADMID="AMD" ID="LOG_0000" LABEL="Leipzig, Universitätsbibliothek Leipzig, Ms 187" TYPE="manuscript">
+        <mets:div ID="LOG_0001" TYPE="binding">
+            <mets:div ID="LOG_0002" LABEL="Fragment" TYPE="fragment"/>
+        </mets:div>
+        <mets:div ID="LOG_0003" LABEL="Übersetzungen der Werke des Dionysius Areopagita" TYPE="contained_work">
+            <mets:div ID="LOG_0004" LABEL="Die poetische praefatio des Johannes Scotus Erigena" TYPE="other"/>
+            <mets:div ID="LOG_0005" LABEL="Die Epistel des Johannes Erigena an König Karl den Kahlen" TYPE="other"/>
+            <mets:div ID="LOG_0006" LABEL="Kapitel des 1. Buchs und Epigramm" TYPE="other"/>
+            <mets:div ID="LOG_0007" LABEL="De coelesti hierarchia" TYPE="other">
+                <mets:div ID="LOG_0008" LABEL="Initialschmuck" TYPE="ornament"/>
+            </mets:div>
+            <mets:div ID="LOG_0009" LABEL="De ecclesiastica hierarchia" TYPE="other"/>
+            <mets:div ID="LOG_0010" LABEL="Liber de divinis nominibus" TYPE="other"/>
+            <mets:div ID="LOG_0011" LABEL="Liber de mystica theologia" TYPE="other"/>
+            <mets:div ID="LOG_0012" LABEL="Epistolae Dionysii Areopagitae" TYPE="other"/>
+            <mets:div ID="LOG_0013" LABEL="Schluss" TYPE="other"/>
+        </mets:div>
+        <mets:div ID="LOG_0014" LABEL="Kommentar zum liber de coelesti hierarchia" TYPE="contained_work"/>
+        <mets:div ID="LOG_0015" LABEL="Auslegungen zum Hohe Lied" TYPE="contained_work"/>
+        <mets:div ID="LOG_0016" LABEL="De sex alis Cherubim" TYPE="contained_work">
+            <mets:div ID="LOG_0017" LABEL="Zeichnung" TYPE="ornament"/>
+        </mets:div>
+        <mets:div ID="LOG_0018" LABEL="Auslegung von Psalm 84, 11 in Form einer Fabel" TYPE="contained_work"/>
+        <mets:div ID="LOG_0019" TYPE="binding"/>
+        <mets:div ID="LOG_0020" LABEL="Farbkeil" TYPE="other"/>
+    </mets:div>
+</mets:structMap>
