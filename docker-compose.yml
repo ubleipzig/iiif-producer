@@ -1,0 +1,30 @@
+version: "2.1"
+
+services:
+  iipsrv:
+    image: pandoraframework/iipsrv-openjpeg
+    container_name: iipsrv
+    ports:
+      - "5000:80"
+    volumes:
+      - iipsrv-volume:/mnt/serialization/binaries
+
+  mirador-sul:
+    image: ubl2/mirador-sul:0.0.4
+    container_name: mirador-sul
+    ports:
+      - "9000:4000"
+    volumes:
+      - mirador-volume:/usr/src/app/db
+
+volumes:
+  iipsrv-volume:
+    driver_opts:
+        type: none
+        device: /mnt/serialization/binaries
+        o: bind
+  mirador-volume:
+    driver_opts:
+          type: none
+          device: /mnt/mirador-data
+          o: bind

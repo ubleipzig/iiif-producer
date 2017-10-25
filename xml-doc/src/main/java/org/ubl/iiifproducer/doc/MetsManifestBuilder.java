@@ -1,25 +1,19 @@
 /*
  * IIIFProducer
- *
  * Copyright (C) 2017 Leipzig University Library <info@ub.uni-leipzig.de>
  *
- * @author Stefan Freitag <freitag@uni-leipzig.de>
- * @author Christopher Johnson <christopher_hanna.johnson@uni-leipzig.de>
- * @author Felix Kreißig <kreissig@ub.uni-leipzig.de>
- * @author Leander Seige <seige@ub.uni-leipzig.de>
- * @license http://opensource.org/licenses/gpl-2.0.php GNU GPLv2
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2,
- * as published by the Free Software Foundation.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
 package org.ubl.iiifproducer.doc;
@@ -31,7 +25,6 @@ import static org.xmlbeam.XBProjector.Flags.TO_STRING_RENDERS_XML;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import org.xmlbeam.XBProjector;
 
 /**
@@ -65,7 +58,7 @@ public class MetsManifestBuilder {
     }
 
     static String getSubtitle(final MetsData mets) {
-        return mets.getSubtitle().trim();
+        return mets.getSubtitle().orElse("").trim();
     }
 
     public static String getAttribution(final MetsData mets) {
@@ -89,19 +82,19 @@ public class MetsManifestBuilder {
     }
 
     public static String getMaterial(final MetsData mets) {
-        return mets.getMaterial().trim();
+        return mets.getMaterial().orElse("").trim();
     }
 
     public static String getExtent(final MetsData mets) {
-        return mets.getExtent().trim();
+        return mets.getExtent().orElse("").trim();
     }
 
     public static String getDimension(final MetsData mets) {
-        return mets.getDimension().trim();
+        return mets.getDimension().orElse("").trim();
     }
 
     public static String getLanguage(final MetsData mets) {
-        return mets.getLanguage().trim();
+        return mets.getLanguage().orElse("").trim();
     }
 
     public static String getLocation(final MetsData mets) {
@@ -109,11 +102,11 @@ public class MetsManifestBuilder {
     }
 
     public static String getRecordIdentifier(final MetsData mets) {
-        return mets.getRecordIdentifier().trim();
+        return mets.getRecordIdentifier().orElse("").trim();
     }
 
     public static String getDateCreated(final MetsData mets) {
-        return mets.getDateCreated().trim();
+        return mets.getDateCreated().orElse("").trim();
     }
 
     public static List<String> getNoteTypes(final MetsData mets) {

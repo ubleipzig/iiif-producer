@@ -118,7 +118,7 @@ subprojects {
 
     license {
         include "**/*.java"
-        header rootProject.file('build/license/HEADER.txt')
+        header rootProject.file('HEADER.txt')
         strictCheck true
         mapping {
             java = 'SLASHSTAR_STYLE'

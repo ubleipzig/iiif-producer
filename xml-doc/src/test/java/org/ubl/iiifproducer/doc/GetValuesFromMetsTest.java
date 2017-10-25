@@ -1,16 +1,35 @@
+/*
+ * IIIFProducer
+ * Copyright (C) 2017 Leipzig University Library <info@ub.uni-leipzig.de>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+
 package org.ubl.iiifproducer.doc;
 
 import static java.lang.System.out;
 import static java.nio.file.Paths.get;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 import static org.ubl.iiifproducer.doc.MetsData.Logical;
 import static org.ubl.iiifproducer.doc.MetsData.Xlink;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getAttribution;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getFileResources;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
-import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogical;
+import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
+import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogicalLastDescendent;
+import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogicalLastParent;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getMimeTypeForFile;
@@ -44,7 +63,7 @@ class GetValuesFromMetsTest {
     @Test
     void testGetIdentifiers() throws IOException {
         MetsData mets = getMets(sourceFile);
-        Optional<String> id = getManuscriptIdByType(mets, "urn");
+        String id = getManuscriptIdByType(mets, "urn");
     }
 
     @Test
@@ -106,35 +125,30 @@ class GetValuesFromMetsTest {
     }
 
     @Test
-    void testGetLabelForRange() throws IOException {
+    void testGetLabelForLogical() throws IOException {
         MetsData mets = getMets(sourceFile);
         List<Xlink> xlinks = getXlinks(mets);
-        List<Logical> logDivs = getLogical(mets);
         Map<String, List<Xlink>> xlinkmap =
                 xlinks.stream().collect(groupingBy(Xlink::getXLinkFrom));
-        Map<String, String> logicalLabelMap = logDivs.stream().collect(
-                toMap(Logical::getLogicalId, Logical::getLogicalLabel));
-        for (String range : xlinkmap.keySet()) {
-            String label = logicalLabelMap.get(range);
-            out.println(label);
-        }
+        xlinkmap.keySet().forEach(logical -> {
+            String descLabel = getLogicalLabel(mets, logical);
+            System.out.println(descLabel);
+        });
     }
 
     @Test
-    void testGetTypeForRange() throws IOException {
+    void testGetTypeForLogical() throws IOException {
         MetsData mets = getMets(sourceFile);
         List<Xlink> xlinks = getXlinks(mets);
-        List<Logical> logDivs = getLogical(mets);
         Map<String, List<Xlink>> xlinkmap =
                 xlinks.stream().collect(groupingBy(Xlink::getXLinkFrom));
-        Map<String, String> logicalLabelMap = logDivs.stream().collect(
-                toMap(Logical::getLogicalId, Logical::getLogicalType));
-        for (String range : xlinkmap.keySet()) {
-            String type = logicalLabelMap.get(range);
-            out.println(type);
-        }
+        xlinkmap.keySet().forEach(logical -> {
+            List<Logical> last = getLogicalLastParent(mets, logical);
+            last.forEach(p -> {
+                String type = p.getLogicalType();
+                System.out.println(type);
+            });
 
+        });
     }
-
-
 }

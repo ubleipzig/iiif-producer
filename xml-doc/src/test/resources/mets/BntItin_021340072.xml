@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mets:mets
         xmlns:mets="http://www.loc.gov/METS/"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-3.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/version17/mets.v1-7.xsd">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-3.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/version17/mets.v1-7.xsd">
     <mets:metsHdr CREATEDATE="2017-07-26T07:58:44">
         <mets:agent OTHERTYPE="SOFTWARE" ROLE="CREATOR" TYPE="OTHER">
             <mets:name>Goobi - UGH-1.11.0-7b3c2be - 26−March−2015</mets:name>
