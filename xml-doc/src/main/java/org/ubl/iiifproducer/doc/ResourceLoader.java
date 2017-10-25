@@ -37,11 +37,16 @@ public class ResourceLoader {
         return getMetsFromFile(sourceFile);
     }
 
-    public static MetsData getMetsAnchor(String sourceFile) throws IOException {
-        File metsFile = new File(sourceFile);
+    public static MetsData getMetsAnchor(String sourceFileUri) throws IOException {
+        File metsFile = new File(sourceFileUri);
         if (metsFile.exists()) {
-            String anchorPath;
-            anchorPath = metsFile.getParent() + "_anchor.xml";
+            String anchorFileName = metsFile.getName();
+            int pos = anchorFileName.lastIndexOf(".");
+            String anchorBaseName = null;
+            if (pos > 0) {
+               anchorBaseName = anchorFileName.substring(0, pos); 
+            }
+            String anchorPath = metsFile.getParent() + "/" + anchorBaseName + "_anchor.xml";
             File anchorfile = new File(anchorPath);
             if (anchorfile.exists()) {
                 return getMetsFromFile(anchorfile);

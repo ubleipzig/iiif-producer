@@ -26,6 +26,7 @@ import static java.util.stream.Collectors.toList;
 import static org.ubl.iiifproducer.doc.MetsData.Logical;
 import static org.ubl.iiifproducer.doc.MetsData.Xlink;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getAttribution;
+import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getCensus;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getFileIdForDiv;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getFileResources;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
@@ -72,11 +73,13 @@ import org.ubl.iiifproducer.vocabulary.SC;
  */
 public class MetsImpl implements MetsAccessor {
     private MetsData mets;
+    private MetsData anchorDoc;
     private Config config;
     private Map<String, List<Xlink>> xlinkmap;
 
     MetsImpl(Config config) throws IOException {
         this.mets = getMets(config.getInputFile());
+        this.anchorDoc = getMetsAnchor(config.getInputFile());
         this.config = config;
         this.xlinkmap = getXlinkMap();
     }
@@ -89,7 +92,11 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public void setManifestLabel(TemplateBody body) {
-        body.setLabel(getManifestTitle(mets));
+        if (anchorDoc != null) {
+            body.setLabel(getAnchorFileLabel());
+        } else {
+            body.setLabel(getManifestTitle(mets));
+        }
     }
 
     @Override
@@ -117,6 +124,9 @@ public class MetsImpl implements MetsAccessor {
         StandardMetadata man = new StandardMetadata(mets);
         List<TemplateMetadata> info = man.getInfo();
         metadata.addAll(info);
+        if (anchorDoc != null) {
+            metadata.add(getAnchorFileMetadata());
+        }
         List<String> noteTypes = getNoteTypes(mets);
         for (String nt : noteTypes) {
             metadata.add(new TemplateMetadata(nt, getNotesByType(mets, nt).trim()));
@@ -124,26 +134,24 @@ public class MetsImpl implements MetsAccessor {
         body.setMetadata(metadata);
     }
 
-    //TODO get an anchorFile to Test with
     @Override
-    public void setAnchorfileMetadata(TemplateBody body) throws IOException {
-        MetsData anchorDoc = getMetsAnchor(config.getInputFile());
+    public TemplateMetadata getAnchorFileMetadata() {
         if (anchorDoc != null) {
-            List<TemplateMetadata> meta = new ArrayList<>();
             if (getManifestTitle(anchorDoc) != null && getManifestTitle(mets) != null) {
-                body.setLabel(getManifestTitle(anchorDoc) + ";" + getManifestTitle(mets));
-                meta.add(new TemplateMetadata(
-                        ANCHOR_KEY,
-                        getManifestTitle(anchorDoc) + ";" + getManifestTitle(mets)));
+                return new TemplateMetadata(ANCHOR_KEY,
+                        getManifestTitle(anchorDoc) + "; " + getCensus(mets));
             }
-            body.setMetadata(meta);
         }
+        return null;
+    }
+
+    public String getAnchorFileLabel() {
+        return getManifestTitle(anchorDoc) + "; " + getManifestTitle(mets);
     }
 
     @Override
     public List<String> getCanvases(String logical) {
         IRIUtils iri = new IRIUtils(this.config);
-
         List<String> canvases = new ArrayList<>();
         List<String> physicals =
                 xlinkmap.get(logical).stream().map(Xlink::getXLinkTo).collect(toList());

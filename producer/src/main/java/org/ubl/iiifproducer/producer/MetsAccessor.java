@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import org.ubl.iiifproducer.template.TemplateBody;
+import org.ubl.iiifproducer.template.TemplateMetadata;
 import org.ubl.iiifproducer.template.TemplateStructure;
 import org.ubl.iiifproducer.template.TemplateTopStructure;
 
@@ -44,7 +45,9 @@ public interface MetsAccessor {
 
     void setMetadata(TemplateBody body);
 
-    void setAnchorfileMetadata(TemplateBody body) throws IOException;
+    TemplateMetadata getAnchorFileMetadata();
+
+    String getAnchorFileLabel();
 
     Map<String, List<Xlink>> getXlinkMap();
 
