@@ -44,7 +44,7 @@ public interface MetsAccessor {
 
     void setMetadata(TemplateBody body);
 
-    void setAnchorfileMetadata(TemplateBody body) throws IOException;
+    TemplateBody setAnchorfileMetadata(TemplateBody body) throws IOException;
 
     Map<String, List<Xlink>> getXlinkMap();
 

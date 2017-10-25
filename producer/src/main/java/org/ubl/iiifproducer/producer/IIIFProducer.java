@@ -170,7 +170,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
         }
         try {
             if (mets != null) {
-                mets.setAnchorfileMetadata(body);
+                body = mets.setAnchorfileMetadata(body);
                 mets.setManifestLabel(body);
                 mets.setAttribution(body);
                 mets.setLogo(body);

@@ -18,6 +18,10 @@
 
 package org.ubl.iiifproducer.producer;
 
+import static java.nio.file.Paths.get;
+import static org.ubl.iiifproducer.producer.Constants.MANIFEST_HTTP_DIR;
+
+import java.io.File;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
@@ -32,13 +36,17 @@ class ArgParserTest {
     @Test
     void testArgs() throws IOException {
         parser = new ArgParser();
-        //String path = get(".").toAbsolutePath().normalize().getParent().toString();
-        // final String[] args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i",
-        //         path + "/xml-doc/src/test/resources/mets/MS_187.xml",
-        //         "-o", "/tmp/test33.json"};
-        final String[] args = new String[]{"-v", "MS_187_tif", "-t", "test-manifest", "-i",
-                "/mnt/serialization/binaries/MS_187.xml",
-                "-o", "/home/christopher/IdeaProjects/manifest-service/public/test.json"};
+        final String[] args;
+        if (! new File(MANIFEST_HTTP_DIR).exists()) {
+            String path = get(".").toAbsolutePath().normalize().getParent().toString();
+             args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i",
+                     path + "/xml-doc/src/test/resources/mets/MS_187.xml",
+                     "-o", "/tmp/test33.json"};
+        } else {
+            args = new String[]{"-v", "MS_187_tif", "-t", "test-manifest", "-i",
+                    "/mnt/serialization/binaries/BntItin_021340072.xml",
+                    "-o", MANIFEST_HTTP_DIR + "/test3.json"};
+        }
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
     }

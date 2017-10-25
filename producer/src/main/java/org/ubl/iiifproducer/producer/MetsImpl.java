@@ -124,9 +124,9 @@ public class MetsImpl implements MetsAccessor {
         body.setMetadata(metadata);
     }
 
-    //TODO get an anchorFile to Test with
     @Override
-    public void setAnchorfileMetadata(TemplateBody body) throws IOException {
+    public TemplateBody setAnchorfileMetadata(TemplateBody body) throws IOException {
+
         MetsData anchorDoc = getMetsAnchor(config.getInputFile());
         if (anchorDoc != null) {
             List<TemplateMetadata> meta = new ArrayList<>();
@@ -138,6 +138,7 @@ public class MetsImpl implements MetsAccessor {
             }
             body.setMetadata(meta);
         }
+        return body;
     }
 
     @Override
