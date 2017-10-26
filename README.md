@@ -16,7 +16,7 @@ A CLI tool that generates IIIF Presentation 2.1 Manifests from METS/MODS (produc
 ```bash
 $ cd producer-{$version}/bin
 $ chmod +x producer
-./producer -i {$your_inputfile}.xml -o {$your_outputfile.json} -t {$kitodo_archive_name} -v {$view_identifier}
+./producer -i {$your_inputfile}.xml -o {$your_outputfile.jsonld} -t {$kitodo_archive_name} -v {$view_identifier}
 ```
 
 ## Configuration Dependencies
@@ -44,6 +44,8 @@ $ cp {package image directory} /mnt/serialization/binaries/
 $ cp {package metadatafile} /mnt/serialization/binaries
 $ docker-compose up
 ```
+A Mirador instance is available at 
+`http://localhost:9000`
 
 The test branch image service URI defaults to:
  * `http://localhost:5000/iiif/{package image directory}/{file name.tif}`
@@ -54,14 +56,9 @@ $ mogrify -define tiff:tile-geometry=256x256 -depth 8 -format ptif *.tif
 $ rm *.tif
 $ rename 's/.ptif$/.tif/' *.ptif
 ```
-* Note: generated manifests need to output to a local HTTP server directory.
+* Note: generated manifests can published to `/mnt/http-server`
 ```bash
-./producer -i /mnt/serialization/binaries/{$your_inputfile}.xml -o /home/username/IdeaProjects/manifest-service/public/{$your_outputfile.json} -t {$kitodo_archive_name} -v {package image directory}
+./producer -i /mnt/serialization/binaries/{$your_inputfile}.xml -o /mnt/http-server/{$your_outputfile.jsonld} -t {$kitodo_archive_name} -v {package image directory}
 ``` 
-* A quick HTTP manifest solution is to checkout the `https://github.com/pan-dora/manifest-service.git`
-```bash
-$ npm install
-$ npm start
-```
-The manifest URI will be `http://localhost:3000/{$your_outputfile.json}`
+The manifest URI will be `http://localhost:3000/{$your_outputfile.jsonld}`
  

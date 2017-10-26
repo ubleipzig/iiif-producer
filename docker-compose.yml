@@ -17,6 +17,16 @@ services:
     volumes:
       - mirador-volume:/usr/src/app/db
 
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "3000:80"
+    volumes:
+      - nginx-volume:/usr/share/nginx/html
+      - ./deployment/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./deployment/nginx/nginx.conf:/etc/nginx/nginx.conf
+
 volumes:
   iipsrv-volume:
     driver_opts:
@@ -27,4 +37,9 @@ volumes:
     driver_opts:
           type: none
           device: /mnt/mirador-data
+          o: bind
+  nginx-volume:
+    driver_opts:
+          type: none
+          device: /mnt/http-server
           o: bind
