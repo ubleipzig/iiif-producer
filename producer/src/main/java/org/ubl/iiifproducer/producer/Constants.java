@@ -36,8 +36,8 @@ final class Constants {
     static final String IIIF_RANGE = "/range";
     static final String ATTRIBUTION_KEY = "Provided by ";
     static final String ANCHOR_KEY = "Part of";
-    static final String MANIFEST_HTTP_DIR = "/home/christopher/IdeaProjects/manifest-service/public/";
-
+    static final String MANIFEST_HTTP_DIR =
+            "/home/christopher/IdeaProjects/manifest-service/public/";
     private Constants() {
     }
 }

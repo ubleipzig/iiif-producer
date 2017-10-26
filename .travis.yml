@@ -1,0 +1,16 @@
+language: java
+sudo: required
+dist: trusty
+group: edge
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+jdk:
+- oraclejdk8
+
+install: true
+
+script:
+- ./gradlew build

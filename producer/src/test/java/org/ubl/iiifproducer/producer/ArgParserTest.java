@@ -45,7 +45,7 @@ class ArgParserTest {
         } else {
             args = new String[]{"-v", "MS_187_tif", "-t", "test-manifest", "-i",
                     "/mnt/serialization/binaries/BntItin_021340072.xml",
-                    "-o", MANIFEST_HTTP_DIR + "/test3.json"};
+                    "-o", MANIFEST_HTTP_DIR + "/test4.json"};
         }
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();

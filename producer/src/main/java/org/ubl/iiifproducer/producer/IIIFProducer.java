@@ -168,92 +168,87 @@ public class IIIFProducer implements ManifestBuilderProcess {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try {
-            if (mets != null) {
-                body = mets.setAnchorfileMetadata(body);
-                mets.setManifestLabel(body);
-                mets.setAttribution(body);
-                mets.setLogo(body);
-                String mtype = mets.getMtype();
-                if (Objects.equals(mtype, HANDSHRIFT_TYPE)) {
-                    mets.setHandschriftMetadata(body);
-                } else {
-                    mets.setMetadata(body);
-                }
-
-                final List<TemplateCanvas> canvases = new ArrayList<>();
-
-                List<String> divs = mets.getPhysical();
-                for (String div : divs) {
-
-                    String label = mets.getOrderLabel(div);
-
-                    TemplateCanvas canvas = new TemplateCanvas();
-                    canvas.setCanvasLabel(label);
-
-                    TemplateResource resource = new TemplateResource();
-                    resource.setResourceLabel(label);
-
-                    String fileID = mets.getFile(div);
-                    String fileName = mets.getHref(fileID);
-                    String filePath = buildFilePath(fileName);
-
-                    setImageDimensions(filePath, canvas, resource);
-
-                    //get resource context from config
-                    String resourceContext = config.getResourceContext();
-                    //get integer identifier from filename
-                    Integer baseName = Integer.valueOf(getBaseName(fileName));
-                    //pad integer to 8 digits
-                    String resourceFileId = format("%08d", baseName);
-                    //canvasId = resourceId
-                    String canvasIdString = resourceContext + IIIF_CANVAS + "/" + resourceFileId;
-                    //cast canvas as IRI (failsafe)
-                    IRI canvasIri = buildCanvasIRI(canvasIdString);
-                    //set Canvas Id
-                    canvas.setCanvasId(canvasIri.getIRIString());
-                    //resource IRI (original source file extension required by client)
-                    //TODO coordinate with dereferenceable location / confirm file extention
-                    String resourceIdString = resourceContext + "/" + resourceFileId + ".jpg";
-                    //cast resource as IRI (failsafe)
-                    IRI resourceIri = buildResourceIRI(resourceIdString);
-                    //set resourceID
-                    resource.setResourceId(resourceIri.getIRIString());
-                    //set Image Service
-                    //TODO fix IIIP image service IRI format
-                    String imageServiceContext = buildImageServiceContext(config.getViewId());
-                    IRI serviceIRI = buildServiceIRI(imageServiceContext, resourceFileId);
-                    resource.setService(new TemplateService(serviceIRI.getIRIString()));
-
-                    TemplateImage image = new TemplateImage();
-                    image.setResource(resource);
-                    image.setTarget(canvas.getCanvasId());
-
-                    List<TemplateImage> images = new ArrayList<>();
-                    images.add(image);
-
-                    canvas.setCanvasImages(images);
-
-                    canvases.add(canvas);
-                }
-
-                List<TemplateSequence> sequence = addCanvasesToSequence(canvases);
-                body.setSequences(sequence);
-
-                TemplateTopStructure top = mets.buildTopStructure();
-                List<TemplateStructure> subStructures = mets.buildStructures();
-
-                TemplateStructureList list = new TemplateStructureList(top, subStructures);
-                body.setStructures(list.getStructureList());
-
-                final Optional<String> json = serialize(body);
-                String output = json.orElse(null);
-                String outputFile = config.getOutputFile();
-                File outfile = new File(outputFile);
-                writeToFile(output, outfile);
+        if (mets != null) {
+            mets.setManifestLabel(body);
+            mets.setAttribution(body);
+            mets.setLogo(body);
+            String mtype = mets.getMtype();
+            if (Objects.equals(mtype, HANDSHRIFT_TYPE)) {
+                mets.setHandschriftMetadata(body);
+            } else {
+                mets.setMetadata(body);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            final List<TemplateCanvas> canvases = new ArrayList<>();
+
+            List<String> divs = mets.getPhysical();
+            for (String div : divs) {
+
+                String label = mets.getOrderLabel(div);
+
+                TemplateCanvas canvas = new TemplateCanvas();
+                canvas.setCanvasLabel(label);
+
+                TemplateResource resource = new TemplateResource();
+                resource.setResourceLabel(label);
+
+                String fileID = mets.getFile(div);
+                String fileName = mets.getHref(fileID);
+                String filePath = buildFilePath(fileName);
+
+                setImageDimensions(filePath, canvas, resource);
+
+                //get resource context from config
+                String resourceContext = config.getResourceContext();
+                //get integer identifier from filename
+                Integer baseName = Integer.valueOf(getBaseName(fileName));
+                //pad integer to 8 digits
+                String resourceFileId = format("%08d", baseName);
+                //canvasId = resourceId
+                String canvasIdString = resourceContext + IIIF_CANVAS + "/" + resourceFileId;
+                //cast canvas as IRI (failsafe)
+                IRI canvasIri = buildCanvasIRI(canvasIdString);
+                //set Canvas Id
+                canvas.setCanvasId(canvasIri.getIRIString());
+                //resource IRI (original source file extension required by client)
+                //TODO coordinate with dereferenceable location / confirm file extention
+                String resourceIdString = resourceContext + "/" + resourceFileId + ".jpg";
+                //cast resource as IRI (failsafe)
+                IRI resourceIri = buildResourceIRI(resourceIdString);
+                //set resourceID
+                resource.setResourceId(resourceIri.getIRIString());
+                //set Image Service
+                //TODO fix IIIP image service IRI format
+                String imageServiceContext = buildImageServiceContext(config.getViewId());
+                IRI serviceIRI = buildServiceIRI(imageServiceContext, resourceFileId);
+                resource.setService(new TemplateService(serviceIRI.getIRIString()));
+
+                TemplateImage image = new TemplateImage();
+                image.setResource(resource);
+                image.setTarget(canvas.getCanvasId());
+
+                List<TemplateImage> images = new ArrayList<>();
+                images.add(image);
+
+                canvas.setCanvasImages(images);
+
+                canvases.add(canvas);
+            }
+
+            List<TemplateSequence> sequence = addCanvasesToSequence(canvases);
+            body.setSequences(sequence);
+
+            TemplateTopStructure top = mets.buildTopStructure();
+            List<TemplateStructure> subStructures = mets.buildStructures();
+
+            TemplateStructureList list = new TemplateStructureList(top, subStructures);
+            body.setStructures(list.getStructureList());
+
+            final Optional<String> json = serialize(body);
+            String output = json.orElse(null);
+            String outputFile = config.getOutputFile();
+            File outfile = new File(outputFile);
+            writeToFile(output, outfile);
         }
     }
 }
