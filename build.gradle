@@ -116,6 +116,30 @@ subprojects {
         toolVersion = "0.7.9"
     }
 
+    tasks.withType(JavaExec) {
+        if (it.name == 'junitPlatformTest') {
+            doFirst {
+                jvmArgs "-javaagent:${configurations.testAgent.singleFile}=destfile=${project.buildDir.name}/jacoco/test.exec"
+            }
+        }
+    }
+
+    configurations {
+        testAgent {
+            transitive = false
+        }
+    }
+
+    dependencies {
+        testAgent("org.jacoco:org.jacoco.agent:0.7.9:runtime")
+    }
+
+    jacocoTestReport {
+        reports {
+            html.destination file("${buildDir}/jacocoHtml")
+        }
+    }
+
     license {
         include "**/*.java"
         header rootProject.file('HEADER.txt')
