@@ -26,10 +26,10 @@ package org.ubl.iiifproducer.producer;
 final class Constants {
 
     static final String BASE_URL = "https://iiif.ub.uni-leipzig.de/";
-    static final String SERVICE_BASE = "http://localhost:5000";
+    static final String SERVICE_BASE = "https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=";
     static final String VIEWER_URL = "https://digital.ub.uni-leipzig.de/object/viewid/";
-    static final String IMAGE_DIR = "/iiif/";
-    static final String IMAGE_SERVICE_FILE_EXT = ".tif";
+    static final String IMAGE_DIR = "/j2k/0000/0000/";
+    static final String IMAGE_SERVICE_FILE_EXT = ".jpx";
     static final String MANIFEST_FILENAME = "manifest.json";
     static final String SEQUENCE_ID = "/sequence/1";
     static final String IIIF_CANVAS = "/canvas";
@@ -38,6 +38,7 @@ final class Constants {
     static final String ANCHOR_KEY = "Part of";
     static final String MANIFEST_HTTP_DIR =
             "/home/christopher/IdeaProjects/manifest-service/public/";
+
     private Constants() {
     }
 }

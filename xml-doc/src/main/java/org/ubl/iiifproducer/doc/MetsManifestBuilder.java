@@ -25,6 +25,8 @@ import static org.xmlbeam.XBProjector.Flags.TO_STRING_RENDERS_XML;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import org.xmlbeam.XBProjector;
 
 /**
@@ -33,6 +35,7 @@ import org.xmlbeam.XBProjector;
  * @author christopher-johnson
  */
 public class MetsManifestBuilder {
+
     private MetsManifestBuilder() {
     }
 
@@ -189,15 +192,22 @@ public class MetsManifestBuilder {
         return mets.getLogicalLastParent(id);
     }
 
+    public static List<Logical> getTopLogicals(final MetsData mets) {
+        return mets.getTopLogicals();
+    }
+
     public static List<Logical> getLogicalLastChildren(final MetsData mets, String id) {
         return mets.getLogicalLastChildren(id);
     }
 
     public static String getLogicalLabel(final MetsData mets, String id) {
-        return mets.getLogicalLabel(id);
+        ResourceBundle labels = ResourceBundle.getBundle("LabelsBundle", Locale.GERMAN);
+        return mets.getLogicalLabel(id).orElse(labels.getString(mets.getLogicalType(id).orElse("")));
     }
 
     public static List<Xlink> getXlinks(final MetsData mets) {
         return mets.getXlinks();
     }
+
+
 }

@@ -56,14 +56,14 @@ public class StandardMetadata {
         meta.add(new TemplateMetadata("Kitodo", getManuscriptIdByType(mets, GOOBI_TYPE)));
         meta.add(new TemplateMetadata("URN", getManuscriptIdByType(mets, URN_TYPE)));
         meta.add(new TemplateMetadata("Source PPN (SWB)", getManuscriptIdByType(mets, SWB_TYPE)));
-        meta.add(new TemplateMetadata("Collection", getCollection(mets).trim()));
-        meta.add(new TemplateMetadata("Call number", getCallNumber(mets).trim()));
-        meta.add(new TemplateMetadata("Owner", getOwner(mets).trim()));
-        meta.add(new TemplateMetadata("Author", getAuthor(mets).trim()));
-        meta.add(new TemplateMetadata("Place of publication", getPlace(mets).trim()));
-        meta.add(new TemplateMetadata("Date of publication", getDate(mets).trim()));
-        meta.add(new TemplateMetadata("Publisher", getPublisher(mets).trim()));
-        meta.add(new TemplateMetadata("Physical description", getPhysState(mets).trim()));
+        meta.add(new TemplateMetadata("Collection", getCollection(mets)));
+        meta.add(new TemplateMetadata("Call number", getCallNumber(mets)));
+        meta.add(new TemplateMetadata("Owner", getOwner(mets)));
+        meta.add(new TemplateMetadata("Author", getAuthor(mets)));
+        meta.add(new TemplateMetadata("Place of publication", getPlace(mets)));
+        meta.add(new TemplateMetadata("Date of publication", getDate(mets)));
+        meta.add(new TemplateMetadata("Publisher", getPublisher(mets)));
+        meta.add(new TemplateMetadata("Physical description", getPhysState(mets)));
         return meta;
     }
 }

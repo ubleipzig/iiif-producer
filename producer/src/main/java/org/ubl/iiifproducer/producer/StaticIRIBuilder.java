@@ -18,6 +18,7 @@
 
 package org.ubl.iiifproducer.producer;
 
+import static java.lang.Integer.parseInt;
 import static org.ubl.iiifproducer.producer.Constants.IMAGE_DIR;
 import static org.ubl.iiifproducer.producer.Constants.IMAGE_SERVICE_FILE_EXT;
 import static org.ubl.iiifproducer.producer.Constants.SERVICE_BASE;
@@ -45,17 +46,18 @@ public class StaticIRIBuilder extends RDFBase {
     }
 
     public static String buildImageServiceContext(String viewId) {
-        //        int viewIdInt = parseInt(viewId);
+        int viewIdInt = parseInt(viewId);
         String imageDir = IMAGE_DIR;
-        //      StringBuilder newImageDir = new StringBuilder(Integer.toString(viewIdInt / 100));
-        //      while (newImageDir.length() < 4) {
-        //         newImageDir.insert(0, "0");
-        //    }
-        //        String hack = imageDir.split("/")[0] + "/" + imageDir.split("/")[1] + "/" +
-        // imageDir.split(
-        //              "/")[2];
+        StringBuilder newImageDir = new StringBuilder(Integer.toString(viewIdInt / 100));
 
-        // return SERVICE_BASE + hack + "/" + newImageDir + "/" + viewId;
-        return SERVICE_BASE + IMAGE_DIR + viewId;
+        while (newImageDir.length() < 4) {
+               newImageDir.insert(0, "0");
+        }
+
+        String hack = imageDir.split("/")[0] + "/" + imageDir.split("/")[1] + "/" + imageDir.split(
+                      "/")[2];
+
+         return SERVICE_BASE + hack + "/" + newImageDir + "/" + viewId;
+        //return SERVICE_BASE + IMAGE_DIR + viewId;
     }
 }
