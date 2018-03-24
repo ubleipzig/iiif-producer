@@ -35,50 +35,94 @@ public class Config {
     private String outputFile;
     private Boolean useSQL = false;
 
+    /**
+     *
+     * @return String
+     */
     public String getViewId() {
         return viewId;
     }
 
-    public final void setViewId(String viewId) {
+    /**
+     *
+     * @param viewId String
+     */
+    public final void setViewId(final String viewId) {
         this.viewId = viewId;
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getResourceContext() {
         return BASE_URL + viewId;
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getTitle() {
         return title;
     }
 
-    public final void setTitle(String title) {
+    /**
+     *
+     * @param title String
+     */
+    public final void setTitle(final String title) {
         this.title = title;
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getInputFile() {
         return inputFile;
     }
 
-    public final void setInputFile(String inputFile) {
+    /**
+     *
+     * @param inputFile String
+     */
+    public final void setInputFile(final String inputFile) {
         this.inputFile = inputFile;
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getBaseDir() {
-        File source = new File(inputFile);
+        final File source = new File(inputFile);
         if (source.exists()) {
             return source.getParent();
         }
         return null;
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getOutputFile() {
         return outputFile;
     }
 
-    public final void setOutputFile(String outputFile) {
+    /**
+     *
+     * @param outputFile String
+     */
+    public final void setOutputFile(final String outputFile) {
         this.outputFile = outputFile;
     }
 
+    /**
+     *
+     * @return Boolean
+     */
     public Boolean useSQL() {
         return useSQL;
     }

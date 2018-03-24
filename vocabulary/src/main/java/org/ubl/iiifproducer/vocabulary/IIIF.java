@@ -29,8 +29,7 @@ public class IIIF extends BaseVocabulary {
 
     /* Namespace */
     public static final String URI = "http://iiif.io/api/image/2#";
-    public static final String PRESENTATION_CONTEXT =
-            "http://iiif.io/api/presentation/2/context.json";
+    public static final String PRESENTATION_CONTEXT = "http://iiif.io/api/presentation/2/context.json";
     public static final String IMAGE_CONTEXT = "http://iiif.io/api/image/2/context.json";
     public static final String SERVICE_PROFILE = "http://iiif.io/api/image/2/level1.json";
 
@@ -54,8 +53,7 @@ public class IIIF extends BaseVocabulary {
     /* Named Individuals */
     public static final IRI arbitraryRotationFeature = createIRI(URI + "arbitraryRotationFeature");
     public static final IRI baseUriRedirectFeature = createIRI(URI + "baseUriRedirectFeature");
-    public static final IRI canonicalLinkHeaderFeature =
-            createIRI(URI + "canonicalLinkHeaderFeature");
+    public static final IRI canonicalLinkHeaderFeature = createIRI(URI + "canonicalLinkHeaderFeature");
     public static final IRI corsFeature = createIRI(URI + "corsFeature");
     public static final IRI jsonLdMediaTypeFeature = createIRI(URI + "jsonLdMediaTypeFeature");
     public static final IRI mirroringFeature = createIRI(URI + "mirroringFeature");

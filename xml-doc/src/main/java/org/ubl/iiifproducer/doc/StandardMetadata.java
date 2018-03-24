@@ -33,6 +33,8 @@ import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getPlace;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getPublisher;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.ubl.iiifproducer.template.TemplateMetadata;
 
@@ -47,12 +49,20 @@ public class StandardMetadata {
 
     private MetsData mets;
 
-    public StandardMetadata(MetsData mets) {
+    /**
+     *
+     * @param mets MetsData
+     */
+    public StandardMetadata(final MetsData mets) {
         this.mets = mets;
     }
 
-    public ArrayList<TemplateMetadata> getInfo() {
-        ArrayList<TemplateMetadata> meta = new ArrayList<>();
+    /**
+     *
+     * @return List
+     */
+    public List<TemplateMetadata> getInfo() {
+        final List<TemplateMetadata> meta = new ArrayList<>();
         meta.add(new TemplateMetadata("Kitodo", getManuscriptIdByType(mets, GOOBI_TYPE)));
         meta.add(new TemplateMetadata("URN", getManuscriptIdByType(mets, URN_TYPE)));
         meta.add(new TemplateMetadata("Source PPN (SWB)", getManuscriptIdByType(mets, SWB_TYPE)));

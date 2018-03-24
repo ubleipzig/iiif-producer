@@ -29,11 +29,20 @@ public class TemplateStructureList {
     private TemplateTopStructure top;
     private List<TemplateStructure> structures;
 
-    public TemplateStructureList(TemplateTopStructure top, List<TemplateStructure> structures) {
+    /**
+     *
+     * @param top TemplateTopStructure
+     * @param structures List
+     */
+    public TemplateStructureList(final TemplateTopStructure top, final List<TemplateStructure> structures) {
         this.top = top;
         this.structures = structures;
     }
 
+    /**
+     *
+     * @return List
+     */
     public List<TemplateStructure> getStructureList() {
         structures.add(0, top);
         return structures;

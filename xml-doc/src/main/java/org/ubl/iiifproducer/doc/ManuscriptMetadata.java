@@ -32,6 +32,8 @@ import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getRecordIdentifier;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getSubtitle;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.ubl.iiifproducer.template.TemplateMetadata;
 
@@ -46,13 +48,21 @@ public class ManuscriptMetadata {
 
     private MetsData mets;
 
-    public ManuscriptMetadata(MetsData mets) {
+    /**
+     *
+     * @param mets MetsData
+     */
+    public ManuscriptMetadata(final MetsData mets) {
         this.mets = mets;
     }
 
-    public ArrayList<TemplateMetadata> getInfo() {
+    /**
+     *
+     * @return List
+     */
+    public List<TemplateMetadata> getInfo() {
 
-        ArrayList<TemplateMetadata> meta = new ArrayList<>();
+        final List<TemplateMetadata> meta = new ArrayList<>();
         meta.add(new TemplateMetadata("Titel (aus Signatur)", getManifestTitle(mets)));
         meta.add(new TemplateMetadata("Objekttitel", getSubtitle(mets)));
         meta.add(new TemplateMetadata("Medium", getMedium(mets)));

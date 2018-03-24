@@ -22,6 +22,7 @@ import static org.ubl.iiifproducer.vocabulary.SC._Manifest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.List;
 
 /**
@@ -29,9 +30,8 @@ import java.util.List;
  *
  * @author christopher-johnson
  */
-@JsonPropertyOrder(
-        {"@context", "@id", "@type", "label", "attribution", "logo", "related", "metadata",
-                "sequences", "structures"})
+@JsonPropertyOrder({"@context", "@id", "@type", "label", "attribution", "logo", "related", "metadata", "sequences",
+        "structures"})
 public class TemplateBody {
 
     @JsonProperty("@context")
@@ -64,46 +64,89 @@ public class TemplateBody {
     @JsonProperty("structures")
     private List<TemplateStructure> structures;
 
+    /**
+     *
+     */
     public TemplateBody() {
     }
 
-    public void setContext(String context) {
+    /**
+     *
+     * @param context String
+     */
+    public void setContext(final String context) {
         this.context = context;
     }
 
-    public void setId(String id) {
+    /**
+     *
+     * @param id String
+     */
+    public void setId(final String id) {
         this.id = id;
     }
 
-    public void setType(String type) {
+    /**
+     *
+     * @param type String
+     */
+    public void setType(final String type) {
         this.type = type;
     }
 
-    public void setLabel(String label) {
+    /**
+     *
+     * @param label String
+     */
+    public void setLabel(final String label) {
         this.label = label;
     }
 
-    public void setAttribution(String attribution) {
+    /**
+     *
+     * @param attribution String
+     */
+    public void setAttribution(final String attribution) {
         this.attribution = attribution;
     }
 
-    public void setLogo(String logo) {
+    /**
+     *
+     * @param logo String
+     */
+    public void setLogo(final String logo) {
         this.logo = logo;
     }
 
-    public void setRelated(List<String> related) {
+    /**
+     *
+     * @param related List
+     */
+    public void setRelated(final List<String> related) {
         this.related = related;
     }
 
-    public void setSequences(List<TemplateSequence> sequences) {
+    /**
+     *
+     * @param sequences List
+     */
+    public void setSequences(final List<TemplateSequence> sequences) {
         this.sequences = sequences;
     }
 
-    public void setMetadata(List<TemplateMetadata> metadata) {
+    /**
+     *
+     * @param metadata List
+     */
+    public void setMetadata(final List<TemplateMetadata> metadata) {
         this.metadata = metadata;
     }
 
-    public void setStructures(List<TemplateStructure> structures) {
+    /**
+     *
+     * @param structures List
+     */
+    public void setStructures(final List<TemplateStructure> structures) {
         this.structures = structures;
     }
 

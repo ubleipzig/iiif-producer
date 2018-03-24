@@ -35,7 +35,12 @@ public class TemplateMetadata {
     @JsonProperty("value")
     private String value;
 
-    public TemplateMetadata(String label, String value) {
+    /**
+     *
+     * @param label String
+     * @param value String
+     */
+    public TemplateMetadata(final String label, final String value) {
         this.label = label;
         this.value = value;
     }

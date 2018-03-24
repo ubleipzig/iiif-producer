@@ -23,6 +23,7 @@ import static org.ubl.iiifproducer.vocabulary.SC._Canvas;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.List;
 
 /**
@@ -51,31 +52,58 @@ public class TemplateCanvas {
     @JsonProperty
     private List<TemplateImage> images;
 
+    /**
+     *
+     */
     public TemplateCanvas() {
     }
 
-    public void setCanvasLabel(String label) {
+    /**
+     *
+     * @param label String
+     */
+    public void setCanvasLabel(final String label) {
         this.label = label;
     }
 
-    public void setCanvasHeight(Integer height) {
+    /**
+     *
+     * @param height Integer
+     */
+    public void setCanvasHeight(final Integer height) {
         this.height = height;
     }
 
-    public void setCanvasWidth(Integer width) {
+    /***
+     *
+     * @param width Integer
+     */
+    public void setCanvasWidth(final Integer width) {
         this.width = width;
     }
 
-    public void setCanvasImages(List<TemplateImage> images) {
+    /**
+     *
+     * @param images List
+     */
+    public void setCanvasImages(final List<TemplateImage> images) {
         this.images = images;
     }
 
+    /**
+     *
+     * @return String
+     */
     @JsonIgnore
     public String getCanvasId() {
         return this.id;
     }
 
-    public void setCanvasId(String id) {
+    /**
+     *
+     * @param id String
+     */
+    public void setCanvasId(final String id) {
         this.id = id;
     }
 }

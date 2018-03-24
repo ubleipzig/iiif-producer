@@ -22,6 +22,8 @@ import static java.lang.Integer.valueOf;
 import static java.lang.String.format;
 import static org.ubl.iiifproducer.producer.Constants.IIIF_CANVAS;
 
+import java.io.File;
+
 /**
  * IRIUtils.
  *
@@ -30,13 +32,18 @@ import static org.ubl.iiifproducer.producer.Constants.IIIF_CANVAS;
 public class IRIUtils {
     private Config config;
 
-    IRIUtils(Config config) {
+    IRIUtils(final Config config) {
         this.config = config;
     }
 
-    public String buildCanvasIRIfromPhysical(String physical) {
-        String resourceContext = config.getResourceContext();
-        Integer newId = valueOf(physical.substring(physical.indexOf("_") + 1));
-        return resourceContext + IIIF_CANVAS + "/" + format("%08d", newId);
+    /**
+     *
+     * @param physical String
+     * @return String
+     */
+    public String buildCanvasIRIfromPhysical(final String physical) {
+        final String resourceContext = config.getResourceContext();
+        final Integer newId = valueOf(physical.substring(physical.indexOf("_") + 1));
+        return resourceContext + IIIF_CANVAS + File.separator + format("%08d", newId);
     }
 }

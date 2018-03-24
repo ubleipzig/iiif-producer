@@ -21,6 +21,7 @@ package org.ubl.iiifproducer.producer;
 import static java.nio.file.Paths.get;
 
 import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -32,10 +33,10 @@ class AppTest {
 
     @Test
     void testApp() throws IOException {
-        String path = get(".").toAbsolutePath().normalize().getParent().toString();
-        String sourceFile = path + "/xml-doc/src/test/resources/mets/BlhDie_004285964.xml";
+        final String path = get(".").toAbsolutePath().normalize().getParent().toString();
+        final String sourceFile = path + "/xml-doc/src/test/resources/mets/BlhDie_004285964.xml";
 
-        Config config = new Config();
+        final Config config = new Config();
         config.setInputFile(sourceFile);
         config.setTitle("BlhDie_004285964");
         config.setOutputFile("/tmp/test.json");

@@ -18,6 +18,7 @@
 
 package org.ubl.iiifproducer.producer;
 
+import static java.io.File.separator;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
@@ -45,6 +46,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
 import org.apache.commons.rdf.api.IRI;
 import org.slf4j.Logger;
 import org.ubl.iiifproducer.storage.SQL;
@@ -80,47 +82,47 @@ public class IIIFProducer implements ManifestBuilderProcess {
         logger.info("Running IIIF producer...");
         buildManifest();
         if (config.useSQL()) {
-            SQL db = new SQL(config.getTitle(), config.getViewId());
+            final SQL db = new SQL(config.getTitle(), config.getViewId());
             db.initDb();
         }
     }
 
     @Override
-    public void setContext(TemplateBody body) {
+    public void setContext(final TemplateBody body) {
         body.setContext(PRESENTATION_CONTEXT);
     }
 
     @Override
-    public void setId(TemplateBody body) {
-        String resourceContext = config.getResourceContext();
-        body.setId(resourceContext + "/" + MANIFEST_FILENAME);
+    public void setId(final TemplateBody body) {
+        final String resourceContext = config.getResourceContext();
+        body.setId(resourceContext + separator + MANIFEST_FILENAME);
     }
 
     @Override
-    public void setRelated(TemplateBody body) {
-        String viewId = config.getViewId();
-        ArrayList<String> related = new ArrayList<>();
+    public void setRelated(final TemplateBody body) {
+        final String viewId = config.getViewId();
+        final ArrayList<String> related = new ArrayList<>();
         related.add(VIEWER_URL + viewId);
-        related.add(BASE_URL + viewId + "/" + MANIFEST_FILENAME);
+        related.add(BASE_URL + viewId + separator + MANIFEST_FILENAME);
         body.setRelated(related);
     }
 
     @Override
-    public List<TemplateSequence> addCanvasesToSequence(List<TemplateCanvas> canvases) {
-        String resourceContext = config.getResourceContext();
-        List<TemplateSequence> sequence = new ArrayList<>();
+    public List<TemplateSequence> addCanvasesToSequence(final List<TemplateCanvas> canvases) {
+        final String resourceContext = config.getResourceContext();
+        final List<TemplateSequence> sequence = new ArrayList<>();
         sequence.add(new TemplateSequence(resourceContext + SEQUENCE_ID, canvases));
         return sequence;
     }
 
     @Override
-    public String buildFilePath(String filename) {
-        String baseDir = config.getBaseDir();
+    public String buildFilePath(final String filename) {
+        final String baseDir = config.getBaseDir();
         String filePath;
-        filePath = baseDir + "/" + filename;
+        filePath = baseDir + separator + filename;
 
         if (!new File(filePath).exists()) {
-            int p0 = filePath.lastIndexOf(".");
+            final int p0 = filePath.lastIndexOf(".");
             filePath = filePath.substring(0, p0) + ".TIF";
             if (!new File(filePath).exists()) {
                 logger.error(valueOf(new FileNotFoundException("File Not Found")));
@@ -130,11 +132,11 @@ public class IIIFProducer implements ManifestBuilderProcess {
     }
 
     @Override
-    public void setImageDimensions(String filePath, TemplateCanvas canvas,
-                                   TemplateResource resource) {
+    public void setImageDimensions(final String filePath, final TemplateCanvas canvas, final TemplateResource
+            resource) {
         Dimension dim = null;
         try {
-            File imageFile = new File(filePath);
+            final File imageFile = new File(filePath);
             if (imageFile.exists()) {
                 dim = getImageDimensions(imageFile);
             }
@@ -157,7 +159,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
     @Override
     public void buildManifest() {
-        TemplateBody body = new TemplateBody();
+        final TemplateBody body = new TemplateBody();
         setContext(body);
         setId(body);
         setRelated(body);
@@ -172,7 +174,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
             mets.setManifestLabel(body);
             mets.setAttribution(body);
             mets.setLogo(body);
-            String mtype = mets.getMtype();
+            final String mtype = mets.getMtype();
             if (Objects.equals(mtype, HANDSHRIFT_TYPE)) {
                 mets.setHandschriftMetadata(body);
             } else {
@@ -181,53 +183,53 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
             final List<TemplateCanvas> canvases = new ArrayList<>();
 
-            List<String> divs = mets.getPhysical();
+            final List<String> divs = mets.getPhysical();
             for (String div : divs) {
 
-                String label = mets.getOrderLabel(div);
+                final String label = mets.getOrderLabel(div);
 
-                TemplateCanvas canvas = new TemplateCanvas();
+                final TemplateCanvas canvas = new TemplateCanvas();
                 canvas.setCanvasLabel(label);
 
-                TemplateResource resource = new TemplateResource();
+                final TemplateResource resource = new TemplateResource();
                 resource.setResourceLabel(label);
 
-                String fileID = mets.getFile(div);
-                String fileName = mets.getHref(fileID);
-                String filePath = buildFilePath(fileName);
+                final String fileID = mets.getFile(div);
+                final String fileName = mets.getHref(fileID);
+                final String filePath = buildFilePath(fileName);
 
                 setImageDimensions(filePath, canvas, resource);
 
                 //get resource context from config
-                String resourceContext = config.getResourceContext();
+                final String resourceContext = config.getResourceContext();
                 //get integer identifier from filename
-                Integer baseName = Integer.valueOf(getBaseName(fileName));
+                final Integer baseName = Integer.valueOf(getBaseName(fileName));
                 //pad integer to 8 digits
-                String resourceFileId = format("%08d", baseName);
+                final String resourceFileId = format("%08d", baseName);
                 //canvasId = resourceId
-                String canvasIdString = resourceContext + IIIF_CANVAS + "/" + resourceFileId;
+                final String canvasIdString = resourceContext + IIIF_CANVAS + separator + resourceFileId;
                 //cast canvas as IRI (failsafe)
-                IRI canvasIri = buildCanvasIRI(canvasIdString);
+                final IRI canvasIri = buildCanvasIRI(canvasIdString);
                 //set Canvas Id
                 canvas.setCanvasId(canvasIri.getIRIString());
                 //resource IRI (original source file extension required by client)
                 //TODO coordinate with dereferenceable location / confirm file extention
-                String resourceIdString = resourceContext + "/" + resourceFileId + ".jpg";
+                final String resourceIdString = resourceContext + separator + resourceFileId + ".jpg";
                 //cast resource as IRI (failsafe)
-                IRI resourceIri = buildResourceIRI(resourceIdString);
+                final IRI resourceIri = buildResourceIRI(resourceIdString);
                 //set resourceID
                 resource.setResourceId(resourceIri.getIRIString());
                 //set Image Service
                 //TODO fix IIIP image service IRI format
-                String imageServiceContext = buildImageServiceContext(config.getViewId());
-                IRI serviceIRI = buildServiceIRI(imageServiceContext, resourceFileId);
+                final String imageServiceContext = buildImageServiceContext(config.getViewId());
+                final IRI serviceIRI = buildServiceIRI(imageServiceContext, resourceFileId);
                 resource.setService(new TemplateService(serviceIRI.getIRIString()));
 
-                TemplateImage image = new TemplateImage();
+                final TemplateImage image = new TemplateImage();
                 image.setResource(resource);
                 image.setTarget(canvas.getCanvasId());
 
-                List<TemplateImage> images = new ArrayList<>();
+                final List<TemplateImage> images = new ArrayList<>();
                 images.add(image);
 
                 canvas.setCanvasImages(images);
@@ -235,19 +237,19 @@ public class IIIFProducer implements ManifestBuilderProcess {
                 canvases.add(canvas);
             }
 
-            List<TemplateSequence> sequence = addCanvasesToSequence(canvases);
+            final List<TemplateSequence> sequence = addCanvasesToSequence(canvases);
             body.setSequences(sequence);
 
-            TemplateTopStructure top = mets.buildTopStructure();
-            List<TemplateStructure> subStructures = mets.buildStructures();
+            final TemplateTopStructure top = mets.buildTopStructure();
+            final List<TemplateStructure> subStructures = mets.buildStructures();
 
-            TemplateStructureList list = new TemplateStructureList(top, subStructures);
+            final TemplateStructureList list = new TemplateStructureList(top, subStructures);
             body.setStructures(list.getStructureList());
 
             final Optional<String> json = serialize(body);
-            String output = json.orElse(null);
-            String outputFile = config.getOutputFile();
-            File outfile = new File(outputFile);
+            final String output = json.orElse(null);
+            final String outputFile = config.getOutputFile();
+            final File outfile = new File(outputFile);
             writeToFile(output, outfile);
         }
     }

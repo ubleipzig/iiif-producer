@@ -25,6 +25,7 @@ import static org.ubl.iiifproducer.template.ManifestSerializer.serialize;
 
 import java.io.IOException;
 import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.ubl.iiifproducer.template.TemplateBody;
@@ -39,19 +40,19 @@ public class SetNullableMetadataTest {
 
     @BeforeAll
     static void testBuildStructures() throws IOException {
-        String path = get(".").toAbsolutePath().normalize().getParent().toString();
+        final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         sourceFile = path + "/xml-doc/src/test/resources/mets/BlhDie_004285964.xml";
     }
 
     @Test
     void testSetManuscriptMetadata() throws IOException {
-        Config config = new Config();
+        final Config config = new Config();
         config.setInputFile(sourceFile);
         config.setTitle("BlhDie_004285964");
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
-        MetsAccessor mets = new MetsImpl(config);
-        TemplateBody body = new TemplateBody();
+        final MetsAccessor mets = new MetsImpl(config);
+        final TemplateBody body = new TemplateBody();
         mets.setHandschriftMetadata(body);
         final Optional<String> json = serialize(body);
         assertTrue(json.isPresent());
@@ -60,13 +61,13 @@ public class SetNullableMetadataTest {
 
     @Test
     void testSetMetadata() throws IOException {
-        Config config = new Config();
+        final Config config = new Config();
         config.setInputFile(sourceFile);
         config.setTitle("BlhDie_004285964");
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
-        MetsAccessor mets = new MetsImpl(config);
-        TemplateBody body = new TemplateBody();
+        final MetsAccessor mets = new MetsImpl(config);
+        final TemplateBody body = new TemplateBody();
         mets.setMetadata(body);
         final Optional<String> json = serialize(body);
         assertTrue(json.isPresent());

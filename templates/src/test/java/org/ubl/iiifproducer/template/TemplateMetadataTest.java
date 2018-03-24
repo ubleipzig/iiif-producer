@@ -23,7 +23,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.ubl.iiifproducer.template.ManifestSerializer.serialize;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
@@ -39,7 +41,7 @@ class TemplateMetadataTest {
 
     @Test
     void testSerialization() {
-        ArrayList<TemplateMetadata> meta = new ArrayList<>();
+        final List<TemplateMetadata> meta = new ArrayList<>();
         meta.add(new TemplateMetadata("Kitodo", "12345"));
         meta.add(new TemplateMetadata("URN", "12345"));
         meta.add(new TemplateMetadata("Source PPN (SWB)", "12345"));

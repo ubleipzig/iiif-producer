@@ -23,6 +23,7 @@ import static org.ubl.iiifproducer.producer.Constants.MANIFEST_HTTP_DIR;
 
 import java.io.File;
 import java.util.UUID;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -32,13 +33,13 @@ import org.junit.jupiter.api.Test;
  * @author christopher-johnson
  */
 class ArgParserTest {
-    private ArgParser parser;
     private static String pid;
     private static String testFileSource;
+    private ArgParser parser;
 
     @BeforeAll
     static void init() {
-        String path = get(".").toAbsolutePath().normalize().getParent().toString();
+        final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         testFileSource = path + "/xml-doc/src/test/resources/mets/MS_187.xml";
         pid = "producer-test-" + UUID.randomUUID().toString();
     }
@@ -47,16 +48,13 @@ class ArgParserTest {
     void testArgs() {
         parser = new ArgParser();
         final String[] args;
-        if (! new File(MANIFEST_HTTP_DIR).exists()) {
+        if (!new File(MANIFEST_HTTP_DIR).exists()) {
 
-             args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i",
-                     testFileSource,
-                     "-o", "/tmp/" + pid + ".json"};
+            args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i", testFileSource, "-o", "/tmp/" +
+                    pid + ".json"};
         } else {
-            String path = get(".").toAbsolutePath().normalize().getParent().toString();
-            args = new String[]{"-v", "021340072", "-t", "test-manifest", "-i",
-                    testFileSource,
-                    "-o", MANIFEST_HTTP_DIR + pid + ".json"};
+            args = new String[]{"-v", "021340072", "-t", "test-manifest", "-i", testFileSource, "-o",
+                    MANIFEST_HTTP_DIR + pid + ".json"};
         }
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();

@@ -33,10 +33,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
+
 import org.slf4j.Logger;
 
 /**
@@ -61,6 +63,7 @@ public final class ManifestSerializer {
     /**
      * Serialize the Manifest.
      *
+     * @param manifest Object
      * @return the Manifest as a JSON string
      */
     public static Optional<String> serialize(final Object manifest) {
@@ -71,10 +74,15 @@ public final class ManifestSerializer {
         }
     }
 
-    public static Boolean writeToFile(String json, File file) {
+    /**
+     *
+     * @param json String
+     * @param file File
+     * @return Boolean
+     */
+    public static Boolean writeToFile(final String json, final File file) {
         logger.info("Writing File at {}", file.getPath());
-        try (final BufferedWriter writer = newBufferedWriter(file.toPath(), UTF_8, CREATE,
-                APPEND)) {
+        try (final BufferedWriter writer = newBufferedWriter(file.toPath(), UTF_8, CREATE, APPEND)) {
             writer.write(json);
         } catch (final IOException ex) {
             logger.error("Error writing data to resource {}: {}", file, ex.getMessage());

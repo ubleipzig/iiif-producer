@@ -50,30 +50,57 @@ public class TemplateResource {
     @JsonProperty
     private TemplateService service;
 
+    /**
+     *
+     */
     public TemplateResource() {
     }
 
-    public void setResourceId(String id) {
+    /**
+     *
+     * @param id String
+     */
+    public void setResourceId(final String id) {
         this.id = id;
     }
 
-    public void setResourceLabel(String label) {
+    /**
+     *
+     * @param label String
+     */
+    public void setResourceLabel(final String label) {
         this.label = label;
     }
 
-    public void setResourceFormat(String format) {
+    /**
+     *
+     * @param format String
+     */
+    public void setResourceFormat(final String format) {
         this.format = format;
     }
 
-    public void setService(TemplateService service) {
+    /**
+     *
+     * @param service TemplateService
+     */
+    public void setService(final TemplateService service) {
         this.service = service;
     }
 
-    public void setResourceHeight(Integer height) {
+    /**
+     *
+     * @param height Integer
+     */
+    public void setResourceHeight(final Integer height) {
         this.height = height;
     }
 
-    public void setResourceWidth(Integer width) {
+    /**
+     *
+     * @param width Integer
+     */
+    public void setResourceWidth(final Integer width) {
         this.width = width;
     }
 }

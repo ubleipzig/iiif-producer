@@ -25,6 +25,7 @@ import static org.ubl.iiifproducer.template.ManifestSerializer.serialize;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
@@ -40,13 +41,10 @@ class TemplateStructureTest {
 
     @Test
     void testSerialization() {
-        List<String> ranges = asList(
-                "https://iiif.ub.uni-leipzig.de/0000004084/range/0-0",
-                "https://iiif.ub.uni-leipzig.de/0000004084/range/0-1",
-                "https://iiif.ub.uni-leipzig.de/0000004084/range/0-2");
-        List<String> canvases = asList(
-                "https://iiif.ub.uni-leipzig.de/0000004084/canvas/1",
-                "https://iiif.ub.uni-leipzig.de/0000004084/canvas/2");
+        final List<String> ranges = asList("https://iiif.ub.uni-leipzig.de/0000004084/range/0-0", "https://iiif.ub" +
+                ".uni-leipzig.de/0000004084/range/0-1", "https://iiif.ub.uni-leipzig.de/0000004084/range/0-2");
+        final List<String> canvases = asList("https://iiif.ub.uni-leipzig.de/0000004084/canvas/1", "https://iiif.ub" +
+                ".uni-leipzig.de/0000004084/canvas/2");
         mockStructure.setStructureLabel("TOC");
         mockStructure.setStructureId("http://test.org/12345/range/0");
         mockStructure.setRanges(ranges);

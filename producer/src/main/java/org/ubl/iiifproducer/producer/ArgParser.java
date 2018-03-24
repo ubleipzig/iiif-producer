@@ -24,6 +24,7 @@ import static org.apache.commons.cli.Option.builder;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.PrintWriter;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -41,33 +42,25 @@ class ArgParser {
     private static final Options configOptions = new Options();
 
     static {
-        configOptions.addOption(
-                builder("v").longOpt("viewid").hasArg(true).desc("View identifier")
-                        .required(true).build());
+        configOptions.addOption(builder("v").longOpt("viewid").hasArg(true).desc("View identifier").required(true)
+                .build());
 
-        configOptions.addOption(
-                builder("t").longOpt("title").hasArg(true).desc("Title").required(true)
-                        .build());
+        configOptions.addOption(builder("t").longOpt("title").hasArg(true).desc("Title").required(true).build());
 
-        configOptions.addOption(
-                builder("i").longOpt("input").hasArg(true).desc("Source").required(true)
-                        .build());
+        configOptions.addOption(builder("i").longOpt("input").hasArg(true).desc("Source").required(true).build());
 
-        configOptions.addOption(
-                builder("o").longOpt("output").hasArg(true).desc("Output").required(true)
-                        .build());
+        configOptions.addOption(builder("o").longOpt("output").hasArg(true).desc("Output").required(true).build());
     }
 
     /**
      * Parse command line options based on the provide Options.
      *
      * @param configOptions valid set of Options
-     * @param args command line arguments
+     * @param args          command line arguments
      * @return the list of option and values
      * @throws ParseException if invalid/missing option is found
      */
-    private static CommandLine parseConfigArgs(final Options configOptions, final String[] args)
-            throws ParseException {
+    private static CommandLine parseConfigArgs(final Options configOptions, final String[] args) throws ParseException {
         return new DefaultParser().parse(configOptions, args);
     }
 
@@ -131,8 +124,7 @@ class ArgParser {
             writer.println("\n-----------------------\n" + message + "\n-----------------------\n");
         }
         writer.println("Running IIIF Producer from command line arguments");
-        formatter.printHelp(writer, 80, "java -jar IIIFProducer.jar", "", configOptions, 4, 4, "",
-                true);
+        formatter.printHelp(writer, 80, "java -jar IIIFProducer.jar", "", configOptions, 4, 4, "", true);
         writer.println("\n");
         writer.flush();
 

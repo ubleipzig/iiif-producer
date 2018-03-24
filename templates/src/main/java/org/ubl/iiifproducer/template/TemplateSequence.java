@@ -22,6 +22,7 @@ import static org.ubl.iiifproducer.vocabulary.SC._Sequence;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.List;
 
 /**
@@ -41,7 +42,12 @@ public class TemplateSequence {
     @JsonProperty("canvases")
     private List<TemplateCanvas> canvases;
 
-    public TemplateSequence(String id, List<TemplateCanvas> canvases) {
+    /**
+     *
+     * @param id String
+     * @param canvases List
+     */
+    public TemplateSequence(final String id, final List<TemplateCanvas> canvases) {
         this.id = id;
         this.canvases = canvases;
     }

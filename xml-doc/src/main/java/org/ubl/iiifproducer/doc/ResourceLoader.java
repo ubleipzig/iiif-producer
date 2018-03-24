@@ -18,11 +18,13 @@
 
 package org.ubl.iiifproducer.doc;
 
+import static java.io.File.separator;
 import static org.apache.log4j.Logger.getLogger;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getMetsFromFile;
 
 import java.io.File;
 import java.io.IOException;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -30,24 +32,38 @@ import org.apache.log4j.Logger;
  *
  * @author christopher-johnson
  */
-public class ResourceLoader {
+public final class ResourceLoader {
     private static Logger logger = getLogger(ResourceLoader.class);
 
-    public static MetsData getMets(String sourceFile) throws IOException {
+    private ResourceLoader() { }
+
+    /**
+     *
+     * @param sourceFile String
+     * @return MetsData
+     * @throws IOException IOException
+     */
+    public static MetsData getMets(final String sourceFile) throws IOException {
         return getMetsFromFile(sourceFile);
     }
 
-    public static MetsData getMetsAnchor(String sourceFileUri) throws IOException {
-        File metsFile = new File(sourceFileUri);
+    /**
+     *
+     * @param sourceFileUri String
+     * @return MetsData
+     * @throws IOException IOException
+     */
+    public static MetsData getMetsAnchor(final String sourceFileUri) throws IOException {
+        final File metsFile = new File(sourceFileUri);
         if (metsFile.exists()) {
-            String anchorFileName = metsFile.getName();
-            int pos = anchorFileName.lastIndexOf(".");
+            final String anchorFileName = metsFile.getName();
+            final int pos = anchorFileName.lastIndexOf(".");
             String anchorBaseName = null;
             if (pos > 0) {
-               anchorBaseName = anchorFileName.substring(0, pos); 
+                anchorBaseName = anchorFileName.substring(0, pos);
             }
-            String anchorPath = metsFile.getParent() + "/" + anchorBaseName + "_anchor.xml";
-            File anchorfile = new File(anchorPath);
+            final String anchorPath = metsFile.getParent() + separator + anchorBaseName + "_anchor.xml";
+            final File anchorfile = new File(anchorPath);
             if (anchorfile.exists()) {
                 return getMetsFromFile(anchorfile);
             }

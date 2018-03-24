@@ -21,7 +21,6 @@ package org.ubl.iiifproducer.producer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.ubl.iiifproducer.producer.StaticIRIBuilder.buildImageServiceContext;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -32,11 +31,10 @@ import org.junit.jupiter.api.Test;
 public class ImageServiceContextTest {
 
     @Test
-    //@Disabled
+        //@Disabled
     void testBuildImageServiceContext() {
-        String imageServiceContext = buildImageServiceContext("12345");
-        assertEquals(
-                "https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=/j2k/0000/0123/12345",
+        final String imageServiceContext = buildImageServiceContext("12345");
+        assertEquals("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=/j2k/0000/0123/12345",
                 imageServiceContext);
     }
 }

@@ -24,12 +24,15 @@ import static javax.imageio.spi.IIORegistry.getDefaultInstance;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import com.github.jaiimageio.impl.plugins.tiff.TIFFImageWriterSpi;
+
 import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+
 import org.slf4j.Logger;
 
 /**
@@ -37,8 +40,10 @@ import org.slf4j.Logger;
  *
  * @author christopher-johnson
  */
-public class JAI {
+public final class JAI {
     private static Logger logger = getLogger(JAI.class);
+
+    private JAI() { }
 
     /**
      * registerAllServicesProviders.

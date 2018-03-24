@@ -21,6 +21,7 @@ package org.ubl.iiifproducer.template;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.List;
 
 /**
@@ -46,6 +47,9 @@ public class TemplateStructure {
     @JsonProperty("canvases")
     private List<String> canvases;
 
+    /**
+     *
+     */
     public TemplateStructure() {
         this.id = id;
         this.type = type;
@@ -54,38 +58,70 @@ public class TemplateStructure {
         this.canvases = canvases;
     }
 
-    public void setStructureType(String structureType) {
+    /**
+     *
+     * @param structureType String
+     */
+    public void setStructureType(final String structureType) {
         this.type = structureType;
     }
 
-    public void setCanvases(List<String> canvases) {
+    /**
+     *
+     * @param canvases List
+     */
+    public void setCanvases(final List<String> canvases) {
         this.canvases = canvases;
     }
 
+    /**
+     *
+     * @return String
+     */
     @JsonIgnore
     public String getStructureLabel() {
         return this.label;
     }
 
-    public void setStructureLabel(String structureLabel) {
+    /**
+     *
+     * @param structureLabel String
+     */
+    public void setStructureLabel(final String structureLabel) {
         this.label = structureLabel;
     }
 
+    /**
+     *
+     * @return String
+     */
     @JsonIgnore
     public String getStructureId() {
         return this.id;
     }
 
-    public void setStructureId(String id) {
+    /**
+     *
+     * @param id String
+     */
+    public void setStructureId(final String id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return List
+     */
     @JsonIgnore
     public List<String> getRanges() {
         return this.ranges;
     }
 
-    public void setRanges(List<String> ranges) {
+    /**
+     *
+     * @param ranges List
+     */
+    public void setRanges(final List<String> ranges) {
         this.ranges = ranges;
     }
 }

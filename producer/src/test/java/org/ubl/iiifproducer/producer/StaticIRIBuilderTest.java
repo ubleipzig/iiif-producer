@@ -41,23 +41,20 @@ public class StaticIRIBuilderTest {
     @Test
     @Disabled
     void testBuildServiceIRI() {
-        String imageServiceContext = buildImageServiceContext("0000004057");
-        String resourceIdString = "00000002";
-        IRI serviceIri = buildServiceIRI(imageServiceContext, resourceIdString);
+        final String imageServiceContext = buildImageServiceContext("0000004057");
+        final String resourceIdString = "00000002";
+        final IRI serviceIri = buildServiceIRI(imageServiceContext, resourceIdString);
         assertTrue(serviceIri != null);
-        assertEquals(
-                "https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv"
-                        + ".fcgi?iiif=/j2k/0000/0040/0000004057/00000002.jpx",
-                serviceIri.getIRIString());
+        assertEquals("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv" + "" +
+                ".fcgi?iiif=/j2k/0000/0040/0000004057/00000002.jpx", serviceIri.getIRIString());
     }
 
     @Test
     void testBuildCanvasIRI() {
-        String viewId = "12345";
-        String resourceFileId = "00000001";
-        String resourceIdString = BASE_URL + viewId + IIIF_CANVAS + "/" + resourceFileId;
-        IRI canvasIRI = buildCanvasIRI(resourceIdString);
-        assertEquals(
-                "https://iiif.ub.uni-leipzig.de/12345/canvas/00000001", canvasIRI.getIRIString());
+        final String viewId = "12345";
+        final String resourceFileId = "00000001";
+        final String resourceIdString = BASE_URL + viewId + IIIF_CANVAS + "/" + resourceFileId;
+        final IRI canvasIRI = buildCanvasIRI(resourceIdString);
+        assertEquals("https://iiif.ub.uni-leipzig.de/12345/canvas/00000001", canvasIRI.getIRIString());
     }
 }

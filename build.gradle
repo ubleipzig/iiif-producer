@@ -22,25 +22,6 @@ ext {
     license = 'Apache 2'
 }
 
-configurations {
-    buildToolsConfig
-}
-
-dependencies {
-    buildToolsConfig "cool.pandora:pandora-build-tools:0.1.3"
-}
-
-task processBuildTools(type: Copy) {
-    from {
-        configurations.buildToolsConfig.collect {
-            zipTree(it).matching {
-                include 'checkstyle/*.xml'
-                include 'license/*.txt'
-            }
-        }
-    }
-    into 'build'
-}
 
 configure(allprojects) { project ->
     group 'org.ubl'
@@ -68,16 +49,19 @@ configure(allprojects) { project ->
     }
 
 
-    ext.commonsRdfVersion = '0.5.0'
-    ext.logbackVersion = '1.2.3'
-    ext.xbeamVersion = "1.4.8"
-    ext.jupiterVersion = "5.0.1"
-    ext.jacksonVersion = '2.9.1'
-    ext.mockitoVersion = '2.10.0'
-    ext.jaiImageIoVersion = "1.3.0"
-    ext.slf4jVersion = "1.7.25"
+    ext {
+        commonsRdfVersion = '0.5.0'
+        logbackVersion = '1.2.3'
+        xbeamVersion = "1.4.8"
+        jupiterVersion = "5.0.1"
+        jacksonVersion = '2.9.1'
+        mockitoVersion = '2.10.0'
+        jaiImageIoVersion = "1.3.0"
+        slf4jVersion = "1.7.25"
 
-    check.dependsOn processBuildTools
+        jacocoVersion = '0.8.0'
+        checkstyleVersion = '8.8'
+    }
 }
 
 subprojects {
@@ -107,13 +91,22 @@ subprojects {
     }
 
     checkstyle {
-        configFile = rootProject.file('build/checkstyle/checkstyle.xml')
-        configProperties.checkstyleConfigDir = rootProject.file('build/checkstyle/')
-        toolVersion = "8.1"
+        configFile = rootProject.file('buildtools/src/main/resources/checkstyle/checkstyle.xml')
+        configProperties.checkstyleConfigDir = rootProject.file('buildtools/src/main/resources/checkstyle/')
+        toolVersion = checkstyleVersion
+    }
+
+    license {
+        include "**/*.java"
+        header rootProject.file('buildtools/src/main/resources/license/HEADER.txt')
+        strictCheck true
+        mapping {
+            java = 'SLASHSTAR_STYLE'
+        }
     }
 
     jacoco {
-        toolVersion = "0.7.9"
+        toolVersion = jacocoVersion
     }
 
     tasks.withType(JavaExec) {
@@ -131,7 +124,7 @@ subprojects {
     }
 
     dependencies {
-        testAgent("org.jacoco:org.jacoco.agent:0.7.9:runtime")
+        testAgent("org.jacoco:org.jacoco.agent:${jacocoVersion}:runtime")
     }
 
     jacocoTestReport {

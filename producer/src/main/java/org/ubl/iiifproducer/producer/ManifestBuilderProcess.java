@@ -19,6 +19,7 @@
 package org.ubl.iiifproducer.producer;
 
 import java.util.List;
+
 import org.ubl.iiifproducer.template.TemplateBody;
 import org.ubl.iiifproducer.template.TemplateCanvas;
 import org.ubl.iiifproducer.template.TemplateResource;
@@ -31,19 +32,53 @@ import org.ubl.iiifproducer.template.TemplateSequence;
  */
 public interface ManifestBuilderProcess {
 
+    /**
+     *
+     */
     void run();
 
+    /**
+     *
+     * @param body TemplateBody
+     */
     void setContext(TemplateBody body);
 
+    /**
+     *
+     * @param body TemplateBody
+     */
     void setId(TemplateBody body);
 
+    /**
+     *
+     * @param body TemplateBody
+     */
     void setRelated(TemplateBody body);
 
+    /**
+     *
+     * @param canvases List
+     * @return List
+     */
     List<TemplateSequence> addCanvasesToSequence(List<TemplateCanvas> canvases);
 
+    /**
+     *
+     * @param filename String
+     * @return String
+     */
     String buildFilePath(String filename);
 
+    /**
+     *
+     */
     void buildManifest();
 
+    /**
+     *
+     * @param filePath String
+     * @param canvas TemplateCanvas
+     * @param resource TemplateResource
+     */
     void setImageDimensions(String filePath, TemplateCanvas canvas, TemplateResource resource);
 }

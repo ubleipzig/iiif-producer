@@ -37,7 +37,13 @@ public class TemplateMember {
     @JsonProperty
     private String label;
 
-    public TemplateMember(String id, String type, String label) {
+    /**
+     *
+     * @param id String
+     * @param type String
+     * @param label String
+     */
+    public TemplateMember(final String id, final String type, final String label) {
         this.id = id;
         this.type = type;
         this.label = label;

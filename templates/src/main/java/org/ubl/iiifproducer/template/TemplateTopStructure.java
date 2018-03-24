@@ -23,6 +23,7 @@ import static org.ubl.iiifproducer.vocabulary.SC._Range;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.List;
 
 /**
@@ -54,6 +55,9 @@ public class TemplateTopStructure extends TemplateStructure {
     @JsonProperty("ranges")
     private List<String> ranges;
 
+    /**
+     *
+     */
     public TemplateTopStructure() {
         this.id = id;
         this.type = type;
@@ -61,19 +65,35 @@ public class TemplateTopStructure extends TemplateStructure {
         this.members = members;
     }
 
-    public void setStructureId(String id) {
+    /**
+     *
+     * @param id String
+     */
+    public void setStructureId(final String id) {
         this.id = id;
     }
 
-    public void setStructureLabel(String structureLabel) {
+    /**
+     *
+     * @param structureLabel String
+     */
+    public void setStructureLabel(final String structureLabel) {
         this.label = structureLabel;
     }
 
-    public void setMembers(List<TemplateMember> members) {
+    /**
+     *
+     * @param members List
+     */
+    public void setMembers(final List<TemplateMember> members) {
         this.members = members;
     }
 
-    public void setRanges(List<String> ranges) {
+    /**
+     *
+     * @param ranges List
+     */
+    public void setRanges(final List<String> ranges) {
         this.ranges = ranges;
     }
 

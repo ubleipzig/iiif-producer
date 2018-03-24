@@ -18,6 +18,7 @@
 
 package org.ubl.iiifproducer.producer;
 
+import static java.io.File.separator;
 import static java.lang.Integer.parseInt;
 import static org.ubl.iiifproducer.producer.Constants.IMAGE_DIR;
 import static org.ubl.iiifproducer.producer.Constants.IMAGE_SERVICE_FILE_EXT;
@@ -32,32 +33,48 @@ import org.apache.commons.rdf.api.IRI;
  */
 public class StaticIRIBuilder extends RDFBase {
 
-
-    public static IRI buildCanvasIRI(String canvasIdString) {
+    /**
+     * @param canvasIdString String
+     * @return IRI
+     */
+    public static IRI buildCanvasIRI(final String canvasIdString) {
         return createIRI(canvasIdString);
     }
 
-    public static IRI buildResourceIRI(String resourceIdString) {
+    /**
+     * @param resourceIdString String
+     * @return IRI
+     */
+    public static IRI buildResourceIRI(final String resourceIdString) {
         return createIRI(resourceIdString);
     }
 
-    public static IRI buildServiceIRI(String imageServiceContext, String resourceIdString) {
+    /**
+     * @param imageServiceContext String
+     * @param resourceIdString    String
+     * @return IRI
+     */
+    public static IRI buildServiceIRI(final String imageServiceContext, final String resourceIdString) {
         return createIRI(imageServiceContext + "/" + resourceIdString + IMAGE_SERVICE_FILE_EXT);
     }
 
-    public static String buildImageServiceContext(String viewId) {
-        int viewIdInt = parseInt(viewId);
-        String imageDir = IMAGE_DIR;
-        StringBuilder newImageDir = new StringBuilder(Integer.toString(viewIdInt / 100));
+    /**
+     * @param viewId String
+     * @return String
+     */
+    public static String buildImageServiceContext(final String viewId) {
+        final int viewIdInt = parseInt(viewId);
+        final String imageDir = IMAGE_DIR;
+        final StringBuilder newImageDir = new StringBuilder(Integer.toString(viewIdInt / 100));
 
         while (newImageDir.length() < 4) {
-               newImageDir.insert(0, "0");
+            newImageDir.insert(0, "0");
         }
 
-        String hack = imageDir.split("/")[0] + "/" + imageDir.split("/")[1] + "/" + imageDir.split(
-                      "/")[2];
+        final String hack = imageDir.split(separator)[0] + separator + imageDir.split(separator)[1] + separator +
+                imageDir.split(separator)[2];
 
-         return SERVICE_BASE + hack + "/" + newImageDir + "/" + viewId;
+        return SERVICE_BASE + hack + separator + newImageDir + separator + viewId;
         //return SERVICE_BASE + IMAGE_DIR + viewId;
     }
 }

@@ -26,6 +26,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import org.slf4j.Logger;
 
 public class SQL {
@@ -36,31 +37,42 @@ public class SQL {
     private String viewId;
     private String jdbcURI;
 
-    public SQL(String title, String viewId) {
+    /**
+     *
+     * @param title String
+     * @param viewId String
+     */
+    public SQL(final String title, final String viewId) {
         this.title = title;
         this.viewId = viewId;
         this.jdbcURI = jdbcURI;
     }
 
+    /**
+     *
+     */
     public void initDb() {
         updateSQLdig(title, Integer.toString(parseInt(viewId)));
     }
 
-    public void updateSQLdig(String title, String viewId) {
-        String sqlSelect = "select view_id from metadata where title like '" + title + "'";
-        String sqlUpdate =
-                "update metadata set view_id = '" + viewId + "' where title like '" + title + "'";
-        try (Connection conn = this.connect();
-             Statement statement = conn.createStatement();
-             ResultSet rs = statement.executeQuery(sqlSelect);) {
+    /**
+     *
+     * @param title String
+     * @param viewId String
+     */
+    public void updateSQLdig(final String title, final String viewId) {
+        final String sqlSelect = "select view_id from metadata where title like '" + title + "'";
+        final String sqlUpdate = "update metadata set view_id = '" + viewId + "' where title like '" + title + "'";
+        try (Connection conn = this.connect(); Statement statement = conn.createStatement(); ResultSet rs = statement
+                .executeQuery(sqlSelect);) {
             while (rs.next()) {
-                String vid = rs.getString(1);
+                final String vid = rs.getString(1);
                 if (vid.isEmpty()) {
                     statement.executeUpdate(sqlUpdate);
                 }
             }
-            logger.info("Update DigiLife-Datenbank on " + title + " with the ViewID " + Integer
-                    .toString(parseInt(viewId)));
+            logger.info("Update DigiLife-Datenbank on " + title + " with the ViewID " + Integer.toString(parseInt
+                    (viewId)));
             statement.close();
             conn.close();
         } catch (SQLException e) {
@@ -70,7 +82,7 @@ public class SQL {
     }
 
     private Connection connect() {
-        String url = jdbcURI;
+        final String url = jdbcURI;
         Connection conn = null;
         try {
             conn = getConnection(url);

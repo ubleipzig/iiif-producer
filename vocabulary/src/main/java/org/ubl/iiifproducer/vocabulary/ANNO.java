@@ -25,7 +25,7 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author christopher-johnson
  */
-public class ANNO extends BaseVocabulary {
+public final class ANNO extends BaseVocabulary {
 
     /* CONTEXT */
     public static final String CONTEXT = "http://www.w3.org/ns/anno.jsonld";

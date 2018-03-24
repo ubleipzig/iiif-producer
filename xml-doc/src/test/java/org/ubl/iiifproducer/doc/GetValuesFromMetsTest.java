@@ -28,7 +28,6 @@ import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getAttribution;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getFileResources;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
-import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogicalLastDescendent;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getLogicalLastParent;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static org.ubl.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
@@ -41,8 +40,8 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -56,96 +55,91 @@ class GetValuesFromMetsTest {
 
     @Test
     void testGetTitle() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        String id = getManifestTitle(mets);
+        final MetsData mets = getMets(sourceFile);
+        final String id = getManifestTitle(mets);
     }
 
     @Test
     void testGetIdentifiers() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        String id = getManuscriptIdByType(mets, "urn");
+        final MetsData mets = getMets(sourceFile);
+        final String id = getManuscriptIdByType(mets, "urn");
     }
 
     @Test
     void testGetAttribution() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        String id = getAttribution(mets);
+        final MetsData mets = getMets(sourceFile);
+        final String id = getAttribution(mets);
     }
 
     @Test
     void testGetPhysicalDivs() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        List<String> divs = getPhysicalDivs(mets);
+        final MetsData mets = getMets(sourceFile);
+        final List<String> divs = getPhysicalDivs(mets);
     }
 
     @Test
     void testGetFileResources() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        List<String> files = getFileResources(mets);
+        final MetsData mets = getMets(sourceFile);
+        final List<String> files = getFileResources(mets);
     }
 
     @Test
     void testHrefForFile() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        String href = getHrefForFile(mets, "FILE_0003_ORIGINAL");
+        final MetsData mets = getMets(sourceFile);
+        final String href = getHrefForFile(mets, "FILE_0003_ORIGINAL");
         out.println(href);
     }
 
     @Test
     void testMimeTypeForFile() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        String mtype = getMimeTypeForFile(mets, "FILE_0003_ORIGINAL");
+        final MetsData mets = getMets(sourceFile);
+        final String mtype = getMimeTypeForFile(mets, "FILE_0003_ORIGINAL");
         out.println(mtype);
     }
 
     @Test
     void testGetRangesFromXlinks() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        List<Xlink> xlinks = getXlinks(mets);
-        Map<String, List<Xlink>> map =
-                xlinks.stream().collect(groupingBy(Xlink::getXLinkFrom));
-        Set<String> ranges = map.keySet();
+        final MetsData mets = getMets(sourceFile);
+        final List<Xlink> xlinks = getXlinks(mets);
+        final Map<String, List<Xlink>> map = xlinks.stream().collect(groupingBy(Xlink::getXLinkFrom));
+        final Set<String> ranges = map.keySet();
 
         out.println(xlinks);
     }
 
     @Test
     void testGetCanvasesForRange() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        List<Xlink> xlinks = getXlinks(mets);
-        Map<String, List<Xlink>> xlinkmap =
-                xlinks.stream().collect(groupingBy(Xlink::getXLinkFrom));
-        Map<String, List<String>> structures = new LinkedHashMap<>();
+        final MetsData mets = getMets(sourceFile);
+        final List<Xlink> xlinks = getXlinks(mets);
+        final Map<String, List<Xlink>> xlinkmap = xlinks.stream().collect(groupingBy(Xlink::getXLinkFrom));
+        final Map<String, List<String>> structures = new LinkedHashMap<>();
         for (String range : xlinkmap.keySet()) {
-            List<Xlink> links = xlinkmap.get(range);
-            List<String> canvases =
-                    links.stream().map(Xlink::getXLinkTo).collect(toList());
+            final List<Xlink> links = xlinkmap.get(range);
+            final List<String> canvases = links.stream().map(Xlink::getXLinkTo).collect(toList());
             structures.put(range, canvases);
         }
     }
 
     @Test
     void testGetLabelForLogical() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        List<Xlink> xlinks = getXlinks(mets);
-        Map<String, List<Xlink>> xlinkmap =
-                xlinks.stream().collect(groupingBy(Xlink::getXLinkFrom));
+        final MetsData mets = getMets(sourceFile);
+        final List<Xlink> xlinks = getXlinks(mets);
+        final Map<String, List<Xlink>> xlinkmap = xlinks.stream().collect(groupingBy(Xlink::getXLinkFrom));
         xlinkmap.keySet().forEach(logical -> {
-            String descLabel = getLogicalLabel(mets, logical);
+            final String descLabel = getLogicalLabel(mets, logical);
             System.out.println(descLabel);
         });
     }
 
     @Test
     void testGetTypeForLogical() throws IOException {
-        MetsData mets = getMets(sourceFile);
-        List<Xlink> xlinks = getXlinks(mets);
-        Map<String, List<Xlink>> xlinkmap =
-                xlinks.stream().collect(groupingBy(Xlink::getXLinkFrom));
+        final MetsData mets = getMets(sourceFile);
+        final List<Xlink> xlinks = getXlinks(mets);
+        final Map<String, List<Xlink>> xlinkmap = xlinks.stream().collect(groupingBy(Xlink::getXLinkFrom));
         xlinkmap.keySet().forEach(logical -> {
-            List<Logical> last = getLogicalLastParent(mets, logical);
+            final List<Logical> last = getLogicalLastParent(mets, logical);
             last.forEach(p -> {
-                String type = p.getLogicalType();
+                final String type = p.getLogicalType();
                 System.out.println(type);
             });
 

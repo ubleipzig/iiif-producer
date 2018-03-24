@@ -23,7 +23,7 @@ package org.ubl.iiifproducer.doc;
  *
  * @author christopher-johnson
  */
-public class MetsConstants {
+public final class MetsConstants {
 
     public static final String HANDSHRIFT_TYPE = "Handschrift";
     public static final String GOOBI_TYPE = "goobi";

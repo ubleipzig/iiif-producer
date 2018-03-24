@@ -15,37 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-
-package org.ubl.iiifproducer.template;
-
-import static org.ubl.iiifproducer.vocabulary.IIIF.IMAGE_CONTEXT;
-import static org.ubl.iiifproducer.vocabulary.IIIF.SERVICE_PROFILE;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 /**
- * TemplateService.
  *
- * @author christopher-johnson
  */
-@JsonPropertyOrder({"@context", "@id", "profile"})
-public class TemplateService {
-
-    @JsonProperty("@context")
-    private String context = IMAGE_CONTEXT;
-
-    @JsonProperty("@id")
-    private String id;
-
-    @JsonProperty
-    private String profile = SERVICE_PROFILE;
-
-    /**
-     *
-     * @param id String
-     */
-    public TemplateService(final String id) {
-        this.id = id;
-    }
-}
+package org.ubl.iiifproducer.vocabulary;

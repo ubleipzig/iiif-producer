@@ -43,11 +43,19 @@ public class TemplateImage {
     @JsonProperty
     private String on = "unnamed";
 
-    public void setResource(TemplateResource resource) {
+    /**
+     *
+     * @param resource TemplateResource
+     */
+    public void setResource(final TemplateResource resource) {
         this.resource = resource;
     }
 
-    public void setTarget(String target) {
+    /**
+     *
+     * @param target String
+     */
+    public void setTarget(final String target) {
         this.on = target;
     }
 
