@@ -38,7 +38,7 @@ class StructuresTest {
     @BeforeAll
     static void testBuildStructures() throws IOException {
         String path = get(".").toAbsolutePath().normalize().getParent().toString();
-        sourceFile = path + "/xml-doc/src/test/resources/mets/MS_187.xml";
+        sourceFile = path + "/xml-doc/src/test/resources/mets/MS_85.xml";
     }
 
     @Test
@@ -51,6 +51,18 @@ class StructuresTest {
         MetsAccessor mets = new MetsImpl(config);
         List<TemplateStructure> structures = mets.buildStructures();
         assertTrue(structures.get(0) != null);
+    }
+
+    @Test
+    void buildTopStructure() throws IOException {
+        Config config = new Config();
+        config.setInputFile(sourceFile);
+        config.setTitle("BlhDie_004285964");
+        config.setOutputFile("/tmp/test.json");
+        config.setViewId("004285964");
+        MetsAccessor mets = new MetsImpl(config);
+        TemplateStructure structure = mets.buildTopStructure();
+        assertTrue(structure != null);
     }
 
     @Test

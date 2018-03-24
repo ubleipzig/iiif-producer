@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 public class ImageServiceContextTest {
 
     @Test
-    @Disabled
+    //@Disabled
     void testBuildImageServiceContext() {
         String imageServiceContext = buildImageServiceContext("12345");
         assertEquals(

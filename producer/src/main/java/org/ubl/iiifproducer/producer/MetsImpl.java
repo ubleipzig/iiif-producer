@@ -52,8 +52,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -111,19 +113,17 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public void setHandschriftMetadata(TemplateBody body) {
-        List<TemplateMetadata> metadata = new ArrayList<>();
         ManuscriptMetadata man = new ManuscriptMetadata(mets);
         List<TemplateMetadata> info = man.getInfo();
-        metadata.addAll(info);
+        List<TemplateMetadata> metadata = new ArrayList<>(info);
         body.setMetadata(metadata);
     }
 
     @Override
     public void setMetadata(TemplateBody body) {
-        List<TemplateMetadata> metadata = new ArrayList<>();
         StandardMetadata man = new StandardMetadata(mets);
         List<TemplateMetadata> info = man.getInfo();
-        metadata.addAll(info);
+        List<TemplateMetadata> metadata = new ArrayList<>(info);
         if (anchorDoc != null) {
             metadata.add(getAnchorFileMetadata());
         }
@@ -162,12 +162,13 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public TemplateTopStructure buildTopStructure() {
+    public synchronized TemplateTopStructure buildTopStructure() {
         String resourceContext = config.getResourceContext();
         List<String> ranges = synchronizedList(new ArrayList<>());
 
-        xlinkmap.keySet().forEach(logical -> {
-            String rangeId = resourceContext + IIIF_RANGE + "/" + logical;
+        List<Logical> logs = mets.getTopLogicals();
+        logs.forEach(logical -> {
+            String rangeId = resourceContext + IIIF_RANGE + "/" + logical.getLogicalId();
             ranges.add(0, rangeId);
         });
 
@@ -180,7 +181,7 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public List<TemplateStructure> buildStructures() {
+    public synchronized List<TemplateStructure> buildStructures() {
         String resourceContext = config.getResourceContext();
         List<TemplateStructure> structures = synchronizedList(new ArrayList<>());
         List<TemplateStructure> descendents = synchronizedList(new ArrayList<>());
@@ -193,8 +194,6 @@ public class MetsImpl implements MetsAccessor {
                     String lastParentId = logicalLastParent.getLogicalId();
                     List<Logical> lastChildren =
                             getLogicalLastChildren(mets, lastParentId);
-                    //Map<String, String> logicalTypeMap = logDivs.stream().collect(
-                    //        toMap(Logical::getLogicalId, Logical::getLogicalType));
 
                     List<String> ranges = synchronizedList(new ArrayList<>());
                     lastChildren.forEach(desc -> {
@@ -227,11 +226,10 @@ public class MetsImpl implements MetsAccessor {
             }
         });
         Comparator<TemplateStructure> c = Comparator.comparing(TemplateStructure::getStructureId);
-        List<TemplateStructure> results = Stream.concat(structures.stream(), descendents.stream())
+        return Stream.concat(structures.stream(), descendents.stream())
                 .filter(new ConcurrentSkipListSet<>(c)::add)
+                .sorted(comparing(TemplateStructure::getStructureId))
                 .collect(Collectors.toList());
-        results.sort(comparing(TemplateStructure::getStructureId));
-        return results;
     }
 
     @Override

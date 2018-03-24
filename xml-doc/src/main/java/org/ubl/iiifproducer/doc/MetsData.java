@@ -133,6 +133,10 @@ public interface MetsData {
             + "='div'][@ID='{0}']/*[local-name()='div'][last()]")
     Logical getLogicalLastDescendent(String id);
 
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']/*[local-name()"
+            + "='div']/*[local-name()='div'][not(descendant::div)]")
+    List<Logical> getTopLogicals();
+
     @XBRead("//*[local-name()='div'][@ID='{0}']/parent::node()")
     List<Logical> getLogicalLastParent(String id);
 
@@ -141,7 +145,11 @@ public interface MetsData {
 
     @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()"
             + "='div'][@ID='{0}']/@LABEL")
-    String getLogicalLabel(String id);
+    Optional<String> getLogicalLabel(String id);
+
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()"
+            + "='div'][@ID='{0}']/@TYPE")
+    Optional<String> getLogicalType(String id);
 
     interface Xlink {
         @XBRead("@*[local-name()='from']")

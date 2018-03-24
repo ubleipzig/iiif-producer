@@ -22,7 +22,8 @@ import static java.nio.file.Paths.get;
 import static org.ubl.iiifproducer.producer.Constants.MANIFEST_HTTP_DIR;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.UUID;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -32,20 +33,30 @@ import org.junit.jupiter.api.Test;
  */
 class ArgParserTest {
     private ArgParser parser;
+    private static String pid;
+    private static String testFileSource;
+
+    @BeforeAll
+    static void init() {
+        String path = get(".").toAbsolutePath().normalize().getParent().toString();
+        testFileSource = path + "/xml-doc/src/test/resources/mets/MS_187.xml";
+        pid = "producer-test-" + UUID.randomUUID().toString();
+    }
 
     @Test
-    void testArgs() throws IOException {
+    void testArgs() {
         parser = new ArgParser();
         final String[] args;
         if (! new File(MANIFEST_HTTP_DIR).exists()) {
-            String path = get(".").toAbsolutePath().normalize().getParent().toString();
+
              args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i",
-                     path + "/xml-doc/src/test/resources/mets/MS_187.xml",
-                     "-o", "/tmp/test33.json"};
+                     testFileSource,
+                     "-o", "/tmp/" + pid + ".json"};
         } else {
-            args = new String[]{"-v", "MS_187_tif", "-t", "test-manifest", "-i",
-                    "/mnt/serialization/binaries/BntItin_021340072.xml",
-                    "-o", MANIFEST_HTTP_DIR + "/test4.json"};
+            String path = get(".").toAbsolutePath().normalize().getParent().toString();
+            args = new String[]{"-v", "021340072", "-t", "test-manifest", "-i",
+                    testFileSource,
+                    "-o", MANIFEST_HTTP_DIR + pid + ".json"};
         }
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
