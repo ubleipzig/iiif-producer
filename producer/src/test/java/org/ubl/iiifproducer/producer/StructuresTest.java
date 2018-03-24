@@ -34,6 +34,7 @@ import org.ubl.iiifproducer.template.TemplateStructure;
  * @author christopher-johnson
  */
 class StructuresTest {
+
     private static String sourceFile;
 
     @BeforeAll

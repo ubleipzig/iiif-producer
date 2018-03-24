@@ -18,4 +18,5 @@
 /**
  *
  */
+
 package org.ubl.iiifproducer.vocabulary;

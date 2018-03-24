@@ -71,7 +71,6 @@ public class TemplateBody {
     }
 
     /**
-     *
      * @param context String
      */
     public void setContext(final String context) {
@@ -79,7 +78,6 @@ public class TemplateBody {
     }
 
     /**
-     *
      * @param id String
      */
     public void setId(final String id) {
@@ -87,7 +85,6 @@ public class TemplateBody {
     }
 
     /**
-     *
      * @param type String
      */
     public void setType(final String type) {
@@ -95,7 +92,6 @@ public class TemplateBody {
     }
 
     /**
-     *
      * @param label String
      */
     public void setLabel(final String label) {
@@ -103,7 +99,6 @@ public class TemplateBody {
     }
 
     /**
-     *
      * @param attribution String
      */
     public void setAttribution(final String attribution) {
@@ -111,7 +106,6 @@ public class TemplateBody {
     }
 
     /**
-     *
      * @param logo String
      */
     public void setLogo(final String logo) {
@@ -119,7 +113,6 @@ public class TemplateBody {
     }
 
     /**
-     *
      * @param related List
      */
     public void setRelated(final List<String> related) {
@@ -127,7 +120,6 @@ public class TemplateBody {
     }
 
     /**
-     *
      * @param sequences List
      */
     public void setSequences(final List<TemplateSequence> sequences) {
@@ -135,7 +127,6 @@ public class TemplateBody {
     }
 
     /**
-     *
      * @param metadata List
      */
     public void setMetadata(final List<TemplateMetadata> metadata) {
@@ -143,7 +134,6 @@ public class TemplateBody {
     }
 
     /**
-     *
      * @param structures List
      */
     public void setStructures(final List<TemplateStructure> structures) {

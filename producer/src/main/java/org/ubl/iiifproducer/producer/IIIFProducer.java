@@ -42,13 +42,18 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.apache.commons.rdf.api.IRI;
 import org.slf4j.Logger;
+import org.ubl.iiifproducer.image.ImageMetadataGenerator;
+import org.ubl.iiifproducer.image.ImageMetadataGeneratorConfig;
 import org.ubl.iiifproducer.storage.SQL;
 import org.ubl.iiifproducer.template.TemplateBody;
 import org.ubl.iiifproducer.template.TemplateCanvas;
@@ -132,6 +137,26 @@ public class IIIFProducer implements ManifestBuilderProcess {
     }
 
     @Override
+    public void buildImageMetadataManifest() {
+        final String imageSourceDir = config.getBaseDir() + separator + config.getTitle() + "_tif";
+        if (new File(imageSourceDir).exists()) {
+            final ImageMetadataGeneratorConfig imageMetadataGeneratorConfig = new ImageMetadataGeneratorConfig();
+            imageMetadataGeneratorConfig.setImageSourceDir(imageSourceDir);
+            final ImageMetadataGenerator generator = new ImageMetadataGenerator(imageMetadataGeneratorConfig);
+            final String imageManifestPid = "image-manifest-" + UUID.randomUUID().toString();
+            final String outputPath = config.getBaseDir() + separator + imageManifestPid;
+            try {
+                Files.write(
+                        Paths.get(outputPath),
+                        generator.buildImageMetadataManifest().getBytes());
+                logger.debug("Writing Image Metadata Manifest to: {}", outputPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
     public void setImageDimensions(final String filePath, final TemplateCanvas canvas, final TemplateResource
             resource) {
         Dimension dim = null;
@@ -159,6 +184,9 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
     @Override
     public void buildManifest() {
+        if (config.generateImageManifest()) {
+            buildImageMetadataManifest();
+        }
         final TemplateBody body = new TemplateBody();
         setContext(body);
         setId(body);
@@ -195,8 +223,11 @@ public class IIIFProducer implements ManifestBuilderProcess {
                 resource.setResourceLabel(label);
 
                 final String fileID = mets.getFile(div);
+                logger.debug("File Id: {}", fileID);
                 final String fileName = mets.getHref(fileID);
+                logger.debug("File Name: {}", fileName);
                 final String filePath = buildFilePath(fileName);
+                logger.debug("File Path: {}", filePath);
 
                 setImageDimensions(filePath, canvas, resource);
 
@@ -245,11 +276,12 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
             final TemplateStructureList list = new TemplateStructureList(top, subStructures);
             body.setStructures(list.getStructureList());
-
+            logger.info("Builder Process Complete, Serializing to Json ...");
             final Optional<String> json = serialize(body);
             final String output = json.orElse(null);
             final String outputFile = config.getOutputFile();
             final File outfile = new File(outputFile);
+            logger.info("Writing file to {}", outputFile);
             writeToFile(output, outfile);
         }
     }

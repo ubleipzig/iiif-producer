@@ -19,6 +19,7 @@
 package org.ubl.iiifproducer.producer;
 
 import static org.ubl.iiifproducer.producer.Constants.BASE_URL;
+import static org.ubl.iiifproducer.producer.Constants.GENERATE_IMAGE_MANIFEST;
 
 import java.io.File;
 
@@ -34,9 +35,9 @@ public class Config {
     private String inputFile;
     private String outputFile;
     private Boolean useSQL = false;
+    private Boolean generateImageManifest = GENERATE_IMAGE_MANIFEST;
 
     /**
-     *
      * @return String
      */
     public String getViewId() {
@@ -44,7 +45,6 @@ public class Config {
     }
 
     /**
-     *
      * @param viewId String
      */
     public final void setViewId(final String viewId) {
@@ -52,7 +52,6 @@ public class Config {
     }
 
     /**
-     *
      * @return String
      */
     public String getResourceContext() {
@@ -60,7 +59,6 @@ public class Config {
     }
 
     /**
-     *
      * @return String
      */
     public String getTitle() {
@@ -68,7 +66,6 @@ public class Config {
     }
 
     /**
-     *
      * @param title String
      */
     public final void setTitle(final String title) {
@@ -76,7 +73,6 @@ public class Config {
     }
 
     /**
-     *
      * @return String
      */
     public String getInputFile() {
@@ -84,7 +80,6 @@ public class Config {
     }
 
     /**
-     *
      * @param inputFile String
      */
     public final void setInputFile(final String inputFile) {
@@ -92,7 +87,6 @@ public class Config {
     }
 
     /**
-     *
      * @return String
      */
     public String getBaseDir() {
@@ -104,7 +98,6 @@ public class Config {
     }
 
     /**
-     *
      * @return String
      */
     public String getOutputFile() {
@@ -112,7 +105,6 @@ public class Config {
     }
 
     /**
-     *
      * @param outputFile String
      */
     public final void setOutputFile(final String outputFile) {
@@ -120,11 +112,17 @@ public class Config {
     }
 
     /**
-     *
      * @return Boolean
      */
     public Boolean useSQL() {
         return useSQL;
+    }
+
+    /**
+     * @return Boolean
+     */
+    public Boolean generateImageManifest() {
+        return generateImageManifest;
     }
 
 }

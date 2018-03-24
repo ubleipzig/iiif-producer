@@ -59,7 +59,6 @@ public class TemplateCanvas {
     }
 
     /**
-     *
      * @param label String
      */
     public void setCanvasLabel(final String label) {
@@ -67,7 +66,6 @@ public class TemplateCanvas {
     }
 
     /**
-     *
      * @param height Integer
      */
     public void setCanvasHeight(final Integer height) {
@@ -83,7 +81,6 @@ public class TemplateCanvas {
     }
 
     /**
-     *
      * @param images List
      */
     public void setCanvasImages(final List<TemplateImage> images) {
@@ -91,7 +88,6 @@ public class TemplateCanvas {
     }
 
     /**
-     *
      * @return String
      */
     @JsonIgnore
@@ -100,7 +96,6 @@ public class TemplateCanvas {
     }
 
     /**
-     *
      * @param id String
      */
     public void setCanvasId(final String id) {

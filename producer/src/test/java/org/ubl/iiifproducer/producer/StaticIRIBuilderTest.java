@@ -45,8 +45,8 @@ public class StaticIRIBuilderTest {
         final String resourceIdString = "00000002";
         final IRI serviceIri = buildServiceIRI(imageServiceContext, resourceIdString);
         assertTrue(serviceIri != null);
-        assertEquals("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv" + "" +
-                ".fcgi?iiif=/j2k/0000/0040/0000004057/00000002.jpx", serviceIri.getIRIString());
+        assertEquals("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv" + ""
+                + ".fcgi?iiif=/j2k/0000/0040/0000004057/00000002.jpx", serviceIri.getIRIString());
     }
 
     @Test

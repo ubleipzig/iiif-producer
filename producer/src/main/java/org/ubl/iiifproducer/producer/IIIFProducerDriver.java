@@ -28,13 +28,13 @@ import org.slf4j.Logger;
  * @author christopher-johnson
  */
 public final class IIIFProducerDriver {
+
     private static Logger logger = getLogger(IIIFProducerDriver.class);
 
     private IIIFProducerDriver() {
     }
 
     /**
-     *
      * @param args args
      */
     public static void main(final String[] args) {

@@ -38,12 +38,13 @@ import org.slf4j.Logger;
  * @author christopher-johnson
  */
 class ArgParser {
+
     private static final Logger logger = getLogger(ArgParser.class);
     private static final Options configOptions = new Options();
 
     static {
-        configOptions.addOption(builder("v").longOpt("viewid").hasArg(true).desc("View identifier").required(true)
-                .build());
+        configOptions.addOption(
+                builder("v").longOpt("viewid").hasArg(true).desc("View identifier").required(true).build());
 
         configOptions.addOption(builder("t").longOpt("title").hasArg(true).desc("Title").required(true).build());
 
@@ -56,7 +57,7 @@ class ArgParser {
      * Parse command line options based on the provide Options.
      *
      * @param configOptions valid set of Options
-     * @param args          command line arguments
+     * @param args command line arguments
      * @return the list of option and values
      * @throws ParseException if invalid/missing option is found
      */

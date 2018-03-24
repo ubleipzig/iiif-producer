@@ -59,7 +59,6 @@ public class TemplateStructure {
     }
 
     /**
-     *
      * @param structureType String
      */
     public void setStructureType(final String structureType) {
@@ -67,7 +66,6 @@ public class TemplateStructure {
     }
 
     /**
-     *
      * @param canvases List
      */
     public void setCanvases(final List<String> canvases) {
@@ -75,7 +73,6 @@ public class TemplateStructure {
     }
 
     /**
-     *
      * @return String
      */
     @JsonIgnore
@@ -84,7 +81,6 @@ public class TemplateStructure {
     }
 
     /**
-     *
      * @param structureLabel String
      */
     public void setStructureLabel(final String structureLabel) {
@@ -92,7 +88,6 @@ public class TemplateStructure {
     }
 
     /**
-     *
      * @return String
      */
     @JsonIgnore
@@ -101,7 +96,6 @@ public class TemplateStructure {
     }
 
     /**
-     *
      * @param id String
      */
     public void setStructureId(final String id) {
@@ -109,7 +103,6 @@ public class TemplateStructure {
     }
 
     /**
-     *
      * @return List
      */
     @JsonIgnore
@@ -118,7 +111,6 @@ public class TemplateStructure {
     }
 
     /**
-     *
      * @param ranges List
      */
     public void setRanges(final List<String> ranges) {

@@ -27,6 +27,7 @@ import org.apache.commons.rdf.simple.SimpleRDF;
  * @author christopher-johnson
  */
 public class RDFBase {
+
     private static SimpleRDF rdf = new SimpleRDF();
 
     protected RDFBase() {

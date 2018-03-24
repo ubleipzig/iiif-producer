@@ -33,12 +33,13 @@ import org.apache.log4j.Logger;
  * @author christopher-johnson
  */
 public final class ResourceLoader {
+
     private static Logger logger = getLogger(ResourceLoader.class);
 
-    private ResourceLoader() { }
+    private ResourceLoader() {
+    }
 
     /**
-     *
      * @param sourceFile String
      * @return MetsData
      * @throws IOException IOException
@@ -48,7 +49,6 @@ public final class ResourceLoader {
     }
 
     /**
-     *
      * @param sourceFileUri String
      * @return MetsData
      * @throws IOException IOException

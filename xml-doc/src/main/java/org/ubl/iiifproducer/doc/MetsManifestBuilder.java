@@ -53,7 +53,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param url
      * @return MetsData
      * @throws IOException
@@ -64,7 +63,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -73,7 +71,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -82,7 +79,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -91,7 +87,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -100,7 +95,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -109,7 +103,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @param idType String
      * @return String
@@ -119,7 +112,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -128,7 +120,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -137,7 +128,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -146,7 +136,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -155,7 +144,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -164,7 +152,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -173,7 +160,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -182,7 +168,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -191,7 +176,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return List
      */
@@ -200,7 +184,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @param type String
      * @return String
@@ -210,7 +193,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -219,7 +201,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -228,7 +209,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -237,7 +217,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -246,7 +225,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -255,7 +233,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -264,7 +241,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -273,7 +249,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -282,7 +257,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -291,7 +265,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return String
      */
@@ -300,7 +273,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return List
      */
@@ -309,7 +281,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return List
      */
@@ -318,7 +289,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @param div String
      * @return String
@@ -328,7 +298,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @param div String
      * @return String
@@ -338,7 +307,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @param file String
      * @return String
@@ -348,7 +316,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @param file String
      * @return String
@@ -358,7 +325,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @param id String
      * @return Logical
@@ -368,7 +334,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @param id String
      * @return List
@@ -378,7 +343,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return List
      */
@@ -387,7 +351,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @param id String
      * @return List
@@ -397,7 +360,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @param id String
      * @return String
@@ -408,7 +370,6 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     *
      * @param mets MetsData
      * @return List
      */

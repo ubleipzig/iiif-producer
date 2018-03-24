@@ -36,6 +36,7 @@ import org.ubl.iiifproducer.template.TemplateBody;
  * @author christopher-johnson
  */
 public class SetNullableMetadataTest {
+
     private static String sourceFile;
 
     @BeforeAll

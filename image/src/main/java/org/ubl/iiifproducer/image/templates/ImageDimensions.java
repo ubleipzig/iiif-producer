@@ -16,85 +16,103 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package org.ubl.iiifproducer.template;
+package org.ubl.iiifproducer.image.templates;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * TemplateResource.
+ * ImageDimensions.
  *
  * @author christopher-johnson
  */
-@JsonPropertyOrder({"@id", "@type", "label", "format", "height", "width", "service"})
-public class TemplateResource {
-
-    @JsonProperty("@id")
-    private String id = "";
-
-    @JsonProperty("@type")
-    private String type = "dctypes:Image";
+@JsonPropertyOrder({"filename", "digest", "height", "width"})
+public class ImageDimensions {
 
     @JsonProperty
-    private String label = "unnamed resource";
+    String filename;
 
     @JsonProperty
-    private String format = "image/jpeg";
+    Integer height;
 
     @JsonProperty
-    private Integer height;
+    Integer width;
 
     @JsonProperty
-    private Integer width;
-
-    @JsonProperty
-    private TemplateService service;
+    private String digest;
 
     /**
+     * getFilename.
      *
+     * @return String
      */
-    public TemplateResource() {
+    public String getFilename() {
+        return this.filename;
     }
 
     /**
-     * @param id String
+     * setFilename.
+     *
+     * @param filename String
      */
-    public void setResourceId(final String id) {
-        this.id = id;
+    public void setFilename(final String filename) {
+        this.filename = filename;
     }
 
     /**
-     * @param label String
+     * getDigest.
+     *
+     * @return String
      */
-    public void setResourceLabel(final String label) {
-        this.label = label;
+    @JsonIgnore
+    public String getDigest() {
+        return this.digest;
     }
 
     /**
-     * @param format String
+     * setDigest.
+     *
+     * @param digest String
      */
-    public void setResourceFormat(final String format) {
-        this.format = format;
+    public void setDigest(final String digest) {
+        this.digest = digest;
     }
 
     /**
-     * @param service TemplateService
+     * getHeight.
+     *
+     * @return Integer
      */
-    public void setService(final TemplateService service) {
-        this.service = service;
+    public Integer getHeight() {
+        return this.height;
     }
 
     /**
+     * setHeight.
+     *
      * @param height Integer
      */
-    public void setResourceHeight(final Integer height) {
+    public void setHeight(final Integer height) {
         this.height = height;
     }
 
     /**
+     * getWidth.
+     *
+     * @return Integer
+     */
+    public Integer getWidth() {
+        return this.width;
+    }
+
+    /**
+     * setWidth.
+     *
      * @param width Integer
      */
-    public void setResourceWidth(final Integer width) {
+    public void setWidth(final Integer width) {
         this.width = width;
     }
+
 }

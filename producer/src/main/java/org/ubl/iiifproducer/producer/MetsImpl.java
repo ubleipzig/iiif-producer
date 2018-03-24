@@ -74,6 +74,7 @@ import org.ubl.iiifproducer.vocabulary.SC;
  * @author christopher-johnson
  */
 public class MetsImpl implements MetsAccessor {
+
     private MetsData mets;
     private MetsData anchorDoc;
     private Config config;
@@ -145,7 +146,6 @@ public class MetsImpl implements MetsAccessor {
     }
 
     /**
-     *
      * @return String
      */
     public String getAnchorFileLabel() {
@@ -164,7 +164,7 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public synchronized TemplateTopStructure buildTopStructure() {
+    public TemplateTopStructure buildTopStructure() {
         final String resourceContext = config.getResourceContext();
         final List<String> ranges = synchronizedList(new ArrayList<>());
 
@@ -183,7 +183,7 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public synchronized List<TemplateStructure> buildStructures() {
+    public List<TemplateStructure> buildStructures() {
         final String resourceContext = config.getResourceContext();
         final List<TemplateStructure> structures = synchronizedList(new ArrayList<>());
         final List<TemplateStructure> descendents = synchronizedList(new ArrayList<>());
@@ -225,8 +225,9 @@ public class MetsImpl implements MetsAccessor {
             }
         });
         final Comparator<TemplateStructure> c = Comparator.comparing(TemplateStructure::getStructureId);
-        return Stream.concat(structures.stream(), descendents.stream()).filter(new ConcurrentSkipListSet<>(c)::add)
-                .sorted(comparing(TemplateStructure::getStructureId)).collect(Collectors.toList());
+        return Stream.concat(structures.stream(), descendents.stream()).filter(
+                new ConcurrentSkipListSet<>(c)::add).sorted(comparing(TemplateStructure::getStructureId)).collect(
+                Collectors.toList());
     }
 
     @Override

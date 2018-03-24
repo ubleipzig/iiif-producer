@@ -50,6 +50,7 @@ import org.junit.jupiter.api.Test;
  * @author christopher-johnson
  */
 class GetValuesFromMetsTest {
+
     private String path = get(".").toAbsolutePath().normalize().getParent().toString();
     private String sourceFile = path + "/xml-doc/src/test/resources/mets/MS_187.xml";
 
@@ -144,5 +145,11 @@ class GetValuesFromMetsTest {
             });
 
         });
+    }
+
+    @Test
+    void testGetTopLogical() throws IOException {
+        final MetsData mets = getMets(sourceFile);
+        System.out.println(mets.getTopLogicals());
     }
 }

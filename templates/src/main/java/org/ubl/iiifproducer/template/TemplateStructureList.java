@@ -26,11 +26,11 @@ import java.util.List;
  * @author christopher-johnson
  */
 public class TemplateStructureList {
+
     private TemplateTopStructure top;
     private List<TemplateStructure> structures;
 
     /**
-     *
      * @param top TemplateTopStructure
      * @param structures List
      */
@@ -40,7 +40,6 @@ public class TemplateStructureList {
     }
 
     /**
-     *
      * @return List
      */
     public List<TemplateStructure> getStructureList() {

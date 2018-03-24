@@ -16,32 +16,61 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package org.ubl.iiifproducer.template;
+package org.ubl.iiifproducer.image.templates;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class ImageMetadataDirectory {
-    @JsonProperty
-    private String directory;
+/**
+ * ImageMetadataManifest.
+ *
+ * @author christopher-johnson
+ */
+public class ImageMetadataManifest {
 
     @JsonProperty
-    private List<ImageMetadataTag> tags;
+    String collection;
+
+    @JsonProperty
+    List<ImageMetadata> images;
 
     /**
+     * getCollection.
      *
-     * @param directory String
+     * @return String
      */
-    public void setDirectory(final String directory) {
-        this.directory = directory;
+    @JsonIgnore
+    public String getCollection() {
+        return this.collection;
     }
 
     /**
+     * setCollection.
      *
-     * @param tags List
+     * @param collection String
      */
-    public void setTags(final List<ImageMetadataTag> tags) {
-        this.tags = tags;
+    public void setCollection(final String collection) {
+        this.collection = collection;
+    }
+
+    /**
+     * getImageMetadata.
+     *
+     * @return List
+     */
+    @JsonIgnore
+    public List<ImageMetadata> getImageMetadata() {
+        return this.images;
+    }
+
+    /**
+     * setImageMetadata.
+     *
+     * @param images List
+     */
+    public void setImageMetadata(final List<ImageMetadata> images) {
+        this.images = images;
     }
 }

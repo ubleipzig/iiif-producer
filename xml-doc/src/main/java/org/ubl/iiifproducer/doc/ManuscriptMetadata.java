@@ -49,7 +49,6 @@ public class ManuscriptMetadata {
     private MetsData mets;
 
     /**
-     *
      * @param mets MetsData
      */
     public ManuscriptMetadata(final MetsData mets) {
@@ -57,7 +56,6 @@ public class ManuscriptMetadata {
     }
 
     /**
-     *
      * @return List
      */
     public List<TemplateMetadata> getInfo() {

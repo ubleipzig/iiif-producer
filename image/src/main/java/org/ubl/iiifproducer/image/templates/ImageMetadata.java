@@ -16,21 +16,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package org.ubl.iiifproducer.template;
+package org.ubl.iiifproducer.image.templates;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+/**
+ * ImageMetadata.
+ *
+ * @author christopher-johnson
+ */
 public class ImageMetadata {
+
     @JsonProperty
     private String filename;
+
+    @JsonProperty
+    private String digest;
 
     @JsonProperty
     private List<ImageMetadataDirectory> directories;
 
     /**
+     * getDirectories.
+     *
+     * @return List
+     */
+    @JsonIgnore
+    public List<ImageMetadataDirectory> getDirectories() {
+        return this.directories;
+    }
+
+    /**
+     * setDirectories.
      *
      * @param directories List
      */
@@ -39,6 +59,7 @@ public class ImageMetadata {
     }
 
     /**
+     * getFilename.
      *
      * @return String
      */
@@ -48,10 +69,31 @@ public class ImageMetadata {
     }
 
     /**
+     * setFilename.
      *
      * @param filename String
      */
     public void setFilename(final String filename) {
         this.filename = filename;
     }
+
+    /**
+     * getDigest.
+     *
+     * @return String
+     */
+    @JsonIgnore
+    public String getDigest() {
+        return this.digest;
+    }
+
+    /**
+     * setDigest.
+     *
+     * @param digest String
+     */
+    public void setDigest(final String digest) {
+        this.digest = digest;
+    }
+
 }

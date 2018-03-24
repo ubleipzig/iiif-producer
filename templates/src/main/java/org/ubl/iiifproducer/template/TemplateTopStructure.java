@@ -66,7 +66,6 @@ public class TemplateTopStructure extends TemplateStructure {
     }
 
     /**
-     *
      * @param id String
      */
     public void setStructureId(final String id) {
@@ -74,7 +73,6 @@ public class TemplateTopStructure extends TemplateStructure {
     }
 
     /**
-     *
      * @param structureLabel String
      */
     public void setStructureLabel(final String structureLabel) {
@@ -82,7 +80,6 @@ public class TemplateTopStructure extends TemplateStructure {
     }
 
     /**
-     *
      * @param members List
      */
     public void setMembers(final List<TemplateMember> members) {
@@ -90,7 +87,6 @@ public class TemplateTopStructure extends TemplateStructure {
     }
 
     /**
-     *
      * @param ranges List
      */
     public void setRanges(final List<String> ranges) {

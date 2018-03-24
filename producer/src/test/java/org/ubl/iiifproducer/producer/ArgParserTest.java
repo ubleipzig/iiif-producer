@@ -33,6 +33,7 @@ import org.junit.jupiter.api.Test;
  * @author christopher-johnson
  */
 class ArgParserTest {
+
     private static String pid;
     private static String testFileSource;
     private ArgParser parser;
@@ -50,10 +51,10 @@ class ArgParserTest {
         final String[] args;
         if (!new File(MANIFEST_HTTP_DIR).exists()) {
 
-            args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i", testFileSource, "-o", "/tmp/" +
-                    pid + ".json"};
+            args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i", testFileSource, "-o",
+                    "/tmp/" + pid + ".json"};
         } else {
-            args = new String[]{"-v", "021340072", "-t", "test-manifest", "-i", testFileSource, "-o",
+            args = new String[]{"-v", "021340072", "-t", "BlhDie_004285964", "-i", testFileSource, "-o",
                     MANIFEST_HTTP_DIR + pid + ".json"};
         }
         final ManifestBuilderProcess processor = parser.init(args);

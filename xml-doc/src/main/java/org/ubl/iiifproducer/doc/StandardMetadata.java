@@ -50,7 +50,6 @@ public class StandardMetadata {
     private MetsData mets;
 
     /**
-     *
      * @param mets MetsData
      */
     public StandardMetadata(final MetsData mets) {
@@ -58,7 +57,6 @@ public class StandardMetadata {
     }
 
     /**
-     *
      * @return List
      */
     public List<TemplateMetadata> getInfo() {

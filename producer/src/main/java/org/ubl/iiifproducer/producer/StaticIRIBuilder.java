@@ -51,7 +51,7 @@ public class StaticIRIBuilder extends RDFBase {
 
     /**
      * @param imageServiceContext String
-     * @param resourceIdString    String
+     * @param resourceIdString String
      * @return IRI
      */
     public static IRI buildServiceIRI(final String imageServiceContext, final String resourceIdString) {
@@ -71,8 +71,9 @@ public class StaticIRIBuilder extends RDFBase {
             newImageDir.insert(0, "0");
         }
 
-        final String hack = imageDir.split(separator)[0] + separator + imageDir.split(separator)[1] + separator +
-                imageDir.split(separator)[2];
+        final String hack =
+                imageDir.split(separator)[0] + separator + imageDir.split(separator)[1] + separator + imageDir.split(
+                        separator)[2];
 
         return SERVICE_BASE + hack + separator + newImageDir + separator + viewId;
         //return SERVICE_BASE + IMAGE_DIR + viewId;

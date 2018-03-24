@@ -38,32 +38,27 @@ public interface ManifestBuilderProcess {
     void run();
 
     /**
-     *
      * @param body TemplateBody
      */
     void setContext(TemplateBody body);
 
     /**
-     *
      * @param body TemplateBody
      */
     void setId(TemplateBody body);
 
     /**
-     *
      * @param body TemplateBody
      */
     void setRelated(TemplateBody body);
 
     /**
-     *
      * @param canvases List
      * @return List
      */
     List<TemplateSequence> addCanvasesToSequence(List<TemplateCanvas> canvases);
 
     /**
-     *
      * @param filename String
      * @return String
      */
@@ -72,10 +67,14 @@ public interface ManifestBuilderProcess {
     /**
      *
      */
-    void buildManifest();
+    void buildImageMetadataManifest();
 
     /**
      *
+     */
+    void buildManifest();
+
+    /**
      * @param filePath String
      * @param canvas TemplateCanvas
      * @param resource TemplateResource

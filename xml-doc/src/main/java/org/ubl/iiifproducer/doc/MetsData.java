@@ -31,35 +31,30 @@ import org.xmlbeam.annotation.XBRead;
 public interface MetsData {
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='mods']/*[local-name()='titleInfo']/*[local-name()='title']")
     String getManifestTitle();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='owner']")
     String getAttribution();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='ownerLogo']")
     String getLogo();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='typeOfResource'][@manuscript='yes']")
     String getManuscriptType();
 
     /**
-     *
      * @param idType String
      * @return String
      */
@@ -67,84 +62,72 @@ public interface MetsData {
     String getManuscriptIdByType(String idType);
 
     /**
-     *
      * @return Optional
      */
     @XBRead("//*[local-name()='subtitle']")
     Optional<String> getSubtitle();
 
     /**
-     *
      * @return Optional
      */
     @XBRead("//*[local-name()='typeOfResource']")
     Optional<String> getMedium();
 
     /**
-     *
      * @return Optional
      */
     @XBRead("//*[local-name()='form'][@type='material']")
     Optional<String> getMaterial();
 
     /**
-     *
      * @return Optional
      */
     @XBRead("//*[local-name()='extent'][@unit='leaves']")
     Optional<String> getExtent();
 
     /**
-     *
      * @return Optional
      */
     @XBRead("//*[local-name()='extent'][@unit='cm']")
     Optional<String> getDimension();
 
     /**
-     *
      * @return Optional
      */
     @XBRead("//*[local-name()='language']")
     Optional<String> getLanguage();
 
     /**
-     *
      * @return Optional
      */
     @XBRead("//*[local-name()='place'][@eventType='manufacture']")
     Optional<String> getLocation();
 
     /**
-     *
      * @return Optional
      */
     @XBRead("//*[local-name()='recordIdentifier']")
     Optional<String> getRecordIdentifier();
 
     /**
-     *
      * @return Optional
      */
     @XBRead("//*[local-name()='dateCreated']")
     Optional<String> getDateCreated();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='note']")
     String getNote();
 
     /**
-     *
      * @return List
      */
     @XBRead("//*[local-name()='note']/@type")
     List<String> getNoteTypes();
 
     /**
-     *
      * @param noteType String
      * @return String
      */
@@ -152,84 +135,72 @@ public interface MetsData {
     String getNotesByType(String noteType);
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='number']")
     String getCensus();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='title']")
     String getCollection();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='shelfLocator']")
     String getCallNumber();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='owner']")
     String getOwner();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='displayForm']")
     String getAuthor();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='placeTerm']")
     String getPlace();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='dateOther']")
     String getDate();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='publisher']")
     String getPublisher();
 
     /**
-     *
      * @return String
      */
     @XBRead("//*[local-name()='extent']")
     String getPhysState();
 
     /**
-     *
      * @return List
      */
     @XBRead("//*[local-name()='structMap'][@TYPE='PHYSICAL']/*[local-name()" + "='div']/descendant::node()/@ID")
     List<String> getPhysicalDivs();
 
     /**
-     *
      * @return List
      */
     @XBRead("//*[local-name()='fileGrp'][@USE='ORIGINAL']/descendant::node()/@ID")
     List<String> getFileResources();
 
     /**
-     *
      * @param div String
      * @return String
      */
@@ -237,7 +208,6 @@ public interface MetsData {
     String getOrderLabelForDiv(String div);
 
     /**
-     *
      * @param div String
      * @return String
      */
@@ -245,7 +215,6 @@ public interface MetsData {
     String getFileIdForDiv(String div);
 
     /**
-     *
      * @param file String
      * @return String
      */
@@ -253,7 +222,6 @@ public interface MetsData {
     String getHrefForFile(String file);
 
     /**
-     *
      * @param file String
      * @return String
      */
@@ -261,31 +229,27 @@ public interface MetsData {
     String getMimeTypeForFile(String file);
 
     /**
-     *
      * @return List
      */
     @XBRead("//*[local-name()='structLink']/*[local-name()='smLink']")
     List<Xlink> getXlinks();
 
     /**
-     *
      * @param id String
      * @return Logical
      */
-    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()" + "='div'][@ID='{0}']/*[local-name()" +
-            "='div'][last()]")
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()" + "='div'][@ID='{0}']/*[local-name()"
+            + "='div'][last()]")
     Logical getLogicalLastDescendent(String id);
 
     /**
-     *
      * @return List
      */
-    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']/*[local-name()" + "='div']/*[local-name()='div'][not" +
-            "(descendant::div)]")
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']/*[local-name()" + "='div']/*[local-name()='div'][not"
+            + "(descendant::div)]")
     List<Logical> getTopLogicals();
 
     /**
-     *
      * @param id String
      * @return List
      */
@@ -293,7 +257,6 @@ public interface MetsData {
     List<Logical> getLogicalLastParent(String id);
 
     /**
-     *
      * @param id String
      * @return List
      */
@@ -301,7 +264,6 @@ public interface MetsData {
     List<Logical> getLogicalLastChildren(String id);
 
     /**
-     *
      * @param id String
      * @return Optional
      */
@@ -309,7 +271,6 @@ public interface MetsData {
     Optional<String> getLogicalLabel(String id);
 
     /**
-     *
      * @param id String
      * @return Optional
      */
@@ -317,6 +278,7 @@ public interface MetsData {
     Optional<String> getLogicalType(String id);
 
     interface Xlink {
+
         @XBRead("@*[local-name()='from']")
         String getXLinkFrom();
 
@@ -325,6 +287,7 @@ public interface MetsData {
     }
 
     interface Logical {
+
         @XBRead("@*[local-name()='ID']")
         String getLogicalId();
 

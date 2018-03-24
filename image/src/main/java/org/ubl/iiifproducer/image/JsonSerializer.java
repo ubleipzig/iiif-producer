@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package org.ubl.iiifproducer.template;
+package org.ubl.iiifproducer.image;
 
 import static com.fasterxml.jackson.core.util.DefaultIndenter.SYSTEM_LINEFEED_INSTANCE;
 import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
@@ -32,7 +32,6 @@ import static org.slf4j.LoggerFactory.getLogger;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -42,22 +41,21 @@ import java.util.Optional;
 import org.slf4j.Logger;
 
 /**
- * ManifestSerializer.
+ * JsonSerializer.
  *
  * @author christopher-johnson
  */
-public final class ManifestSerializer {
+public final class JsonSerializer {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
-    private static Logger logger = getLogger(ManifestSerializer.class);
+    private static Logger logger = getLogger(JsonSerializer.class);
 
     static {
         MAPPER.configure(WRITE_DATES_AS_TIMESTAMPS, false);
         MAPPER.configure(INDENT_OUTPUT, true);
-        MAPPER.registerModule(new JavaTimeModule());
     }
 
-    private ManifestSerializer() {
+    private JsonSerializer() {
     }
 
     /**
@@ -75,6 +73,8 @@ public final class ManifestSerializer {
     }
 
     /**
+     * writeToFile.
+     *
      * @param json String
      * @param file File
      * @return Boolean

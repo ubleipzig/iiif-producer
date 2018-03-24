@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({"@id", "@type", "label"})
 public class TemplateMember {
+
     @JsonProperty("@id")
     private String id;
 
@@ -38,7 +39,6 @@ public class TemplateMember {
     private String label;
 
     /**
-     *
      * @param id String
      * @param type String
      * @param label String

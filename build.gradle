@@ -50,10 +50,13 @@ configure(allprojects) { project ->
 
 
     ext {
+        apiGuardianVersion = '1.0.0'
+        commonsCodecVersion = '1.11'
         commonsRdfVersion = '0.5.0'
         logbackVersion = '1.2.3'
+        metadataExtractorVersion = '2.11.0'
         xbeamVersion = "1.4.8"
-        jupiterVersion = "5.0.1"
+        junitVersion = "5.1.0"
         jacksonVersion = '2.9.1'
         mockitoVersion = '2.10.0'
         jaiImageIoVersion = "1.3.0"
@@ -145,13 +148,16 @@ subprojects {
 
 project("image") {
     dependencies {
+        implementation group: 'commons-codec', name: 'commons-codec', version: commonsCodecVersion
+        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+        implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion
+        compile "com.drewnoakes:metadata-extractor:${metadataExtractorVersion}"
         compile "com.github.jai-imageio:jai-imageio-core:${jaiImageIoVersion}"
         compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
-        testCompile project(":templates")
         testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
-        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
-        testCompile 'com.drewnoakes:metadata-extractor:2.11.0'
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
+        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: apiGuardianVersion
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitVersion
     }
 }
 
@@ -172,9 +178,9 @@ project("producer") {
         compile group: 'commons-io', name: 'commons-io', version: '2.5'
         compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
         testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
-        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jupiterVersion
+        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: apiGuardianVersion
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitVersion
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitVersion
     }
 }
 
@@ -193,9 +199,9 @@ project("templates") {
         implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
         implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion
         compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
-        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jupiterVersion
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitVersion
+        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: apiGuardianVersion
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitVersion
         testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
         testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
     }
@@ -204,7 +210,7 @@ project("templates") {
 project("vocabulary") {
     dependencies {
         api group: 'org.apache.commons', name: 'commons-rdf-api', version: commonsRdfVersion
-        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
+        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: apiGuardianVersion
     }
 }
 
@@ -216,9 +222,9 @@ project("xml-doc") {
         compile "org.xmlbeam:xmlprojector:${xbeamVersion}"
         compile group: 'log4j', name: 'log4j', version: '1.2.17'
         compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
-        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jupiterVersion
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitVersion
+        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: apiGuardianVersion
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitVersion
 
     }
 }

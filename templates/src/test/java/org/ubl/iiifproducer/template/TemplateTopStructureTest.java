@@ -41,8 +41,10 @@ class TemplateTopStructureTest {
 
     @Test
     void testSerialization() {
-        final List<String> ranges = asList("https://iiif.ub.uni-leipzig.de/0000004084/range/0-0", "https://iiif.ub" +
-                ".uni-leipzig.de/0000004084/range/0-1", "https://iiif.ub.uni-leipzig.de/0000004084/range/0-2");
+        final List<String> ranges = asList(
+                "https://iiif.ub.uni-leipzig.de/0000004084/range/0-0",
+                "https://iiif.ub" + ".uni-leipzig.de/0000004084/range/0-1",
+                "https://iiif.ub.uni-leipzig.de/0000004084/range/0-2");
         mockTopStructure.setStructureLabel("TOC");
         mockTopStructure.setStructureId("http://test.org/12345/range/0");
         mockTopStructure.setRanges(ranges);

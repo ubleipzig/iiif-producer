@@ -16,35 +16,59 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package org.ubl.iiifproducer.template;
+package org.ubl.iiifproducer.image.templates;
 
-import static org.ubl.iiifproducer.vocabulary.IIIF.IMAGE_CONTEXT;
-import static org.ubl.iiifproducer.vocabulary.IIIF.SERVICE_PROFILE;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * TemplateService.
+ * ImageMetadataTag.
  *
  * @author christopher-johnson
  */
-@JsonPropertyOrder({"@context", "@id", "profile"})
-public class TemplateService {
-
-    @JsonProperty("@context")
-    private String context = IMAGE_CONTEXT;
-
-    @JsonProperty("@id")
-    private String id;
+public class ImageMetadataTag {
 
     @JsonProperty
-    private String profile = SERVICE_PROFILE;
+    String tagName;
+
+    @JsonProperty
+    String tagDescription;
 
     /**
-     * @param id String
+     * getTagName.
+     *
+     * @return String
      */
-    public TemplateService(final String id) {
-        this.id = id;
+    @JsonIgnore
+    public String getTagName() {
+        return this.tagName;
+    }
+
+    /**
+     * setTagName.
+     *
+     * @param tagName String
+     */
+    public void setTagName(final String tagName) {
+        this.tagName = tagName;
+    }
+
+    /**
+     * getTagDescription.
+     *
+     * @return String
+     */
+    @JsonIgnore
+    public String getTagDescription() {
+        return this.tagDescription;
+    }
+
+    /**
+     * setTagDescription.
+     *
+     * @param tagDescription String
+     */
+    public void setTagDescription(final String tagDescription) {
+        this.tagDescription = tagDescription;
     }
 }

@@ -37,6 +37,7 @@ final class Constants {
     static final String ATTRIBUTION_KEY = "Provided by ";
     static final String ANCHOR_KEY = "Part of";
     static final String MANIFEST_HTTP_DIR = "/mnt/http-server/";
+    static final Boolean GENERATE_IMAGE_MANIFEST = true;
 
     private Constants() {
     }

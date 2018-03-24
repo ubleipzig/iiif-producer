@@ -16,45 +16,61 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package org.ubl.iiifproducer.template;
+package org.ubl.iiifproducer.image.templates;
 
-import static org.ubl.iiifproducer.vocabulary.SC._painting;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import java.util.List;
 
 /**
- * TemplateImage.
+ * ImageMetadataManifest.
  *
  * @author christopher-johnson
  */
-@JsonPropertyOrder({"@type", "motivation", "resource", "on"})
-public class TemplateImage {
-
-    @JsonProperty("@type")
-    private String type = "oa:Annotation";
+public class ImageDimensionManifest {
 
     @JsonProperty
-    private String motivation = _painting;
+    String collection;
 
     @JsonProperty
-    private Object resource;
-
-    @JsonProperty
-    private String on = "unnamed";
+    List<ImageDimensions> images;
 
     /**
-     * @param resource TemplateResource
+     * getCollection.
+     *
+     * @return String
      */
-    public void setResource(final TemplateResource resource) {
-        this.resource = resource;
+    @JsonIgnore
+    public String getCollection() {
+        return this.collection;
     }
 
     /**
-     * @param target String
+     * setCollection.
+     *
+     * @param collection String
      */
-    public void setTarget(final String target) {
-        this.on = target;
+    public void setCollection(final String collection) {
+        this.collection = collection;
     }
 
+    /**
+     * getImageMetadata.
+     *
+     * @return List
+     */
+    @JsonIgnore
+    public List<ImageDimensions> getImageMetadata() {
+        return this.images;
+    }
+
+    /**
+     * setImageMetadata.
+     *
+     * @param images List
+     */
+    public void setImageMetadata(final List<ImageDimensions> images) {
+        this.images = images;
+    }
 }

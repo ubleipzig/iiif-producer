@@ -30,6 +30,7 @@ import java.io.File;
  * @author christopher-johnson
  */
 public class IRIUtils {
+
     private Config config;
 
     IRIUtils(final Config config) {
@@ -37,7 +38,6 @@ public class IRIUtils {
     }
 
     /**
-     *
      * @param physical String
      * @return String
      */

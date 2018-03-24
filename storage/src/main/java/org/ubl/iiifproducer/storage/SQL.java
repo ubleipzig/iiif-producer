@@ -38,7 +38,6 @@ public class SQL {
     private String jdbcURI;
 
     /**
-     *
      * @param title String
      * @param viewId String
      */
@@ -56,7 +55,6 @@ public class SQL {
     }
 
     /**
-     *
      * @param title String
      * @param viewId String
      */
@@ -64,15 +62,16 @@ public class SQL {
         final String sqlSelect = "select view_id from metadata where title like '" + title + "'";
         final String sqlUpdate = "update metadata set view_id = '" + viewId + "' where title like '" + title + "'";
         try (Connection conn = this.connect(); Statement statement = conn.createStatement(); ResultSet rs = statement
-                .executeQuery(sqlSelect);) {
+                .executeQuery(
+                sqlSelect);) {
             while (rs.next()) {
                 final String vid = rs.getString(1);
                 if (vid.isEmpty()) {
                     statement.executeUpdate(sqlUpdate);
                 }
             }
-            logger.info("Update DigiLife-Datenbank on " + title + " with the ViewID " + Integer.toString(parseInt
-                    (viewId)));
+            logger.info(
+                    "Update DigiLife-Datenbank on " + title + " with the ViewID " + Integer.toString(parseInt(viewId)));
             statement.close();
             conn.close();
         } catch (SQLException e) {

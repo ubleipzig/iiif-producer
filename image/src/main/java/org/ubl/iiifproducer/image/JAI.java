@@ -41,9 +41,11 @@ import org.slf4j.Logger;
  * @author christopher-johnson
  */
 public final class JAI {
+
     private static Logger logger = getLogger(JAI.class);
 
-    private JAI() { }
+    private JAI() {
+    }
 
     /**
      * registerAllServicesProviders.
