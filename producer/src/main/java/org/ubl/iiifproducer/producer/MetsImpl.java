@@ -164,7 +164,7 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public synchronized TemplateTopStructure buildTopStructure() {
+    public TemplateTopStructure buildTopStructure() {
         final String resourceContext = config.getResourceContext();
         final List<String> ranges = synchronizedList(new ArrayList<>());
 
@@ -183,7 +183,7 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public synchronized List<TemplateStructure> buildStructures() {
+    public List<TemplateStructure> buildStructures() {
         final String resourceContext = config.getResourceContext();
         final List<TemplateStructure> structures = synchronizedList(new ArrayList<>());
         final List<TemplateStructure> descendents = synchronizedList(new ArrayList<>());
