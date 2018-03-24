@@ -15,33 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-
-package org.ubl.iiifproducer.template;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class ImageMetadataTag {
-
-    @JsonProperty
-    String tagName;
-
-    @JsonProperty
-    String tagDescription;
-
-    /**
-     *
-     * @param tagName String
-     */
-    public void setTagName(final String tagName) {
-        this.tagName = tagName;
-    }
-
-    /**
-     *
-     * @param tagDescription String
-     */
-    public void setTagDescription(final String tagDescription) {
-        this.tagDescription = tagDescription;
-    }
-
-}
+/**
+ *
+ */
+package org.ubl.iiifproducer.image.templates;

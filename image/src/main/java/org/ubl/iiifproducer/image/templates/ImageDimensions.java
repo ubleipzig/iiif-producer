@@ -15,37 +15,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+package org.ubl.iiifproducer.image.templates;
 
-package org.ubl.iiifproducer.template;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
+/**
+ * ImageDimensions.
+ *
+ * @author christopher-johnson
+ */
+public class ImageDimensions {
 
-public class ImageMetadata {
     @JsonProperty
-    private String filename;
+    String filename;
 
     @JsonProperty
-    private List<ImageMetadataDirectory> directories;
+    Integer height;
 
-    /**
-     *
-     * @param directories List
-     */
-    public void setDirectories(final List<ImageMetadataDirectory> directories) {
-        this.directories = directories;
-    }
-
-    /**
-     *
-     * @return String
-     */
-    @JsonIgnore
-    public String getFilename() {
-        return this.filename;
-    }
+    @JsonProperty
+    Integer width;
 
     /**
      *
@@ -54,4 +42,45 @@ public class ImageMetadata {
     public void setFilename(final String filename) {
         this.filename = filename;
     }
+
+    /**
+     *
+     * @return String
+     */
+    public String getFilename() {
+        return this.filename;
+    }
+
+    /**
+     *
+     * @param height Integer
+     */
+    public void setHeight(final Integer height) {
+        this.height = height;
+    }
+
+    /**
+     *
+     * @return Integer
+     */
+    public Integer getHeight() {
+        return this.height;
+    }
+
+    /**
+     *
+     * @param width Integer
+     */
+    public void setWidth(final Integer width) {
+        this.width = width;
+    }
+
+    /**
+     *
+     * @return Integer
+     */
+    public Integer getWidth() {
+        return this.width;
+    }
+
 }

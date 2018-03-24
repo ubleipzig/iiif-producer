@@ -15,16 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-
 package org.ubl.iiifproducer.image;
 
-import static java.nio.file.Paths.get;
-import static org.ubl.iiifproducer.template.ManifestSerializer.serialize;
+import static org.slf4j.LoggerFactory.getLogger;
+import static org.ubl.iiifproducer.image.JsonSerializer.serialize;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,19 +41,39 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
-import org.ubl.iiifproducer.template.ImageMetadata;
-import org.ubl.iiifproducer.template.ImageMetadataDirectory;
-import org.ubl.iiifproducer.template.ImageMetadataTag;
+import org.slf4j.Logger;
+import org.ubl.iiifproducer.image.templates.ImageDimensions;
+import org.ubl.iiifproducer.image.templates.ImageMetadata;
+import org.ubl.iiifproducer.image.templates.ImageMetadataDirectory;
+import org.ubl.iiifproducer.image.templates.ImageMetadataManifest;
+import org.ubl.iiifproducer.image.templates.ImageMetadataTag;
 
-public class EXIFJsonGeneratorTest {
-    private String path = get(".").toAbsolutePath().normalize().getParent().toString();
-    private String imageSourceDir = path + "/image/src/test/resources/";
+/**
+ * ImageMetadataGenerator.
+ *
+ * @author christopher-johnson
+ */
+public class ImageMetadataGenerator {
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static Logger logger = getLogger(ImageMetadataGenerator.class);
+    private String imageSourceDir;
 
-    @Test
-    void getImageMetadata() {
+    /**
+     *
+     * @param imageSourceDir String
+     */
+    public ImageMetadataGenerator(final String imageSourceDir) {
+        this.imageSourceDir = imageSourceDir;
+    }
+
+    /**
+     *
+     * @return String
+     */
+    public String buildImageMetadataManifest() {
         try {
             final Stream<Path> paths = Files.walk(Paths.get(imageSourceDir)).filter(Files::isRegularFile);
+            final ImageMetadataManifest manifest = new ImageMetadataManifest();
             final List<ImageMetadata> imageMetadataList = new ArrayList<>();
             paths.forEach(p -> {
                 final URI uri = p.toUri();
@@ -84,11 +105,54 @@ public class EXIFJsonGeneratorTest {
                 imageMetadataList.add(im);
             });
             imageMetadataList.sort(Comparator.comparing(ImageMetadata::getFilename));
-            final Optional<String> json = serialize(imageMetadataList);
-            final String output = json.orElse(null);
-            System.out.println(output);
+            manifest.setImageMetadata(imageMetadataList);
+            final Optional<String> json = serialize(manifest);
+            return json.orElse(null);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
+
+    /**
+     *
+     * @return List
+     */
+    public List<ImageDimensions> buildImageDimensions() {
+        final String body = buildImageMetadataManifest();
+        try {
+            final ImageMetadataManifest manifest = MAPPER.readValue(body, new TypeReference<ImageMetadataManifest>() {
+            });
+            final List<ImageDimensions> dimList = new ArrayList<>();
+            final List<ImageMetadata> imageList = manifest.getImageMetadata();
+            imageList.forEach(i -> {
+                final ImageDimensions dims = new ImageDimensions();
+                dims.setFilename(i.getFilename());
+                final List<ImageMetadataDirectory> dirList = i.getDirectories();
+                dirList.forEach(d -> {
+                    final List<ImageMetadataTag> tagList = d.getTags();
+                    tagList.forEach(t -> {
+                        final String tagName = t.getTagName();
+                        if (tagName.equals("Image Height")) {
+                            final String[] parts = t.getTagDescription().split(" ");
+                            final String height = parts[0];
+                            dims.setHeight(Integer.parseInt(height));
+                        }
+
+                        if (tagName.equals("Image Width")) {
+                            final String[] parts = t.getTagDescription().split(" ");
+                            final String width = parts[0];
+                            dims.setWidth(Integer.parseInt(width));
+                        }
+                    });
+                });
+                dimList.add(dims);
+            });
+            return dimList;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
