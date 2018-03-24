@@ -37,7 +37,7 @@ final class Constants {
     static final String ATTRIBUTION_KEY = "Provided by ";
     static final String ANCHOR_KEY = "Part of";
     static final String MANIFEST_HTTP_DIR =
-            "/home/christopher/IdeaProjects/manifest-service/public/";
+            "/mnt/http-server";
 
     private Constants() {
     }

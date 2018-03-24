@@ -68,7 +68,7 @@ configure(allprojects) { project ->
     }
 
 
-    ext.commonsRdfVersion = '0.3.0-incubating'
+    ext.commonsRdfVersion = '0.5.0'
     ext.logbackVersion = '1.2.3'
     ext.xbeamVersion = "1.4.8"
     ext.jupiterVersion = "5.0.1"
@@ -150,12 +150,25 @@ subprojects {
     }
 }
 
+project("image") {
+    dependencies {
+        compile "com.github.jai-imageio:jai-imageio-core:${jaiImageIoVersion}"
+        compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+        testCompile project(":templates")
+        testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+        testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
+        testCompile 'com.drewnoakes:metadata-extractor:2.11.0'
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
+    }
+}
+
 project("producer") {
     apply plugin: "application"
     apply plugin: 'org.junit.platform.gradle.plugin'
 
     mainClassName = "org.ubl.iiifproducer.producer.IIIFProducerDriver"
     dependencies {
+        compile project(":image")
         compile project(":storage")
         compile project(":templates")
         compile project(":xml-doc")
@@ -165,10 +178,9 @@ project("producer") {
         compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
         compile group: 'commons-io', name: 'commons-io', version: '2.5'
         compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
-        compile "com.github.jai-imageio:jai-imageio-core:${jaiImageIoVersion}"
-        compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
         testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
         testCompile group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0'
+        testCompile 'com.drewnoakes:metadata-extractor:2.11.0'
         testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
         testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jupiterVersion
     }

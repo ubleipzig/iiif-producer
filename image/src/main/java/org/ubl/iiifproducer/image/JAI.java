@@ -16,12 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package org.ubl.iiifproducer.producer;
+package org.ubl.iiifproducer.image;
 
 import static javax.imageio.ImageIO.createImageInputStream;
 import static javax.imageio.ImageIO.getImageReaders;
 import static javax.imageio.spi.IIORegistry.getDefaultInstance;
-import static org.apache.log4j.Logger.getLogger;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import com.github.jaiimageio.impl.plugins.tiff.TIFFImageWriterSpi;
 import java.awt.Dimension;
@@ -30,14 +30,14 @@ import java.io.IOException;
 import java.util.Iterator;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
 
 /**
  * JAI.
  *
  * @author christopher-johnson
  */
-class JAI {
+public class JAI {
     private static Logger logger = getLogger(JAI.class);
 
     /**
@@ -53,7 +53,7 @@ class JAI {
      * @param resourceFile File
      * @return Dimension
      */
-    static Dimension getImageDimensions(final File resourceFile) {
+    public static Dimension getImageDimensions(final File resourceFile) {
         registerAllServicesProviders();
 
         try (ImageInputStream in = createImageInputStream(resourceFile)) {
