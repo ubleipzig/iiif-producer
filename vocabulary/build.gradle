@@ -1,0 +1,3 @@
+dependencies {
+    api group: 'org.apache.commons', name: 'commons-rdf-api', version: commonsRdfVersion
+}

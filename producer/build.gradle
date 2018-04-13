@@ -1,0 +1,16 @@
+apply plugin: "application"
+
+mainClassName = "org.ubl.iiifproducer.producer.IIIFProducerDriver"
+dependencies {
+    implementation project(":image")
+    implementation project(":storage")
+    implementation project(":templates")
+    implementation project(":xml-doc")
+    implementation project(":vocabulary")
+    implementation group: 'org.apache.commons', name: 'commons-rdf-api', version: commonsRdfVersion
+    implementation group: 'org.apache.commons', name: 'commons-rdf-simple', version: commonsRdfVersion
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+    implementation group: 'commons-io', name: 'commons-io', version: '2.5'
+    implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
+    testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+}

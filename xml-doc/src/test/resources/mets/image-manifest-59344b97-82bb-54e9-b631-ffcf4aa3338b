@@ -1,0 +1,1681 @@
+{
+  "collection" : "/home/christopher/IdeaProjects/iiif-producer/xml-doc/src/test/resources/mets/BlhDie_004285964_tif",
+  "images" : [
+    {
+      "filename" : "00000001.tif",
+      "digest" : "pPbP3KxIUL+vhp7fgvbdETzgffo=",
+      "height" : 2775,
+      "width" : 1929
+    },
+    {
+      "filename" : "00000002.tif",
+      "digest" : "+IjI1aM57A/e4jY2HHBxf47rLHo=",
+      "height" : 2775,
+      "width" : 1789
+    },
+    {
+      "filename" : "00000003.tif",
+      "digest" : "jDumg/nXjIXTT6uSqVaKekoeXQY=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000004.tif",
+      "digest" : "H/KC2Rg29BA6Dy9Hh9Vt9wN0c7k=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000005.tif",
+      "digest" : "Ny/7YtNKQYLKmEy9U2zvxtNTj+4=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000006.tif",
+      "digest" : "jdmBawBRAprpf5a3qesNiGHmQTo=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000007.tif",
+      "digest" : "S/VnyMVV5mNJntgElpp//DeXarc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000008.tif",
+      "digest" : "v6Jgwo6ZaMSfAqVXgIRvkEIpQbg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000009.tif",
+      "digest" : "RWlVMrOBr4YtAvs4LRsOyhuZidA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000010.tif",
+      "digest" : "bB+fwihTraHx+ws9So6YUtt7cY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000011.tif",
+      "digest" : "tpuhLakPGVzgANu6O2k7rFSJ7WU=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000012.tif",
+      "digest" : "4c24EoLrjULIDC1XTBhUfVMYVkw=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000013.tif",
+      "digest" : "k/9HJp4Pptwi1KA72kWzgfAixKk=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000014.tif",
+      "digest" : "wH4I3lPxVnH5pt6+VSMdEzhwS48=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000015.tif",
+      "digest" : "SYN8C9R2SEtf/Nl+r8Sp7Re/zP8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000016.tif",
+      "digest" : "s3BS+bWZuiExFub4VT1UsY0AW2Q=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000017.tif",
+      "digest" : "RJh4mKF89K7Xuscj0Joz1WHO8DM=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000018.tif",
+      "digest" : "nBlVykLe84/0p1nbUWaePE0AGxw=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000019.tif",
+      "digest" : "LtWgJ1U1BZ88p+Qx9CY+9oDcWrQ=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000020.tif",
+      "digest" : "ciLZ/YoVk7JxMVUsBpT4a+TttT0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000021.tif",
+      "digest" : "jOBjjXI8GLxj5+ee0vaBzVhj4ak=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000022.tif",
+      "digest" : "mBaBm2GPOnSotCeNA+mfyUh3B8A=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000023.tif",
+      "digest" : "tMjfxZ0A+x8DAb7Mk/BoCuSGMXc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000024.tif",
+      "digest" : "KXa9aJTPDukiyQ+ypzZI9UMnD9E=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000025.tif",
+      "digest" : "bpdLe/UxsT5kiIGiOMTOX5RZeOI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000026.tif",
+      "digest" : "XFZooH7hyZ5tYLmlWd61Aj+xTus=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000027.tif",
+      "digest" : "Hyo8teDXVP3M7NeY5xKQ53vGQY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000028.tif",
+      "digest" : "j+QaZCvQkl7USDwEFSYAHPaeqsE=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000029.tif",
+      "digest" : "CKAvk/XfAXqEM5SAx+Fk3ztjbvs=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000030.tif",
+      "digest" : "O2ME8lhcLqHBcmuzZ1dwYtJXRlI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000031.tif",
+      "digest" : "NQeVTtkCSvMT1b52eUV5EsZNSz4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000032.tif",
+      "digest" : "u0BZ55jXmRwc4ltrdzqqGCWToaA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000033.tif",
+      "digest" : "fehY9eUZz9BFQrIdbH6x2s+26G4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000034.tif",
+      "digest" : "eDv0EC+98/9beFK4waBaVpwz29g=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000035.tif",
+      "digest" : "oq1diwmnP+DsOONS4Bnr+V2IKO4=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000036.tif",
+      "digest" : "ykTRX0YJzsm3lNZcZDvjjf2eTCs=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000037.tif",
+      "digest" : "pE48WBhirujktqAkKzRft2sOyGg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000038.tif",
+      "digest" : "UvIoBYpjE/NZfxjk22IgtBGtvUk=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000039.tif",
+      "digest" : "3uRHddObDTJZ4LMdQh6Uhxm6UkU=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000040.tif",
+      "digest" : "LguJiE1QOdceCgVIVoKj+H/IACY=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000041.tif",
+      "digest" : "8fso3LgoyVtJ53exV2431U6OeFA=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000042.tif",
+      "digest" : "WEwsoDK57eAv/WTmsoynvbO6NW0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000043.tif",
+      "digest" : "wEDKtVYnzZ1Ndk3uTW/Md3o5laU=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000044.tif",
+      "digest" : "jQjHwwq0J1qUH5ZwQTCnam621gk=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000045.tif",
+      "digest" : "nuKDJTc8tGl5qTOUkHU/bHH2yvc=",
+      "height" : 2748,
+      "width" : 2530
+    },
+    {
+      "filename" : "00000046.tif",
+      "digest" : "P6nC3VqptlgZ9SvlUWrWNHecNmg=",
+      "height" : 2775,
+      "width" : 1929
+    }
+  ]
+}{
+  "collection" : "/home/christopher/IdeaProjects/iiif-producer/xml-doc/src/test/resources/mets/BlhDie_004285964_tif",
+  "images" : [
+    {
+      "filename" : "00000001.tif",
+      "digest" : "pPbP3KxIUL+vhp7fgvbdETzgffo=",
+      "height" : 2775,
+      "width" : 1929
+    },
+    {
+      "filename" : "00000002.tif",
+      "digest" : "+IjI1aM57A/e4jY2HHBxf47rLHo=",
+      "height" : 2775,
+      "width" : 1789
+    },
+    {
+      "filename" : "00000003.tif",
+      "digest" : "jDumg/nXjIXTT6uSqVaKekoeXQY=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000004.tif",
+      "digest" : "H/KC2Rg29BA6Dy9Hh9Vt9wN0c7k=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000005.tif",
+      "digest" : "Ny/7YtNKQYLKmEy9U2zvxtNTj+4=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000006.tif",
+      "digest" : "jdmBawBRAprpf5a3qesNiGHmQTo=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000007.tif",
+      "digest" : "S/VnyMVV5mNJntgElpp//DeXarc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000008.tif",
+      "digest" : "v6Jgwo6ZaMSfAqVXgIRvkEIpQbg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000009.tif",
+      "digest" : "RWlVMrOBr4YtAvs4LRsOyhuZidA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000010.tif",
+      "digest" : "bB+fwihTraHx+ws9So6YUtt7cY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000011.tif",
+      "digest" : "tpuhLakPGVzgANu6O2k7rFSJ7WU=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000012.tif",
+      "digest" : "4c24EoLrjULIDC1XTBhUfVMYVkw=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000013.tif",
+      "digest" : "k/9HJp4Pptwi1KA72kWzgfAixKk=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000014.tif",
+      "digest" : "wH4I3lPxVnH5pt6+VSMdEzhwS48=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000015.tif",
+      "digest" : "SYN8C9R2SEtf/Nl+r8Sp7Re/zP8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000016.tif",
+      "digest" : "s3BS+bWZuiExFub4VT1UsY0AW2Q=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000017.tif",
+      "digest" : "RJh4mKF89K7Xuscj0Joz1WHO8DM=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000018.tif",
+      "digest" : "nBlVykLe84/0p1nbUWaePE0AGxw=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000019.tif",
+      "digest" : "LtWgJ1U1BZ88p+Qx9CY+9oDcWrQ=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000020.tif",
+      "digest" : "ciLZ/YoVk7JxMVUsBpT4a+TttT0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000021.tif",
+      "digest" : "jOBjjXI8GLxj5+ee0vaBzVhj4ak=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000022.tif",
+      "digest" : "mBaBm2GPOnSotCeNA+mfyUh3B8A=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000023.tif",
+      "digest" : "tMjfxZ0A+x8DAb7Mk/BoCuSGMXc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000024.tif",
+      "digest" : "KXa9aJTPDukiyQ+ypzZI9UMnD9E=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000025.tif",
+      "digest" : "bpdLe/UxsT5kiIGiOMTOX5RZeOI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000026.tif",
+      "digest" : "XFZooH7hyZ5tYLmlWd61Aj+xTus=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000027.tif",
+      "digest" : "Hyo8teDXVP3M7NeY5xKQ53vGQY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000028.tif",
+      "digest" : "j+QaZCvQkl7USDwEFSYAHPaeqsE=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000029.tif",
+      "digest" : "CKAvk/XfAXqEM5SAx+Fk3ztjbvs=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000030.tif",
+      "digest" : "O2ME8lhcLqHBcmuzZ1dwYtJXRlI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000031.tif",
+      "digest" : "NQeVTtkCSvMT1b52eUV5EsZNSz4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000032.tif",
+      "digest" : "u0BZ55jXmRwc4ltrdzqqGCWToaA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000033.tif",
+      "digest" : "fehY9eUZz9BFQrIdbH6x2s+26G4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000034.tif",
+      "digest" : "eDv0EC+98/9beFK4waBaVpwz29g=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000035.tif",
+      "digest" : "oq1diwmnP+DsOONS4Bnr+V2IKO4=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000036.tif",
+      "digest" : "ykTRX0YJzsm3lNZcZDvjjf2eTCs=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000037.tif",
+      "digest" : "pE48WBhirujktqAkKzRft2sOyGg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000038.tif",
+      "digest" : "UvIoBYpjE/NZfxjk22IgtBGtvUk=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000039.tif",
+      "digest" : "3uRHddObDTJZ4LMdQh6Uhxm6UkU=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000040.tif",
+      "digest" : "LguJiE1QOdceCgVIVoKj+H/IACY=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000041.tif",
+      "digest" : "8fso3LgoyVtJ53exV2431U6OeFA=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000042.tif",
+      "digest" : "WEwsoDK57eAv/WTmsoynvbO6NW0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000043.tif",
+      "digest" : "wEDKtVYnzZ1Ndk3uTW/Md3o5laU=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000044.tif",
+      "digest" : "jQjHwwq0J1qUH5ZwQTCnam621gk=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000045.tif",
+      "digest" : "nuKDJTc8tGl5qTOUkHU/bHH2yvc=",
+      "height" : 2748,
+      "width" : 2530
+    },
+    {
+      "filename" : "00000046.tif",
+      "digest" : "P6nC3VqptlgZ9SvlUWrWNHecNmg=",
+      "height" : 2775,
+      "width" : 1929
+    }
+  ]
+}{
+  "collection" : "/home/christopher/IdeaProjects/iiif-producer/xml-doc/src/test/resources/mets/BlhDie_004285964_tif",
+  "images" : [
+    {
+      "filename" : "00000001.tif",
+      "digest" : "pPbP3KxIUL+vhp7fgvbdETzgffo=",
+      "height" : 2775,
+      "width" : 1929
+    },
+    {
+      "filename" : "00000002.tif",
+      "digest" : "+IjI1aM57A/e4jY2HHBxf47rLHo=",
+      "height" : 2775,
+      "width" : 1789
+    },
+    {
+      "filename" : "00000003.tif",
+      "digest" : "jDumg/nXjIXTT6uSqVaKekoeXQY=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000004.tif",
+      "digest" : "H/KC2Rg29BA6Dy9Hh9Vt9wN0c7k=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000005.tif",
+      "digest" : "Ny/7YtNKQYLKmEy9U2zvxtNTj+4=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000006.tif",
+      "digest" : "jdmBawBRAprpf5a3qesNiGHmQTo=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000007.tif",
+      "digest" : "S/VnyMVV5mNJntgElpp//DeXarc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000008.tif",
+      "digest" : "v6Jgwo6ZaMSfAqVXgIRvkEIpQbg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000009.tif",
+      "digest" : "RWlVMrOBr4YtAvs4LRsOyhuZidA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000010.tif",
+      "digest" : "bB+fwihTraHx+ws9So6YUtt7cY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000011.tif",
+      "digest" : "tpuhLakPGVzgANu6O2k7rFSJ7WU=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000012.tif",
+      "digest" : "4c24EoLrjULIDC1XTBhUfVMYVkw=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000013.tif",
+      "digest" : "k/9HJp4Pptwi1KA72kWzgfAixKk=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000014.tif",
+      "digest" : "wH4I3lPxVnH5pt6+VSMdEzhwS48=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000015.tif",
+      "digest" : "SYN8C9R2SEtf/Nl+r8Sp7Re/zP8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000016.tif",
+      "digest" : "s3BS+bWZuiExFub4VT1UsY0AW2Q=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000017.tif",
+      "digest" : "RJh4mKF89K7Xuscj0Joz1WHO8DM=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000018.tif",
+      "digest" : "nBlVykLe84/0p1nbUWaePE0AGxw=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000019.tif",
+      "digest" : "LtWgJ1U1BZ88p+Qx9CY+9oDcWrQ=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000020.tif",
+      "digest" : "ciLZ/YoVk7JxMVUsBpT4a+TttT0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000021.tif",
+      "digest" : "jOBjjXI8GLxj5+ee0vaBzVhj4ak=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000022.tif",
+      "digest" : "mBaBm2GPOnSotCeNA+mfyUh3B8A=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000023.tif",
+      "digest" : "tMjfxZ0A+x8DAb7Mk/BoCuSGMXc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000024.tif",
+      "digest" : "KXa9aJTPDukiyQ+ypzZI9UMnD9E=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000025.tif",
+      "digest" : "bpdLe/UxsT5kiIGiOMTOX5RZeOI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000026.tif",
+      "digest" : "XFZooH7hyZ5tYLmlWd61Aj+xTus=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000027.tif",
+      "digest" : "Hyo8teDXVP3M7NeY5xKQ53vGQY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000028.tif",
+      "digest" : "j+QaZCvQkl7USDwEFSYAHPaeqsE=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000029.tif",
+      "digest" : "CKAvk/XfAXqEM5SAx+Fk3ztjbvs=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000030.tif",
+      "digest" : "O2ME8lhcLqHBcmuzZ1dwYtJXRlI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000031.tif",
+      "digest" : "NQeVTtkCSvMT1b52eUV5EsZNSz4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000032.tif",
+      "digest" : "u0BZ55jXmRwc4ltrdzqqGCWToaA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000033.tif",
+      "digest" : "fehY9eUZz9BFQrIdbH6x2s+26G4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000034.tif",
+      "digest" : "eDv0EC+98/9beFK4waBaVpwz29g=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000035.tif",
+      "digest" : "oq1diwmnP+DsOONS4Bnr+V2IKO4=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000036.tif",
+      "digest" : "ykTRX0YJzsm3lNZcZDvjjf2eTCs=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000037.tif",
+      "digest" : "pE48WBhirujktqAkKzRft2sOyGg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000038.tif",
+      "digest" : "UvIoBYpjE/NZfxjk22IgtBGtvUk=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000039.tif",
+      "digest" : "3uRHddObDTJZ4LMdQh6Uhxm6UkU=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000040.tif",
+      "digest" : "LguJiE1QOdceCgVIVoKj+H/IACY=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000041.tif",
+      "digest" : "8fso3LgoyVtJ53exV2431U6OeFA=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000042.tif",
+      "digest" : "WEwsoDK57eAv/WTmsoynvbO6NW0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000043.tif",
+      "digest" : "wEDKtVYnzZ1Ndk3uTW/Md3o5laU=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000044.tif",
+      "digest" : "jQjHwwq0J1qUH5ZwQTCnam621gk=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000045.tif",
+      "digest" : "nuKDJTc8tGl5qTOUkHU/bHH2yvc=",
+      "height" : 2748,
+      "width" : 2530
+    },
+    {
+      "filename" : "00000046.tif",
+      "digest" : "P6nC3VqptlgZ9SvlUWrWNHecNmg=",
+      "height" : 2775,
+      "width" : 1929
+    }
+  ]
+}{
+  "collection" : "/home/christopher/IdeaProjects/iiif-producer/xml-doc/src/test/resources/mets/BlhDie_004285964_tif",
+  "images" : [
+    {
+      "filename" : "00000001.tif",
+      "digest" : "pPbP3KxIUL+vhp7fgvbdETzgffo=",
+      "height" : 2775,
+      "width" : 1929
+    },
+    {
+      "filename" : "00000002.tif",
+      "digest" : "+IjI1aM57A/e4jY2HHBxf47rLHo=",
+      "height" : 2775,
+      "width" : 1789
+    },
+    {
+      "filename" : "00000003.tif",
+      "digest" : "jDumg/nXjIXTT6uSqVaKekoeXQY=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000004.tif",
+      "digest" : "H/KC2Rg29BA6Dy9Hh9Vt9wN0c7k=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000005.tif",
+      "digest" : "Ny/7YtNKQYLKmEy9U2zvxtNTj+4=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000006.tif",
+      "digest" : "jdmBawBRAprpf5a3qesNiGHmQTo=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000007.tif",
+      "digest" : "S/VnyMVV5mNJntgElpp//DeXarc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000008.tif",
+      "digest" : "v6Jgwo6ZaMSfAqVXgIRvkEIpQbg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000009.tif",
+      "digest" : "RWlVMrOBr4YtAvs4LRsOyhuZidA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000010.tif",
+      "digest" : "bB+fwihTraHx+ws9So6YUtt7cY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000011.tif",
+      "digest" : "tpuhLakPGVzgANu6O2k7rFSJ7WU=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000012.tif",
+      "digest" : "4c24EoLrjULIDC1XTBhUfVMYVkw=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000013.tif",
+      "digest" : "k/9HJp4Pptwi1KA72kWzgfAixKk=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000014.tif",
+      "digest" : "wH4I3lPxVnH5pt6+VSMdEzhwS48=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000015.tif",
+      "digest" : "SYN8C9R2SEtf/Nl+r8Sp7Re/zP8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000016.tif",
+      "digest" : "s3BS+bWZuiExFub4VT1UsY0AW2Q=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000017.tif",
+      "digest" : "RJh4mKF89K7Xuscj0Joz1WHO8DM=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000018.tif",
+      "digest" : "nBlVykLe84/0p1nbUWaePE0AGxw=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000019.tif",
+      "digest" : "LtWgJ1U1BZ88p+Qx9CY+9oDcWrQ=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000020.tif",
+      "digest" : "ciLZ/YoVk7JxMVUsBpT4a+TttT0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000021.tif",
+      "digest" : "jOBjjXI8GLxj5+ee0vaBzVhj4ak=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000022.tif",
+      "digest" : "mBaBm2GPOnSotCeNA+mfyUh3B8A=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000023.tif",
+      "digest" : "tMjfxZ0A+x8DAb7Mk/BoCuSGMXc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000024.tif",
+      "digest" : "KXa9aJTPDukiyQ+ypzZI9UMnD9E=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000025.tif",
+      "digest" : "bpdLe/UxsT5kiIGiOMTOX5RZeOI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000026.tif",
+      "digest" : "XFZooH7hyZ5tYLmlWd61Aj+xTus=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000027.tif",
+      "digest" : "Hyo8teDXVP3M7NeY5xKQ53vGQY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000028.tif",
+      "digest" : "j+QaZCvQkl7USDwEFSYAHPaeqsE=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000029.tif",
+      "digest" : "CKAvk/XfAXqEM5SAx+Fk3ztjbvs=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000030.tif",
+      "digest" : "O2ME8lhcLqHBcmuzZ1dwYtJXRlI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000031.tif",
+      "digest" : "NQeVTtkCSvMT1b52eUV5EsZNSz4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000032.tif",
+      "digest" : "u0BZ55jXmRwc4ltrdzqqGCWToaA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000033.tif",
+      "digest" : "fehY9eUZz9BFQrIdbH6x2s+26G4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000034.tif",
+      "digest" : "eDv0EC+98/9beFK4waBaVpwz29g=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000035.tif",
+      "digest" : "oq1diwmnP+DsOONS4Bnr+V2IKO4=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000036.tif",
+      "digest" : "ykTRX0YJzsm3lNZcZDvjjf2eTCs=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000037.tif",
+      "digest" : "pE48WBhirujktqAkKzRft2sOyGg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000038.tif",
+      "digest" : "UvIoBYpjE/NZfxjk22IgtBGtvUk=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000039.tif",
+      "digest" : "3uRHddObDTJZ4LMdQh6Uhxm6UkU=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000040.tif",
+      "digest" : "LguJiE1QOdceCgVIVoKj+H/IACY=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000041.tif",
+      "digest" : "8fso3LgoyVtJ53exV2431U6OeFA=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000042.tif",
+      "digest" : "WEwsoDK57eAv/WTmsoynvbO6NW0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000043.tif",
+      "digest" : "wEDKtVYnzZ1Ndk3uTW/Md3o5laU=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000044.tif",
+      "digest" : "jQjHwwq0J1qUH5ZwQTCnam621gk=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000045.tif",
+      "digest" : "nuKDJTc8tGl5qTOUkHU/bHH2yvc=",
+      "height" : 2748,
+      "width" : 2530
+    },
+    {
+      "filename" : "00000046.tif",
+      "digest" : "P6nC3VqptlgZ9SvlUWrWNHecNmg=",
+      "height" : 2775,
+      "width" : 1929
+    }
+  ]
+}{
+  "collection" : "/home/christopher/IdeaProjects/iiif-producer/xml-doc/src/test/resources/mets/BlhDie_004285964_tif",
+  "images" : [
+    {
+      "filename" : "00000001.tif",
+      "digest" : "pPbP3KxIUL+vhp7fgvbdETzgffo=",
+      "height" : 2775,
+      "width" : 1929
+    },
+    {
+      "filename" : "00000002.tif",
+      "digest" : "+IjI1aM57A/e4jY2HHBxf47rLHo=",
+      "height" : 2775,
+      "width" : 1789
+    },
+    {
+      "filename" : "00000003.tif",
+      "digest" : "jDumg/nXjIXTT6uSqVaKekoeXQY=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000004.tif",
+      "digest" : "H/KC2Rg29BA6Dy9Hh9Vt9wN0c7k=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000005.tif",
+      "digest" : "Ny/7YtNKQYLKmEy9U2zvxtNTj+4=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000006.tif",
+      "digest" : "jdmBawBRAprpf5a3qesNiGHmQTo=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000007.tif",
+      "digest" : "S/VnyMVV5mNJntgElpp//DeXarc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000008.tif",
+      "digest" : "v6Jgwo6ZaMSfAqVXgIRvkEIpQbg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000009.tif",
+      "digest" : "RWlVMrOBr4YtAvs4LRsOyhuZidA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000010.tif",
+      "digest" : "bB+fwihTraHx+ws9So6YUtt7cY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000011.tif",
+      "digest" : "tpuhLakPGVzgANu6O2k7rFSJ7WU=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000012.tif",
+      "digest" : "4c24EoLrjULIDC1XTBhUfVMYVkw=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000013.tif",
+      "digest" : "k/9HJp4Pptwi1KA72kWzgfAixKk=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000014.tif",
+      "digest" : "wH4I3lPxVnH5pt6+VSMdEzhwS48=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000015.tif",
+      "digest" : "SYN8C9R2SEtf/Nl+r8Sp7Re/zP8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000016.tif",
+      "digest" : "s3BS+bWZuiExFub4VT1UsY0AW2Q=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000017.tif",
+      "digest" : "RJh4mKF89K7Xuscj0Joz1WHO8DM=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000018.tif",
+      "digest" : "nBlVykLe84/0p1nbUWaePE0AGxw=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000019.tif",
+      "digest" : "LtWgJ1U1BZ88p+Qx9CY+9oDcWrQ=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000020.tif",
+      "digest" : "ciLZ/YoVk7JxMVUsBpT4a+TttT0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000021.tif",
+      "digest" : "jOBjjXI8GLxj5+ee0vaBzVhj4ak=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000022.tif",
+      "digest" : "mBaBm2GPOnSotCeNA+mfyUh3B8A=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000023.tif",
+      "digest" : "tMjfxZ0A+x8DAb7Mk/BoCuSGMXc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000024.tif",
+      "digest" : "KXa9aJTPDukiyQ+ypzZI9UMnD9E=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000025.tif",
+      "digest" : "bpdLe/UxsT5kiIGiOMTOX5RZeOI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000026.tif",
+      "digest" : "XFZooH7hyZ5tYLmlWd61Aj+xTus=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000027.tif",
+      "digest" : "Hyo8teDXVP3M7NeY5xKQ53vGQY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000028.tif",
+      "digest" : "j+QaZCvQkl7USDwEFSYAHPaeqsE=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000029.tif",
+      "digest" : "CKAvk/XfAXqEM5SAx+Fk3ztjbvs=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000030.tif",
+      "digest" : "O2ME8lhcLqHBcmuzZ1dwYtJXRlI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000031.tif",
+      "digest" : "NQeVTtkCSvMT1b52eUV5EsZNSz4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000032.tif",
+      "digest" : "u0BZ55jXmRwc4ltrdzqqGCWToaA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000033.tif",
+      "digest" : "fehY9eUZz9BFQrIdbH6x2s+26G4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000034.tif",
+      "digest" : "eDv0EC+98/9beFK4waBaVpwz29g=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000035.tif",
+      "digest" : "oq1diwmnP+DsOONS4Bnr+V2IKO4=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000036.tif",
+      "digest" : "ykTRX0YJzsm3lNZcZDvjjf2eTCs=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000037.tif",
+      "digest" : "pE48WBhirujktqAkKzRft2sOyGg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000038.tif",
+      "digest" : "UvIoBYpjE/NZfxjk22IgtBGtvUk=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000039.tif",
+      "digest" : "3uRHddObDTJZ4LMdQh6Uhxm6UkU=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000040.tif",
+      "digest" : "LguJiE1QOdceCgVIVoKj+H/IACY=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000041.tif",
+      "digest" : "8fso3LgoyVtJ53exV2431U6OeFA=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000042.tif",
+      "digest" : "WEwsoDK57eAv/WTmsoynvbO6NW0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000043.tif",
+      "digest" : "wEDKtVYnzZ1Ndk3uTW/Md3o5laU=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000044.tif",
+      "digest" : "jQjHwwq0J1qUH5ZwQTCnam621gk=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000045.tif",
+      "digest" : "nuKDJTc8tGl5qTOUkHU/bHH2yvc=",
+      "height" : 2748,
+      "width" : 2530
+    },
+    {
+      "filename" : "00000046.tif",
+      "digest" : "P6nC3VqptlgZ9SvlUWrWNHecNmg=",
+      "height" : 2775,
+      "width" : 1929
+    }
+  ]
+}{
+  "collection" : "/home/christopher/IdeaProjects/iiif-producer/xml-doc/src/test/resources/mets/BlhDie_004285964_tif",
+  "images" : [
+    {
+      "filename" : "00000001.tif",
+      "digest" : "pPbP3KxIUL+vhp7fgvbdETzgffo=",
+      "height" : 2775,
+      "width" : 1929
+    },
+    {
+      "filename" : "00000002.tif",
+      "digest" : "+IjI1aM57A/e4jY2HHBxf47rLHo=",
+      "height" : 2775,
+      "width" : 1789
+    },
+    {
+      "filename" : "00000003.tif",
+      "digest" : "jDumg/nXjIXTT6uSqVaKekoeXQY=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000004.tif",
+      "digest" : "H/KC2Rg29BA6Dy9Hh9Vt9wN0c7k=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000005.tif",
+      "digest" : "Ny/7YtNKQYLKmEy9U2zvxtNTj+4=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000006.tif",
+      "digest" : "jdmBawBRAprpf5a3qesNiGHmQTo=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000007.tif",
+      "digest" : "S/VnyMVV5mNJntgElpp//DeXarc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000008.tif",
+      "digest" : "v6Jgwo6ZaMSfAqVXgIRvkEIpQbg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000009.tif",
+      "digest" : "RWlVMrOBr4YtAvs4LRsOyhuZidA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000010.tif",
+      "digest" : "bB+fwihTraHx+ws9So6YUtt7cY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000011.tif",
+      "digest" : "tpuhLakPGVzgANu6O2k7rFSJ7WU=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000012.tif",
+      "digest" : "4c24EoLrjULIDC1XTBhUfVMYVkw=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000013.tif",
+      "digest" : "k/9HJp4Pptwi1KA72kWzgfAixKk=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000014.tif",
+      "digest" : "wH4I3lPxVnH5pt6+VSMdEzhwS48=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000015.tif",
+      "digest" : "SYN8C9R2SEtf/Nl+r8Sp7Re/zP8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000016.tif",
+      "digest" : "s3BS+bWZuiExFub4VT1UsY0AW2Q=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000017.tif",
+      "digest" : "RJh4mKF89K7Xuscj0Joz1WHO8DM=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000018.tif",
+      "digest" : "nBlVykLe84/0p1nbUWaePE0AGxw=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000019.tif",
+      "digest" : "LtWgJ1U1BZ88p+Qx9CY+9oDcWrQ=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000020.tif",
+      "digest" : "ciLZ/YoVk7JxMVUsBpT4a+TttT0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000021.tif",
+      "digest" : "jOBjjXI8GLxj5+ee0vaBzVhj4ak=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000022.tif",
+      "digest" : "mBaBm2GPOnSotCeNA+mfyUh3B8A=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000023.tif",
+      "digest" : "tMjfxZ0A+x8DAb7Mk/BoCuSGMXc=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000024.tif",
+      "digest" : "KXa9aJTPDukiyQ+ypzZI9UMnD9E=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000025.tif",
+      "digest" : "bpdLe/UxsT5kiIGiOMTOX5RZeOI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000026.tif",
+      "digest" : "XFZooH7hyZ5tYLmlWd61Aj+xTus=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000027.tif",
+      "digest" : "Hyo8teDXVP3M7NeY5xKQ53vGQY8=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000028.tif",
+      "digest" : "j+QaZCvQkl7USDwEFSYAHPaeqsE=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000029.tif",
+      "digest" : "CKAvk/XfAXqEM5SAx+Fk3ztjbvs=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000030.tif",
+      "digest" : "O2ME8lhcLqHBcmuzZ1dwYtJXRlI=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000031.tif",
+      "digest" : "NQeVTtkCSvMT1b52eUV5EsZNSz4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000032.tif",
+      "digest" : "u0BZ55jXmRwc4ltrdzqqGCWToaA=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000033.tif",
+      "digest" : "fehY9eUZz9BFQrIdbH6x2s+26G4=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000034.tif",
+      "digest" : "eDv0EC+98/9beFK4waBaVpwz29g=",
+      "height" : 2748,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000035.tif",
+      "digest" : "oq1diwmnP+DsOONS4Bnr+V2IKO4=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000036.tif",
+      "digest" : "ykTRX0YJzsm3lNZcZDvjjf2eTCs=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000037.tif",
+      "digest" : "pE48WBhirujktqAkKzRft2sOyGg=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000038.tif",
+      "digest" : "UvIoBYpjE/NZfxjk22IgtBGtvUk=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000039.tif",
+      "digest" : "3uRHddObDTJZ4LMdQh6Uhxm6UkU=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000040.tif",
+      "digest" : "LguJiE1QOdceCgVIVoKj+H/IACY=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000041.tif",
+      "digest" : "8fso3LgoyVtJ53exV2431U6OeFA=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000042.tif",
+      "digest" : "WEwsoDK57eAv/WTmsoynvbO6NW0=",
+      "height" : 2747,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000043.tif",
+      "digest" : "wEDKtVYnzZ1Ndk3uTW/Md3o5laU=",
+      "height" : 2748,
+      "width" : 1769
+    },
+    {
+      "filename" : "00000044.tif",
+      "digest" : "jQjHwwq0J1qUH5ZwQTCnam621gk=",
+      "height" : 2747,
+      "width" : 1768
+    },
+    {
+      "filename" : "00000045.tif",
+      "digest" : "nuKDJTc8tGl5qTOUkHU/bHH2yvc=",
+      "height" : 2748,
+      "width" : 2530
+    },
+    {
+      "filename" : "00000046.tif",
+      "digest" : "P6nC3VqptlgZ9SvlUWrWNHecNmg=",
+      "height" : 2775,
+      "width" : 1929
+    }
+  ]
+}

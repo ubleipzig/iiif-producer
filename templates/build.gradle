@@ -1,0 +1,9 @@
+dependencies {
+    implementation project(":vocabulary")
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
+    testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+}
