@@ -19,7 +19,6 @@
 package de.ubleipzig.iiifproducer.producer;
 
 import static de.ubleipzig.iiifproducer.producer.Constants.BASE_URL;
-import static de.ubleipzig.iiifproducer.producer.Constants.GENERATE_IMAGE_MANIFEST;
 
 import java.io.File;
 

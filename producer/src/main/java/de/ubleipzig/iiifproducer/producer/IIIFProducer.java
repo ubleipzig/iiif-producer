@@ -122,7 +122,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
     }
 
     @Override
-    public void buildImageDimensionManifest(String imageSourceDir) throws FileNotFoundException {
+    public void buildImageDimensionManifest(final String imageSourceDir) throws FileNotFoundException {
         if (!new File(imageSourceDir).exists()) {
             throw new FileNotFoundException("Images Not Found");
         }
