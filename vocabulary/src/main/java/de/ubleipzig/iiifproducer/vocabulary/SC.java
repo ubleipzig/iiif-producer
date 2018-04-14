@@ -25,16 +25,13 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author christopher-johnson
  */
-public class SC extends BaseVocabulary {
+public final class SC extends BaseVocabulary {
 
     /* Namespace */
     public static final String URI = "http://iiif.io/api/presentation/2#";
-    public static final String NAMESPACE = "sc:";
 
     /* Context */
     public static final String CONTEXT = "http://iiif.io/api/presentation/2/context.json";
-
-    public static final IRI base = createIRI(URI);
 
     /* Classes */
     public static final IRI AnnotationList = createIRI(URI + "AnnotationList");
@@ -45,16 +42,6 @@ public class SC extends BaseVocabulary {
     public static final IRI Range = createIRI(URI + "Range");
     public static final IRI Sequence = createIRI(URI + "Sequence");
     public static final IRI Zone = createIRI(URI + "Zone");
-
-    /* Namespace Classes */
-    public static final String _AnnotationList = NAMESPACE + "AnnotationList";
-    public static final String _Canvas = NAMESPACE + "Canvas";
-    public static final String _Collection = NAMESPACE + "Collection";
-    public static final String _Layer = NAMESPACE + "Layer";
-    public static final String _Manifest = NAMESPACE + "Manifest";
-    public static final String _Range = NAMESPACE + "Range";
-    public static final String _Sequence = NAMESPACE + "Sequence";
-    public static final String _Zone = NAMESPACE + "Zone";
 
     /* Properties */
     public static final IRI attributionLabel = createIRI(URI + "attributionLabel");
@@ -72,22 +59,6 @@ public class SC extends BaseVocabulary {
     public static final IRI viewingDirection = createIRI(URI + "ViewingDirection");
     public static final IRI viewingHint = createIRI(URI + "ViewingHint");
 
-    /* Namespace Properties */
-    public static final String _attributionLabel = NAMESPACE + "attributionLabel";
-    public static final String _hasAnnotations = NAMESPACE + "hasAnnotations";
-    public static final String _hasCanvases = NAMESPACE + "hasCanvases";
-    public static final String _hasCollections = NAMESPACE + "hasCollections";
-    public static final String _hasContentLayer = NAMESPACE + "hasContentLayer";
-    public static final String _hasImageAnnotations = NAMESPACE + "hasImageAnnotations";
-    public static final String _hasLists = NAMESPACE + "hasLists";
-    public static final String _hasManifests = (String) NAMESPACE + "hasManifests";
-    public static final String _hasRanges = NAMESPACE + "hasRanges";
-    public static final String _hasSequences = NAMESPACE + "hasSequences";
-    public static final String _hasStartCanvas = NAMESPACE + "hasStartCanvas";
-    public static final String _metadataLabels = NAMESPACE + "metadataLabels";
-    public static final String _viewingDirection = NAMESPACE + "ViewingDirection";
-    public static final String _viewingHint = NAMESPACE + "ViewingHint";
-
     /* Named Individuals */
     public static final IRI bottomToTopDirection = createIRI(URI + "bottomToTopDirection");
     public static final IRI continuousHint = createIRI(URI + "continuousHint");
@@ -102,18 +73,7 @@ public class SC extends BaseVocabulary {
     public static final IRI topHint = createIRI(URI + "topHint");
     public static final IRI topToBottomDirection = createIRI(URI + "topToBottomDirection");
 
-    /* Named Individuals */
-    public static final String _bottomToTopDirection = NAMESPACE + "bottomToTopDirection";
-    public static final String _continuousHint = NAMESPACE + "continuousHint";
-    public static final String _facingPagesHint = NAMESPACE + "facingPagesHint";
-    public static final String _individualsHint = NAMESPACE + "individualsHint";
-    public static final String _leftToRightDirection = NAMESPACE + "leftToRightDirection";
-    public static final String _multiPartHint = NAMESPACE + "multiPartHint";
-    public static final String _nonPagedHint = NAMESPACE + "nonPagedHint";
-    public static final String _pagedHint = NAMESPACE + "pagedHint";
-    public static final String _painting = NAMESPACE + "painting";
-    public static final String _rightToLeftDirection = NAMESPACE + "rightToLeftDirection";
-    public static final String _topHint = NAMESPACE + "topHint";
-    public static final String _topToBottomDirection = NAMESPACE + "topToBottomDirection";
-
+    private SC() {
+        super();
+    }
 }

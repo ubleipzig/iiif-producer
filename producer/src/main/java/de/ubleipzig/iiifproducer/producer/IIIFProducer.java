@@ -32,7 +32,6 @@ import static de.ubleipzig.iiifproducer.producer.StaticIRIBuilder.buildServiceIR
 import static de.ubleipzig.iiifproducer.producer.UUIDType5.NAMESPACE_URL;
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.writeToFile;
-import static de.ubleipzig.iiifproducer.vocabulary.IIIF.PRESENTATION_CONTEXT;
 import static java.io.File.separator;
 import static java.lang.String.format;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
@@ -48,6 +47,7 @@ import de.ubleipzig.iiifproducer.template.TemplateService;
 import de.ubleipzig.iiifproducer.template.TemplateStructure;
 import de.ubleipzig.iiifproducer.template.TemplateStructureList;
 import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
+import de.ubleipzig.iiifproducer.vocabulary.SC;
 import de.ubleipzig.image.metadata.ImageMetadataGenerator;
 import de.ubleipzig.image.metadata.ImageMetadataGeneratorConfig;
 import de.ubleipzig.image.metadata.templates.ImageDimensionManifest;
@@ -94,7 +94,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
     @Override
     public void setContext(final TemplateManifest body) {
-        body.setContext(PRESENTATION_CONTEXT);
+        body.setContext(SC.CONTEXT);
     }
 
     @Override

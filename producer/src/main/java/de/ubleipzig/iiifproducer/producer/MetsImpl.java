@@ -58,7 +58,6 @@ import de.ubleipzig.iiifproducer.template.TemplateManifest;
 import de.ubleipzig.iiifproducer.template.TemplateMetadata;
 import de.ubleipzig.iiifproducer.template.TemplateStructure;
 import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
-import de.ubleipzig.iiifproducer.vocabulary.SC;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -211,7 +210,6 @@ public class MetsImpl implements MetsAccessor {
                         ranges.add(0, rangeId);
                         descSt.setStructureId(rangeId);
                         descSt.setStructureLabel(descLabel);
-                        descSt.setStructureType(SC._Range);
                         descSt.setCanvases(getCanvases(descID));
                         descendents.add(0, descSt);
                     });
@@ -220,7 +218,6 @@ public class MetsImpl implements MetsAccessor {
                     st.setStructureId(structureIdDesc);
                     final String logicalLabel = getLogicalLabel(mets, lastParentId);
                     st.setStructureLabel(logicalLabel);
-                    st.setStructureType(SC._Range);
                     ranges.sort(naturalOrder());
                     st.setRanges(ranges);
                     st.setCanvases(getCanvases(lastParentId));

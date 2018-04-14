@@ -18,11 +18,11 @@
 
 package de.ubleipzig.iiifproducer.template;
 
-import static de.ubleipzig.iiifproducer.vocabulary.SC._Canvas;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class TemplateCanvas {
     private String id;
 
     @JsonProperty("@type")
-    private String type = _Canvas;
+    private String type = SCCompacted.Canvas.compactedIRI();
 
     @JsonProperty
     private String label;

@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import de.ubleipzig.iiifproducer.vocabulary.SC;
+import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class TemplateTopStructure extends TemplateStructure {
     private String id;
 
     @JsonProperty("@type")
-    private String type = SC._Range;
+    private String type = SCCompacted.Range.compactedIRI();
 
     @JsonProperty("label")
     private String label;
@@ -59,10 +59,6 @@ public class TemplateTopStructure extends TemplateStructure {
      *
      */
     public TemplateTopStructure() {
-        this.id = id;
-        this.type = type;
-        this.label = label;
-        this.members = members;
     }
 
     /**

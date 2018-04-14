@@ -21,7 +21,7 @@ package de.ubleipzig.iiifproducer.template;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import de.ubleipzig.iiifproducer.vocabulary.SC;
+import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class TemplateManifest {
     private String id;
 
     @JsonProperty("@type")
-    private String type = SC._Manifest;
+    private String type = SCCompacted.Manifest.compactedIRI();
 
     @JsonProperty("label")
     private String label = "unnamed";

@@ -25,11 +25,10 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author christopher-johnson
  */
-public class IIIF extends BaseVocabulary {
+public final class IIIF extends BaseVocabulary {
 
     /* Namespace */
     public static final String URI = "http://iiif.io/api/image/2#";
-    public static final String PRESENTATION_CONTEXT = "http://iiif.io/api/presentation/2/context.json";
     public static final String IMAGE_CONTEXT = "http://iiif.io/api/image/2/context.json";
     public static final String SERVICE_PROFILE = "http://iiif.io/api/image/2/level1.json";
 
@@ -70,4 +69,7 @@ public class IIIF extends BaseVocabulary {
     public static final IRI sizeByWHListedFeature = createIRI(URI + "sizeByWHListedFeature");
     public static final IRI sizeByForcedWHFeature = createIRI(URI + "sizeByForcedWHFeature");
 
+    private IIIF() {
+        super();
+    }
 }

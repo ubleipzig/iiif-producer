@@ -25,14 +25,16 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author christopher-johnson
  */
-public class EXIF extends BaseVocabulary {
+public final class EXIF extends BaseVocabulary {
 
     /* Namespace */
     public static final String URI = "http://www.w3.org/2003/12/exif/ns#";
 
-    public static final IRI base = createIRI(URI);
-
     /* Classes */
     public static final IRI width = createIRI(URI + "width");
     public static final IRI height = createIRI(URI + "height");
+
+    private EXIF() {
+        super();
+    }
 }

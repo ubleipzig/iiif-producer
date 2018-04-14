@@ -17,21 +17,37 @@ plugins {
 }
 
 ext {
-    apiguardianVersion = '1.0.0'
+
     commonsCodecVersion = '1.11'
     commonsRdfVersion = '0.5.0'
     logbackVersion = '1.2.3'
     metadataExtractorVersion = '2.11.0'
-    xbeamVersion = "1.4.8"
-    junitVersion = "5.1.0"
+    xbeamVersion = '1.4.8'
     jacksonVersion = '2.9.1'
+
+    /* Testing */
+    apiguardianVersion = '1.0.0'
+    httpClientOsgiVersion = '4.5.3'
+    jenaVersion = '3.7.0'
+    junitVersion = "5.1.0"
+    xercesVersion = '2.11.0'
     mockitoVersion = '2.10.0'
-    jaiImageIoVersion = "1.3.0"
-    slf4jVersion = "1.7.25"
+    slf4jVersion = '1.7.25'
 
     jacocoVersion = '0.8.1'
     checkstyleVersion = '8.8'
+
+    jacocoTestProjects = [
+            'producer',
+            'image',
+            'templates',
+            'xml-doc',
+            'vocabulary',
+            'storage'
+    ]
 }
+
+
 
 configure(allprojects) { project ->
     group 'de.ubleipzig'
@@ -76,12 +92,8 @@ configure(allprojects) { project ->
 
 }
 
-subprojects {
+subprojects { subproj ->
     afterEvaluate {
-        repositories {
-            jcenter()
-        }
-
         gradle.projectsEvaluated {
             tasks.withType(JavaCompile) {
                 options.compilerArgs.add("-Xlint:unchecked")
@@ -117,25 +129,37 @@ subprojects {
         toolVersion = jacocoVersion
     }
 
-    tasks.withType(JavaExec) {
-        if (it.name == 'junitPlatformTest') {
-            doFirst {
-                jvmArgs "-javaagent:${configurations.testAgent.singleFile}=destfile=${project.buildDir.name}/jacoco/test.exec"
+    afterEvaluate {
+        if (subproj.name in jacocoTestProjects) {
+            jacoco {
+                applyTo subproj.tasks.matching { it.name == 'junitPlatformTest' }
             }
         }
     }
+}
 
-    configurations {
-        testAgent {
-            transitive = false
+configure(rootProject) {
+
+    task jacocoMerge(type: JacocoMerge) {
+        subprojects.findAll { it.name in jacocoTestProjects }
+                .each { subproj ->
+            executionData fileTree(dir: "${subproj.buildDir}/jacoco", include: '*.exec')
+            dependsOn subproj.tasks.withType(Test)
         }
     }
 
-    dependencies {
-        testAgent("org.jacoco:org.jacoco.agent:${jacocoVersion}:runtime")
+    task jacocoRootReport(type: JacocoReport, dependsOn: jacocoMerge) {
+        sourceDirectories = files(subprojects
+                .findAll { it.name in jacocoTestProjects }
+                .sourceSets.main.allSource.srcDirs)
+        classDirectories = files(subprojects
+                .findAll { it.name in jacocoTestProjects }
+                .sourceSets.main.output)
+        executionData jacocoMerge.destinationFile
+        reports {
+            html.enabled = true
+            xml.enabled = true
+            csv.enabled = false
+        }
     }
 }
-
-
-
-

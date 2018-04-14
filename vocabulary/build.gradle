@@ -1,3 +1,15 @@
 dependencies {
     api group: 'org.apache.commons', name: 'commons-rdf-api', version: commonsRdfVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+
+    testImplementation group: 'org.apache.commons', name: 'commons-rdf-jena', version: commonsRdfVersion
+    testImplementation group: 'org.apache.jena', name: 'jena-osgi', version: jenaVersion
+    testImplementation group: 'org.apache.httpcomponents', name: 'httpclient', version: httpClientOsgiVersion
+    testImplementation group: 'org.apache.httpcomponents', name: 'httpclient-cache', version: httpClientOsgiVersion
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
+    testImplementation group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+    testImplementation group: 'xerces', name: 'xercesImpl', version: xercesVersion
+
+    testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
 }

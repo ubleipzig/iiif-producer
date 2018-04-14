@@ -16,27 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
+import de.ubleipzig.iiifproducer.vocabulary.SC;
 
-import static java.util.ServiceLoader.load;
-
-import org.apache.commons.rdf.api.IRI;
-import org.apache.commons.rdf.api.RDF;
+import org.junit.jupiter.api.Disabled;
 
 /**
- * BaseVocabulary.
+ * Test the SC Vocabulary Class
  *
- * @author acoburn
+ * @author christopher-johnson
  */
-class BaseVocabulary {
+@Disabled
+public class SCContextTest extends AbstractListContextTest {
 
-    private static RDF rdf = load(RDF.class).iterator().next();
-
-    protected BaseVocabulary() {
+    @Override
+    public String context() {
+        return "http://iiif.io/api/presentation/2/context.json";
     }
 
-    protected static IRI createIRI(final String uri) {
-
-        return rdf.createIRI(uri);
+    @Override
+    public Class<SC> vocabulary() {
+        return SC.class;
     }
 }

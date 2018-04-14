@@ -18,10 +18,10 @@
 
 package de.ubleipzig.iiifproducer.template;
 
-import static de.ubleipzig.iiifproducer.vocabulary.SC._Sequence;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
 
 import java.util.List;
 
@@ -37,13 +37,13 @@ public class TemplateSequence {
     private String id;
 
     @JsonProperty("@type")
-    private String type = _Sequence;
+    private String type = SCCompacted.Sequence.compactedIRI();
 
     @JsonProperty("canvases")
     private List<TemplateCanvas> canvases;
 
     /**
-     * @param id String
+     * @param id       String
      * @param canvases List
      */
     public TemplateSequence(final String id, final List<TemplateCanvas> canvases) {

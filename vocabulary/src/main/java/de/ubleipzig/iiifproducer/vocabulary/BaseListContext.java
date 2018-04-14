@@ -15,46 +15,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-
-package de.ubleipzig.iiifproducer.template;
+package de.ubleipzig.iiifproducer.vocabulary;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
+import java.util.List;
+import java.util.Map;
 
 /**
- * TemplateImage.
+ * BaseObjectContext.
  *
  * @author christopher-johnson
  */
-@JsonPropertyOrder({"@type", "motivation", "resource", "on"})
-public class TemplateImage {
+public class BaseListContext {
 
-    @JsonProperty("@type")
-    private String type = "oa:Annotation";
-
-    @JsonProperty
-    private String motivation = SCCompacted.painting.compactedIRI();
-
-    @JsonProperty
-    private Object resource;
-
-    @JsonProperty
-    private String on;
+    @JsonProperty("@context")
+    List<Map<String,Object>> context;
 
     /**
-     * @param resource TemplateResource
+     *
+     * @return Map
      */
-    public void setResource(final TemplateResource resource) {
-        this.resource = resource;
-    }
-
-    /**
-     * @param target String
-     */
-    public void setTarget(final String target) {
-        this.on = target;
+    public List<Map<String,Object>> getContext() {
+        return this.context;
     }
 
 }

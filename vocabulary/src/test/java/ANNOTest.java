@@ -16,27 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
-
-import static java.util.ServiceLoader.load;
-
-import org.apache.commons.rdf.api.IRI;
-import org.apache.commons.rdf.api.RDF;
+import de.ubleipzig.iiifproducer.vocabulary.ANNO;
 
 /**
- * BaseVocabulary.
+ * Test the ANNO Vocabulary Class
  *
  * @author acoburn
  */
-class BaseVocabulary {
+public class ANNOTest extends AbstractObjectContextTest {
 
-    private static RDF rdf = load(RDF.class).iterator().next();
-
-    protected BaseVocabulary() {
+    @Override
+    public String context() {
+        return "http://www.w3.org/ns/anno.jsonld";
     }
 
-    protected static IRI createIRI(final String uri) {
-
-        return rdf.createIRI(uri);
+    @Override
+    public Class<ANNO> vocabulary() {
+        return ANNO.class;
     }
 }

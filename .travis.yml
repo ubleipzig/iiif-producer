@@ -13,3 +13,10 @@ matrix:
 
 script:
 - ./gradlew build
+
+after_success:
+  - ./gradlew jacocoRootReport && bash <(curl -s https://codecov.io/bash) || true
+
+env:
+  global:
+    - CODECOV_TOKEN=caadc54b-42b3-4f8f-bd07-707220006eec

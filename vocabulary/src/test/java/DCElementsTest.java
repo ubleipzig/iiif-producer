@@ -16,27 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
-
-import static java.util.ServiceLoader.load;
-
-import org.apache.commons.rdf.api.IRI;
-import org.apache.commons.rdf.api.RDF;
+import de.ubleipzig.iiifproducer.vocabulary.DCElements;
 
 /**
- * BaseVocabulary.
- *
+ * Test the DCElements Vocabulary Class
  * @author acoburn
  */
-class BaseVocabulary {
+public class DCElementsTest extends AbstractVocabularyTest {
 
-    private static RDF rdf = load(RDF.class).iterator().next();
-
-    protected BaseVocabulary() {
+    @Override
+    public String namespace() {
+        return "http://purl.org/dc/elements/1.1/";
     }
 
-    protected static IRI createIRI(final String uri) {
-
-        return rdf.createIRI(uri);
+    @Override
+    public Class<DCElements> vocabulary() {
+        return DCElements.class;
     }
 }
