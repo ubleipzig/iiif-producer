@@ -1,0 +1,4 @@
+dependencies {
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.8-dmr'
+}

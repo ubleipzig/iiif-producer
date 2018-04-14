@@ -61,4 +61,3 @@ $ rename 's/.ptif$/.tif/' *.ptif
 ./producer -i /mnt/serialization/binaries/{$your_inputfile}.xml -o /mnt/http-server/{$your_outputfile.jsonld} -t {$kitodo_archive_name} -v {package image directory}
 ``` 
 The manifest URI will be `http://localhost:3000/{$your_outputfile.jsonld}`
- 
