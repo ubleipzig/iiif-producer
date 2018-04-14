@@ -41,7 +41,7 @@ public final class IIIF extends BaseVocabulary {
 
     /* Object Properties */
     public static final IRI size = createIRI(URI + "hasSize");
-    public static final IRI tiles = createIRI(URI + "hasTiles");
+    public static final IRI tile = createIRI(URI + "hasTiles");
     public static final IRI supports = createIRI(URI + "supports");
 
     /* Datatype Properties */

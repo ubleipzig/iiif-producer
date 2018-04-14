@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/version17/mets.v1-7.xsd">
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/version17/mets.v1-7.xsd">
     <mets:metsHdr CREATEDATE="2016-11-14T11:43:32">
         <mets:agent OTHERTYPE="SOFTWARE" ROLE="CREATOR" TYPE="OTHER">
             <mets:name>Goobi - UGH-1.11.0-7b3c2be - 26−March−2015</mets:name>
@@ -63,8 +62,7 @@
             <mets:xmlData>
                 <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
                     <mods:location>
-                        <mods:physicalLocation authority="marcorg"
-                                               displayLabel="Leipzig University Library, Leipzig, Germany">DE-15
+                        <mods:physicalLocation authority="marcorg" displayLabel="Leipzig University Library, Leipzig, Germany">DE-15
                         </mods:physicalLocation>
                         <mods:shelfLocator>Hist.phil.1527</mods:shelfLocator>
                     </mods:location>
@@ -99,196 +97,148 @@
     <mets:fileSec>
         <mets:fileGrp USE="ORIGINAL">
             <mets:file ID="FILE_0001_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000001.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000001.tif"/>
             </mets:file>
             <mets:file ID="FILE_0002_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000002.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000002.tif"/>
             </mets:file>
             <mets:file ID="FILE_0003_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000003.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000003.tif"/>
             </mets:file>
             <mets:file ID="FILE_0004_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000004.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000004.tif"/>
             </mets:file>
             <mets:file ID="FILE_0005_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000005.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000005.tif"/>
             </mets:file>
             <mets:file ID="FILE_0006_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000006.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000006.tif"/>
             </mets:file>
             <mets:file ID="FILE_0007_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000007.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000007.tif"/>
             </mets:file>
             <mets:file ID="FILE_0008_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000008.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000008.tif"/>
             </mets:file>
             <mets:file ID="FILE_0009_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000009.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000009.tif"/>
             </mets:file>
             <mets:file ID="FILE_0010_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000010.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000010.tif"/>
             </mets:file>
             <mets:file ID="FILE_0011_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000011.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000011.tif"/>
             </mets:file>
             <mets:file ID="FILE_0012_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000012.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000012.tif"/>
             </mets:file>
             <mets:file ID="FILE_0013_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000013.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000013.tif"/>
             </mets:file>
             <mets:file ID="FILE_0014_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000014.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000014.tif"/>
             </mets:file>
             <mets:file ID="FILE_0015_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000015.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000015.tif"/>
             </mets:file>
             <mets:file ID="FILE_0016_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000016.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000016.tif"/>
             </mets:file>
             <mets:file ID="FILE_0017_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000017.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000017.tif"/>
             </mets:file>
             <mets:file ID="FILE_0018_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000018.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000018.tif"/>
             </mets:file>
             <mets:file ID="FILE_0019_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000019.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000019.tif"/>
             </mets:file>
             <mets:file ID="FILE_0020_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000020.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000020.tif"/>
             </mets:file>
             <mets:file ID="FILE_0021_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000021.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000021.tif"/>
             </mets:file>
             <mets:file ID="FILE_0022_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000022.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000022.tif"/>
             </mets:file>
             <mets:file ID="FILE_0023_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000023.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000023.tif"/>
             </mets:file>
             <mets:file ID="FILE_0024_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000024.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000024.tif"/>
             </mets:file>
             <mets:file ID="FILE_0025_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000025.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000025.tif"/>
             </mets:file>
             <mets:file ID="FILE_0026_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000026.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000026.tif"/>
             </mets:file>
             <mets:file ID="FILE_0027_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000027.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000027.tif"/>
             </mets:file>
             <mets:file ID="FILE_0028_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000028.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000028.tif"/>
             </mets:file>
             <mets:file ID="FILE_0029_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000029.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000029.tif"/>
             </mets:file>
             <mets:file ID="FILE_0030_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000030.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000030.tif"/>
             </mets:file>
             <mets:file ID="FILE_0031_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000031.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000031.tif"/>
             </mets:file>
             <mets:file ID="FILE_0032_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000032.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000032.tif"/>
             </mets:file>
             <mets:file ID="FILE_0033_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000033.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000033.tif"/>
             </mets:file>
             <mets:file ID="FILE_0034_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000034.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000034.tif"/>
             </mets:file>
             <mets:file ID="FILE_0035_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000035.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000035.tif"/>
             </mets:file>
             <mets:file ID="FILE_0036_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000036.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000036.tif"/>
             </mets:file>
             <mets:file ID="FILE_0037_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000037.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000037.tif"/>
             </mets:file>
             <mets:file ID="FILE_0038_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000038.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000038.tif"/>
             </mets:file>
             <mets:file ID="FILE_0039_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000039.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000039.tif"/>
             </mets:file>
             <mets:file ID="FILE_0040_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000040.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000040.tif"/>
             </mets:file>
             <mets:file ID="FILE_0041_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000041.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000041.tif"/>
             </mets:file>
             <mets:file ID="FILE_0042_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000042.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000042.tif"/>
             </mets:file>
             <mets:file ID="FILE_0043_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000043.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000043.tif"/>
             </mets:file>
             <mets:file ID="FILE_0044_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000044.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000044.tif"/>
             </mets:file>
             <mets:file ID="FILE_0045_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000045.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000045.tif"/>
             </mets:file>
             <mets:file ID="FILE_0046_ORIGINAL" MIMETYPE="image/tiff">
-                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL"
-                             xlink:href="BlhDie_004285964_tif/00000046.tif"/>
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="BlhDie_004285964_tif/00000046.tif"/>
             </mets:file>
         </mets:fileGrp>
     </mets:fileSec>
     <mets:structMap TYPE="LOGICAL">
-        <mets:div ADMID="AMD" DMDID="DMDLOG_0000" ID="LOG_0000" LABEL="Die Wiedergeburt der platonischen Akademie"
-                  ORDERLABEL="Wiedergeburt der platonischen Akademie" TYPE="monograph"/>
-        <mets:div ADMID="AMD" DMDID="DMDLOG_0001" ID="LOG_0001" LABEL="Second Logical"
-                  ORDERLABEL="Second Logical" TYPE="monograph"/>
+        <mets:div ADMID="AMD" DMDID="DMDLOG_0000" ID="LOG_0000" LABEL="Die Wiedergeburt der platonischen Akademie" ORDERLABEL="Wiedergeburt der platonischen Akademie" TYPE="monograph"/>
+        <mets:div ADMID="AMD" DMDID="DMDLOG_0001" ID="LOG_0001" LABEL="Second Logical" ORDERLABEL="Second Logical" TYPE="monograph"/>
     </mets:structMap>
     <mets:structMap TYPE="PHYSICAL">
         <mets:div DMDID="DMDPHYS_0000" ID="PHYS_0000" TYPE="physSequence">

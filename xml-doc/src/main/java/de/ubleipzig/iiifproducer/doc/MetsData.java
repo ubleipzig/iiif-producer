@@ -195,12 +195,6 @@ public interface MetsData {
     List<String> getPhysicalDivs();
 
     /**
-     * @return List
-     */
-    @XBRead("//*[local-name()='fileGrp'][@USE='ORIGINAL']/descendant::node()/@ID")
-    List<String> getFileResources();
-
-    /**
      * @param div String
      * @return String
      */

@@ -1,5 +1,6 @@
 dependencies {
     implementation project(":templates")
+    implementation group: 'commons-io', name: 'commons-io', version: commonsIoVersion
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
     implementation "org.xmlbeam:xmlprojector:$xbeamVersion"
     implementation group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion

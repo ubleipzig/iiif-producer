@@ -4,5 +4,4 @@ include 'producer'
 include 'templates'
 include 'xml-doc'
 include 'vocabulary'
-include 'storage'
 

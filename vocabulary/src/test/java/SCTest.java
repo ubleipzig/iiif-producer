@@ -31,6 +31,11 @@ public class SCTest extends AbstractVocabularyTest {
     }
 
     @Override
+    public String url() {
+        return null;
+    }
+
+    @Override
     public Class<SC> vocabulary() {
         return SC.class;
     }

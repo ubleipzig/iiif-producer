@@ -18,6 +18,7 @@
 
 package de.ubleipzig.iiifproducer.template;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -42,5 +43,21 @@ public class TemplateMetadata {
     public TemplateMetadata(final String label, final String value) {
         this.label = label;
         this.value = value;
+    }
+
+    /**
+     * @return String
+     */
+    @JsonIgnore
+    public String getLabel() {
+        return this.label;
+    }
+
+    /**
+     * @return String
+     */
+    @JsonIgnore
+    public String getValue() {
+        return this.value;
     }
 }

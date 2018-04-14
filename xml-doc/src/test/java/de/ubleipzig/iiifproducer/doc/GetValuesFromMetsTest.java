@@ -19,7 +19,6 @@
 package de.ubleipzig.iiifproducer.doc;
 
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getFileResources;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastParent;
@@ -50,10 +49,7 @@ import org.junit.jupiter.api.Test;
  */
 class GetValuesFromMetsTest {
 
-    private String path = get(".").toAbsolutePath()
-                                  .normalize()
-                                  .getParent()
-                                  .toString();
+    private String path = get(".").toAbsolutePath().normalize().getParent().toString();
     private String sourceFile = path + "/xml-doc/src/test/resources/mets/MS_187.xml";
 
     @Test
@@ -84,12 +80,6 @@ class GetValuesFromMetsTest {
     }
 
     @Test
-    void testGetFileResources() throws IOException {
-        final MetsData mets = getMets(sourceFile);
-        final List<String> files = getFileResources(mets);
-    }
-
-    @Test
     void testHrefForFile() throws IOException {
         final MetsData mets = getMets(sourceFile);
         final String href = getHrefForFile(mets, "FILE_0003_ORIGINAL");
@@ -107,8 +97,7 @@ class GetValuesFromMetsTest {
     void testGetRangesFromXlinks() throws IOException {
         final MetsData mets = getMets(sourceFile);
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
-        final Map<String, List<MetsData.Xlink>> map = xlinks.stream()
-                                                            .collect(groupingBy(MetsData.Xlink::getXLinkFrom));
+        final Map<String, List<MetsData.Xlink>> map = xlinks.stream().collect(groupingBy(MetsData.Xlink::getXLinkFrom));
         final Set<String> ranges = map.keySet();
 
         out.println(xlinks);
@@ -118,14 +107,12 @@ class GetValuesFromMetsTest {
     void testGetCanvasesForRange() throws IOException {
         final MetsData mets = getMets(sourceFile);
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
-        final Map<String, List<MetsData.Xlink>> xlinkmap = xlinks.stream()
-                                                                 .collect(groupingBy(MetsData.Xlink::getXLinkFrom));
+        final Map<String, List<MetsData.Xlink>> xlinkmap = xlinks.stream().collect(
+                groupingBy(MetsData.Xlink::getXLinkFrom));
         final Map<String, List<String>> structures = new LinkedHashMap<>();
         for (String range : xlinkmap.keySet()) {
             final List<MetsData.Xlink> links = xlinkmap.get(range);
-            final List<String> canvases = links.stream()
-                                               .map(MetsData.Xlink::getXLinkTo)
-                                               .collect(toList());
+            final List<String> canvases = links.stream().map(MetsData.Xlink::getXLinkTo).collect(toList());
             structures.put(range, canvases);
         }
     }
@@ -134,30 +121,28 @@ class GetValuesFromMetsTest {
     void testGetLabelForLogical() throws IOException {
         final MetsData mets = getMets(sourceFile);
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
-        final Map<String, List<MetsData.Xlink>> xlinkmap = xlinks.stream()
-                                                                 .collect(groupingBy(MetsData.Xlink::getXLinkFrom));
-        xlinkmap.keySet()
-                .forEach(logical -> {
-                    final String descLabel = getLogicalLabel(mets, logical);
-                    System.out.println(descLabel);
-                });
+        final Map<String, List<MetsData.Xlink>> xlinkmap = xlinks.stream().collect(
+                groupingBy(MetsData.Xlink::getXLinkFrom));
+        xlinkmap.keySet().forEach(logical -> {
+            final String descLabel = getLogicalLabel(mets, logical);
+            System.out.println(descLabel);
+        });
     }
 
     @Test
     void testGetTypeForLogical() throws IOException {
         final MetsData mets = getMets(sourceFile);
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
-        final Map<String, List<MetsData.Xlink>> xlinkmap = xlinks.stream()
-                                                                 .collect(groupingBy(MetsData.Xlink::getXLinkFrom));
-        xlinkmap.keySet()
-                .forEach(logical -> {
-                    final List<MetsData.Logical> last = getLogicalLastParent(mets, logical);
-                    last.forEach(p -> {
-                        final String type = p.getLogicalType();
-                        System.out.println(type);
-                    });
+        final Map<String, List<MetsData.Xlink>> xlinkmap = xlinks.stream().collect(
+                groupingBy(MetsData.Xlink::getXLinkFrom));
+        xlinkmap.keySet().forEach(logical -> {
+            final List<MetsData.Logical> last = getLogicalLastParent(mets, logical);
+            last.forEach(p -> {
+                final String type = p.getLogicalType();
+                System.out.println(type);
+            });
 
-                });
+        });
     }
 
     @Test

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mets:mets
-        xmlns:mets="http://www.loc.gov/METS/"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-3.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/version17/mets.v1-7.xsd">
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-3.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/version17/mets.v1-7.xsd">
     <mets:metsHdr CREATEDATE="2017-07-26T07:58:44">
         <mets:agent OTHERTYPE="SOFTWARE" ROLE="CREATOR" TYPE="OTHER">
             <mets:name>Goobi - UGH-1.11.0-7b3c2be - 26−March−2015</mets:name>
@@ -22,24 +19,16 @@
                     <mods:identifier type="swb-ppn">021339902</mods:identifier>
                     <mods:extension>
                         <slub:slub xmlns:slub="http://slub-dresden.de/">
-                            <slub:id
-                                    type="source">021339902
-                            </slub:id>
-                            <slub:id type="tsl-ats"
-                            >BntItin
-                            </slub:id>
+                            <slub:id type="source">021339902</slub:id>
+                            <slub:id type="tsl-ats">BntItin</slub:id>
                         </slub:slub>
                     </mods:extension>
                     <mods:titleInfo>
-                        <mods:title>Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige
-                            Schrifft
-                        </mods:title>
+                        <mods:title>Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft</mods:title>
                         <mods:subTitle>in zwey Bücher getheilet</mods:subTitle>
                     </mods:titleInfo>
                     <mods:titleInfo type="alternative">
-                        <mods:title>Itinerarium sacrae scripturae, das ist ein Reisebuch uber die gantze heilige
-                            Schrifft
-                        </mods:title>
+                        <mods:title>Itinerarium sacrae scripturae, das ist ein Reisebuch uber die gantze heilige Schrifft</mods:title>
                     </mods:titleInfo>
                     <mods:language>
                         <mods:languageTerm authority="rfc3066" type="code">ger</mods:languageTerm>
@@ -88,10 +77,7 @@
         </mets:digiprovMD>
     </mets:amdSec>
     <mets:structMap TYPE="LOGICAL">
-        <mets:div ADMID="AMD" DMDID="DMDLOG_0000" ID="LOG_0000"
-                  LABEL="Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft"
-                  ORDERLABEL="Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft"
-                  TYPE="multivolume_work">
+        <mets:div ADMID="AMD" DMDID="DMDLOG_0000" ID="LOG_0000" LABEL="Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft" ORDERLABEL="Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft" TYPE="multivolume_work">
             <mets:div ID="LOG_0001" TYPE="volume">
                 <mets:mptr xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href=""/>
             </mets:div>

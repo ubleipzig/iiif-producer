@@ -124,11 +124,6 @@ public interface MetsAccessor {
     String getFile(String div);
 
     /**
-     * @return List
-     */
-    List<String> getResources();
-
-    /**
      * @param file String
      * @return String
      */

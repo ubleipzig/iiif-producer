@@ -1,7 +1,7 @@
 ## IIIF-Producer
 
 [![Build Status](https://travis-ci.org/ubleipzig/iiif-producer.png?branch=master)](https://travis-ci.org/ubleipzig/iiif-producer)
-[![CodeCoverage](https://img.shields.io/codecov/c/github/ubleipzig/iiif-producer.svg)]()
+[![CodeCoverage](https://img.shields.io/codecov/c/github/ubleipzig/iiif-producer.svg)](https://codecov.io/gh/ubleipzig/iiif-producer)
 
 A CLI tool that generates IIIF Presentation 2.1 Manifests from METS/MODS (produced by Kitodo)
 

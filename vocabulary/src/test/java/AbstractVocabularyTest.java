@@ -48,10 +48,20 @@ public abstract class AbstractVocabularyTest {
 
     public abstract String namespace();
 
+    public abstract String url();
+
     public abstract Class<?> vocabulary();
 
     public Boolean isStrict() {
         return true;
+    }
+
+    private String resolveUrl() {
+        if (url() == null) {
+            return namespace();
+        } else {
+            return url();
+        }
     }
 
     protected Graph getVocabulary(final String url) {
@@ -62,7 +72,9 @@ public abstract class AbstractVocabularyTest {
 
     @Test
     public void testVocabulary() {
-        final Graph graph = getVocabulary(namespace());
+        final String url = resolveUrl();
+
+        final Graph graph = getVocabulary(url);
 
         final Set<String> subjects = graph.find(ANY, ANY, ANY).mapWith(Triple::getSubject).filterKeep(
                 Node::isURI).mapWith(Node::getURI).filterKeep(Objects::nonNull).toSet();
@@ -80,7 +92,9 @@ public abstract class AbstractVocabularyTest {
 
     @Test
     public void testVocabularyRev() {
-        final Graph graph = getVocabulary(namespace());
+        final String url = resolveUrl();
+
+        final Graph graph = getVocabulary(url);
 
         final Set<String> subjects = fields().map(namespace()::concat).collect(toSet());
 
@@ -106,6 +120,7 @@ public abstract class AbstractVocabularyTest {
         return stream(vocabulary().getFields()).map(Field::getName).map(
                 name -> name.endsWith("_") ? name.substring(0, name.length() - 1) : name).map(
                 name -> name.replaceAll("_", "-")).filter(field -> !field.equals("URI")).filter(
-                field -> !field.equals("CONTEXT"));
+                field -> !field.equals("CONTEXT")).filter(field -> !field.equals("IMAGE-CONTEXT")).filter(
+                field -> !field.equals("SERVICE-PROFILE"));
     }
 }

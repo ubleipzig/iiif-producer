@@ -288,14 +288,6 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
-     * @return List
-     */
-    public static List<String> getFileResources(final MetsData mets) {
-        return mets.getFileResources();
-    }
-
-    /**
-     * @param mets MetsData
      * @param div String
      * @return String
      */

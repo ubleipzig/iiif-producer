@@ -20,6 +20,7 @@ package de.ubleipzig.iiifproducer.doc;
 
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMetsFromFile;
 import static java.io.File.separator;
+import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.File;
@@ -57,14 +58,10 @@ public final class ResourceLoader {
     public static MetsData getMetsAnchor(final String sourceFileUri) throws IOException {
         final File metsFile = new File(sourceFileUri);
         if (metsFile.exists()) {
-            final String anchorFileName = metsFile.getName();
-            final int pos = anchorFileName.lastIndexOf(".");
-            String anchorBaseName = null;
-            if (pos > 0) {
-                anchorBaseName = anchorFileName.substring(0, pos);
-            }
-            final String anchorPath = metsFile.getParent() + separator + anchorBaseName + "_anchor.xml";
-            final File anchorfile = new File(anchorPath);
+            final String baseFileName = getBaseName(metsFile.getName());
+            final String anchorFileName = baseFileName + "_anchor.xml";
+            final String anchorFilePath = metsFile.getParent() + separator + anchorFileName;
+            final File anchorfile = new File(anchorFilePath);
             if (anchorfile.exists()) {
                 return getMetsFromFile(anchorfile);
             }

@@ -23,8 +23,8 @@ import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.Files.newBufferedWriter;
-import static java.nio.file.StandardOpenOption.APPEND;
 import static java.nio.file.StandardOpenOption.CREATE;
+import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -81,7 +81,7 @@ public final class ManifestSerializer {
      */
     public static Boolean writeToFile(final String json, final File file) {
         logger.info("Writing File at {}", file.getPath());
-        try (final BufferedWriter writer = newBufferedWriter(file.toPath(), UTF_8, CREATE, APPEND)) {
+        try (final BufferedWriter writer = newBufferedWriter(file.toPath(), UTF_8, CREATE, TRUNCATE_EXISTING)) {
             writer.write(json);
         } catch (final IOException ex) {
             logger.error("Error writing data to resource {}: {}", file, ex.getMessage());

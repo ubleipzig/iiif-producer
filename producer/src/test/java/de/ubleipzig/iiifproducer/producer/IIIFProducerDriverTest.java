@@ -15,9 +15,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+package de.ubleipzig.iiifproducer.producer;
 
-/**
- *
- */
+import static java.nio.file.Paths.get;
 
-package de.ubleipzig.iiifproducer.storage;
+import org.junit.jupiter.api.Test;
+
+public class IIIFProducerDriverTest {
+
+    @Test
+    public void testRunDriver() {
+        final String path = get(".").toAbsolutePath().normalize().getParent().toString();
+        final String testFileSource = path + "/xml-doc/src/test/resources/mets/BlhDie_004285964.xml";
+        final String[] args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i", testFileSource, "-o",
+                "/tmp/null.json"};
+        IIIFProducerDriver.main(args);
+    }
+}

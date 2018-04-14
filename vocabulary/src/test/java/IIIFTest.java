@@ -15,8 +15,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package de.ubleipzig.iiifproducer.producer;
 
-public class BuildFilePathTest {
+import de.ubleipzig.iiifproducer.vocabulary.IIIF;
 
+/**
+ * Test the IIIF Vocabulary Class
+ *
+ * @author acoburn
+ */
+public class IIIFTest extends AbstractVocabularyTest {
+
+    @Override
+    public String namespace() {
+        return "http://iiif.io/api/image/2#";
+    }
+
+    @Override
+    public String url() {
+        return "http://iiif.io/api/image/2/ontology.xml";
+    }
+
+    @Override
+    public Class<IIIF> vocabulary() {
+        return IIIF.class;
+    }
 }

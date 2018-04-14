@@ -31,22 +31,12 @@ public final class IIIFProducerDriver {
 
     private static Logger logger = getLogger(IIIFProducerDriver.class);
 
-    private IIIFProducerDriver() {
-    }
-
     /**
      * @param args args
      */
     public static void main(final String[] args) {
         final IIIFProducerDriver driver = new IIIFProducerDriver();
-
-        try {
-            driver.run(args);
-
-        } catch (final Exception e) {
-            logger.error("Error building manifest: {}", e.getMessage());
-            logger.debug("Stacktrace: ", e);
-        }
+        driver.run(args);
     }
 
     private void run(final String[] args) {

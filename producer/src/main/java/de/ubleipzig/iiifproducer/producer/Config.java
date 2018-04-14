@@ -108,11 +108,4 @@ public class Config {
     public final void setOutputFile(final String outputFile) {
         this.outputFile = outputFile;
     }
-
-    /**
-     * @return Boolean
-     */
-    public Boolean useSQL() {
-        return useSQL;
-    }
 }

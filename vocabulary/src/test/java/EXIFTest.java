@@ -31,6 +31,11 @@ public class EXIFTest extends AbstractVocabularyTest {
     }
 
     @Override
+    public String url() {
+        return null;
+    }
+
+    @Override
     public Class<EXIF> vocabulary() {
         return EXIF.class;
     }

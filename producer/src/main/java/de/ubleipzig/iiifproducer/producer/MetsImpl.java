@@ -22,7 +22,6 @@ import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCensus;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getFileIdForDiv;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getFileResources;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastChildren;
@@ -257,11 +256,6 @@ public class MetsImpl implements MetsAccessor {
     @Override
     public String getFile(final String div) {
         return getFileIdForDiv(mets, div);
-    }
-
-    @Override
-    public List<String> getResources() {
-        return getFileResources(mets);
     }
 
     @Override

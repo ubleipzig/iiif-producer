@@ -37,7 +37,6 @@ import static java.lang.String.format;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import de.ubleipzig.iiifproducer.storage.SQL;
 import de.ubleipzig.iiifproducer.template.TemplateCanvas;
 import de.ubleipzig.iiifproducer.template.TemplateImage;
 import de.ubleipzig.iiifproducer.template.TemplateManifest;
@@ -54,7 +53,6 @@ import de.ubleipzig.image.metadata.templates.ImageDimensionManifest;
 import de.ubleipzig.image.metadata.templates.ImageDimensions;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,10 +84,6 @@ public class IIIFProducer implements ManifestBuilderProcess {
     public void run() {
         logger.info("Running IIIF producer...");
         buildManifest();
-        if (config.useSQL()) {
-            final SQL db = new SQL(config.getTitle(), config.getViewId());
-            db.initDb();
-        }
     }
 
     @Override
@@ -122,9 +116,9 @@ public class IIIFProducer implements ManifestBuilderProcess {
     }
 
     @Override
-    public void buildImageDimensionManifest(final String imageSourceDir) throws FileNotFoundException {
+    public void buildImageDimensionManifest(final String imageSourceDir) {
         if (!new File(imageSourceDir).exists()) {
-            throw new FileNotFoundException("Images Not Found");
+            throw new RuntimeException("no images found at " + imageSourceDir + " - Exiting");
         }
 
         final ImageMetadataGeneratorConfig imageMetadataGeneratorConfig = new ImageMetadataGeneratorConfig();
@@ -166,23 +160,20 @@ public class IIIFProducer implements ManifestBuilderProcess {
         resource.setResourceHeight(height);
     }
 
+    private List<ImageDimensions> getDimensions(final String imageSourceDir) {
+        if (!new File(getImageDimensionManifestPath()).exists()) {
+            buildImageDimensionManifest(imageSourceDir);
+            return getImageDimensionManifest();
+        } else {
+            return getImageDimensionManifest();
+        }
+    }
+
     @Override
     public void buildManifest() {
         //TODO this should be abstracted to a repository container
         final String imageSourceDir = config.getBaseDir() + separator + config.getTitle() + "_tif";
-
-        final List<ImageDimensions> dimensions;
-        if (!new File(getImageDimensionManifestPath()).exists()) {
-            try {
-                buildImageDimensionManifest(imageSourceDir);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                System.exit(1);
-            }
-            dimensions = getImageDimensionManifest();
-        } else {
-            dimensions = getImageDimensionManifest();
-        }
+        final List<ImageDimensions> dimensions = getDimensions(imageSourceDir);
 
         final TemplateManifest manifest = new TemplateManifest();
         setContext(manifest);

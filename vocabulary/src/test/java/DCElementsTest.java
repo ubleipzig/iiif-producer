@@ -30,6 +30,11 @@ public class DCElementsTest extends AbstractVocabularyTest {
     }
 
     @Override
+    public String url() {
+        return null;
+    }
+
+    @Override
     public Class<DCElements> vocabulary() {
         return DCElements.class;
     }

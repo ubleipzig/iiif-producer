@@ -82,7 +82,7 @@ class ArgParser {
      * @param args command line arguments
      * @return the parsed config file or command line args.
      */
-    private Config parseConfiguration(final String[] args) {
+    public Config parseConfiguration(final String[] args) {
         // first see if they've specified a config file
         CommandLine c = null;
         Config config = null;

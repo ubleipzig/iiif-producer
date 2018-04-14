@@ -18,7 +18,9 @@ plugins {
 
 ext {
 
+    commonsCLIVersion = '1.4'
     commonsCodecVersion = '1.11'
+    commonsIoVersion = '2.6'
     commonsRdfVersion = '0.5.0'
     logbackVersion = '1.2.3'
     metadataExtractorVersion = '2.11.0'
