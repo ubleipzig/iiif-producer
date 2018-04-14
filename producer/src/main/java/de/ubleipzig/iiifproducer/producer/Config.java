@@ -35,7 +35,6 @@ public class Config {
     private String inputFile;
     private String outputFile;
     private Boolean useSQL = false;
-    private Boolean generateImageManifest = GENERATE_IMAGE_MANIFEST;
 
     /**
      * @return String

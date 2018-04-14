@@ -62,9 +62,10 @@ public interface ManifestBuilderProcess {
     List<TemplateSequence> addCanvasesToSequence(List<TemplateCanvas> canvases);
 
     /**
+     * @param imageSourceDir String
      * @throws FileNotFoundException FileNotFoundException
      */
-    void buildImageDimensionManifest() throws FileNotFoundException;
+    void buildImageDimensionManifest(String imageSourceDir) throws FileNotFoundException;
 
     /**
      * @return List

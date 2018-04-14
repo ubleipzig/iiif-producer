@@ -82,7 +82,7 @@ class ArgParser {
      * @param args command line arguments
      * @return the parsed config file or command line args.
      */
-    Config parseConfiguration(final String[] args) {
+    private Config parseConfiguration(final String[] args) {
         // first see if they've specified a config file
         CommandLine c = null;
         Config config = null;
@@ -125,7 +125,7 @@ class ArgParser {
             writer.println("\n-----------------------\n" + message + "\n-----------------------\n");
         }
         writer.println("Running IIIF Producer from command line arguments");
-        formatter.printHelp(writer, 80, "java -jar IIIFProducer.jar", "", configOptions, 4, 4, "", true);
+        formatter.printHelp(writer, 80, "./producer", "", configOptions, 4, 4, "", true);
         writer.println("\n");
         writer.flush();
 

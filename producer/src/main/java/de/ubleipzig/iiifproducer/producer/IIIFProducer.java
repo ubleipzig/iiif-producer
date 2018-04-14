@@ -122,9 +122,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
     }
 
     @Override
-    public void buildImageDimensionManifest() throws FileNotFoundException {
-        final String imageSourceDir = config.getBaseDir() + separator + config.getTitle() + "_tif";
-
+    public void buildImageDimensionManifest(String imageSourceDir) throws FileNotFoundException {
         if (!new File(imageSourceDir).exists()) {
             throw new FileNotFoundException("Images Not Found");
         }
@@ -170,11 +168,13 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
     @Override
     public void buildManifest() {
+        //TODO this should be abstracted to a repository container
+        final String imageSourceDir = config.getBaseDir() + separator + config.getTitle() + "_tif";
 
         final List<ImageDimensions> dimensions;
         if (!new File(getImageDimensionManifestPath()).exists()) {
             try {
-                buildImageDimensionManifest();
+                buildImageDimensionManifest(imageSourceDir);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 System.exit(1);
