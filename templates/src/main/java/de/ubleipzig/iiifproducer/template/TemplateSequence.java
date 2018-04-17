@@ -43,7 +43,7 @@ public class TemplateSequence {
     private List<TemplateCanvas> canvases;
 
     /**
-     * @param id       String
+     * @param id String
      * @param canvases List
      */
     public TemplateSequence(final String id, final List<TemplateCanvas> canvases) {

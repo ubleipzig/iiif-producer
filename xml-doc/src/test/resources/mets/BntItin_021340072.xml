@@ -4,6 +4,7 @@
         <mets:agent OTHERTYPE="SOFTWARE" ROLE="CREATOR" TYPE="OTHER">
             <mets:name>Goobi - UGH-1.11.0-7b3c2be - 26−March−2015</mets:name>
             <mets:note>Goobi</mets:note>
+            <mets:note type="test">This is a test typed note</mets:note>
         </mets:agent>
     </mets:metsHdr>
     <mets:dmdSec ID="DMDLOG_0001">

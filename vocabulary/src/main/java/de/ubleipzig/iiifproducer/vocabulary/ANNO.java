@@ -42,38 +42,16 @@ public final class ANNO extends BaseVocabulary {
     private static final String RDF = "RDF";
     private static final String RDFS = "RDFS";
     private static final String SCHEMA = "SCHEMA";
-
-    /**
-     * @return Map
-     */
-    public static Map<String, String> namespaces() {
-        final Map<String, String> namespaces = new HashMap<>();
-        namespaces.put(AS, "http://www.w3.org/ns/activitystreams#");
-        namespaces.put(DC, "http://purl.org/dc/elements/1.1/");
-        namespaces.put(DCTERMS, "http://purl.org/dc/terms/");
-        namespaces.put(DCTYPES, "http://purl.org/dc/dcmitype/");
-        namespaces.put(FOAF, "http://xmlns.com/foaf/0.1/");
-        namespaces.put(OA, "http://www.w3.org/ns/oa#");
-        namespaces.put(RDF, "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-        namespaces.put(RDFS, "http://www.w3.org/2000/01/rdf-schema#");
-        namespaces.put(SCHEMA, "http://schema.org/");
-        return namespaces;
-    }
-
-
     /* Classes */
     public static final IRI AnnotationPage = createIRI(namespaces().get(AS) + "OrderedCollectionPage");
     public static final IRI Software = createIRI(namespaces().get(AS) + "Application");
-
     public static final IRI Dataset = createIRI(namespaces().get(DCTYPES) + "Dataset");
     public static final IRI Image = createIRI(namespaces().get(DCTYPES) + "StillImage");
     public static final IRI Video = createIRI(namespaces().get(DCTYPES) + "MovingImage");
     public static final IRI Audio = createIRI(namespaces().get(DCTYPES) + "Sound");
     public static final IRI Text = createIRI(namespaces().get(DCTYPES) + "Text");
-
     public static final IRI Person = createIRI(namespaces().get(FOAF) + "Person");
     public static final IRI Organization = createIRI(namespaces().get(FOAF) + "Organization");
-
     public static final IRI Annotation = createIRI(namespaces().get(OA) + "Annotation");
     public static final IRI Choice = createIRI(namespaces().get(OA) + "Choice");
     public static final IRI CssSelector = createIRI(namespaces().get(OA) + "CssSelector");
@@ -91,10 +69,7 @@ public final class ANNO extends BaseVocabulary {
     public static final IRI TextQuoteSelector = createIRI(namespaces().get(OA) + "TextQuoteSelector");
     public static final IRI TimeState = createIRI(namespaces().get(OA) + "TimeState");
     public static final IRI XPathSelector = createIRI(namespaces().get(OA) + "XPathSelector");
-
     public static final IRI Audience = createIRI(namespaces().get(SCHEMA) + "Audience");
-
-
     /* Relationships */
     public static final IRI first = createIRI(namespaces().get(AS) + "first");
     public static final IRI generator = createIRI(namespaces().get(AS) + "generator");
@@ -103,14 +78,11 @@ public final class ANNO extends BaseVocabulary {
     public static final IRI next = createIRI(namespaces().get(AS) + "next");
     public static final IRI partOf = createIRI(namespaces().get(AS) + "partOf");
     public static final IRI prev = createIRI(namespaces().get(AS) + "prev");
-
     public static final IRI conformsTo = createIRI(namespaces().get(DCTYPES) + "conformsTo");
     public static final IRI creator = createIRI(namespaces().get(DCTYPES) + "creator");
     public static final IRI rights = createIRI(namespaces().get(DCTYPES) + "rights");
-
     public static final IRI email = createIRI(namespaces().get(FOAF) + "mbox");
     public static final IRI homepage = createIRI(namespaces().get(FOAF) + "homepage");
-
     public static final IRI body = createIRI(namespaces().get(OA) + "hasBody");
     public static final IRI cached = createIRI(namespaces().get(OA) + "cachedSource");
     public static final IRI canonical = createIRI(namespaces().get(OA) + "canonical");
@@ -128,23 +100,17 @@ public final class ANNO extends BaseVocabulary {
     public static final IRI target = createIRI(namespaces().get(OA) + "hasTarget");
     public static final IRI textDirection = createIRI(namespaces().get(OA) + "textDirection");
     public static final IRI via = createIRI(namespaces().get(OA) + "via");
-
     public static final IRI audience = createIRI(namespaces().get(SCHEMA) + "audience");
-
     /* Properties */
     public static final IRI startIndex = createIRI(namespaces().get(AS) + "startIndex");
     public static final IRI total = createIRI(namespaces().get(AS) + "total");
-
     public static final IRI format = createIRI(namespaces().get(DC) + "format");
     public static final IRI language = createIRI(namespaces().get(DC) + "language");
-
     public static final IRI created = createIRI(namespaces().get(DCTERMS) + "created");
     public static final IRI generated = createIRI(namespaces().get(DCTERMS) + "generated");
     public static final IRI modified = createIRI(namespaces().get(DCTERMS) + "modified");
-
     public static final IRI name = createIRI(namespaces().get(FOAF) + "name");
     public static final IRI nickname = createIRI(namespaces().get(FOAF) + "nick");
-
     public static final IRI bodyValue = createIRI(namespaces().get(OA) + "bodyValue");
     public static final IRI end = createIRI(namespaces().get(OA) + "end");
     public static final IRI exact = createIRI(namespaces().get(OA) + "exact");
@@ -156,13 +122,9 @@ public final class ANNO extends BaseVocabulary {
     public static final IRI sourceDateEnd = createIRI(namespaces().get(OA) + "sourceDateEnd");
     public static final IRI sourceDateStart = createIRI(namespaces().get(OA) + "sourceDateStart");
     public static final IRI start = createIRI(namespaces().get(OA) + "start");
-
     public static final IRI label = createIRI(namespaces().get(RDFS) + "label");
     public static final IRI value = createIRI(namespaces().get(RDF) + "value");
-
     public static final IRI accessibility = createIRI(namespaces().get(SCHEMA) + "accessibilityFeature");
-
-
     /* Named Individuals */
     public static final IRI bookmarking = createIRI(namespaces().get(OA) + "bookmarking");
     public static final IRI classifying = createIRI(namespaces().get(OA) + "classifying");
@@ -183,5 +145,22 @@ public final class ANNO extends BaseVocabulary {
 
     private ANNO() {
         super();
+    }
+
+    /**
+     * @return Map
+     */
+    public static Map<String, String> namespaces() {
+        final Map<String, String> namespaces = new HashMap<>();
+        namespaces.put(AS, "http://www.w3.org/ns/activitystreams#");
+        namespaces.put(DC, "http://purl.org/dc/elements/1.1/");
+        namespaces.put(DCTERMS, "http://purl.org/dc/terms/");
+        namespaces.put(DCTYPES, "http://purl.org/dc/dcmitype/");
+        namespaces.put(FOAF, "http://xmlns.com/foaf/0.1/");
+        namespaces.put(OA, "http://www.w3.org/ns/oa#");
+        namespaces.put(RDF, "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+        namespaces.put(RDFS, "http://www.w3.org/2000/01/rdf-schema#");
+        namespaces.put(SCHEMA, "http://schema.org/");
+        return namespaces;
     }
 }

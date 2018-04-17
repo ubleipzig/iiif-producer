@@ -33,7 +33,7 @@ public class Config {
     private String title;
     private String inputFile;
     private String outputFile;
-    private Boolean useSQL = false;
+    private Boolean serializeImageManifest;
 
     /**
      * @return String
@@ -107,5 +107,19 @@ public class Config {
      */
     public final void setOutputFile(final String outputFile) {
         this.outputFile = outputFile;
+    }
+
+    /**
+     * @return Boolean
+     */
+    public Boolean getSerializeImageManifest() {
+        return serializeImageManifest;
+    }
+
+    /**
+     * @param serializeImageManifest Boolean
+     */
+    public final void setSerializeImageManifest(final Boolean serializeImageManifest) {
+        this.serializeImageManifest = serializeImageManifest;
     }
 }

@@ -24,7 +24,6 @@ import de.ubleipzig.iiifproducer.template.TemplateResource;
 import de.ubleipzig.iiifproducer.template.TemplateSequence;
 import de.ubleipzig.image.metadata.templates.ImageDimensions;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -62,18 +61,6 @@ public interface ManifestBuilderProcess {
     List<TemplateSequence> addCanvasesToSequence(List<TemplateCanvas> canvases);
 
     /**
-     * @param imageSourceDir String
-     * @throws FileNotFoundException FileNotFoundException
-     */
-    void buildImageDimensionManifest(String imageSourceDir) throws FileNotFoundException;
-
-    /**
-     * @return List
-     */
-    List<ImageDimensions> getImageDimensionManifest();
-
-
-    /**
      *
      */
     void buildManifest();
@@ -84,4 +71,11 @@ public interface ManifestBuilderProcess {
      * @param resource TemplateResource
      */
     void setImageDimensions(ImageDimensions dimensions, TemplateCanvas canvas, TemplateResource resource);
+
+    /**
+     * @param imageManifestOutputPath imageManifestOutputPath
+     * @param imageSourceDir imageSourceDir
+     * @return List
+     */
+    List<ImageDimensions> getImageDimensions(String imageSourceDir, String imageManifestOutputPath);
 }

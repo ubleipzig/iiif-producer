@@ -24,7 +24,6 @@ import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.slf4j.Logger;
 
@@ -43,9 +42,8 @@ public final class ResourceLoader {
     /**
      * @param sourceFile String
      * @return MetsData
-     * @throws IOException IOException
      */
-    public static MetsData getMets(final String sourceFile) throws IOException {
+    public static MetsData getMets(final String sourceFile) {
         logger.debug("Loading MetsData from File {}", sourceFile);
         return getMetsFromFile(sourceFile);
     }
@@ -53,9 +51,8 @@ public final class ResourceLoader {
     /**
      * @param sourceFileUri String
      * @return MetsData
-     * @throws IOException IOException
      */
-    public static MetsData getMetsAnchor(final String sourceFileUri) throws IOException {
+    public static MetsData getMetsAnchor(final String sourceFileUri) {
         final File metsFile = new File(sourceFileUri);
         if (metsFile.exists()) {
             final String baseFileName = getBaseName(metsFile.getName());

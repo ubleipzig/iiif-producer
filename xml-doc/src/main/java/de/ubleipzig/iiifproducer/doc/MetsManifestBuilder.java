@@ -45,19 +45,28 @@ public final class MetsManifestBuilder {
      * @return XBProjector
      * @throws IOException Exception
      */
-    static MetsData getMetsFromFile(final String url) throws IOException {
-        final XBProjector projector = new XBProjector(TO_STRING_RENDERS_XML);
-        return projector.io().file(url).read(MetsData.class);
+    static MetsData getMetsFromFile(final String url) {
+        try {
+            final XBProjector projector = new XBProjector(TO_STRING_RENDERS_XML);
+            return projector.io().file(url).read(MetsData.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
-     * @param url
+     * @param url File
      * @return MetsData
-     * @throws IOException
      */
-    static MetsData getMetsFromFile(final File url) throws IOException {
-        final XBProjector projector = new XBProjector(TO_STRING_RENDERS_XML);
-        return projector.io().file(url).read(MetsData.class);
+    static MetsData getMetsFromFile(final File url) {
+        try {
+            final XBProjector projector = new XBProjector(TO_STRING_RENDERS_XML);
+            return projector.io().file(url).read(MetsData.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -65,7 +74,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getManifestTitle(final MetsData mets) {
-        return mets.getManifestTitle();
+        return mets.getManifestTitle().orElse("").trim();
     }
 
     /**

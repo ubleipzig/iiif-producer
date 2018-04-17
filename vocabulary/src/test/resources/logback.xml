@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration>
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE configuration>
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -7,13 +6,13 @@
         </encoder>
     </appender>
 
-  <logger name="org.apache.http" additivity="false" level="INFO">
-    <appender-ref ref="STDOUT"/>
-  </logger>
+    <logger name="org.apache.http" additivity="false" level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </logger>
     <logger name="de.ubleipzig.iiifproducer.vocabulary" additivity="false" level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </logger>
-  <root additivity="false" level="INFO">
-    <appender-ref ref="STDOUT"/>
-  </root>
+    <root additivity="false" level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
 </configuration>

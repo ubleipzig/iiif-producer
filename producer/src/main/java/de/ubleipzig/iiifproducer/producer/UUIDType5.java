@@ -49,6 +49,18 @@ public final class UUIDType5 {
     }
 
     /**
+     * @param algorithm String
+     * @return MessageDigest
+     */
+    public static MessageDigest getDigest(final String algorithm) {
+        try {
+            return MessageDigest.getInstance(algorithm);
+        } catch (NoSuchAlgorithmException nsae) {
+            throw new InternalError(algorithm + " not supported");
+        }
+    }
+
+    /**
      * nameUUIDFromNamespaceAndBytes.
      *
      * @param namespace namespace
@@ -56,12 +68,7 @@ public final class UUIDType5 {
      * @return {@link UUID}
      */
     public static UUID nameUUIDFromNamespaceAndBytes(final UUID namespace, final byte[] name) {
-        final MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("SHA-1");
-        } catch (NoSuchAlgorithmException nsae) {
-            throw new InternalError("SHA-1 not supported");
-        }
+        final MessageDigest md = getDigest("SHA-1");
         md.update(toBytes(Objects.requireNonNull(namespace, "namespace is null")));
         md.update(Objects.requireNonNull(name, "name is null"));
         final byte[] sha1Bytes = md.digest();
@@ -82,7 +89,6 @@ public final class UUIDType5 {
         // Based on the private UUID(bytes[]) constructor
         long msb = 0;
         long lsb = 0;
-        assert data.length >= 16;
         for (int i = 0; i < 8; i++) {
             msb = (msb << 8) | (data[i] & 0xff);
         }

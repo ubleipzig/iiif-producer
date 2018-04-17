@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+
 package de.ubleipzig.iiifproducer.vocabulary;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,13 +31,12 @@ import java.util.Map;
 public class BaseListContext {
 
     @JsonProperty("@context")
-    List<Map<String,Object>> context;
+    List<Map<String, Object>> context;
 
     /**
-     *
      * @return Map
      */
-    public List<Map<String,Object>> getContext() {
+    public List<Map<String, Object>> getContext() {
         return this.context;
     }
 

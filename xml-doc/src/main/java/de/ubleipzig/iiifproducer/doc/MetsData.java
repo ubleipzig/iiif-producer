@@ -34,7 +34,7 @@ public interface MetsData {
      * @return String
      */
     @XBRead("//*[local-name()='mods']/*[local-name()='titleInfo']/*[local-name()='title']")
-    String getManifestTitle();
+    Optional<String> getManifestTitle();
 
     /**
      * @return String

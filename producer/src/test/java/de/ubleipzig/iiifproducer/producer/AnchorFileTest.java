@@ -24,12 +24,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import de.ubleipzig.iiifproducer.template.TemplateManifest;
 import de.ubleipzig.iiifproducer.template.TemplateMetadata;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class AnchorFileTest {
+
     private static Config config = new Config();
 
     @BeforeAll
@@ -43,7 +42,7 @@ public class AnchorFileTest {
     }
 
     @Test
-    void testGetAnchorFileMetadata() throws IOException {
+    void testGetAnchorFileMetadata() {
         final MetsAccessor mets = new MetsImpl(config);
         final TemplateMetadata metadata = mets.getAnchorFileMetadata();
         assertEquals("Part of", metadata.getLabel());
@@ -53,7 +52,7 @@ public class AnchorFileTest {
     }
 
     @Test
-    void testSetAnchorFileMetadata() throws IOException {
+    void testSetAnchorFileMetadata() {
         final MetsAccessor mets = new MetsImpl(config);
         final TemplateManifest manifest = new TemplateManifest();
         mets.setManifestLabel(manifest);

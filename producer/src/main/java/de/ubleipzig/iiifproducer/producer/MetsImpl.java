@@ -58,7 +58,6 @@ import de.ubleipzig.iiifproducer.template.TemplateMetadata;
 import de.ubleipzig.iiifproducer.template.TemplateStructure;
 import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -80,7 +79,7 @@ public class MetsImpl implements MetsAccessor {
     private Config config;
     private Map<String, List<MetsData.Xlink>> xlinkmap;
 
-    MetsImpl(final Config config) throws IOException {
+    MetsImpl(final Config config) {
         this.mets = getMets(config.getInputFile());
         this.anchorDoc = getMetsAnchor(config.getInputFile());
         this.config = config;
@@ -142,17 +141,10 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public TemplateMetadata getAnchorFileMetadata() {
-        if (anchorDoc != null) {
-            if (getManifestTitle(anchorDoc) != null && getManifestTitle(mets) != null) {
-                return new TemplateMetadata(ANCHOR_KEY, getManifestTitle(anchorDoc) + "; " + getCensus(mets));
-            }
-        }
-        return null;
+        return new TemplateMetadata(ANCHOR_KEY, getManifestTitle(anchorDoc) + "; " + getCensus(mets));
     }
 
-    /**
-     * @return String
-     */
+    @Override
     public String getAnchorFileLabel() {
         return getManifestTitle(anchorDoc) + "; " + getManifestTitle(mets);
     }

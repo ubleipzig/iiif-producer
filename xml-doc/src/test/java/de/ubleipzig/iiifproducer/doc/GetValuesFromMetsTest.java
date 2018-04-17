@@ -18,6 +18,7 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
@@ -25,20 +26,20 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastPa
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMimeTypeForFile;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNote;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPhysicalDivs;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getUrnReference;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getXlinks;
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
-import static java.lang.System.out;
-import static java.nio.file.Paths.get;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,62 +50,75 @@ import org.junit.jupiter.api.Test;
  */
 class GetValuesFromMetsTest {
 
-    private String path = get(".").toAbsolutePath().normalize().getParent().toString();
-    private String sourceFile = path + "/xml-doc/src/test/resources/mets/MS_187.xml";
+    private String sourceFile = GetValuesFromMetsTest.class.getResource("/mets/MS_187.xml").getPath();
 
     @Test
-    void testGetTitle() throws IOException {
+    void testGetTitle() {
         final MetsData mets = getMets(sourceFile);
         final String id = getManifestTitle(mets);
         assertEquals(id, "Leipzig, Universitätsbibliothek Leipzig, Ms 187");
     }
 
     @Test
-    void testGetIdentifiers() throws IOException {
+    void testGetNote() {
         final MetsData mets = getMets(sourceFile);
-        final String id = getManuscriptIdByType(mets, "urn");
+        final String note = getNote(mets);
+        assertEquals(note, "Goobi");
+    }
+
+    @Test
+    void testGetIdentifiers() {
+        final MetsData mets = getMets(sourceFile);
+        final String id = getManuscriptIdByType(mets, URN_TYPE);
         assertEquals(id, "urn:nbn:de:bsz:15-0012-161875");
     }
 
     @Test
-    void testGetAttribution() throws IOException {
+    void testGetAttribution() {
         final MetsData mets = getMets(sourceFile);
         final String id = getAttribution(mets);
         assertEquals(id, "Leipzig University Library");
     }
 
     @Test
-    void testGetPhysicalDivs() throws IOException {
+    void testGetUrn() {
+        final MetsData mets = getMets(sourceFile);
+        final String id = getUrnReference(mets);
+        assertEquals(id, "urn:nbn:de:bsz:15-0012-161875");
+    }
+
+    @Test
+    void testGetPhysicalDivs() {
         final MetsData mets = getMets(sourceFile);
         final List<String> divs = getPhysicalDivs(mets);
+        assertEquals(380, divs.size());
     }
 
     @Test
-    void testHrefForFile() throws IOException {
+    void testHrefForFile() {
         final MetsData mets = getMets(sourceFile);
         final String href = getHrefForFile(mets, "FILE_0003_ORIGINAL");
-        out.println(href);
+        assertEquals("MS_187_tif/00000003.tif", href);
     }
 
     @Test
-    void testMimeTypeForFile() throws IOException {
+    void testMimeTypeForFile() {
         final MetsData mets = getMets(sourceFile);
         final String mtype = getMimeTypeForFile(mets, "FILE_0003_ORIGINAL");
-        out.println(mtype);
+        assertEquals("image/tiff", mtype);
     }
 
     @Test
-    void testGetRangesFromXlinks() throws IOException {
+    void testGetRangesFromXlinks() {
         final MetsData mets = getMets(sourceFile);
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
         final Map<String, List<MetsData.Xlink>> map = xlinks.stream().collect(groupingBy(MetsData.Xlink::getXLinkFrom));
         final Set<String> ranges = map.keySet();
-
-        out.println(xlinks);
+        assertEquals(21, ranges.size());
     }
 
     @Test
-    void testGetCanvasesForRange() throws IOException {
+    void testGetCanvasesForRange() {
         final MetsData mets = getMets(sourceFile);
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
         final Map<String, List<MetsData.Xlink>> xlinkmap = xlinks.stream().collect(
@@ -115,10 +129,12 @@ class GetValuesFromMetsTest {
             final List<String> canvases = links.stream().map(MetsData.Xlink::getXLinkTo).collect(toList());
             structures.put(range, canvases);
         }
+        assertEquals(209, structures.entrySet().stream().filter(x -> x.getKey().equals("LOG_0014")).collect(
+                Collectors.toList()).get(0).getValue().size());
     }
 
     @Test
-    void testGetLabelForLogical() throws IOException {
+    void testGetLabelForLogical() {
         final MetsData mets = getMets(sourceFile);
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
         final Map<String, List<MetsData.Xlink>> xlinkmap = xlinks.stream().collect(
@@ -130,7 +146,7 @@ class GetValuesFromMetsTest {
     }
 
     @Test
-    void testGetTypeForLogical() throws IOException {
+    void testGetTypeForLogical() {
         final MetsData mets = getMets(sourceFile);
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
         final Map<String, List<MetsData.Xlink>> xlinkmap = xlinks.stream().collect(
@@ -146,8 +162,9 @@ class GetValuesFromMetsTest {
     }
 
     @Test
-    void testGetTopLogical() throws IOException {
+    void testGetTopLogical() {
         final MetsData mets = getMets(sourceFile);
-        System.out.println(mets.getTopLogicals());
+        final List<MetsData.Logical> logicals = mets.getTopLogicals();
+        assertEquals(8, logicals.size());
     }
 }

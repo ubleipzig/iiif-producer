@@ -19,10 +19,8 @@
 package de.ubleipzig.iiifproducer.producer;
 
 import static de.ubleipzig.iiifproducer.producer.Constants.MANIFEST_HTTP_DIR;
-import static java.nio.file.Paths.get;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.File;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -36,27 +34,42 @@ import org.junit.jupiter.api.Test;
 class ArgParserTest {
 
     private static String pid;
-    private static String testFileSource;
+    private static String testFileSource1;
+    private static String testFileSource2;
     private ArgParser parser;
 
     @BeforeAll
     static void init() {
-        final String path = get(".").toAbsolutePath().normalize().getParent().toString();
-        testFileSource = path + "/xml-doc/src/test/resources/mets/BlhDie_004285964.xml";
+        testFileSource1 = ArgParserTest.class.getResource("/MS_187.xml").getPath();
+        testFileSource2 = ArgParserTest.class.getResource("/BlhDie_004285964.xml").getPath();
         pid = "producer-test-" + UUID.randomUUID().toString();
     }
 
     @Test
-    void testArgs() {
+    void testRequiredArgs1() {
         parser = new ArgParser();
         final String[] args;
-        if (!new File(MANIFEST_HTTP_DIR).exists()) {
-            args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i", testFileSource, "-o", "/tmp/" +
-                    pid + ".json"};
-        } else {
-            args = new String[]{"-v", "021340072", "-t", "BlhDie_004285964", "-i", testFileSource, "-o",
-                    MANIFEST_HTTP_DIR + pid + ".json"};
-        }
+        args = new String[]{"-v", "004285964", "-t", "MS_187", "-i", testFileSource1, "-o", "/tmp/" + pid + ".json"};
+        final ManifestBuilderProcess processor = parser.init(args);
+        processor.run();
+    }
+
+    @Test
+    void testRequiredArgs2() {
+        parser = new ArgParser();
+        final String[] args;
+        args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i", testFileSource2, "-o", "/tmp/" + pid +
+                ".json"};
+        final ManifestBuilderProcess processor = parser.init(args);
+        processor.run();
+    }
+
+    @Test
+    void testOptionalArgs() {
+        parser = new ArgParser();
+        final String[] args;
+        args = new String[]{"-v", "021340072", "-t", "MS_187", "-i", testFileSource1, "-o", "/tmp/" + pid + ".json",
+                "-s"};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
     }
@@ -65,14 +78,8 @@ class ArgParserTest {
     void testInvalidArgs() {
         parser = new ArgParser();
         final String[] args;
-        if (!new File(MANIFEST_HTTP_DIR).exists()) {
-
-            args = new String[]{"-q", "004285964", "-y", "BlhDie_004285964", "-l", testFileSource, "-p", "/tmp/" +
-                    pid + ".json"};
-        } else {
-            args = new String[]{"-q", "021340072", "-y", "BlhDie_004285964", "-l", testFileSource, "-p",
-                    MANIFEST_HTTP_DIR + pid + ".json"};
-        }
+        args = new String[]{"-q", "021340072", "-y", "MS_187", "-l", testFileSource1, "-p", MANIFEST_HTTP_DIR + pid +
+                ".json"};
         assertThrows(RuntimeException.class, () -> {
             parser.parseConfiguration(args);
         });

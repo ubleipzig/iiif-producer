@@ -15,20 +15,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+
 package de.ubleipzig.iiifproducer.producer;
 
-import static java.nio.file.Paths.get;
+import java.util.UUID;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class IIIFProducerDriverTest {
+    private static String testFileSource1;
+    private static String testFileSource2;
+    private static String pid;
+
+    @BeforeAll
+    static void init() {
+        testFileSource1 = ArgParserTest.class.getResource("/BlhDie_004285964.xml").getPath();
+        testFileSource2 = ArgParserTest.class.getResource("/MS_187.xml").getPath();
+        pid = "producer-test-" + UUID.randomUUID().toString();
+    }
+    @Test
+    public void testStandardType() {
+        final String[] args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i", testFileSource1, "-o",
+                "/tmp/" + pid + ".json"};
+        IIIFProducerDriver.main(args);
+    }
 
     @Test
-    public void testRunDriver() {
-        final String path = get(".").toAbsolutePath().normalize().getParent().toString();
-        final String testFileSource = path + "/xml-doc/src/test/resources/mets/BlhDie_004285964.xml";
-        final String[] args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i", testFileSource, "-o",
-                "/tmp/null.json"};
+    public void testHandschriftType() {
+        final String[] args = new String[]{"-v", "004285964", "-t", "MS_187", "-i", testFileSource2, "-o",
+                "/tmp/" + pid + ".json"};
         IIIFProducerDriver.main(args);
     }
 }

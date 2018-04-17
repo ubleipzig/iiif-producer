@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import de.ubleipzig.iiifproducer.template.TemplateManifest;
 
-import java.io.IOException;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -41,13 +40,12 @@ public class SetNullableMetadataTest {
     private static String sourceFile;
 
     @BeforeAll
-    static void testBuildStructures() throws IOException {
-        final String path = get(".").toAbsolutePath().normalize().getParent().toString();
-        sourceFile = path + "/xml-doc/src/test/resources/mets/BlhDie_004285964.xml";
+    static void setup() {
+        sourceFile = SetNullableMetadataTest.class.getResource("/BlhDie_004285964.xml").getPath();
     }
 
     @Test
-    void testSetManuscriptMetadata() throws IOException {
+    void testSetManuscriptMetadata() {
         final Config config = new Config();
         config.setInputFile(sourceFile);
         config.setTitle("BlhDie_004285964");
@@ -62,10 +60,27 @@ public class SetNullableMetadataTest {
     }
 
     @Test
-    void testSetMetadata() throws IOException {
+    void testSetMetadata() {
         final Config config = new Config();
         config.setInputFile(sourceFile);
         config.setTitle("BlhDie_004285964");
+        config.setOutputFile("/tmp/test.json");
+        config.setViewId("004285964");
+        final MetsAccessor mets = new MetsImpl(config);
+        final TemplateManifest body = new TemplateManifest();
+        mets.setMetadata(body);
+        final Optional<String> json = serialize(body);
+        assertTrue(json.isPresent());
+        out.println(json.get());
+    }
+
+    @Test
+    void testSetMetadataWithNotes() {
+        final String path = get(".").toAbsolutePath().normalize().getParent().toString();
+        sourceFile = path + "/xml-doc/src/test/resources/mets/BntItin_021340072.xml";
+        final Config config = new Config();
+        config.setInputFile(sourceFile);
+        config.setTitle("MS_187");
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
         final MetsAccessor mets = new MetsImpl(config);

@@ -26,12 +26,9 @@ import org.apache.commons.rdf.simple.SimpleRDF;
  *
  * @author christopher-johnson
  */
-public class RDFBase {
+public abstract class RDFBase {
 
     private static SimpleRDF rdf = new SimpleRDF();
-
-    protected RDFBase() {
-    }
 
     protected static IRI createIRI(final String uri) {
         return rdf.createIRI(uri);

@@ -28,7 +28,8 @@
                         <mods:subTitle>in zwey Bücher getheilet</mods:subTitle>
                     </mods:titleInfo>
                     <mods:titleInfo type="alternative">
-                        <mods:title>Itinerarium sacrae scripturae, das ist ein Reisebuch uber die gantze heilige Schrifft</mods:title>
+                        <mods:title>Itinerarium sacrae scripturae, das ist ein Reisebuch uber die gantze heilige Schrifft
+                        </mods:title>
                     </mods:titleInfo>
                     <mods:language>
                         <mods:languageTerm authority="rfc3066" type="code">ger</mods:languageTerm>

@@ -24,10 +24,9 @@ import static de.ubleipzig.iiifproducer.producer.StaticIRIBuilder.buildCanvasIRI
 import static de.ubleipzig.iiifproducer.producer.StaticIRIBuilder.buildImageServiceContext;
 import static de.ubleipzig.iiifproducer.producer.StaticIRIBuilder.buildServiceIRI;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.apache.commons.rdf.api.IRI;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -39,14 +38,15 @@ public class StaticIRIBuilderTest {
 
 
     @Test
-    @Disabled
     void testBuildServiceIRI() {
         final String imageServiceContext = buildImageServiceContext("0000004057");
         final String resourceIdString = "00000002";
         final IRI serviceIri = buildServiceIRI(imageServiceContext, resourceIdString);
-        assertTrue(serviceIri != null);
-        assertEquals("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv" + ""
-                + ".fcgi?iiif=/j2k/0000/0040/0000004057/00000002.jpx", serviceIri.getIRIString());
+        assertNotNull(serviceIri);
+        assertEquals(
+                "https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv" + "" + "" +
+                        ".fcgi?iiif=/j2k/0000/0040/0000004057/00000002.jpx",
+                serviceIri.getIRIString());
     }
 
     @Test

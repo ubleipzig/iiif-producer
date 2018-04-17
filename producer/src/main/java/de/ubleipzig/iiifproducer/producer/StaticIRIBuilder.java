@@ -28,7 +28,7 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author christopher-johnson
  */
-public class StaticIRIBuilder extends RDFBase {
+public final class StaticIRIBuilder extends RDFBase {
 
     /**
      * @param canvasIdString String
@@ -74,5 +74,8 @@ public class StaticIRIBuilder extends RDFBase {
 
         return Constants.SERVICE_BASE + hack + separator + newImageDir + separator + viewId;
         //return SERVICE_BASE + IMAGE_DIR + viewId;
+    }
+
+    private StaticIRIBuilder() {
     }
 }

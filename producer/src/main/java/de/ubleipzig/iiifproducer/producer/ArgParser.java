@@ -21,7 +21,6 @@ package de.ubleipzig.iiifproducer.producer;
 
 import static java.lang.System.out;
 import static org.apache.commons.cli.Option.builder;
-import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.PrintWriter;
 
@@ -30,7 +29,6 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.slf4j.Logger;
 
 /**
  * ArgParser.
@@ -39,7 +37,6 @@ import org.slf4j.Logger;
  */
 class ArgParser {
 
-    private static final Logger logger = getLogger(ArgParser.class);
     private static final Options configOptions = new Options();
 
     static {
@@ -51,6 +48,9 @@ class ArgParser {
         configOptions.addOption(builder("i").longOpt("input").hasArg(true).desc("Source").required(true).build());
 
         configOptions.addOption(builder("o").longOpt("output").hasArg(true).desc("Output").required(true).build());
+
+        configOptions.addOption(
+                builder("s").longOpt("serializeImageManifest").desc("serializeImageManifest").required(false).build());
     }
 
     /**
@@ -110,6 +110,7 @@ class ArgParser {
         config.setTitle(cmd.getOptionValue('t'));
         config.setInputFile(cmd.getOptionValue('i'));
         config.setOutputFile(cmd.getOptionValue('o'));
+        config.setSerializeImageManifest(cmd.hasOption("s"));
         return config;
     }
 
@@ -121,18 +122,11 @@ class ArgParser {
     private void printHelp(final String message) {
         final HelpFormatter formatter = new HelpFormatter();
         final PrintWriter writer = new PrintWriter(out);
-        if (message != null) {
-            writer.println("\n-----------------------\n" + message + "\n-----------------------\n");
-        }
+        writer.println("\n-----------------------\n" + message + "\n-----------------------\n");
         writer.println("Running IIIF Producer from command line arguments");
         formatter.printHelp(writer, 80, "./producer", "", configOptions, 4, 4, "", true);
         writer.println("\n");
         writer.flush();
-
-        if (message != null) {
-            throw new RuntimeException(message);
-        } else {
-            throw new RuntimeException();
-        }
+        throw new RuntimeException(message);
     }
 }

@@ -23,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import de.ubleipzig.iiifproducer.template.TemplateStructure;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -39,13 +38,13 @@ class StructuresTest {
     private static String sourceFile;
 
     @BeforeAll
-    static void testBuildStructures() throws IOException {
+    static void testBuildStructures() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         sourceFile = path + "/xml-doc/src/test/resources/mets/MS_85.xml";
     }
 
     @Test
-    void buildStructures() throws IOException {
+    void buildStructures() {
         final Config config = new Config();
         config.setInputFile(sourceFile);
         config.setTitle("BlhDie_004285964");
@@ -57,7 +56,7 @@ class StructuresTest {
     }
 
     @Test
-    void buildTopStructure() throws IOException {
+    void buildTopStructure() {
         final Config config = new Config();
         config.setInputFile(sourceFile);
         config.setTitle("BlhDie_004285964");

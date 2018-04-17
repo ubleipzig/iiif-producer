@@ -20,6 +20,14 @@ $ chmod +x producer
 ./producer -i {$your_inputfile}.xml -o {$your_outputfile.jsonld} -t {$kitodo_archive_name} -v {$view_identifier}
 ```
 
+## Image Dimension Manifest
+* Optionally, to produce an image dimension manifest add the -s flag
+```bash
+./producer -i {$your_inputfile}.xml -o {$your_outputfile.jsonld} -t {$kitodo_archive_name} -v {$view_identifier} -s
+```
+the default ouput location for the manifest is the base directory where the xml is located.
+It will have a filename like this `image-manifest-185c961d-774c-5540-a31d-c0bca454c47d`  
+
 ## Configuration Dependencies
 * the Image Service Identifier assignment may have to be reconfigured for your infrastructure. (see Constants)
 * the source images must be TIFs

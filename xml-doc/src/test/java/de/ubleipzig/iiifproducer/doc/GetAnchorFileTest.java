@@ -22,7 +22,6 @@ import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMetsAnchor;
 import static java.nio.file.Paths.get;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
@@ -30,11 +29,11 @@ import org.junit.jupiter.api.Test;
 public class GetAnchorFileTest {
 
     @Test
-    void testGetAnchorFile() throws IOException {
+    void testGetAnchorFile() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String testFileSource = path + "/xml-doc/src/test/resources/mets/BntItin_021340072.xml";
         final MetsData mets = getMetsAnchor(testFileSource);
-        final String anchorFileLabel = Objects.requireNonNull(mets).getManifestTitle();
+        final String anchorFileLabel = Objects.requireNonNull(mets).getManifestTitle().orElse("");
         assertEquals(
                 "Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft",
                 anchorFileLabel);

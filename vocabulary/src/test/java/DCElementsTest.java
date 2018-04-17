@@ -20,6 +20,7 @@ import de.ubleipzig.iiifproducer.vocabulary.DCElements;
 
 /**
  * Test the DCElements Vocabulary Class
+ *
  * @author acoburn
  */
 public class DCElementsTest extends AbstractVocabularyTest {
