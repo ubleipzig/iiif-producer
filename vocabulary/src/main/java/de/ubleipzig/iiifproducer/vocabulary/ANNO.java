@@ -18,6 +18,8 @@
 
 package de.ubleipzig.iiifproducer.vocabulary;
 
+import static de.ubleipzig.iiifproducer.vocabulary.VocabUtils.createIRI;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +30,7 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author christopher-johnson
  */
-public final class ANNO extends BaseVocabulary {
+public final class ANNO {
 
     /* CONTEXT */
     public static final String CONTEXT = "http://www.w3.org/ns/anno.jsonld";
@@ -144,7 +146,6 @@ public final class ANNO extends BaseVocabulary {
     public static final IRI rtl = createIRI(namespaces().get(OA) + "rtlDirection");
 
     private ANNO() {
-        super();
     }
 
     /**

@@ -23,9 +23,13 @@ import static java.lang.System.out;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
@@ -37,10 +41,10 @@ import org.mockito.Mock;
 class TemplateTopStructureTest {
 
     @Mock
-    private TemplateTopStructure mockTopStructure = new TemplateTopStructure();
+    private static TemplateTopStructure mockTopStructure = new TemplateTopStructure();
 
-    @Test
-    void testSerialization() {
+    @BeforeAll
+    static void setup() {
         final List<String> ranges = asList(
                 "https://iiif.ub.uni-leipzig.de/0000004084/range/0-0",
                 "https://iiif.ub" + ".uni-leipzig.de/0000004084/range/0-1",
@@ -48,9 +52,20 @@ class TemplateTopStructureTest {
         mockTopStructure.setStructureLabel("TOC");
         mockTopStructure.setStructureId("http://test.org/12345/range/0");
         mockTopStructure.setRanges(ranges);
+    }
+
+    @Test
+    void testSerialization() {
         final Optional<String> json = serialize(mockTopStructure);
         assertTrue(json.isPresent());
         out.println(json.get());
+    }
+
+    @Test
+    void testSetMembers() {
+        final List<TemplateMember> members = new ArrayList<>();
+        members.add(new TemplateMember("trellis:data/member", SCCompacted.Canvas.compactedIRI(), "a member"));
+        mockTopStructure.setMembers(members);
     }
 
 }

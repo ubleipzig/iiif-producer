@@ -18,6 +18,8 @@
 
 package de.ubleipzig.iiifproducer.vocabulary;
 
+import static de.ubleipzig.iiifproducer.vocabulary.VocabUtils.createIRI;
+
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -25,7 +27,7 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author christopher-johnson
  */
-public final class IIIF extends BaseVocabulary {
+public final class IIIF {
 
     /* Namespace */
     public static final String URI = "http://iiif.io/api/image/2#";
@@ -70,6 +72,5 @@ public final class IIIF extends BaseVocabulary {
     public static final IRI sizeByForcedWHFeature = createIRI(URI + "sizeByForcedWHFeature");
 
     private IIIF() {
-        super();
     }
 }

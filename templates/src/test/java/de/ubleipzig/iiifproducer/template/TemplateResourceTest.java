@@ -15,34 +15,34 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-
 package de.ubleipzig.iiifproducer.template;
 
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
-/**
- * TemplateMetadataTest.
- *
- * @author christopher-johnson
- */
-class TemplateMetadataTest {
+public class TemplateResourceTest {
+
+    @Mock
+    private TemplateResource mockResource = new TemplateResource();
+
+    @Mock
+    private TemplateService mockService = new TemplateService("trellis:data/testservice");
 
     @Test
-    void testSerialization() {
-        final List<TemplateMetadata> meta = new ArrayList<>();
-        meta.add(new TemplateMetadata("Kitodo", "12345"));
-        meta.add(new TemplateMetadata("URN", "12345"));
-        meta.add(new TemplateMetadata("Source PPN (SWB)", "12345"));
-        final Optional<String> json = ManifestSerializer.serialize(meta);
+    void testTemplateResource() {
+        mockResource.setResourceFormat("image/tiff");
+        mockResource.setResourceId("trellis:data/12345");
+        mockResource.setResourceLabel("00001111");
+        mockResource.setService(mockService);
+        mockResource.setResourceHeight(200);
+        mockResource.setResourceWidth(200);
+        final Optional<String> json = ManifestSerializer.serialize(mockResource);
         assertTrue(json.isPresent());
         out.println(json.get());
     }
-
 }

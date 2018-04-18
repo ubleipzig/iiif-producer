@@ -18,6 +18,8 @@
 
 package de.ubleipzig.iiifproducer.vocabulary;
 
+import static de.ubleipzig.iiifproducer.vocabulary.VocabUtils.createIRI;
+
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -26,7 +28,7 @@ import org.apache.commons.rdf.api.IRI;
  * @author acoburn
  * @see <a href="http://dublincore.org/documents/dcmi-terms/">DCMI Metadata Terms</a>
  */
-public final class DCElements extends BaseVocabulary {
+public final class DCElements {
 
     /* Namespace */
     public static final String URI = "http://purl.org/dc/elements/1.1/";

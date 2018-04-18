@@ -16,33 +16,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.template;
+package de.ubleipzig.iiifproducer.vocabulary;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static java.util.ServiceLoader.load;
 
-import java.util.Optional;
-
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.RDF;
 
 /**
- * TemplateBodyTest.
+ * VocabUtils.
  *
- * @author christopher-johnson
+ * @author acoburn
  */
-class TemplateBodyTest {
+final class VocabUtils {
 
-    @Mock
-    private TemplateManifest mockBody;
+    private static RDF rdf = load(RDF.class).iterator().next();
 
-    @Test
-    void testSerialization() {
-        mockBody = new TemplateManifest();
-        mockBody.setId("http://test.org/001");
-        final Optional<String> json = ManifestSerializer.serialize(mockBody);
-        assertTrue(json.isPresent());
-        assertTrue(json.get().contains("http://test.org/001"));
-        System.out.println(json.get());
+    private VocabUtils() {
     }
 
+    public static IRI createIRI(final String uri) {
+        return rdf.createIRI(uri);
+    }
 }

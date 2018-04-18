@@ -21,11 +21,15 @@ package de.ubleipzig.iiifproducer.template;
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
 import static java.lang.System.out;
 import static java.util.Arrays.asList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
@@ -37,10 +41,10 @@ import org.mockito.Mock;
 class TemplateStructureTest {
 
     @Mock
-    private TemplateStructure mockStructure = new TemplateStructure();
+    private static TemplateStructure mockStructure = new TemplateStructure();
 
-    @Test
-    void testSerialization() {
+    @BeforeAll
+    static void setup() {
         final List<String> ranges = asList(
                 "https://iiif.ub.uni-leipzig.de/0000004084/range/0-0",
                 "https://iiif.ub" + ".uni-leipzig.de/0000004084/range/0-1",
@@ -50,11 +54,24 @@ class TemplateStructureTest {
                 "https://iiif.ub" + ".uni-leipzig.de/0000004084/canvas/2");
         mockStructure.setStructureLabel("TOC");
         mockStructure.setStructureId("http://test.org/12345/range/0");
+        mockStructure.setStructureType(SCCompacted.Range.compactedIRI());
         mockStructure.setRanges(ranges);
         mockStructure.setCanvases(canvases);
+    }
+
+    @Test
+    void testSerialization() {
         final Optional<String> json = serialize(mockStructure);
         assertTrue(json.isPresent());
         out.println(json.get());
+    }
+
+    @Test
+    void testGetProperties() {
+        final List<String> ranges = mockStructure.getRanges();
+        assertEquals(3, ranges.size());
+        final String label = mockStructure.getStructureLabel();
+        assertEquals("TOC", label);
     }
 
 }

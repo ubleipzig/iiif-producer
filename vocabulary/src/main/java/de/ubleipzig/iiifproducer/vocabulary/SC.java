@@ -18,6 +18,8 @@
 
 package de.ubleipzig.iiifproducer.vocabulary;
 
+import static de.ubleipzig.iiifproducer.vocabulary.VocabUtils.createIRI;
+
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -25,7 +27,7 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author christopher-johnson
  */
-public final class SC extends BaseVocabulary {
+public final class SC {
 
     /* Namespace */
     public static final String URI = "http://iiif.io/api/presentation/2#";
@@ -74,6 +76,5 @@ public final class SC extends BaseVocabulary {
     public static final IRI topToBottomDirection = createIRI(URI + "topToBottomDirection");
 
     private SC() {
-        super();
     }
 }

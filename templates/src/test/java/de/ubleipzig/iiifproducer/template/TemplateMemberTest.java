@@ -15,22 +15,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+package de.ubleipzig.iiifproducer.template;
 
-package de.ubleipzig.iiifproducer.producer;
+import static java.lang.System.out;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.apache.commons.rdf.api.IRI;
-import org.apache.commons.rdf.simple.SimpleRDF;
+import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
 
-/**
- * RDFBase.
- *
- * @author christopher-johnson
- */
-public abstract class RDFBase {
+import java.util.Optional;
 
-    private static SimpleRDF rdf = new SimpleRDF();
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
-    protected static IRI createIRI(final String uri) {
-        return rdf.createIRI(uri);
+public class TemplateMemberTest {
+
+    @Mock
+    private TemplateMember mockMember = new TemplateMember(
+            "trellis:data/member", SCCompacted.Canvas.compactedIRI(), "a member");
+
+    @Test
+    void testSerialization() {
+        final Optional<String> json = ManifestSerializer.serialize(mockMember);
+        assertTrue(json.isPresent());
+        out.println(json.get());
     }
 }

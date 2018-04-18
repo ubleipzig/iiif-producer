@@ -18,31 +18,34 @@
 
 package de.ubleipzig.iiifproducer.template;
 
-import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
+import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
+
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 /**
- * TemplateMetadataTest.
+ * TemplateManifestTest.
  *
  * @author christopher-johnson
  */
-class TemplateMetadataTest {
+class TemplateManifestTest {
+
+    @Mock
+    private TemplateManifest mockManifest;
 
     @Test
     void testSerialization() {
-        final List<TemplateMetadata> meta = new ArrayList<>();
-        meta.add(new TemplateMetadata("Kitodo", "12345"));
-        meta.add(new TemplateMetadata("URN", "12345"));
-        meta.add(new TemplateMetadata("Source PPN (SWB)", "12345"));
-        final Optional<String> json = ManifestSerializer.serialize(meta);
+        mockManifest = new TemplateManifest();
+        mockManifest.setId("http://test.org/001");
+        mockManifest.setType(SCCompacted.Manifest.compactedIRI());
+        final Optional<String> json = ManifestSerializer.serialize(mockManifest);
         assertTrue(json.isPresent());
-        out.println(json.get());
+        assertTrue(json.get().contains("http://test.org/001"));
+        System.out.println(json.get());
     }
 
 }

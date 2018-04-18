@@ -22,20 +22,24 @@ import static java.io.File.separator;
 import static java.lang.Integer.parseInt;
 
 import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.RDF;
+import org.apache.commons.rdf.simple.SimpleRDF;
 
 /**
  * StaticIRIBuilder.
  *
  * @author christopher-johnson
  */
-public final class StaticIRIBuilder extends RDFBase {
+public final class StaticIRIBuilder {
+
+    private static final RDF rdf = new SimpleRDF();
 
     /**
      * @param canvasIdString String
      * @return IRI
      */
     public static IRI buildCanvasIRI(final String canvasIdString) {
-        return createIRI(canvasIdString);
+        return rdf.createIRI(canvasIdString);
     }
 
     /**
@@ -43,7 +47,7 @@ public final class StaticIRIBuilder extends RDFBase {
      * @return IRI
      */
     public static IRI buildResourceIRI(final String resourceIdString) {
-        return createIRI(resourceIdString);
+        return rdf.createIRI(resourceIdString);
     }
 
     /**
@@ -52,7 +56,7 @@ public final class StaticIRIBuilder extends RDFBase {
      * @return IRI
      */
     public static IRI buildServiceIRI(final String imageServiceContext, final String resourceIdString) {
-        return createIRI(imageServiceContext + "/" + resourceIdString + Constants.IMAGE_SERVICE_FILE_EXT);
+        return rdf.createIRI(imageServiceContext + "/" + resourceIdString + Constants.IMAGE_SERVICE_FILE_EXT);
     }
 
     /**

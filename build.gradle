@@ -33,7 +33,7 @@ ext {
     jenaVersion = '3.7.0'
     junitVersion = "5.1.0"
     xercesVersion = '2.11.0'
-    mockitoVersion = '2.10.0'
+    mockitoVersion = '2.18.0'
     slf4jVersion = '1.7.25'
 
     jacocoVersion = '0.8.1'

@@ -18,6 +18,8 @@
 
 package de.ubleipzig.iiifproducer.vocabulary;
 
+import static de.ubleipzig.iiifproducer.vocabulary.VocabUtils.createIRI;
+
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -25,7 +27,7 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author christopher-johnson
  */
-public final class EXIF extends BaseVocabulary {
+public final class EXIF {
 
     /* Namespace */
     public static final String URI = "http://www.w3.org/2003/12/exif/ns#";
@@ -35,6 +37,6 @@ public final class EXIF extends BaseVocabulary {
     public static final IRI height = createIRI(URI + "height");
 
     private EXIF() {
-        super();
+
     }
 }
