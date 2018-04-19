@@ -23,7 +23,6 @@ $ chmod +x producer
 ## Image Dimension Manifest
 * See [image](https://github.com/ubleipzig/image) for information about the image metadata creation process.
 
-```
 the default ouput location for the manifest is the base directory where the xml is located.
 It will have a filename like this `image-manifest-185c961d-774c-5540-a31d-c0bca454c47d`  
 
