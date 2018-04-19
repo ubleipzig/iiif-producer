@@ -2,15 +2,15 @@ apply plugin: "application"
 
 mainClassName = "de.ubleipzig.iiifproducer.producer.IIIFProducerDriver"
 dependencies {
-    implementation('de.ubleipzig:image.metadata:0.1.0')
+    implementation("de.ubleipzig:image.metadata:$imageMetadataVersion")
     implementation project(":templates")
     implementation project(":xml-doc")
-    implementation project(":vocabulary")
-    implementation group: 'org.apache.commons', name: 'commons-rdf-api', version: commonsRdfVersion
-    implementation group: 'org.apache.commons', name: 'commons-rdf-simple', version: commonsRdfVersion
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
-    implementation group: 'commons-io', name: 'commons-io', version: commonsIoVersion
-    implementation group: 'commons-cli', name: 'commons-cli', version: commonsCLIVersion
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
-    testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+    implementation("de.ubleipzig:iiif.vocabulary:$iiifVocabularyVersion")
+    implementation("org.apache.commons:commons-rdf-api:$commonsRdfVersion")
+    implementation("org.apache.commons:commons-rdf-simple:$commonsRdfVersion")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    implementation("commons-io:commons-io:$commonsIoVersion")
+    implementation("commons-cli:commons-cli:$commonsCLIVersion")
+    testImplementation("org.mockito:mockito-core:$mockitoVersion")
+    testRuntimeClasspath("ch.qos.logback:logback-classic:$logbackVersion")
 }

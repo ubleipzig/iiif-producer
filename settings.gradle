@@ -2,5 +2,4 @@ rootProject.name = 'iiifproducer'
 include 'producer'
 include 'templates'
 include 'xml-doc'
-include 'vocabulary'
 

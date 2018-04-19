@@ -1,9 +1,9 @@
 dependencies {
-    implementation project(":vocabulary")
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
-    testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+    implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
+    implementation("de.ubleipzig:iiif.vocabulary:$iiifVocabularyVersion")
+    implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    testImplementation("org.mockito:mockito-core:$mockitoVersion")
+    testRuntimeClasspath("ch.qos.logback:logback-classic:$logbackVersion")
 }
