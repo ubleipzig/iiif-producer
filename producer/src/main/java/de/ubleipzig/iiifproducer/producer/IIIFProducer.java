@@ -48,8 +48,8 @@ import de.ubleipzig.iiifproducer.template.TemplateStructure;
 import de.ubleipzig.iiifproducer.template.TemplateStructureList;
 import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
 import de.ubleipzig.iiifproducer.vocabulary.SC;
-import de.ubleipzig.image.metadata.ImageMetadataGeneratorConfig;
 import de.ubleipzig.image.metadata.ImageMetadataService;
+import de.ubleipzig.image.metadata.ImageMetadataServiceConfig;
 import de.ubleipzig.image.metadata.ImageMetadataServiceImpl;
 import de.ubleipzig.image.metadata.templates.ImageDimensionManifest;
 import de.ubleipzig.image.metadata.templates.ImageDimensions;
@@ -134,7 +134,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
     @Override
     public List<ImageDimensions> getImageDimensions(final String imageSourceDir, final String
             dimensionManifestOutputPath) {
-        final ImageMetadataGeneratorConfig imageMetadataGeneratorConfig = new ImageMetadataGeneratorConfig();
+        final ImageMetadataServiceConfig imageMetadataGeneratorConfig = new ImageMetadataServiceConfig();
         final Optional<String> out = Optional.ofNullable(dimensionManifestOutputPath);
         final String dimensionManifestPath = out.orElse(IMAGE_MANIFEST_OUTPUT_DIR + separator + getImageManifestPid());
         //case 1: the image manifest exists at output path

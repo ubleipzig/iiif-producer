@@ -1,5 +1,4 @@
 rootProject.name = 'iiifproducer'
-include 'image'
 include 'producer'
 include 'templates'
 include 'xml-doc'

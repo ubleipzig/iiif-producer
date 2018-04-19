@@ -2,7 +2,7 @@ apply plugin: "application"
 
 mainClassName = "de.ubleipzig.iiifproducer.producer.IIIFProducerDriver"
 dependencies {
-    implementation project(":image")
+    implementation('de.ubleipzig:image.metadata:0.1.0')
     implementation project(":templates")
     implementation project(":xml-doc")
     implementation project(":vocabulary")

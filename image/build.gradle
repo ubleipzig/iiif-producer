@@ -1,9 +1,0 @@
-dependencies {
-    implementation group: 'commons-codec', name: 'commons-codec', version: commonsCodecVersion
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion
-    implementation "com.drewnoakes:metadata-extractor:$metadataExtractorVersion"
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
-    testRuntimeClasspath group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
-}
