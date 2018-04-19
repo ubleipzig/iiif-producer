@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
+package de.ubleipzig.iiif.vocabulary;
 
-import static de.ubleipzig.iiifproducer.vocabulary.VocabUtils.createIRI;
+import static de.ubleipzig.iiif.vocabulary.VocabUtils.createIRI;
 
 import org.apache.commons.rdf.api.IRI;
 
@@ -33,9 +33,21 @@ public final class DCTypes {
     /* Namespace */
     public static final String URI = "http://purl.org/dc/dcmitype/";
 
-    /* Properties */
+    /* Classes */
+    public static final IRI Collection = createIRI(URI + "Collection");
+    public static final IRI Dataset = createIRI(URI + "Dataset");
+    public static final IRI Event = createIRI(URI + "Event");
     public static final IRI Image = createIRI(URI + "Image");
+    public static final IRI InteractiveResource = createIRI(URI + "InteractiveResource");
+    public static final IRI MovingImage = createIRI(URI + "MovingImage");
+    public static final IRI PhysicalObject = createIRI(URI + "PhysicalObject");
+    public static final IRI Service = createIRI(URI + "Service");
+    public static final IRI Software = createIRI(URI + "Software");
+    public static final IRI Sound = createIRI(URI + "Sound");
+    public static final IRI StillImage = createIRI(URI + "StillImage");
+    public static final IRI Text = createIRI(URI + "Text");
 
+    /* Properties */
 
     private DCTypes() {
     }

@@ -38,6 +38,7 @@ import static java.lang.String.format;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.slf4j.LoggerFactory.getLogger;
 
+import de.ubleipzig.iiif.vocabulary.SC;
 import de.ubleipzig.iiifproducer.template.TemplateCanvas;
 import de.ubleipzig.iiifproducer.template.TemplateImage;
 import de.ubleipzig.iiifproducer.template.TemplateManifest;
@@ -47,7 +48,6 @@ import de.ubleipzig.iiifproducer.template.TemplateService;
 import de.ubleipzig.iiifproducer.template.TemplateStructure;
 import de.ubleipzig.iiifproducer.template.TemplateStructureList;
 import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
-import de.ubleipzig.iiifproducer.vocabulary.SC;
 import de.ubleipzig.image.metadata.ImageMetadataService;
 import de.ubleipzig.image.metadata.ImageMetadataServiceConfig;
 import de.ubleipzig.image.metadata.ImageMetadataServiceImpl;

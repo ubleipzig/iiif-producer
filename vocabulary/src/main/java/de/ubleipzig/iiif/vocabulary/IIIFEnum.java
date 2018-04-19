@@ -16,27 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.Map;
+package de.ubleipzig.iiif.vocabulary;
 
 /**
- * BaseObjectContext.
- *
- * @author christopher-johnson
+ * IIIFEnum.
  */
-public class BaseObjectContext {
+public enum IIIFEnum {
 
-    @JsonProperty("@context")
-    Map<String, Object> context;
+    IMAGE_CONTEXT("http://iiif.io/api/image/2/context.json"), SERVICE_PROFILE("http://iiif.io/api/image/2/level1.json");
 
-    /**
-     * @return Map
-     */
-    public Map<String, Object> getContext() {
-        return this.context;
+    private String IRIString;
+
+    IIIFEnum(final String IRIString) {
+        this.IRIString = IRIString;
     }
 
+    /**
+     * @return String
+     */
+    public String IRIString() {
+        return IRIString;
+    }
 }

@@ -21,7 +21,7 @@ package de.ubleipzig.iiifproducer.template;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import de.ubleipzig.iiifproducer.vocabulary.IIIF;
+import de.ubleipzig.iiif.vocabulary.IIIFEnum;
 
 /**
  * TemplateService.
@@ -32,13 +32,13 @@ import de.ubleipzig.iiifproducer.vocabulary.IIIF;
 public class TemplateService {
 
     @JsonProperty("@context")
-    private String context = IIIF.IMAGE_CONTEXT;
+    private String context = IIIFEnum.IMAGE_CONTEXT.IRIString();
 
     @JsonProperty("@id")
     private String id;
 
     @JsonProperty
-    private String profile = IIIF.SERVICE_PROFILE;
+    private String profile = IIIFEnum.SERVICE_PROFILE.IRIString();
 
     /**
      * @param id String

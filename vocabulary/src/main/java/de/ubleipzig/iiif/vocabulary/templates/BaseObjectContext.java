@@ -16,30 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
+package de.ubleipzig.iiif.vocabulary.templates;
 
-import static de.ubleipzig.iiifproducer.vocabulary.VocabUtils.createIRI;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.apache.commons.rdf.api.IRI;
+import java.util.Map;
 
 /**
- * RDF Terms from the Dublin Core Vocabulary.
+ * BaseObjectContext.
  *
- * @author acoburn
- * @see <a href="http://dublincore.org/documents/dcmi-terms/">DCMI Metadata Terms</a>
+ * @author christopher-johnson
  */
-public final class DCElements {
+public class BaseObjectContext {
 
-    /* Namespace */
-    public static final String URI = "http://purl.org/dc/elements/1.1/";
+    @JsonProperty("@context")
+    Map<String, Object> context;
 
-    /* Properties */
-    public static final IRI description = createIRI(URI + "description");
-    public static final IRI format = createIRI(URI + "format");
-    public static final IRI language = createIRI(URI + "language");
-
-
-    private DCElements() {
-        super();
+    /**
+     * @return Map
+     */
+    public Map<String, Object> getContext() {
+        return this.context;
     }
+
 }

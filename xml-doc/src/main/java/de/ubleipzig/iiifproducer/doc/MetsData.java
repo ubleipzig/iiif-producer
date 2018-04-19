@@ -40,19 +40,19 @@ public interface MetsData {
      * @return String
      */
     @XBRead("//*[local-name()='owner']")
-    String getAttribution();
+    Optional<String> getAttribution();
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='ownerLogo']")
-    String getLogo();
+    Optional<String> getLogo();
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='typeOfResource'][@manuscript='yes']")
-    String getManuscriptType();
+    Optional<String> getManuscriptType();
 
     /**
      * @param idType String
@@ -119,7 +119,7 @@ public interface MetsData {
      * @return String
      */
     @XBRead("//*[local-name()='note']")
-    String getNote();
+    Optional<String> getNote();
 
     /**
      * @return List
@@ -132,61 +132,61 @@ public interface MetsData {
      * @return String
      */
     @XBRead("//*[local-name()='note'][@type='{0}']")
-    String getNotesByType(String noteType);
+    Optional<String> getNotesByType(String noteType);
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='number']")
-    String getCensus();
+    Optional<String> getCensus();
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='title']")
-    String getCollection();
+    Optional<String> getCollection();
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='shelfLocator']")
-    String getCallNumber();
+    Optional<String> getCallNumber();
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='owner']")
-    String getOwner();
+    Optional<String> getOwner();
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='displayForm']")
-    String getAuthor();
+    Optional<String> getAuthor();
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='placeTerm']")
-    String getPlace();
+    Optional<String> getPlace();
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='dateOther']")
-    String getDate();
+    Optional<String> getDate();
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='publisher']")
-    String getPublisher();
+    Optional<String> getPublisher();
 
     /**
      * @return String
      */
     @XBRead("//*[local-name()='extent']")
-    String getPhysState();
+    Optional<String> getPhysState();
 
     /**
      * @return List
@@ -199,28 +199,28 @@ public interface MetsData {
      * @return String
      */
     @XBRead("//*[local-name()='div'][@ID='{0}']/@ORDERLABEL")
-    String getOrderLabelForDiv(String div);
+    Optional<String> getOrderLabelForDiv(String div);
 
     /**
      * @param div String
      * @return String
      */
     @XBRead("//*[local-name()='div'][@ID='{0}']/descendant::node()/@FILEID")
-    String getFileIdForDiv(String div);
+    Optional<String> getFileIdForDiv(String div);
 
     /**
      * @param file String
      * @return String
      */
     @XBRead("//*[local-name()='file'][@ID='{0}']/descendant::node()/@*[local-name()='href']")
-    String getHrefForFile(String file);
+    Optional<String> getHrefForFile(String file);
 
     /**
      * @param file String
      * @return String
      */
     @XBRead("//*[local-name()='file'][@ID='{0}']/@MIMETYPE")
-    String getMimeTypeForFile(String file);
+    Optional<String> getMimeTypeForFile(String file);
 
     /**
      * @return List

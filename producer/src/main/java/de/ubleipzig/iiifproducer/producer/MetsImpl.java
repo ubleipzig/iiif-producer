@@ -35,6 +35,7 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNoteTypes;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNotesByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getOrderLabelForDiv;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPhysicalDivs;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getTopLogicals;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getXlinks;
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMetsAnchor;
@@ -165,7 +166,7 @@ public class MetsImpl implements MetsAccessor {
         final String resourceContext = config.getResourceContext();
         final List<String> ranges = synchronizedList(new ArrayList<>());
 
-        final List<MetsData.Logical> logs = mets.getTopLogicals();
+        final List<MetsData.Logical> logs = getTopLogicals(mets);
         logs.forEach(logical -> {
             final String rangeId = resourceContext + IIIF_RANGE + separator + logical.getLogicalId();
             ranges.add(0, rangeId);

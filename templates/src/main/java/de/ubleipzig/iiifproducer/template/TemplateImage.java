@@ -21,7 +21,7 @@ package de.ubleipzig.iiifproducer.template;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
+import de.ubleipzig.iiif.vocabulary.SCEnum;
 
 /**
  * TemplateImage.
@@ -35,7 +35,7 @@ public class TemplateImage {
     private String type = "oa:Annotation";
 
     @JsonProperty
-    private String motivation = SCCompacted.painting.compactedIRI();
+    private String motivation = SCEnum.painting.compactedIRI();
 
     @JsonProperty
     private Object resource;

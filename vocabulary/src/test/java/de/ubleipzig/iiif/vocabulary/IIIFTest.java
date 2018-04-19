@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-import de.ubleipzig.iiifproducer.vocabulary.IIIF;
+package de.ubleipzig.iiif.vocabulary;
 
 /**
  * Test the IIIF Vocabulary Class

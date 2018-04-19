@@ -43,7 +43,6 @@ public final class MetsManifestBuilder {
      *
      * @param url String
      * @return XBProjector
-     * @throws IOException Exception
      */
     static MetsData getMetsFromFile(final String url) {
         try {
@@ -98,7 +97,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getAttribution(final MetsData mets) {
-        return mets.getAttribution().trim();
+        return mets.getAttribution().orElse("").trim();
     }
 
     /**
@@ -106,7 +105,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getLogo(final MetsData mets) {
-        return mets.getLogo().trim();
+        return mets.getLogo().orElse("").trim();
     }
 
     /**
@@ -114,7 +113,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getManuscriptType(final MetsData mets) {
-        return mets.getManuscriptType();
+        return mets.getManuscriptType().orElse("").trim();
     }
 
     /**
@@ -204,7 +203,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getNotesByType(final MetsData mets, final String type) {
-        return mets.getNotesByType(type);
+        return mets.getNotesByType(type).orElse("").trim();
     }
 
     /**
@@ -212,7 +211,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getCensus(final MetsData mets) {
-        return mets.getCensus().trim();
+        return mets.getCensus().orElse("").trim();
     }
 
     /**
@@ -220,7 +219,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getCollection(final MetsData mets) {
-        return mets.getCollection().trim();
+        return mets.getCollection().orElse("").trim();
     }
 
     /**
@@ -228,7 +227,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getCallNumber(final MetsData mets) {
-        return mets.getCallNumber().trim();
+        return mets.getCallNumber().orElse("").trim();
     }
 
     /**
@@ -236,7 +235,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getOwner(final MetsData mets) {
-        return mets.getOwner().trim();
+        return mets.getOwner().orElse("").trim();
     }
 
     /**
@@ -244,7 +243,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getAuthor(final MetsData mets) {
-        return mets.getAuthor().trim();
+        return mets.getAuthor().orElse("").trim();
     }
 
     /**
@@ -252,7 +251,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getPlace(final MetsData mets) {
-        return mets.getPlace().trim();
+        return mets.getPlace().orElse("").trim();
     }
 
     /**
@@ -260,7 +259,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getDate(final MetsData mets) {
-        return mets.getDate().trim();
+        return mets.getDate().orElse("").trim();
     }
 
     /**
@@ -268,7 +267,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getPublisher(final MetsData mets) {
-        return mets.getPublisher().trim();
+        return mets.getPublisher().orElse("").trim();
     }
 
     /**
@@ -276,7 +275,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getPhysState(final MetsData mets) {
-        return mets.getPhysState().trim();
+        return mets.getPhysState().orElse("").trim();
     }
 
     /**
@@ -284,7 +283,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getNote(final MetsData mets) {
-        return mets.getNote().trim();
+        return mets.getNote().orElse("").trim();
     }
 
     /**
@@ -301,7 +300,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getOrderLabelForDiv(final MetsData mets, final String div) {
-        return mets.getOrderLabelForDiv(div);
+        return mets.getOrderLabelForDiv(div).orElse("").trim();
     }
 
     /**
@@ -310,7 +309,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getFileIdForDiv(final MetsData mets, final String div) {
-        return mets.getFileIdForDiv(div);
+        return mets.getFileIdForDiv(div).orElse("").trim();
     }
 
     /**
@@ -319,7 +318,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getHrefForFile(final MetsData mets, final String file) {
-        return mets.getHrefForFile(file);
+        return mets.getHrefForFile(file).orElse("").trim();
     }
 
     /**
@@ -328,7 +327,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getMimeTypeForFile(final MetsData mets, final String file) {
-        return mets.getMimeTypeForFile(file);
+        return mets.getMimeTypeForFile(file).orElse("").trim();
     }
 
     /**

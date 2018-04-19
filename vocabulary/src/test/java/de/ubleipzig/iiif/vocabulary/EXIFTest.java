@@ -16,26 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
-
-import static java.util.ServiceLoader.load;
-
-import org.apache.commons.rdf.api.IRI;
-import org.apache.commons.rdf.api.RDF;
+package de.ubleipzig.iiif.vocabulary;
 
 /**
- * VocabUtils.
+ * Test the EXIF Vocabulary Class
  *
  * @author acoburn
  */
-final class VocabUtils {
+public class EXIFTest extends AbstractVocabularyTest {
 
-    private static RDF rdf = load(RDF.class).iterator().next();
-
-    private VocabUtils() {
+    @Override
+    public String namespace() {
+        return "http://www.w3.org/2003/12/exif/ns#";
     }
 
-    public static IRI createIRI(final String uri) {
-        return rdf.createIRI(uri);
+    @Override
+    public String url() {
+        return null;
+    }
+
+    @Override
+    public Class<EXIF> vocabulary() {
+        return EXIF.class;
     }
 }

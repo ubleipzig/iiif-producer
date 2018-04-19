@@ -20,7 +20,7 @@ package de.ubleipzig.iiifproducer.template;
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
+import de.ubleipzig.iiif.vocabulary.SCEnum;
 
 import java.util.Optional;
 
@@ -31,7 +31,7 @@ public class TemplateMemberTest {
 
     @Mock
     private TemplateMember mockMember = new TemplateMember(
-            "trellis:data/member", SCCompacted.Canvas.compactedIRI(), "a member");
+            "trellis:data/member", SCEnum.Canvas.compactedIRI(), "a member");
 
     @Test
     void testSerialization() {

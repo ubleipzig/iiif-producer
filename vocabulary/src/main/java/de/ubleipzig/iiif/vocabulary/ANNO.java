@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
+package de.ubleipzig.iiif.vocabulary;
 
-import static de.ubleipzig.iiifproducer.vocabulary.VocabUtils.createIRI;
+import static de.ubleipzig.iiif.vocabulary.VocabUtils.createIRI;
 
 import java.util.HashMap;
 import java.util.Map;

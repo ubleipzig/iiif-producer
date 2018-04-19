@@ -16,12 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
+package de.ubleipzig.iiif.vocabulary.templates;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * BaseObjectContext.
@@ -31,12 +30,12 @@ import java.util.Map;
 public class BaseListContext {
 
     @JsonProperty("@context")
-    List<Map<String, Object>> context;
+    List<PresentationApiContextMap> context;
 
     /**
      * @return Map
      */
-    public List<Map<String, Object>> getContext() {
+    public List<PresentationApiContextMap> getContext() {
         return this.context;
     }
 

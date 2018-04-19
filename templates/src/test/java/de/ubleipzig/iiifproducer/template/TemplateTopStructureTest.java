@@ -23,7 +23,7 @@ import static java.lang.System.out;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
+import de.ubleipzig.iiif.vocabulary.SCEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +64,7 @@ class TemplateTopStructureTest {
     @Test
     void testSetMembers() {
         final List<TemplateMember> members = new ArrayList<>();
-        members.add(new TemplateMember("trellis:data/member", SCCompacted.Canvas.compactedIRI(), "a member"));
+        members.add(new TemplateMember("trellis:data/member", SCEnum.Canvas.compactedIRI(), "a member"));
         mockTopStructure.setMembers(members);
     }
 

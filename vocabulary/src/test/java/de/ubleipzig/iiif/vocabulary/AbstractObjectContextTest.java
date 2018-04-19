@@ -1,4 +1,4 @@
-/*
+package de.ubleipzig.iiif.vocabulary;/*
  * IIIFProducer
  * Copyright (C) 2017 Leipzig University Library <info@ub.uni-leipzig.de>
  *
@@ -25,11 +25,10 @@ import static org.slf4j.LoggerFactory.getLogger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.ubleipzig.iiifproducer.vocabulary.BaseListContext;
+import de.ubleipzig.iiif.vocabulary.templates.BaseObjectContext;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -46,9 +45,9 @@ import org.slf4j.Logger;
 /**
  * @author christopher-johnson
  */
-public abstract class AbstractListContextTest {
+public abstract class AbstractObjectContextTest {
 
-    private static final Logger LOGGER = getLogger(AbstractListContextTest.class);
+    private static final Logger LOGGER = getLogger(AbstractObjectContextTest.class);
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     public abstract String context();
@@ -75,16 +74,14 @@ public abstract class AbstractListContextTest {
     @Test
     public void testContext() throws IOException {
         final String context = getContext(context());
-        final BaseListContext baseContext = MAPPER.readValue(context, new TypeReference<BaseListContext>() {
+        final BaseObjectContext baseContext = MAPPER.readValue(context, new TypeReference<BaseObjectContext>() {
         });
-        final List<Map<String, Object>> contextMap = baseContext.getContext();
+        final Map<String, Object> contextMap = baseContext.getContext();
         fields().forEach(field -> {
             if (isStrict()) {
-                //only checks the first context in the list
-                assertTrue(
-                        contextMap.get(0).keySet().contains(field),
+                assertTrue(contextMap.keySet().contains(field),
                         "Field definition is not in published context! " + field);
-            } else if (!contextMap.get(0).keySet().contains(field)) {
+            } else if (!contextMap.keySet().contains(field)) {
                 LOGGER.warn("Field definition is not in published context! {}", field);
             }
         });
@@ -102,7 +99,6 @@ public abstract class AbstractListContextTest {
     private Stream<String> fields() {
         return stream(vocabulary().getFields()).map(Field::getName).map(
                 name -> name.endsWith("_") ? name.substring(0, name.length() - 1) : name).map(
-                name -> name.replaceAll("_", "-")).filter(field -> !field.equals("CONTEXT")).filter(
-                field -> !field.equals("URI"));
+                name -> name.replaceAll("_", "-")).filter(field -> !field.equals("CONTEXT"));
     }
 }

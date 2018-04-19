@@ -16,11 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
+package de.ubleipzig.iiif.vocabulary;
 
-public enum SCCompacted {
+/**
+ * SCEnum.
+ *
+ * <p>this is to support clients who expect compacted IRIs in JSON-LD documents</p>
+ */
+public enum SCEnum {
 
-    //this is to support clients who expect compacted IRIs in JSON-LD documents
     AnnotationList("sc:AnnotationList"),
 
     Canvas("sc:Canvas"),
@@ -89,7 +93,7 @@ public enum SCCompacted {
 
     private String compactedIRI;
 
-    SCCompacted(final String compactedIRI) {
+    SCEnum(final String compactedIRI) {
         this.compactedIRI = compactedIRI;
     }
 

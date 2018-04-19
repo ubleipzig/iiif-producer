@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
+package de.ubleipzig.iiif.vocabulary;
+
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
 import static org.apache.jena.graph.Factory.createDefaultGraph;
@@ -118,9 +120,8 @@ public abstract class AbstractVocabularyTest {
 
     private Stream<String> fields() {
         return stream(vocabulary().getFields()).map(Field::getName).map(
-                name -> name.endsWith("_") ? name.substring(0, name.length() - 1) : name).map(
-                name -> name.replaceAll("_", "-")).filter(field -> !field.equals("URI")).filter(
-                field -> !field.equals("CONTEXT")).filter(field -> !field.equals("IMAGE-CONTEXT")).filter(
-                field -> !field.equals("SERVICE-PROFILE"));
+                name -> name.endsWith("_") ? name.substring(0, name.length() - 1) : name).filter(
+                field -> !field.equals("URI")).filter(field -> !field.equals("CONTEXT")).filter(
+                field -> !field.equals("IMAGE-CONTEXT")).filter(field -> !field.equals("SERVICE-PROFILE"));
     }
 }

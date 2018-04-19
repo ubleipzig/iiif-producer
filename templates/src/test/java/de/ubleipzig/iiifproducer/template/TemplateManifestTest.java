@@ -20,7 +20,7 @@ package de.ubleipzig.iiifproducer.template;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
+import de.ubleipzig.iiif.vocabulary.SCEnum;
 
 import java.util.Optional;
 
@@ -41,7 +41,7 @@ class TemplateManifestTest {
     void testSerialization() {
         mockManifest = new TemplateManifest();
         mockManifest.setId("http://test.org/001");
-        mockManifest.setType(SCCompacted.Manifest.compactedIRI());
+        mockManifest.setType(SCEnum.Manifest.compactedIRI());
         final Optional<String> json = ManifestSerializer.serialize(mockManifest);
         assertTrue(json.isPresent());
         assertTrue(json.get().contains("http://test.org/001"));

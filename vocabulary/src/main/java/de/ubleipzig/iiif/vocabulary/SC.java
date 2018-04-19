@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
+package de.ubleipzig.iiif.vocabulary;
 
-import static de.ubleipzig.iiifproducer.vocabulary.VocabUtils.createIRI;
+import static de.ubleipzig.iiif.vocabulary.VocabUtils.createIRI;
 
 import org.apache.commons.rdf.api.IRI;
 
@@ -44,6 +44,8 @@ public final class SC {
     public static final IRI Range = createIRI(URI + "Range");
     public static final IRI Sequence = createIRI(URI + "Sequence");
     public static final IRI Zone = createIRI(URI + "Zone");
+    public static final IRI ViewingDirection = createIRI(URI + "ViewingDirection");
+    public static final IRI ViewingHint = createIRI(URI + "ViewingHint");
 
     /* Properties */
     public static final IRI attributionLabel = createIRI(URI + "attributionLabel");
@@ -58,8 +60,8 @@ public final class SC {
     public static final IRI hasSequences = createIRI(URI + "hasSequences");
     public static final IRI hasStartCanvas = createIRI(URI + "hasStartCanvas");
     public static final IRI metadataLabels = createIRI(URI + "metadataLabels");
-    public static final IRI viewingDirection = createIRI(URI + "ViewingDirection");
-    public static final IRI viewingHint = createIRI(URI + "ViewingHint");
+    public static final IRI viewingDirection = createIRI(URI + "viewingDirection");
+    public static final IRI viewingHint = createIRI(URI + "viewingHint");
 
     /* Named Individuals */
     public static final IRI bottomToTopDirection = createIRI(URI + "bottomToTopDirection");

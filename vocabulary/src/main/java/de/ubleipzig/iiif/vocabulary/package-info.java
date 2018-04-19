@@ -15,28 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-
-import de.ubleipzig.iiifproducer.vocabulary.EXIF;
-
 /**
- * Test the EXIF Vocabulary Class
  *
- * @author acoburn
  */
-public class EXIFTest extends AbstractVocabularyTest {
 
-    @Override
-    public String namespace() {
-        return "http://www.w3.org/2003/12/exif/ns#";
-    }
-
-    @Override
-    public String url() {
-        return null;
-    }
-
-    @Override
-    public Class<EXIF> vocabulary() {
-        return EXIF.class;
-    }
-}
+package de.ubleipzig.iiif.vocabulary;

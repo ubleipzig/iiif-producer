@@ -24,7 +24,7 @@ import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import de.ubleipzig.iiifproducer.vocabulary.SCCompacted;
+import de.ubleipzig.iiif.vocabulary.SCEnum;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +54,7 @@ class TemplateStructureTest {
                 "https://iiif.ub" + ".uni-leipzig.de/0000004084/canvas/2");
         mockStructure.setStructureLabel("TOC");
         mockStructure.setStructureId("http://test.org/12345/range/0");
-        mockStructure.setStructureType(SCCompacted.Range.compactedIRI());
+        mockStructure.setStructureType(SCEnum.Range.compactedIRI());
         mockStructure.setRanges(ranges);
         mockStructure.setCanvases(canvases);
     }

@@ -16,27 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.vocabulary;
-
-import static de.ubleipzig.iiifproducer.vocabulary.VocabUtils.createIRI;
-
-import org.apache.commons.rdf.api.IRI;
+package de.ubleipzig.iiif.vocabulary;
 
 /**
- * EXIF.
+ * Test the ANNO Vocabulary Class
  *
- * @author christopher-johnson
+ * @author acoburn
  */
-public final class EXIF {
+public class ANNOTest extends AbstractObjectContextTest {
 
-    /* Namespace */
-    public static final String URI = "http://www.w3.org/2003/12/exif/ns#";
+    @Override
+    public String context() {
+        return "http://www.w3.org/ns/anno.jsonld";
+    }
 
-    /* Classes */
-    public static final IRI width = createIRI(URI + "width");
-    public static final IRI height = createIRI(URI + "height");
-
-    private EXIF() {
-
+    @Override
+    public Class<ANNO> vocabulary() {
+        return ANNO.class;
     }
 }

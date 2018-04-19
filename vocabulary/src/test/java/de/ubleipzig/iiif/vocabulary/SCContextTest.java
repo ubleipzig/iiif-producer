@@ -16,27 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-import de.ubleipzig.iiifproducer.vocabulary.SC;
+package de.ubleipzig.iiif.vocabulary;
+
+import de.ubleipzig.iiif.vocabulary.templates.PresentationApiContextMap;
+
+import org.junit.jupiter.api.Disabled;
 
 /**
  * Test the SC Vocabulary Class
  *
- * @author acoburn
+ * @author christopher-johnson
  */
-public class SCTest extends AbstractVocabularyTest {
+@Disabled
+public class SCContextTest extends PresentationApiContextTest {
 
     @Override
-    public String namespace() {
-        return "http://iiif.io/api/presentation/2#";
+    public String context() {
+        return "http://iiif.io/api/presentation/2/context.json";
     }
 
     @Override
-    public String url() {
-        return null;
-    }
-
-    @Override
-    public Class<SC> vocabulary() {
-        return SC.class;
+    public Class<PresentationApiContextMap> vocabulary() {
+        return PresentationApiContextMap.class;
     }
 }

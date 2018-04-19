@@ -16,18 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-import de.ubleipzig.iiifproducer.vocabulary.DCElements;
+package de.ubleipzig.iiif.vocabulary;
 
 /**
- * Test the DCElements Vocabulary Class
+ * Test the SC Vocabulary Class
  *
  * @author acoburn
  */
-public class DCElementsTest extends AbstractVocabularyTest {
+public class SCTest extends AbstractVocabularyTest {
 
     @Override
     public String namespace() {
-        return "http://purl.org/dc/elements/1.1/";
+        return "http://iiif.io/api/presentation/2#";
     }
 
     @Override
@@ -36,7 +36,7 @@ public class DCElementsTest extends AbstractVocabularyTest {
     }
 
     @Override
-    public Class<DCElements> vocabulary() {
-        return DCElements.class;
+    public Class<SC> vocabulary() {
+        return SC.class;
     }
 }

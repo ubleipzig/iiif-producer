@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
+package de.ubleipzig.iiif.vocabulary;
+
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,11 +27,11 @@ import static org.slf4j.LoggerFactory.getLogger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.ubleipzig.iiifproducer.vocabulary.BaseObjectContext;
+import de.ubleipzig.iiif.vocabulary.templates.BaseListContext;
+import de.ubleipzig.iiif.vocabulary.templates.PresentationApiContextMap;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -45,9 +47,9 @@ import org.slf4j.Logger;
 /**
  * @author christopher-johnson
  */
-public abstract class AbstractObjectContextTest {
+public abstract class PresentationApiContextTest {
 
-    private static final Logger LOGGER = getLogger(AbstractObjectContextTest.class);
+    private static final Logger LOGGER = getLogger(PresentationApiContextTest.class);
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     public abstract String context();
@@ -74,17 +76,9 @@ public abstract class AbstractObjectContextTest {
     @Test
     public void testContext() throws IOException {
         final String context = getContext(context());
-        final BaseObjectContext baseContext = MAPPER.readValue(context, new TypeReference<BaseObjectContext>() {
+        final BaseListContext baseContext = MAPPER.readValue(context, new TypeReference<BaseListContext>() {
         });
-        final Map<String, Object> contextMap = baseContext.getContext();
-        fields().forEach(field -> {
-            if (isStrict()) {
-                assertTrue(contextMap.keySet().contains(field),
-                        "Field definition is not in published context! " + field);
-            } else if (!contextMap.keySet().contains(field)) {
-                LOGGER.warn("Field definition is not in published context! {}", field);
-            }
-        });
+        final PresentationApiContextMap contextMap = baseContext.getContext().get(0);
     }
 
     @Test
@@ -98,7 +92,7 @@ public abstract class AbstractObjectContextTest {
 
     private Stream<String> fields() {
         return stream(vocabulary().getFields()).map(Field::getName).map(
-                name -> name.endsWith("_") ? name.substring(0, name.length() - 1) : name).map(
-                name -> name.replaceAll("_", "-")).filter(field -> !field.equals("CONTEXT"));
+                name -> name.endsWith("_") ? name.substring(0, name.length() - 1) : name).filter(
+                field -> !field.equals("CONTEXT")).filter(field -> !field.equals("URI"));
     }
 }

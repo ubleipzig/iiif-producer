@@ -16,22 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-import de.ubleipzig.iiifproducer.vocabulary.ANNO;
+package de.ubleipzig.iiif.vocabulary;
 
 /**
- * Test the ANNO Vocabulary Class
+ * Test the DCElements Vocabulary Class
  *
  * @author acoburn
  */
-public class ANNOTest extends AbstractObjectContextTest {
+public class DCElementsTest extends AbstractVocabularyTest {
 
     @Override
-    public String context() {
-        return "http://www.w3.org/ns/anno.jsonld";
+    public String namespace() {
+        return "http://purl.org/dc/elements/1.1/";
     }
 
     @Override
-    public Class<ANNO> vocabulary() {
-        return ANNO.class;
+    public String url() {
+        return null;
+    }
+
+    @Override
+    public Class<DCElements> vocabulary() {
+        return DCElements.class;
     }
 }
