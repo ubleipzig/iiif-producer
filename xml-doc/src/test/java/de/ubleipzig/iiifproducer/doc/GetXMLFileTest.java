@@ -18,19 +18,22 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMetsFromFile;
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMetsAnchor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.File;
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
-public class GetAnchorFileTest {
+public class GetXMLFileTest {
 
     @Test
     void testGetAnchorFile() {
-        final String testFileSource = GetAnchorFileTest.class.getResource("/mets/BntItin_021340072.xml").getPath();
+        final String testFileSource = GetXMLFileTest.class.getResource("/mets/BntItin_021340072.xml").getPath();
         final MetsData mets = getMetsAnchor(testFileSource);
         final String anchorFileLabel = Objects.requireNonNull(mets).getManifestTitle().orElse("");
         assertEquals(
@@ -43,5 +46,21 @@ public class GetAnchorFileTest {
         final String testFileSource = "/non-existing.xml";
         final MetsData mets = getMetsAnchor(testFileSource);
         assertNull(mets);
+    }
+
+    @Test
+    void testIOException() {
+        final String testFileSource = "/non-existing.xml";
+        assertThrows(RuntimeException.class, () -> {
+            getMetsFromFile(testFileSource);
+        });
+    }
+
+    @Test
+    void testIOExceptionWithFile() {
+        final File testFileSource = new File("/non-existing.xml");
+        assertThrows(RuntimeException.class, () -> {
+            getMetsFromFile(testFileSource);
+        });
     }
 }

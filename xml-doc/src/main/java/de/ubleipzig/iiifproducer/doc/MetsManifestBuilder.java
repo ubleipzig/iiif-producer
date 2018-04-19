@@ -50,8 +50,8 @@ public final class MetsManifestBuilder {
             return projector.io().file(url).read(MetsData.class);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException("Cannot Read XML: " + e.getMessage());
         }
-        return null;
     }
 
     /**
@@ -64,8 +64,8 @@ public final class MetsManifestBuilder {
             return projector.io().file(url).read(MetsData.class);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException("Cannot Read XML: " + e.getMessage());
         }
-        return null;
     }
 
     /**
