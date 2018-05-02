@@ -36,12 +36,14 @@ class ArgParserTest {
     private static String pid;
     private static String testFileSource1;
     private static String testFileSource2;
+    private static String testFileSource3;
     private ArgParser parser;
 
     @BeforeAll
     static void init() {
         testFileSource1 = ArgParserTest.class.getResource("/MS_187.xml").getPath();
         testFileSource2 = ArgParserTest.class.getResource("/BlhDie_004285964.xml").getPath();
+        testFileSource3 = ArgParserTest.class.getResource("/MS_85.xml").getPath();
         pid = "producer-test-" + UUID.randomUUID().toString();
     }
 

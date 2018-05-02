@@ -166,6 +166,17 @@ public class IIIFProducer implements ManifestBuilderProcess {
         }
     }
 
+    TemplateManifest setStructures(final TemplateTopStructure top, final TemplateManifest manifest, final MetsAccessor
+            mets) {
+        if (top.getRanges().size() > 0) {
+            final List<TemplateStructure> subStructures = mets.buildStructures();
+            final TemplateStructureList list = new TemplateStructureList(top, subStructures);
+            manifest.setStructures(list.getStructureList());
+            return manifest;
+        }
+        return manifest;
+    }
+
     @Override
     public void buildManifest() {
         //TODO these filesystem dependencies should be abstracted to a repository container
@@ -255,12 +266,11 @@ public class IIIFProducer implements ManifestBuilderProcess {
         manifest.setSequences(sequence);
 
         final TemplateTopStructure top = mets.buildTopStructure();
-        final List<TemplateStructure> subStructures = mets.buildStructures();
+        final TemplateManifest structManifest;
+        structManifest = setStructures(top, manifest, mets);
 
-        final TemplateStructureList list = new TemplateStructureList(top, subStructures);
-        manifest.setStructures(list.getStructureList());
         logger.info("Builder Process Complete, Serializing to Json ...");
-        final Optional<String> json = serialize(manifest);
+        final Optional<String> json = serialize(structManifest);
         final String output = json.orElse(null);
         final String outputFile = config.getOutputFile();
         final File outfile = new File(outputFile);

@@ -20,9 +20,14 @@ package de.ubleipzig.iiifproducer.producer;
 
 import static java.nio.file.Paths.get;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import de.ubleipzig.iiifproducer.template.TemplateManifest;
 import de.ubleipzig.iiifproducer.template.TemplateStructure;
+import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -67,5 +72,39 @@ class StructuresTest {
         assertNotNull(structure);
     }
 
+    @Test
+    void testSetStructuresIfSet() {
+        final Config config = new Config();
+        config.setInputFile(sourceFile);
+        config.setTitle("BlhDie_004285964");
+        config.setOutputFile("/tmp/test.json");
+        config.setViewId("004285964");
+        final MetsAccessor mets = new MetsImpl(config);
+        final IIIFProducer producer = new IIIFProducer(config);
+        final TemplateTopStructure top = new TemplateTopStructure();
+        final List<String> ranges = new ArrayList<>();
+        ranges.add("http://some-range/r1");
+        top.setRanges(ranges);
+        final TemplateManifest manifest = new TemplateManifest();
+        producer.setStructures(top, manifest, mets);
+        assertTrue(manifest.getStructures().size() > 1 );
+    }
+
+    @Test
+    void testSetStructuresDoNotSet() {
+        final Config config = new Config();
+        config.setInputFile(sourceFile);
+        config.setTitle("BlhDie_004285964");
+        config.setOutputFile("/tmp/test.json");
+        config.setViewId("004285964");
+        final MetsAccessor mets = new MetsImpl(config);
+        final IIIFProducer producer = new IIIFProducer(config);
+        final TemplateTopStructure top = new TemplateTopStructure();
+        final List<String> ranges = new ArrayList<>();
+        top.setRanges(ranges);
+        final TemplateManifest manifest = new TemplateManifest();
+        producer.setStructures(top, manifest, mets);
+        assertNull(manifest.getStructures());
+    }
 }
 

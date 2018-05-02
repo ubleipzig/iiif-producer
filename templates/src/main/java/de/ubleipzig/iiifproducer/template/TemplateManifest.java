@@ -144,6 +144,13 @@ public class TemplateManifest {
     }
 
     /**
+     * @return List
+     */
+    public List<TemplateStructure> getStructures() {
+        return this.structures;
+    }
+
+    /**
      * @param structures List
      */
     public void setStructures(final List<TemplateStructure> structures) {

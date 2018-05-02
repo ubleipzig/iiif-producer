@@ -83,6 +83,13 @@ public class TemplateTopStructure extends TemplateStructure {
     }
 
     /**
+     * @return List
+     */
+    public List<String> getRanges() {
+        return this.ranges;
+    }
+
+    /**
      * @param ranges List
      */
     public void setRanges(final List<String> ranges) {
