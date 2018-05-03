@@ -18,6 +18,8 @@
 
 package de.ubleipzig.iiifproducer.template;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -30,6 +32,7 @@ import java.util.List;
  *
  * @author christopher-johnson
  */
+@JsonInclude(Include.NON_NULL)
 @JsonPropertyOrder({"@context", "@id", "@type", "label", "license", "attribution", "logo", "related", "metadata",
         "sequences", "structures"})
 public class TemplateManifest {
