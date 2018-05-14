@@ -22,7 +22,7 @@ ext {
     commonsCodecVersion = '1.11'
     commonsIoVersion = '2.6'
     commonsRdfVersion = '0.5.0'
-    imageMetadataVersion = '0.1.0'
+    imageMetadataVersion = '0.2.0-SNAPSHOT'
     iiifVocabularyVersion = '0.1.0'
     logbackVersion = '1.2.3'
     metadataExtractorVersion = '2.11.0'
@@ -43,11 +43,8 @@ ext {
 
     jacocoTestProjects = [
             'producer',
-            'image',
             'templates',
             'xml-doc',
-            'vocabulary',
-            'storage'
     ]
 }
 
@@ -83,8 +80,17 @@ configure(allprojects) { project ->
 
     repositories {
         mavenCentral()
-        flatDir {
-            dirs "$rootProject.projectDir/lib"
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots'
+        }
+    }
+
+    configurations {
+        all {
+            resolutionStrategy {
+                force "de.ubleipzig:image.metadata:$imageMetadataVersion"
+                cacheChangingModulesFor 0, 'seconds'
+            }
         }
     }
 

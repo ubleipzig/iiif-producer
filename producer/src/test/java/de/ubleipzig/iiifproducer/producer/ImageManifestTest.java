@@ -71,6 +71,19 @@ public class ImageManifestTest {
     }
 
     @Test
+    void testGetDimensionsFromJP2NoSerialization() {
+        final String sourceFile = ImageManifestTest.class.getResource("/MS_187.xml").getPath();
+        config.setInputFile(sourceFile);
+        config.setTitle("ImageManifestTest");
+        config.setSerializeImageManifest(false);
+        final IIIFProducer producer = new IIIFProducer(config);
+        final String imageSourceDir = ImageManifestTest.class.getResource("/jp2").getPath();
+        final List<ImageDimensions> dimlist = producer.getImageDimensions(imageSourceDir, null);
+        assertEquals(dimlist.get(1).getFilename(), "00000041.tif");
+        assertEquals(dimlist.get(1).getHeight().toString(), "2747");
+    }
+
+    @Test
     void testSerializeManifestandGetDimensions() {
         final String sourceFile = ImageManifestTest.class.getResource("/MS_187.xml").getPath();
         config.setInputFile(sourceFile);

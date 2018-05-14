@@ -1,6 +1,6 @@
 language: java
 sudo: required
-dist: trusty
+dist: xenial
 group: edge
 
 matrix:
@@ -11,8 +11,15 @@ matrix:
     - jdk: oraclejdk8
       env: JDK_RELEASE='JDK 1.8'
 
+before_script:
+  - sudo apt-get -qq update
+  - wget http://ftp.br.debian.org/debian/pool/main/o/openjpeg2/libopenjp2-7_2.1.2-1.1+deb9u2_amd64.deb
+  - sudo dpkg -i libopenjp2-7_2.1.2-1.1+deb9u2_amd64.deb
+  - sudo apt-get install -y liblcms2-dev  libtiff-dev libpng-dev libz-dev
+
 script:
-- ./gradlew build
+  - . ./buildtools/src/install/install-openjpeg.sh
+  - ./gradlew --stacktrace --warning-mode=all build
 
 after_success:
   - ./gradlew jacocoRootReport && bash <(curl -s https://codecov.io/bash) || true
