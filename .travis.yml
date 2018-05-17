@@ -1,6 +1,6 @@
 language: java
 sudo: required
-dist: xenial
+dist: trusty
 group: edge
 
 matrix:
@@ -15,10 +15,10 @@ before_script:
   - sudo apt-get -qq update
   - wget http://ftp.br.debian.org/debian/pool/main/o/openjpeg2/libopenjp2-7_2.1.2-1.1+deb9u2_amd64.deb
   - sudo dpkg -i libopenjp2-7_2.1.2-1.1+deb9u2_amd64.deb
-  - sudo apt-get install -y liblcms2-dev  libtiff-dev libpng-dev libz-dev
+  - sudo apt-get install -y build-essential autoconf libfcgi0ldbl libtool libtiff5-dev libpng-dev libmemcached-dev memcached liblcms2-2 liblcms2-dev libgomp1 libpthread-stubs0-dev liblzma5 liblzma-dev libjbig-dev libjbig0 libz80ex1 libz80ex-dev pkg-config zlib1g-dev bash git cmake libltdl-dev libperl-dev
 
 script:
-  - . ./buildtools/src/install/install-openjpeg.sh
+  - sudo ./buildtools/src/install/install-openjpeg.sh
   - ./gradlew --stacktrace --warning-mode=all build
 
 after_success:

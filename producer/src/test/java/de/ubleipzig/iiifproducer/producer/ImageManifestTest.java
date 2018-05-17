@@ -79,8 +79,8 @@ public class ImageManifestTest {
         final IIIFProducer producer = new IIIFProducer(config);
         final String imageSourceDir = ImageManifestTest.class.getResource("/jp2").getPath();
         final List<ImageDimensions> dimlist = producer.getImageDimensions(imageSourceDir, null);
-        assertEquals(dimlist.get(1).getFilename(), "00000041.tif");
-        assertEquals(dimlist.get(1).getHeight().toString(), "2747");
+        assertEquals("00000041.jpx", dimlist.get(1).getFilename());
+        assertEquals("2747", dimlist.get(1).getHeight().toString());
     }
 
     @Test
