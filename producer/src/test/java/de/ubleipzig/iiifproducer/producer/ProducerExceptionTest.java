@@ -31,8 +31,7 @@ public class ProducerExceptionTest {
     void testRuntimeException() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String invalidPath = path + "/invalid-path";
-        config.setInputFile(invalidPath);
-        config.setTitle("ImageManifestTest");
+        config.setXmlFile(invalidPath);
         config.setSerializeImageManifest(false);
         assertThrows(RuntimeException.class, () -> {
             final IIIFProducer producer = new IIIFProducer(config);
@@ -44,8 +43,7 @@ public class ProducerExceptionTest {
     void testRuntimeExceptionOptional() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String invalidPath = path + "/invalid-path";
-        config.setInputFile(invalidPath);
-        config.setTitle("ImageManifestTest");
+        config.setXmlFile(invalidPath);
         config.setSerializeImageManifest(true);
         assertThrows(RuntimeException.class, () -> {
             final IIIFProducer producer = new IIIFProducer(config);
@@ -57,8 +55,7 @@ public class ProducerExceptionTest {
     void testIOException() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String testFileSource = path + "/xml-doc/src/test/resources/mets/invalid.xml";
-        config.setInputFile(testFileSource);
-        config.setTitle("ImageManifestTest");
+        config.setXmlFile(testFileSource);
         assertThrows(RuntimeException.class, () -> {
             final IIIFProducer producer = new IIIFProducer(config);
             producer.run();

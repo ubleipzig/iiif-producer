@@ -19,17 +19,6 @@
 package de.ubleipzig.iiifproducer.producer;
 
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.HANDSHRIFT_TYPE;
-import static de.ubleipzig.iiifproducer.producer.Constants.BASE_URL;
-import static de.ubleipzig.iiifproducer.producer.Constants.IIIF_CANVAS;
-import static de.ubleipzig.iiifproducer.producer.Constants.IMAGE_MANIFEST_OUTPUT_DIR;
-import static de.ubleipzig.iiifproducer.producer.Constants.KATALOG_URL;
-import static de.ubleipzig.iiifproducer.producer.Constants.MANIFEST_FILENAME;
-import static de.ubleipzig.iiifproducer.producer.Constants.SEQUENCE_ID;
-import static de.ubleipzig.iiifproducer.producer.Constants.VIEWER_URL;
-import static de.ubleipzig.iiifproducer.producer.StaticIRIBuilder.buildCanvasIRI;
-import static de.ubleipzig.iiifproducer.producer.StaticIRIBuilder.buildImageServiceContext;
-import static de.ubleipzig.iiifproducer.producer.StaticIRIBuilder.buildResourceIRI;
-import static de.ubleipzig.iiifproducer.producer.StaticIRIBuilder.buildServiceIRI;
 import static de.ubleipzig.iiifproducer.producer.UUIDType5.NAMESPACE_URL;
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.writeToFile;
@@ -95,16 +84,16 @@ public class IIIFProducer implements ManifestBuilderProcess {
     @Override
     public void setId(final TemplateManifest body) {
         final String resourceContext = config.getResourceContext();
-        body.setId(resourceContext + separator + MANIFEST_FILENAME);
+        body.setId(resourceContext + separator + config.getManifestFilename());
     }
 
     @Override
     public void setRelated(final TemplateManifest body, final String urn) {
         final String viewId = config.getViewId();
         final ArrayList<String> related = new ArrayList<>();
-        related.add(KATALOG_URL + urn);
-        related.add(VIEWER_URL + viewId);
-        related.add(BASE_URL + viewId + separator + MANIFEST_FILENAME);
+        related.add(config.getKatalogUrl() + urn);
+        related.add(config.getViewerUrl() + viewId);
+        related.add(config.getBaseUrl() + viewId + separator + config.getManifestFilename());
         body.setRelated(related);
     }
 
@@ -112,12 +101,13 @@ public class IIIFProducer implements ManifestBuilderProcess {
     public List<TemplateSequence> addCanvasesToSequence(final List<TemplateCanvas> canvases) {
         final String resourceContext = config.getResourceContext();
         final List<TemplateSequence> sequence = new ArrayList<>();
-        sequence.add(new TemplateSequence(resourceContext + SEQUENCE_ID, canvases));
+        sequence.add(new TemplateSequence(resourceContext + config.getDefaultSequenceId(), canvases));
         return sequence;
     }
 
     private String getImageManifestPid() {
-        return "image-manifest-" + UUIDType5.nameUUIDFromNamespaceAndString(NAMESPACE_URL, config.getTitle()) + ".json";
+        return "image-manifest-" + UUIDType5.nameUUIDFromNamespaceAndString(NAMESPACE_URL, config.getImageSourceDir())
+                + ".json";
     }
 
     @Override
@@ -136,7 +126,8 @@ public class IIIFProducer implements ManifestBuilderProcess {
             dimensionManifestOutputPath) {
         final ImageMetadataServiceConfig imageMetadataGeneratorConfig = new ImageMetadataServiceConfig();
         final Optional<String> out = Optional.ofNullable(dimensionManifestOutputPath);
-        final String dimensionManifestPath = out.orElse(IMAGE_MANIFEST_OUTPUT_DIR + separator + getImageManifestPid());
+        final String dimensionManifestPath = out.orElse(
+                config.getImageManifestOutputDir() + separator + getImageManifestPid());
         //case 1: the image manifest exists at output path
         if (new File(dimensionManifestPath).exists()) {
             imageMetadataGeneratorConfig.setDimensionManifestFilePath(dimensionManifestPath);
@@ -166,8 +157,8 @@ public class IIIFProducer implements ManifestBuilderProcess {
         }
     }
 
-    TemplateManifest setStructures(final TemplateTopStructure top, final TemplateManifest manifest, final MetsAccessor
-            mets) {
+    TemplateManifest setStructures(final TemplateTopStructure top, final TemplateManifest manifest, final
+    MetsAccessor mets) {
         if (top.getRanges().size() > 0) {
             final List<TemplateStructure> subStructures = mets.buildStructures();
             final TemplateStructureList list = new TemplateStructureList(top, subStructures);
@@ -180,8 +171,8 @@ public class IIIFProducer implements ManifestBuilderProcess {
     @Override
     public void buildManifest() {
         //TODO these filesystem dependencies should be abstracted to a repository container
-        final String imageManifestOutputPath = config.getBaseDir() + separator + getImageManifestPid();
-        final String imageSourceDir = config.getBaseDir() + separator + config.getTitle() + "_tif";
+        final String imageManifestOutputPath = config.getImageSourceDir() + separator + getImageManifestPid();
+        final String imageSourceDir = config.getImageSourceDir();
         final List<ImageDimensions> dimensions = getImageDimensions(imageSourceDir, imageManifestOutputPath);
 
         final TemplateManifest manifest = new TemplateManifest();
@@ -189,6 +180,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
         setId(manifest);
 
         final MetsAccessor mets = new MetsImpl(this.config);
+        final IRIBuilder iriBuilder = new IRIBuilder(this.config);
 
         final String urn = mets.getUrnReference();
         setRelated(manifest, urn);
@@ -231,22 +223,22 @@ public class IIIFProducer implements ManifestBuilderProcess {
             //pad integer to 8 digits
             final String resourceFileId = format("%08d", baseName);
             //canvasId = resourceId
-            final String canvasIdString = resourceContext + IIIF_CANVAS + separator + resourceFileId;
+            final String canvasIdString = resourceContext + config.getCanvasContext() + separator + resourceFileId;
             //cast canvas as IRI (failsafe)
-            final IRI canvasIri = buildCanvasIRI(canvasIdString);
+            final IRI canvasIri = iriBuilder.buildCanvasIRI(canvasIdString);
             //set Canvas Id
             canvas.setCanvasId(canvasIri.getIRIString());
             //resource IRI (original source file extension required by client)
             //TODO coordinate with dereferenceable location / confirm file extention
             final String resourceIdString = resourceContext + separator + resourceFileId + ".jpg";
             //cast resource as IRI (failsafe)
-            final IRI resourceIri = buildResourceIRI(resourceIdString);
+            final IRI resourceIri = iriBuilder.buildResourceIRI(resourceIdString);
             //set resourceID
             resource.setResourceId(resourceIri.getIRIString());
             //set Image Service
             //TODO fix IIIP image service IRI format
-            final String imageServiceContext = buildImageServiceContext(config.getViewId());
-            final IRI serviceIRI = buildServiceIRI(imageServiceContext, resourceFileId);
+            final String imageServiceContext = iriBuilder.buildImageServiceContext();
+            final IRI serviceIRI = iriBuilder.buildServiceIRI(imageServiceContext, resourceFileId);
             resource.setService(new TemplateService(serviceIRI.getIRIString()));
 
             final TemplateImage image = new TemplateImage();

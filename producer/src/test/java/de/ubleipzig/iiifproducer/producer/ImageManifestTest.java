@@ -20,14 +20,12 @@ package de.ubleipzig.iiifproducer.producer;
 
 import static de.ubleipzig.iiifproducer.producer.UUIDType5.NAMESPACE_URL;
 import static java.io.File.separator;
-import static java.nio.file.Paths.get;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import de.ubleipzig.image.metadata.templates.ImageDimensions;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,49 +33,35 @@ import org.junit.jupiter.api.Test;
 public class ImageManifestTest {
 
     private static final Config config = new Config();
-    private static final String path = get(".").toAbsolutePath().normalize().getParent().toString();
-    private String pid;
-
-    private String getImageManifestPid() {
-        return "image-manifest-" + UUIDType5.nameUUIDFromNamespaceAndString(NAMESPACE_URL, config.getTitle()) + ".json";
-    }
+    private static String imageManifestPid;
+    private static String imageSourceDir;
+    private static String seed;
 
     @BeforeEach
-    void setup() {
-        pid = "image-manifest-test-" + UUID.randomUUID().toString();
-    }
-
-    @Test
-    void testGetExistingDimensionManifestFromOutputPath() {
-        config.setTitle("BlhDie_004285964");
-        config.setSerializeImageManifest(false);
-        final IIIFProducer producer = new IIIFProducer(config);
-        final String dimResource = separator + getImageManifestPid();
-        final String dimensionManifestOutputPath = ImageManifestTest.class.getResource(dimResource).getPath();
-        final List<ImageDimensions> dimlist = producer.getImageDimensions(null, dimensionManifestOutputPath);
-        assertEquals(dimlist.get(1).getDigest(), "+IjI1aM57A/e4jY2HHBxf47rLHo=");
+    void init() {
+        imageSourceDir = ImageManifestTest.class.getResource("/MS_187_tif").getPath();
+        imageManifestPid =
+                "image-manifest-" + UUIDType5.nameUUIDFromNamespaceAndString(NAMESPACE_URL, imageSourceDir) + ".json";
     }
 
     @Test
     void testGetDimensionsFromBinariesNoSerialization() {
-        final String sourceFile = ImageManifestTest.class.getResource("/MS_187.xml").getPath();
-        config.setInputFile(sourceFile);
-        config.setTitle("ImageManifestTest");
+        final String xmlFile = ImageManifestTest.class.getResource("/MS_187.xml").getPath();
+        config.setXmlFile(xmlFile);
+        config.setImageSourceDir(imageSourceDir);
         config.setSerializeImageManifest(false);
         final IIIFProducer producer = new IIIFProducer(config);
-        final String imageSourceDir = ImageManifestTest.class.getResource("/MS_187_tif").getPath();
         final List<ImageDimensions> dimlist = producer.getImageDimensions(imageSourceDir, null);
         assertEquals(dimlist.get(1).getFilename(), "00000002.tif");
     }
 
     @Test
     void testGetDimensionsFromJP2NoSerialization() {
-        final String sourceFile = ImageManifestTest.class.getResource("/MS_187.xml").getPath();
-        config.setInputFile(sourceFile);
-        config.setTitle("ImageManifestTest");
+        final String xmlFile = ImageManifestTest.class.getResource("/MS_187.xml").getPath();
+        final String imageSourceDir = ImageManifestTest.class.getResource("/jp2").getPath();
+        config.setXmlFile(xmlFile);
         config.setSerializeImageManifest(false);
         final IIIFProducer producer = new IIIFProducer(config);
-        final String imageSourceDir = ImageManifestTest.class.getResource("/jp2").getPath();
         final List<ImageDimensions> dimlist = producer.getImageDimensions(imageSourceDir, null);
         assertEquals("00000041.jpx", dimlist.get(1).getFilename());
         assertEquals("2747", dimlist.get(1).getHeight().toString());
@@ -85,13 +69,12 @@ public class ImageManifestTest {
 
     @Test
     void testSerializeManifestandGetDimensions() {
-        final String sourceFile = ImageManifestTest.class.getResource("/MS_187.xml").getPath();
-        config.setInputFile(sourceFile);
-        config.setTitle("ImageManifestTest");
+        final String xmlFile = ImageManifestTest.class.getResource("/MS_187.xml").getPath();
+        config.setXmlFile(xmlFile);
+        config.setImageSourceDir(imageSourceDir);
         config.setSerializeImageManifest(true);
-        final String imageManifestOutputPath = config.getBaseDir() + separator + getImageManifestPid();
+        final String imageManifestOutputPath = config.getImageSourceDir() + separator + imageManifestPid;
         final IIIFProducer producer = new IIIFProducer(config);
-        final String imageSourceDir = ImageManifestTest.class.getResource("/MS_187_tif").getPath();
         final List<ImageDimensions> dimlist = producer.getImageDimensions(imageSourceDir, imageManifestOutputPath);
         assertEquals(dimlist.get(1).getFilename(), "00000002.tif");
     }
@@ -99,7 +82,7 @@ public class ImageManifestTest {
     @Test
     void testFileNotFoundExceptionNoSerialization() {
         final IIIFProducer producer = new IIIFProducer(config);
-        final String imageSourceDir = path + "/image/src/test/non-existing-directory";
+        final String imageSourceDir = "/image/src/test/non-existing-directory";
         assertThrows(RuntimeException.class, () -> {
             producer.getImageDimensions(imageSourceDir, null);
         });
@@ -109,7 +92,7 @@ public class ImageManifestTest {
     void testFileNotFoundExceptionSerialization() {
         final IIIFProducer producer = new IIIFProducer(config);
         config.setSerializeImageManifest(true);
-        final String imageSourceDir = path + "/image/src/test/non-existing-directory";
+        final String imageSourceDir = "/image/src/test/non-existing-directory";
         assertThrows(RuntimeException.class, () -> {
             producer.getImageDimensions(imageSourceDir, null);
         });

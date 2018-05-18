@@ -47,8 +47,7 @@ public class SetNullableMetadataTest {
     @Test
     void testSetManuscriptMetadata() {
         final Config config = new Config();
-        config.setInputFile(sourceFile);
-        config.setTitle("BlhDie_004285964");
+        config.setXmlFile(sourceFile);
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
         final MetsAccessor mets = new MetsImpl(config);
@@ -62,8 +61,7 @@ public class SetNullableMetadataTest {
     @Test
     void testSetMetadata() {
         final Config config = new Config();
-        config.setInputFile(sourceFile);
-        config.setTitle("BlhDie_004285964");
+        config.setXmlFile(sourceFile);
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
         final MetsAccessor mets = new MetsImpl(config);
@@ -79,8 +77,7 @@ public class SetNullableMetadataTest {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         sourceFile = path + "/xml-doc/src/test/resources/mets/BntItin_021340072.xml";
         final Config config = new Config();
-        config.setInputFile(sourceFile);
-        config.setTitle("MS_187");
+        config.setXmlFile(sourceFile);
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
         final MetsAccessor mets = new MetsImpl(config);

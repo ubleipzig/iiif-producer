@@ -43,6 +43,6 @@ public class IRIUtils {
     public String buildCanvasIRIfromPhysical(final String physical) {
         final String resourceContext = config.getResourceContext();
         final Integer newId = valueOf(physical.substring(physical.indexOf("_") + 1));
-        return resourceContext + Constants.IIIF_CANVAS + File.separator + format("%08d", newId);
+        return resourceContext + config.getCanvasContext() + File.separator + format("%08d", newId);
     }
 }

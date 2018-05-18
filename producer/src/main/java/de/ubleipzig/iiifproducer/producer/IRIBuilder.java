@@ -26,19 +26,27 @@ import org.apache.commons.rdf.api.RDF;
 import org.apache.commons.rdf.simple.SimpleRDF;
 
 /**
- * StaticIRIBuilder.
+ * IRIBuilder.
  *
  * @author christopher-johnson
  */
-public final class StaticIRIBuilder {
+public final class IRIBuilder {
 
+    private Config config;
     private static final RDF rdf = new SimpleRDF();
+
+    /**
+     * @param config Config
+     */
+    public IRIBuilder(final Config config) {
+        this.config = config;
+    }
 
     /**
      * @param canvasIdString String
      * @return IRI
      */
-    public static IRI buildCanvasIRI(final String canvasIdString) {
+    public IRI buildCanvasIRI(final String canvasIdString) {
         return rdf.createIRI(canvasIdString);
     }
 
@@ -46,7 +54,7 @@ public final class StaticIRIBuilder {
      * @param resourceIdString String
      * @return IRI
      */
-    public static IRI buildResourceIRI(final String resourceIdString) {
+    public IRI buildResourceIRI(final String resourceIdString) {
         return rdf.createIRI(resourceIdString);
     }
 
@@ -55,17 +63,17 @@ public final class StaticIRIBuilder {
      * @param resourceIdString String
      * @return IRI
      */
-    public static IRI buildServiceIRI(final String imageServiceContext, final String resourceIdString) {
-        return rdf.createIRI(imageServiceContext + "/" + resourceIdString + Constants.IMAGE_SERVICE_FILE_EXT);
+    public IRI buildServiceIRI(final String imageServiceContext, final String resourceIdString) {
+        return rdf.createIRI(
+                imageServiceContext + separator + resourceIdString + config.getImageServiceFileExtension());
     }
 
     /**
-     * @param viewId String
      * @return String
      */
-    public static String buildImageServiceContext(final String viewId) {
-        final int viewIdInt = parseInt(viewId);
-        final String imageDir = Constants.IMAGE_DIR;
+    public String buildImageServiceContext() {
+        final int viewIdInt = parseInt(config.getViewId());
+        final String imageDir = config.getImageServiceImageDirPrefix();
         final StringBuilder newImageDir = new StringBuilder(Integer.toString(viewIdInt / 100));
 
         while (newImageDir.length() < 4) {
@@ -76,10 +84,10 @@ public final class StaticIRIBuilder {
                 imageDir.split(separator)[0] + separator + imageDir.split(separator)[1] + separator + imageDir.split(
                         separator)[2];
 
-        return Constants.SERVICE_BASE + hack + separator + newImageDir + separator + viewId;
+        return config.getImageServiceBaseUrl() + hack + separator + newImageDir + separator + config.getViewId();
         //return SERVICE_BASE + IMAGE_DIR + viewId;
     }
 
-    private StaticIRIBuilder() {
+    private IRIBuilder() {
     }
 }

@@ -18,7 +18,6 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static de.ubleipzig.iiifproducer.producer.Constants.MANIFEST_HTTP_DIR;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.UUID;
@@ -35,15 +34,16 @@ class ArgParserTest {
 
     private static String pid;
     private static String testFileSource1;
-    private static String testFileSource2;
-    private static String testFileSource3;
+    private static String imageSourceDir;
+    private static String configFilePath;
+
     private ArgParser parser;
 
     @BeforeAll
     static void init() {
+        imageSourceDir = ArgParserTest.class.getResource("/MS_187_tif").getPath();
         testFileSource1 = ArgParserTest.class.getResource("/MS_187.xml").getPath();
-        testFileSource2 = ArgParserTest.class.getResource("/BlhDie_004285964.xml").getPath();
-        testFileSource3 = ArgParserTest.class.getResource("/MS_85.xml").getPath();
+        configFilePath = ArgParserTest.class.getResource("/producer-config-test.yml").getPath();
         pid = "producer-test-" + UUID.randomUUID().toString();
     }
 
@@ -51,17 +51,8 @@ class ArgParserTest {
     void testRequiredArgs1() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-v", "004285964", "-t", "MS_187", "-i", testFileSource1, "-o", "/tmp/" + pid + ".json"};
-        final ManifestBuilderProcess processor = parser.init(args);
-        processor.run();
-    }
-
-    @Test
-    void testRequiredArgs2() {
-        parser = new ArgParser();
-        final String[] args;
-        args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i", testFileSource2, "-o", "/tmp/" + pid +
-                ".json"};
+        args = new String[]{"-v", "004285964", "-i", imageSourceDir, "-x", testFileSource1, "-o",
+                "/tmp/" + pid + ".json"};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
     }
@@ -70,8 +61,8 @@ class ArgParserTest {
     void testOptionalArgs() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-v", "021340072", "-t", "MS_187", "-i", testFileSource1, "-o", "/tmp/" + pid + ".json",
-                "-s"};
+        args = new String[]{"-v", "021340072", "-i", imageSourceDir, "-x", testFileSource1, "-o",
+                "/tmp/" + pid + ".json", "-c", configFilePath, "-s"};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
     }
@@ -80,8 +71,7 @@ class ArgParserTest {
     void testInvalidArgs() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-q", "021340072", "-y", "MS_187", "-l", testFileSource1, "-p", MANIFEST_HTTP_DIR + pid +
-                ".json"};
+        args = new String[]{"-q", "021340072", "-y", "MS_187", "-l", testFileSource1, "-p", "/tmp" + pid + ".json"};
         assertThrows(RuntimeException.class, () -> {
             parser.parseConfiguration(args);
         });

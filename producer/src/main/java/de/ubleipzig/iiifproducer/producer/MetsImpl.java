@@ -39,11 +39,6 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getTopLogicals;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getXlinks;
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMetsAnchor;
-import static de.ubleipzig.iiifproducer.producer.Constants.ANCHOR_KEY;
-import static de.ubleipzig.iiifproducer.producer.Constants.ATTRIBUTION_KEY;
-import static de.ubleipzig.iiifproducer.producer.Constants.ATTRIBUTION_LICENSE_NOTE;
-import static de.ubleipzig.iiifproducer.producer.Constants.IIIF_RANGE;
-import static de.ubleipzig.iiifproducer.producer.Constants.LICENSE;
 import static java.io.File.separator;
 import static java.util.Collections.synchronizedList;
 import static java.util.Comparator.comparing;
@@ -81,8 +76,8 @@ public class MetsImpl implements MetsAccessor {
     private Map<String, List<MetsData.Xlink>> xlinkmap;
 
     MetsImpl(final Config config) {
-        this.mets = getMets(config.getInputFile());
-        this.anchorDoc = getMetsAnchor(config.getInputFile());
+        this.mets = getMets(config.getXmlFile());
+        this.anchorDoc = getMetsAnchor(config.getXmlFile());
         this.config = config;
         this.xlinkmap = getXlinkMap();
     }
@@ -104,12 +99,13 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public void setLicense(final TemplateManifest body) {
-        body.setLicense(LICENSE);
+        body.setLicense(config.getLicense());
     }
 
     @Override
     public void setAttribution(final TemplateManifest body) {
-        body.setAttribution(ATTRIBUTION_KEY + getAttribution(mets) + "<br/>" + ATTRIBUTION_LICENSE_NOTE);
+        body.setAttribution(
+                config.getAttributionKey() + getAttribution(mets) + "<br/>" + config.getAttributionLicenseNote());
     }
 
     @Override
@@ -142,7 +138,7 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public TemplateMetadata getAnchorFileMetadata() {
-        return new TemplateMetadata(ANCHOR_KEY, getManifestTitle(anchorDoc) + "; " + getCensus(mets));
+        return new TemplateMetadata(config.getAnchorKey(), getManifestTitle(anchorDoc) + "; " + getCensus(mets));
     }
 
     @Override
@@ -168,12 +164,12 @@ public class MetsImpl implements MetsAccessor {
 
         final List<MetsData.Logical> logs = getTopLogicals(mets);
         logs.forEach(logical -> {
-            final String rangeId = resourceContext + IIIF_RANGE + separator + logical.getLogicalId();
+            final String rangeId = resourceContext + config.getRangeContext() + separator + logical.getLogicalId();
             ranges.add(0, rangeId);
         });
 
         final TemplateTopStructure st = new TemplateTopStructure();
-        st.setStructureId(resourceContext + IIIF_RANGE + separator + "r0");
+        st.setStructureId(resourceContext + config.getRangeContext() + separator + "r0");
         st.setStructureLabel("TOC");
         ranges.sort(naturalOrder());
         st.setRanges(ranges);
@@ -197,7 +193,7 @@ public class MetsImpl implements MetsAccessor {
                     lastChildren.forEach(desc -> {
                         final TemplateStructure descSt = new TemplateStructure();
                         final String descID = desc.getLogicalId().trim();
-                        final String rangeId = resourceContext + IIIF_RANGE + separator + descID;
+                        final String rangeId = resourceContext + config.getRangeContext() + separator + descID;
                         final String descLabel = getLogicalLabel(mets, descID);
                         ranges.add(0, rangeId);
                         descSt.setStructureId(rangeId);
@@ -206,14 +202,16 @@ public class MetsImpl implements MetsAccessor {
                         descendents.add(0, descSt);
                     });
                     final TemplateStructure st = new TemplateStructure();
-                    final String structureIdDesc = resourceContext + IIIF_RANGE + separator + lastParentId;
+                    final String structureIdDesc =
+                            resourceContext + config.getRangeContext() + separator + lastParentId;
                     st.setStructureId(structureIdDesc);
                     final String logicalLabel = getLogicalLabel(mets, lastParentId);
                     st.setStructureLabel(logicalLabel);
                     ranges.sort(naturalOrder());
                     st.setRanges(ranges);
                     st.setCanvases(getCanvases(lastParentId));
-                    if (!Objects.equals(st.getStructureId(), resourceContext + IIIF_RANGE + separator + "LOG_0000")) {
+                    if (!Objects.equals(
+                            st.getStructureId(), resourceContext + config.getRangeContext() + separator + "LOG_0000")) {
                         structures.add(0, st);
                     }
                 });

@@ -21,15 +21,17 @@ $ chmod +x producer
 
 ## Usage
 ```bash
-producer -i inputfile -o outputfile -t archive_package -v view_identifier [-s]
+producer -x xmlFile -i imageSourceDir-o outputfile -t archive_package -v view_identifier [-c] configFile [-s]
 ```
 
-| Argument | Description | Example |
-| -------- | ------- | ----------- | 
-| inputfile | A METS/MODS xml file path | /MS_187.xml |
+| Argument | Description | Example     |
+| -------- | ----------- | ----------- |
+| xmlFile  | A METS/MODS xml file path | /MS_187.xml |
+| imageSourceDir | the image source directory | /images |
 | outputfile | An JSON-LD output file path | /output.json |
 | archive_package | The name of the archive package | MS_187 |
 | view_identifier | The name of the IIIF viewer identifer | 004285964 | 
+| -c, --config | a yaml configuration File | /producer-config.yml |
 | -s, --serializeImageManifest | serialize image manifest | |
 
 ## Image Dimension Manifest

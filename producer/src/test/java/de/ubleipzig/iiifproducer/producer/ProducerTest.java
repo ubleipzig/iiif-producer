@@ -32,8 +32,7 @@ class ProducerTest {
         final String sourceFile = ProducerTest.class.getResource("/BlhDie_004285964.xml").getPath();
 
         final Config config = new Config();
-        config.setInputFile(sourceFile);
-        config.setTitle("BlhDie_004285964");
+        config.setXmlFile(sourceFile);
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
         new IIIFProducer(config);

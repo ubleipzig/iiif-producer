@@ -24,26 +24,30 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class IIIFProducerDriverTest {
+
+    private static String imageSourceDir;
     private static String testFileSource1;
     private static String testFileSource2;
     private static String pid;
 
     @BeforeAll
     static void init() {
+        imageSourceDir = ArgParserTest.class.getResource("/MS_187_tif").getPath();
         testFileSource1 = ArgParserTest.class.getResource("/BlhDie_004285964.xml").getPath();
         testFileSource2 = ArgParserTest.class.getResource("/MS_187.xml").getPath();
         pid = "producer-test-" + UUID.randomUUID().toString();
     }
+
     @Test
     public void testStandardType() {
-        final String[] args = new String[]{"-v", "004285964", "-t", "BlhDie_004285964", "-i", testFileSource1, "-o",
+        final String[] args = new String[]{"-v", "004285964", "-x", testFileSource1, "-i", imageSourceDir, "-o",
                 "/tmp/" + pid + ".json"};
         IIIFProducerDriver.main(args);
     }
 
     @Test
     public void testHandschriftType() {
-        final String[] args = new String[]{"-v", "004285964", "-t", "MS_187", "-i", testFileSource2, "-o",
+        final String[] args = new String[]{"-v", "004285964", "-x", testFileSource2, "-i", imageSourceDir, "-o",
                 "/tmp/" + pid + ".json"};
         IIIFProducerDriver.main(args);
     }

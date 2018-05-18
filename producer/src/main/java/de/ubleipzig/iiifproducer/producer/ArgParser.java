@@ -21,14 +21,24 @@ package de.ubleipzig.iiifproducer.producer;
 
 import static java.lang.System.out;
 import static org.apache.commons.cli.Option.builder;
+import static org.slf4j.LoggerFactory.getLogger;
 
+import io.dropwizard.configuration.ConfigurationException;
+import io.dropwizard.configuration.YamlConfigurationFactory;
+import io.dropwizard.jackson.Jackson;
+import io.dropwizard.jersey.validation.Validators;
+
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.slf4j.Logger;
 
 /**
  * ArgParser.
@@ -37,17 +47,25 @@ import org.apache.commons.cli.ParseException;
  */
 class ArgParser {
 
+    private static Logger logger = getLogger(ArgParser.class);
     private static final Options configOptions = new Options();
 
     static {
         configOptions.addOption(
                 builder("v").longOpt("viewid").hasArg(true).desc("View identifier").required(true).build());
 
-        configOptions.addOption(builder("t").longOpt("title").hasArg(true).desc("Title").required(true).build());
+        configOptions.addOption(
+                builder("i").longOpt("imageSourceDir").hasArg(true).desc("Image Source Directory").required(
+                        true).build());
 
-        configOptions.addOption(builder("i").longOpt("input").hasArg(true).desc("Source").required(true).build());
+        configOptions.addOption(
+                builder("x").longOpt("xmlinput").hasArg(true).desc("XML Source").required(true).build());
 
         configOptions.addOption(builder("o").longOpt("output").hasArg(true).desc("Output").required(true).build());
+
+        configOptions.addOption(
+                Option.builder("c").longOpt("config").hasArg(true).numberOfArgs(1).argName("config").desc(
+                        "Path to config file").required(false).build());
 
         configOptions.addOption(
                 builder("s").longOpt("serializeImageManifest").desc("serializeImageManifest").required(false).build());
@@ -76,40 +94,60 @@ class ArgParser {
         return new IIIFProducer(config);
     }
 
-    /**
-     * Parse command line arguments into a Config object.
-     *
-     * @param args command line arguments
-     * @return the parsed config file or command line args.
-     */
     public Config parseConfiguration(final String[] args) {
-        // first see if they've specified a config file
-        CommandLine c = null;
-        Config config = null;
-
+        final CommandLine c;
+        Config config;
         try {
             c = parseConfigArgs(configOptions, args);
-            config = parseConfigurationArgs(c);
+            config = parseConfigFileOptions(c);
+            config = addSharedOptions(c, config);
+            return config;
         } catch (final ParseException e) {
             printHelp("Error parsing args: " + e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
+    }
 
-        return config;
+    private Config parseConfigFileOptions(final CommandLine cmd) {
+        final String defaultConfigFile = ArgParser.class.getResource("/producer-config.yml").getPath();
+        return retrieveConfig(new File(cmd.getOptionValue('c', defaultConfigFile)));
     }
 
     /**
-     * This method parses the command-line args.
+     * This method parses the provided configFile into its equivalent command-line args.
      *
-     * @param cmd command line options
-     * @return Config
+     * @param configFile containing config args
+     * @return Array of args
      */
-    private Config parseConfigurationArgs(final CommandLine cmd) {
-        final Config config = new Config();
+    private Config retrieveConfig(final File configFile) {
+        if (!configFile.exists()) {
+            printHelp("Configuration file does not exist: " + configFile);
+        }
+        logger.debug("Loading configuration file: {}", configFile);
+        try {
+            return new YamlConfigurationFactory<>(
+                    Config.class, Validators.newValidator(), Jackson.newObjectMapper(), "").build(configFile);
+        } catch (IOException | ConfigurationException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 
-        config.setViewId(cmd.getOptionValue('v'));
-        config.setTitle(cmd.getOptionValue('t'));
-        config.setInputFile(cmd.getOptionValue('i'));
-        config.setOutputFile(cmd.getOptionValue('o'));
+    /**
+     * This method add/updates the values of any options that may be
+     * valid in either scenario (config file or fully command line).
+     *
+     * @param cmd a parsed command line
+     * @return Config the config which may be updated
+     */
+    private Config addSharedOptions(final CommandLine cmd, final Config config) {
+        final String viewId = cmd.getOptionValue("v");
+        final String xmlSource = cmd.getOptionValue("x");
+        final String imageSourceDir = cmd.getOptionValue("i");
+        final String outputFile = cmd.getOptionValue("o");
+        config.setViewId(viewId);
+        config.setXmlFile(xmlSource);
+        config.setImageSourceDir(imageSourceDir);
+        config.setOutputFile(outputFile);
         config.setSerializeImageManifest(cmd.hasOption("s"));
         return config;
     }

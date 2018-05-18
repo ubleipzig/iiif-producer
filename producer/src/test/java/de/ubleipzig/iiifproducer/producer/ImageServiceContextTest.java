@@ -18,7 +18,6 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static de.ubleipzig.iiifproducer.producer.StaticIRIBuilder.buildImageServiceContext;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -33,7 +32,12 @@ public class ImageServiceContextTest {
     @Test
         //@Disabled
     void testBuildImageServiceContext() {
-        final String imageServiceContext = buildImageServiceContext("12345");
+        final Config config = new Config();
+        config.setViewId("12345");
+        config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=");
+        config.setImageServiceImageDirPrefix("/j2k/0000/0000/");
+        final IRIBuilder iriBuilder = new IRIBuilder(config);
+        final String imageServiceContext = iriBuilder.buildImageServiceContext();
         assertEquals("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=/j2k/0000/0123/12345",
                 imageServiceContext);
     }

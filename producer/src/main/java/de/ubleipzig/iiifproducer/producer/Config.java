@@ -18,9 +18,9 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static de.ubleipzig.iiifproducer.producer.Constants.BASE_URL;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.io.File;
+import javax.validation.constraints.NotNull;
 
 /**
  * Config.
@@ -31,9 +31,38 @@ public class Config {
 
     private String viewId;
     private String title;
-    private String inputFile;
+    private String xmlFile;
     private String outputFile;
     private Boolean serializeImageManifest;
+    private String imageSourceDir;
+
+    @NotNull
+    private String baseUrl;
+    @NotNull
+    private String viewerUrl;
+    @NotNull
+    private String katalogUrl;
+    @NotNull
+    private String imageServiceBaseUrl;
+    @NotNull
+    private String imageServiceImageDirPrefix;
+    @NotNull
+    private String imageServiceFileExtension;
+    @NotNull
+    private String manifestFilename;
+    @NotNull
+    private String defaultSequenceId;
+    @NotNull
+    private String canvasContext;
+    @NotNull
+    private String rangeContext;
+    private String license;
+    private String attributionLicenseNote;
+    private String attributionKey;
+    private String anchorKey;
+
+    private String manifestHttpDir;
+    private String imageManifestOutputDir;
 
     /**
      * @return String
@@ -53,46 +82,35 @@ public class Config {
      * @return String
      */
     public String getResourceContext() {
-        return BASE_URL + viewId;
+        return this.baseUrl + viewId;
     }
 
     /**
      * @return String
      */
-    public String getTitle() {
-        return title;
+    public String getXmlFile() {
+        return xmlFile;
     }
 
     /**
-     * @param title String
+     * @param xmlFile String
      */
-    public final void setTitle(final String title) {
-        this.title = title;
+    public final void setXmlFile(final String xmlFile) {
+        this.xmlFile = xmlFile;
     }
 
     /**
-     * @return String
+     * @param imageSourceDir String
      */
-    public String getInputFile() {
-        return inputFile;
-    }
-
-    /**
-     * @param inputFile String
-     */
-    public final void setInputFile(final String inputFile) {
-        this.inputFile = inputFile;
+    public final void setImageSourceDir(final String imageSourceDir) {
+        this.imageSourceDir = imageSourceDir;
     }
 
     /**
      * @return String
      */
-    public String getBaseDir() {
-        final File source = new File(inputFile);
-        if (source.exists()) {
-            return source.getParent();
-        }
-        return null;
+    public String getImageSourceDir() {
+        return imageSourceDir;
     }
 
     /**
@@ -121,5 +139,293 @@ public class Config {
      */
     public final void setSerializeImageManifest(final Boolean serializeImageManifest) {
         this.serializeImageManifest = serializeImageManifest;
+    }
+
+    /**
+     *
+     * @return baseUrl String
+     */
+    @JsonProperty
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    /**
+     *
+     * @param baseUrl String
+     */
+    @JsonProperty
+    public void setBaseUrl(final String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
+    /**
+     *
+     * @return imageServiceBaseUrl String
+     */
+    @JsonProperty
+    public String getImageServiceBaseUrl() {
+        return imageServiceBaseUrl;
+    }
+
+    /**
+     *
+     * @param imageServiceBaseUrl String
+     */
+    @JsonProperty
+    public void setImageServiceBaseUrl(final String imageServiceBaseUrl) {
+        this.imageServiceBaseUrl = imageServiceBaseUrl;
+    }
+
+    /**
+     *
+     * @return viewerUrl
+     */
+    @JsonProperty
+    public String getViewerUrl() {
+        return viewerUrl;
+    }
+
+    /**
+     *
+     * @param viewerUrl String
+     */
+    @JsonProperty
+    public void setViewerUrl(final String viewerUrl) {
+        this.viewerUrl = viewerUrl;
+    }
+
+    /**
+     *
+     * @return katalogUrl String
+     */
+    @JsonProperty
+    public String getKatalogUrl() {
+        return katalogUrl;
+    }
+
+    /**
+     *
+     * @param katalogUrl String
+     */
+    @JsonProperty
+    public void setKatalogUrl(final String katalogUrl) {
+        this.katalogUrl = katalogUrl;
+    }
+
+    /**
+     *
+     * @return imageServiceUriPrefix
+     */
+    @JsonProperty
+    public String getImageServiceImageDirPrefix() {
+        return imageServiceImageDirPrefix;
+    }
+
+    /**
+     *
+     * @param imageServiceImageDirPrefix String
+     */
+    @JsonProperty
+    public void setImageServiceImageDirPrefix(final String imageServiceImageDirPrefix) {
+        this.imageServiceImageDirPrefix = imageServiceImageDirPrefix;
+    }
+
+    /**
+     *
+     * @return imageServiceFileExtension
+     */
+    @JsonProperty
+    public String getImageServiceFileExtension() {
+        return imageServiceFileExtension;
+    }
+
+    /**
+     *
+     * @param imageServiceFileExtension String
+     */
+    @JsonProperty
+    public void setImageServiceFileExtension(final String imageServiceFileExtension) {
+        this.imageServiceFileExtension = imageServiceFileExtension;
+    }
+
+    /**
+     *
+     * @return manifestFilename
+     */
+    @JsonProperty
+    public String getManifestFilename() {
+        return manifestFilename;
+    }
+
+    /**
+     *
+     * @param manifestFilename String
+     */
+    @JsonProperty
+    public void setManifestFilename(final String manifestFilename) {
+        this.manifestFilename = manifestFilename;
+    }
+
+    /**
+     *
+     * @return defaultSequenceId
+     */
+    @JsonProperty
+    public String getDefaultSequenceId() {
+        return defaultSequenceId;
+    }
+
+    /**
+     *
+     * @param defaultSequenceId String
+     */
+    @JsonProperty
+    public void setDefaultSequenceId(final String defaultSequenceId) {
+        this.defaultSequenceId = defaultSequenceId;
+    }
+
+    /**
+     *
+     * @return canvasContext
+     */
+    @JsonProperty
+    public String getCanvasContext() {
+        return canvasContext;
+    }
+
+    /**
+     *
+     * @param canvasContext String
+     */
+    @JsonProperty
+    public void setCanvasContext(final String canvasContext) {
+        this.canvasContext = canvasContext;
+    }
+
+    /**
+     *
+     * @return rangeContext
+     */
+    @JsonProperty
+    public String getRangeContext() {
+        return rangeContext;
+    }
+
+    /**
+     *
+     * @param rangeContext String
+     */
+    @JsonProperty
+    public void setRangeContext(final String rangeContext) {
+        this.rangeContext = rangeContext;
+    }
+
+    /**
+     *
+     * @return license
+     */
+    @JsonProperty
+    public String getLicense() {
+        return license;
+    }
+
+    /**
+     *
+     * @param license String
+     */
+    @JsonProperty
+    public void setLicense(final String license) {
+        this.license = license;
+    }
+
+    /**
+     *
+     * @return attributionLicenseNote
+     */
+    @JsonProperty
+    public String getAttributionLicenseNote() {
+        return attributionLicenseNote;
+    }
+
+    /**
+     *
+     * @param attributionLicenseNote String
+     */
+    @JsonProperty
+    public void setAttributionLicenseNote(final String attributionLicenseNote) {
+        this.attributionLicenseNote = attributionLicenseNote;
+    }
+
+    /**
+     *
+     * @return attributionKey
+     */
+    @JsonProperty
+    public String getAttributionKey() {
+        return attributionKey;
+    }
+
+    /**
+     *
+     * @param attributionKey String
+     */
+    @JsonProperty
+    public void setAttributionKey(final String attributionKey) {
+        this.attributionKey = attributionKey;
+    }
+
+    /**
+     *
+     * @return anchorKey
+     */
+    @JsonProperty
+    public String getAnchorKey() {
+        return anchorKey;
+    }
+
+    /**
+     *
+     * @param anchorKey String
+     */
+    @JsonProperty
+    public void setAnchorKey(final String anchorKey) {
+        this.anchorKey = anchorKey;
+    }
+
+    /**
+     *
+     * @return manifestHttpDir
+     */
+    @JsonProperty
+    public String getManifestHttpDir() {
+        return manifestHttpDir;
+    }
+
+    /**
+     *
+     * @param manifestHttpDir String
+     */
+    @JsonProperty
+    public void setManifestHttpDir(final String manifestHttpDir) {
+        this.manifestHttpDir = manifestHttpDir;
+    }
+
+    /**
+     *
+     * @return imageManifestOutputDir
+     */
+    @JsonProperty
+    public String getImageManifestOutputDir() {
+        return imageManifestOutputDir;
+    }
+
+    /**
+     *
+     * @param imageManifestOutputDir String
+     */
+    @JsonProperty
+    public void setImageManifestOutputDir(final String imageManifestOutputDir) {
+        this.imageManifestOutputDir = imageManifestOutputDir;
     }
 }

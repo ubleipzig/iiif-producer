@@ -40,19 +40,18 @@ import org.junit.jupiter.api.Test;
  */
 class StructuresTest {
 
-    private static String sourceFile;
+    private static String xmlFile;
 
     @BeforeAll
     static void testBuildStructures() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
-        sourceFile = path + "/xml-doc/src/test/resources/mets/MS_85.xml";
+        xmlFile = path + "/xml-doc/src/test/resources/mets/MS_85.xml";
     }
 
     @Test
     void buildStructures() {
         final Config config = new Config();
-        config.setInputFile(sourceFile);
-        config.setTitle("BlhDie_004285964");
+        config.setXmlFile(xmlFile);
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
         final MetsAccessor mets = new MetsImpl(config);
@@ -63,8 +62,7 @@ class StructuresTest {
     @Test
     void buildTopStructure() {
         final Config config = new Config();
-        config.setInputFile(sourceFile);
-        config.setTitle("BlhDie_004285964");
+        config.setXmlFile(xmlFile);
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
         final MetsAccessor mets = new MetsImpl(config);
@@ -75,8 +73,7 @@ class StructuresTest {
     @Test
     void testSetStructuresIfSet() {
         final Config config = new Config();
-        config.setInputFile(sourceFile);
-        config.setTitle("BlhDie_004285964");
+        config.setXmlFile(xmlFile);
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
         final MetsAccessor mets = new MetsImpl(config);
@@ -93,8 +90,7 @@ class StructuresTest {
     @Test
     void testSetStructuresDoNotSet() {
         final Config config = new Config();
-        config.setInputFile(sourceFile);
-        config.setTitle("BlhDie_004285964");
+        config.setXmlFile(xmlFile);
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
         final MetsAccessor mets = new MetsImpl(config);

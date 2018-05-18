@@ -35,10 +35,10 @@ public class AnchorFileTest {
     static void setup() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String sourceFile = path + "/xml-doc/src/test/resources/mets/BntItin_021340072.xml";
-        config.setInputFile(sourceFile);
-        config.setTitle("BntItin_021340072");
+        config.setXmlFile(sourceFile);
         config.setOutputFile("/tmp/test.json");
         config.setViewId("004285964");
+        config.setAnchorKey("Part of");
     }
 
     @Test
