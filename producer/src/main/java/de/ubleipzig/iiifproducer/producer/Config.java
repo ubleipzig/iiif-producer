@@ -41,6 +41,9 @@ public class Config {
     private String viewerUrl;
     @NotNull
     private String katalogUrl;
+
+    @NotNull
+    Boolean isUBLImageService;
     @NotNull
     private String imageServiceBaseUrl;
     @NotNull
@@ -202,6 +205,24 @@ public class Config {
     @JsonProperty
     public void setKatalogUrl(final String katalogUrl) {
         this.katalogUrl = katalogUrl;
+    }
+
+    /**
+     *
+     * @return isUBLImageService
+     */
+    @JsonProperty
+    public Boolean getIsUBLImageService() {
+        return isUBLImageService;
+    }
+
+    /**
+     *
+     * @param isUBLImageService Boolean
+     */
+    @JsonProperty
+    public void setIsUBLImageService(final Boolean isUBLImageService) {
+        this.isUBLImageService = isUBLImageService;
     }
 
     /**

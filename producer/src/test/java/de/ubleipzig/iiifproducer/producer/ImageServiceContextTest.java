@@ -30,9 +30,9 @@ import org.junit.jupiter.api.Test;
 public class ImageServiceContextTest {
 
     @Test
-        //@Disabled
     void testBuildImageServiceContext() {
         final Config config = new Config();
+        config.setIsUBLImageService(true);
         config.setViewId("12345");
         config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=");
         config.setImageServiceImageDirPrefix("/j2k/0000/");

@@ -36,7 +36,6 @@ bin/producer -x xmlFile -i imageSourceDir-o outputfile -v view_identifier -c con
 | xmlFile  | A METS/MODS xml file path | /MS_187.xml |
 | imageSourceDir | the image source directory | /images |
 | outputfile | An JSON-LD output file path | /output.json |
-| archive_package | The name of the archive package | MS_187 |
 | view_identifier | The name of the IIIF viewer identifer | 004285964 | 
 | -c, --config | a yaml configuration File | etc/producer-config.yml |
 | -s, --serializeImageManifest | serialize image manifest | |
@@ -45,7 +44,7 @@ bin/producer -x xmlFile -i imageSourceDir-o outputfile -v view_identifier -c con
 * See [image](https://github.com/ubleipzig/image) for information about the image metadata creation process.
 * the image.metadata generator supports reading dimensions from JP2 and JPX files
 
-the default output location for the manifest when using the `-s` option is the imageSourceDir.
+the default output location for the manifest when using the `-s` option is the `imageSourceDir`.
 It will have a filename like this `image-manifest-185c961d-774c-5540-a31d-c0bca454c47d` 
    
 ## Java
@@ -53,16 +52,22 @@ It will have a filename like this `image-manifest-185c961d-774c-5540-a31d-c0bca4
 
 ## Local Testing
 
+* change configuration settings
+
+ ```yaml
+ isUBLImageService: false
+ imageServiceBaseUrl: "http://localhost:5000/iiif/"
+ imageServiceFileExtension: ".tif"
+ ```
 ```bash
-$ cp {package image directory} /mnt/serialization/binaries/
-$ cp {package metadatafile} /mnt/serialization/binaries
+$ cp {$imageSourceDir} /mnt/serialization/binaries/{$viewId}
 $ docker-compose up
 ```
 A Mirador instance is available at 
 `http://localhost:9000`
 
 The image service URI defaults to:
- * `http://localhost:5000/iiif/{package image directory}/{file name.tif}`
+ * `http://localhost:5000/iiif/{viewId}/{file name.tif}`
 
 * If your package images are not pyramidal tifs, then run these commands in the image directory:
 ```bash
@@ -72,6 +77,6 @@ $ rename 's/.ptif$/.tif/' *.ptif
 ```
 * Note: generated manifests can published to `/mnt/http-server`
 ```bash
-./producer -i /mnt/serialization/binaries/{$your_inputfile}.xml -o /mnt/http-server/{$your_outputfile.jsonld} -t {$kitodo_archive_name} -v {package image directory}
+$ bin/producer -x xmlFile -i /mnt/serialization/binaries/{$imageSoureDir} -o /mnt/http-server/outputfile -v {$imageSoureDir} -c configFile [-s]
 ``` 
 The manifest URI will be `http://localhost:3000/{$your_outputfile.jsonld}`

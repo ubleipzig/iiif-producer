@@ -35,6 +35,7 @@ public class IRIBuilderTest {
     @Test
     void testBuildServiceIRI() {
         final Config config = new Config();
+        config.setIsUBLImageService(true);
         config.setViewId("0000004057");
         config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=");
         config.setImageServiceImageDirPrefix("/j2k/0000/");
@@ -46,6 +47,21 @@ public class IRIBuilderTest {
         assertNotNull(serviceIri);
         assertEquals("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv" + "" + ""
                 + ".fcgi?iiif=/j2k/0000/0040/0000004057/00000002.jpx", serviceIri.getIRIString());
+    }
+
+    @Test
+    void testBuildNonDomainServiceIRI() {
+        final Config config = new Config();
+        config.setIsUBLImageService(false);
+        config.setViewId("0000004057");
+        config.setImageServiceBaseUrl("http://localhost:5000/iiif/");
+        config.setImageServiceFileExtension(".tif");
+        final IRIBuilder iriBuilder = new IRIBuilder(config);
+        final String imageServiceContext = iriBuilder.buildImageServiceContext();
+        final String resourceIdString = "00000002";
+        final IRI serviceIri = iriBuilder.buildServiceIRI(imageServiceContext, resourceIdString);
+        assertNotNull(serviceIri);
+        assertEquals("http://localhost:5000/iiif/0000004057/00000002.tif", serviceIri.getIRIString());
     }
 
     @Test

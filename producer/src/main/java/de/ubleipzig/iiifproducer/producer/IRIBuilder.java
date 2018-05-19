@@ -79,9 +79,11 @@ public final class IRIBuilder {
         while (newImageDir.length() < 4) {
             newImageDir.insert(0, "0");
         }
-
-        return config.getImageServiceBaseUrl() + imageDirPrefix + newImageDir + separator + config.getViewId();
-        //return SERVICE_BASE + IMAGE_DIR + viewId;
+        if (config.getIsUBLImageService()) {
+            return config.getImageServiceBaseUrl() + imageDirPrefix + newImageDir + separator + config.getViewId();
+        } else {
+            return config.getImageServiceBaseUrl() + config.getViewId();
+        }
     }
 
     private IRIBuilder() {
