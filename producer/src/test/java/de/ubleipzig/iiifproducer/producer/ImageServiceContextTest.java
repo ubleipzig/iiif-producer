@@ -35,7 +35,7 @@ public class ImageServiceContextTest {
         final Config config = new Config();
         config.setViewId("12345");
         config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=");
-        config.setImageServiceImageDirPrefix("/j2k/0000/0000/");
+        config.setImageServiceImageDirPrefix("/j2k/0000/");
         final IRIBuilder iriBuilder = new IRIBuilder(config);
         final String imageServiceContext = iriBuilder.buildImageServiceContext();
         assertEquals("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=/j2k/0000/0123/12345",

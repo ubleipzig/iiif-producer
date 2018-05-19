@@ -61,9 +61,10 @@ public class ImageManifestTest {
         final String imageSourceDir = ImageManifestTest.class.getResource("/jp2").getPath();
         config.setXmlFile(xmlFile);
         config.setSerializeImageManifest(false);
+        config.setImageSourceDir(imageSourceDir);
         final IIIFProducer producer = new IIIFProducer(config);
         final List<ImageDimensions> dimlist = producer.getImageDimensions(imageSourceDir, null);
-        assertEquals("00000041.jpx", dimlist.get(1).getFilename());
+        assertEquals("00000039.jpx", dimlist.get(1).getFilename());
         assertEquals("2747", dimlist.get(1).getHeight().toString());
     }
 

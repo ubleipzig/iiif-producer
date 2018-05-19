@@ -11,17 +11,24 @@ A CLI tool that generates IIIF Presentation 2.1 Manifests from METS/MODS (produc
 ## Test
 `$ gradle test`
 
+## Requirements
+* imageMagick with openjp2 delegate
+
+See `buildtools/src/install/install-openjpeg.sh`
+
 ## Install
 * find distribution archive in `producer/build/distributions`
 * extract archive
 ```bash
-$ cd producer-{$version}/bin
-$ chmod +x producer
+$ cd producer-{$version}
+$ chmod +x bin/producer
 ```
+## Configuration
+See `etc/producer-config.yml`
 
 ## Usage
 ```bash
-producer -x xmlFile -i imageSourceDir-o outputfile -t archive_package -v view_identifier [-c] configFile [-s]
+bin/producer -x xmlFile -i imageSourceDir-o outputfile -v view_identifier -c configFile [-s]
 ```
 
 | Argument | Description | Example     |
@@ -31,30 +38,15 @@ producer -x xmlFile -i imageSourceDir-o outputfile -t archive_package -v view_id
 | outputfile | An JSON-LD output file path | /output.json |
 | archive_package | The name of the archive package | MS_187 |
 | view_identifier | The name of the IIIF viewer identifer | 004285964 | 
-| -c, --config | a yaml configuration File | /producer-config.yml |
+| -c, --config | a yaml configuration File | etc/producer-config.yml |
 | -s, --serializeImageManifest | serialize image manifest | |
 
 ## Image Dimension Manifest
 * See [image](https://github.com/ubleipzig/image) for information about the image metadata creation process.
 * the image.metadata generator supports reading dimensions from JP2 and JPX files
 
-the default ouput location for the manifest when using the `-s` option is the base directory where the xml is located.
+the default output location for the manifest when using the `-s` option is the imageSourceDir.
 It will have a filename like this `image-manifest-185c961d-774c-5540-a31d-c0bca454c47d` 
-
- 
-
-## Configuration Dependencies
-* the Image Service Identifier assignment may have to be reconfigured for your infrastructure. (see Constants)
-* the metadata package must look like this:
-
-```
-package
-|--metadata_12345.xml
-+--metadata_12345_tif
-    |--00000001.tif
-    |--00000002.tif
-    |...
-```    
    
 ## Java
 * This requires Java 8 or higher
@@ -69,7 +61,7 @@ $ docker-compose up
 A Mirador instance is available at 
 `http://localhost:9000`
 
-The test branch image service URI defaults to:
+The image service URI defaults to:
  * `http://localhost:5000/iiif/{package image directory}/{file name.tif}`
 
 * If your package images are not pyramidal tifs, then run these commands in the image directory:

@@ -4,7 +4,7 @@ viewerUrl: "https://digital.ub.uni-leipzig.de/object/viewid/"
 katalogUrl: "https://katalog.ub.uni-leipzig.de/urn/"
 
 imageServiceBaseUrl: "https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif="
-imageServiceImageDirPrefix: "/j2k/0000/0000/"
+imageServiceImageDirPrefix: "/j2k/0000/"
 imageServiceFileExtension: ".jpx"
 
 manifestFilename: "manifest.json"

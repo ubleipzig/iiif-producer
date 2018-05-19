@@ -30,7 +30,6 @@ import javax.validation.constraints.NotNull;
 public class Config {
 
     private String viewId;
-    private String title;
     private String xmlFile;
     private String outputFile;
     private Boolean serializeImageManifest;
@@ -142,7 +141,6 @@ public class Config {
     }
 
     /**
-     *
      * @return baseUrl String
      */
     @JsonProperty
@@ -151,7 +149,6 @@ public class Config {
     }
 
     /**
-     *
      * @param baseUrl String
      */
     @JsonProperty
@@ -160,7 +157,6 @@ public class Config {
     }
 
     /**
-     *
      * @return imageServiceBaseUrl String
      */
     @JsonProperty
@@ -169,7 +165,6 @@ public class Config {
     }
 
     /**
-     *
      * @param imageServiceBaseUrl String
      */
     @JsonProperty
@@ -178,7 +173,6 @@ public class Config {
     }
 
     /**
-     *
      * @return viewerUrl
      */
     @JsonProperty
@@ -187,7 +181,6 @@ public class Config {
     }
 
     /**
-     *
      * @param viewerUrl String
      */
     @JsonProperty
@@ -196,7 +189,6 @@ public class Config {
     }
 
     /**
-     *
      * @return katalogUrl String
      */
     @JsonProperty
@@ -205,7 +197,6 @@ public class Config {
     }
 
     /**
-     *
      * @param katalogUrl String
      */
     @JsonProperty
@@ -214,7 +205,6 @@ public class Config {
     }
 
     /**
-     *
      * @return imageServiceUriPrefix
      */
     @JsonProperty
@@ -223,7 +213,6 @@ public class Config {
     }
 
     /**
-     *
      * @param imageServiceImageDirPrefix String
      */
     @JsonProperty
@@ -232,7 +221,6 @@ public class Config {
     }
 
     /**
-     *
      * @return imageServiceFileExtension
      */
     @JsonProperty
@@ -241,7 +229,6 @@ public class Config {
     }
 
     /**
-     *
      * @param imageServiceFileExtension String
      */
     @JsonProperty
@@ -250,7 +237,6 @@ public class Config {
     }
 
     /**
-     *
      * @return manifestFilename
      */
     @JsonProperty
@@ -259,7 +245,6 @@ public class Config {
     }
 
     /**
-     *
      * @param manifestFilename String
      */
     @JsonProperty
@@ -268,7 +253,6 @@ public class Config {
     }
 
     /**
-     *
      * @return defaultSequenceId
      */
     @JsonProperty
@@ -277,7 +261,6 @@ public class Config {
     }
 
     /**
-     *
      * @param defaultSequenceId String
      */
     @JsonProperty
@@ -286,7 +269,6 @@ public class Config {
     }
 
     /**
-     *
      * @return canvasContext
      */
     @JsonProperty
@@ -295,7 +277,6 @@ public class Config {
     }
 
     /**
-     *
      * @param canvasContext String
      */
     @JsonProperty
@@ -304,7 +285,6 @@ public class Config {
     }
 
     /**
-     *
      * @return rangeContext
      */
     @JsonProperty
@@ -313,7 +293,6 @@ public class Config {
     }
 
     /**
-     *
      * @param rangeContext String
      */
     @JsonProperty
@@ -322,7 +301,6 @@ public class Config {
     }
 
     /**
-     *
      * @return license
      */
     @JsonProperty
@@ -331,7 +309,6 @@ public class Config {
     }
 
     /**
-     *
      * @param license String
      */
     @JsonProperty
@@ -340,7 +317,6 @@ public class Config {
     }
 
     /**
-     *
      * @return attributionLicenseNote
      */
     @JsonProperty
@@ -349,7 +325,6 @@ public class Config {
     }
 
     /**
-     *
      * @param attributionLicenseNote String
      */
     @JsonProperty
@@ -358,7 +333,6 @@ public class Config {
     }
 
     /**
-     *
      * @return attributionKey
      */
     @JsonProperty
@@ -367,7 +341,6 @@ public class Config {
     }
 
     /**
-     *
      * @param attributionKey String
      */
     @JsonProperty
@@ -376,7 +349,6 @@ public class Config {
     }
 
     /**
-     *
      * @return anchorKey
      */
     @JsonProperty
@@ -385,7 +357,6 @@ public class Config {
     }
 
     /**
-     *
      * @param anchorKey String
      */
     @JsonProperty
@@ -394,7 +365,6 @@ public class Config {
     }
 
     /**
-     *
      * @return manifestHttpDir
      */
     @JsonProperty
@@ -403,7 +373,6 @@ public class Config {
     }
 
     /**
-     *
      * @param manifestHttpDir String
      */
     @JsonProperty
@@ -412,7 +381,6 @@ public class Config {
     }
 
     /**
-     *
      * @return imageManifestOutputDir
      */
     @JsonProperty
@@ -421,7 +389,6 @@ public class Config {
     }
 
     /**
-     *
      * @param imageManifestOutputDir String
      */
     @JsonProperty

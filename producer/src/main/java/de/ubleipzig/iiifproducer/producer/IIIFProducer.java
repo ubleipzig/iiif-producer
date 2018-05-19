@@ -209,11 +209,13 @@ public class IIIFProducer implements ManifestBuilderProcess {
             final TemplateResource resource = new TemplateResource();
             resource.setResourceLabel(label);
 
-            final String fileID = mets.getFile(div);
-            logger.debug("File Id: {}", fileID);
-            final String fileName = mets.getHref(fileID);
-            logger.debug("File Name: {}", fileName);
+            //final String fileID = mets.getFile(div);
+            //logger.debug("File Id: {}", fileID);
+            //final String fileName = mets.getHref(fileID);
+            //logger.debug("File Name: {}", fileName);
             final ImageDimensions dimension = dimensions.get(atomicInteger.get());
+            final String fileName = dimension.getFilename();
+            logger.debug("File Name: {}", fileName);
             setImageDimensions(dimension, canvas, resource);
 
             //get resource context from config
@@ -229,7 +231,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
             //set Canvas Id
             canvas.setCanvasId(canvasIri.getIRIString());
             //resource IRI (original source file extension required by client)
-            //TODO coordinate with dereferenceable location / confirm file extention
+            //TODO coordinate with dereferenceable location / confirm file extension
             final String resourceIdString = resourceContext + separator + resourceFileId + ".jpg";
             //cast resource as IRI (failsafe)
             final IRI resourceIri = iriBuilder.buildResourceIRI(resourceIdString);

@@ -73,18 +73,14 @@ public final class IRIBuilder {
      */
     public String buildImageServiceContext() {
         final int viewIdInt = parseInt(config.getViewId());
-        final String imageDir = config.getImageServiceImageDirPrefix();
+        final String imageDirPrefix = config.getImageServiceImageDirPrefix();
         final StringBuilder newImageDir = new StringBuilder(Integer.toString(viewIdInt / 100));
 
         while (newImageDir.length() < 4) {
             newImageDir.insert(0, "0");
         }
 
-        final String hack =
-                imageDir.split(separator)[0] + separator + imageDir.split(separator)[1] + separator + imageDir.split(
-                        separator)[2];
-
-        return config.getImageServiceBaseUrl() + hack + separator + newImageDir + separator + config.getViewId();
+        return config.getImageServiceBaseUrl() + imageDirPrefix + newImageDir + separator + config.getViewId();
         //return SERVICE_BASE + IMAGE_DIR + viewId;
     }
 

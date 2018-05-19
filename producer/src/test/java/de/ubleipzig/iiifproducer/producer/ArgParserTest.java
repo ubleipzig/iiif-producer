@@ -35,6 +35,7 @@ class ArgParserTest {
     private static String pid;
     private static String testFileSource1;
     private static String imageSourceDir;
+    private static String imageSourceDir2;
     private static String configFilePath;
 
     private ArgParser parser;
@@ -42,6 +43,7 @@ class ArgParserTest {
     @BeforeAll
     static void init() {
         imageSourceDir = ArgParserTest.class.getResource("/MS_187_tif").getPath();
+        imageSourceDir2 = ArgParserTest.class.getResource("/jp2").getPath();
         testFileSource1 = ArgParserTest.class.getResource("/MS_187.xml").getPath();
         configFilePath = ArgParserTest.class.getResource("/producer-config-test.yml").getPath();
         pid = "producer-test-" + UUID.randomUUID().toString();
@@ -52,7 +54,17 @@ class ArgParserTest {
         parser = new ArgParser();
         final String[] args;
         args = new String[]{"-v", "004285964", "-i", imageSourceDir, "-x", testFileSource1, "-o",
-                "/tmp/" + pid + ".json"};
+                "/tmp/" + pid + ".json", "-c", configFilePath};
+        final ManifestBuilderProcess processor = parser.init(args);
+        processor.run();
+    }
+
+    @Test
+    void testRequiredArgs2() {
+        parser = new ArgParser();
+        final String[] args;
+        args = new String[]{"-v", "004285964", "-i", imageSourceDir2, "-x", testFileSource1, "-o",
+                "/tmp/" + pid + ".json", "-c", configFilePath};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
     }
@@ -61,7 +73,7 @@ class ArgParserTest {
     void testOptionalArgs() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-v", "021340072", "-i", imageSourceDir, "-x", testFileSource1, "-o",
+        args = new String[]{"-v", "021340072", "-i", imageSourceDir2, "-x", testFileSource1, "-o",
                 "/tmp/" + pid + ".json", "-c", configFilePath, "-s"};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();

@@ -23,10 +23,8 @@ import static java.lang.System.out;
 import static org.apache.commons.cli.Option.builder;
 import static org.slf4j.LoggerFactory.getLogger;
 
-import io.dropwizard.configuration.ConfigurationException;
-import io.dropwizard.configuration.YamlConfigurationFactory;
-import io.dropwizard.jackson.Jackson;
-import io.dropwizard.jersey.validation.Validators;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +63,7 @@ class ArgParser {
 
         configOptions.addOption(
                 Option.builder("c").longOpt("config").hasArg(true).numberOfArgs(1).argName("config").desc(
-                        "Path to config file").required(false).build());
+                        "Path to config file").required(true).build());
 
         configOptions.addOption(
                 builder("s").longOpt("serializeImageManifest").desc("serializeImageManifest").required(false).build());
@@ -75,7 +73,7 @@ class ArgParser {
      * Parse command line options based on the provide Options.
      *
      * @param configOptions valid set of Options
-     * @param args command line arguments
+     * @param args          command line arguments
      * @return the list of option and values
      * @throws ParseException if invalid/missing option is found
      */
@@ -109,8 +107,7 @@ class ArgParser {
     }
 
     private Config parseConfigFileOptions(final CommandLine cmd) {
-        final String defaultConfigFile = ArgParser.class.getResource("/producer-config.yml").getPath();
-        return retrieveConfig(new File(cmd.getOptionValue('c', defaultConfigFile)));
+        return retrieveConfig(new File(cmd.getOptionValue('c')));
     }
 
     /**
@@ -125,9 +122,9 @@ class ArgParser {
         }
         logger.debug("Loading configuration file: {}", configFile);
         try {
-            return new YamlConfigurationFactory<>(
-                    Config.class, Validators.newValidator(), Jackson.newObjectMapper(), "").build(configFile);
-        } catch (IOException | ConfigurationException e) {
+            final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+            return mapper.readValue(configFile, Config.class);
+        } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
     }

@@ -37,7 +37,7 @@ public class IRIBuilderTest {
         final Config config = new Config();
         config.setViewId("0000004057");
         config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=");
-        config.setImageServiceImageDirPrefix("/j2k/0000/0000/");
+        config.setImageServiceImageDirPrefix("/j2k/0000/");
         config.setImageServiceFileExtension(".jpx");
         final IRIBuilder iriBuilder = new IRIBuilder(config);
         final String imageServiceContext = iriBuilder.buildImageServiceContext();

@@ -1952,6 +1952,15 @@
             <mets:div ID="PHYS_0001" ORDER="1" ORDERLABEL="Vorderdeckel" TYPE="page">
                 <mets:fptr FILEID="FILE_0001_ORIGINAL"/>
             </mets:div>
+            <mets:div ID="PHYS_0002" ORDER="2" ORDERLABEL="Vorderspiegel" TYPE="page">
+                <mets:fptr FILEID="FILE_0002_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0003" ORDER="3" ORDERLABEL="1r" TYPE="page">
+                <mets:fptr FILEID="FILE_0003_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0004" ORDER="4" ORDERLABEL="1v" TYPE="page">
+                <mets:fptr FILEID="FILE_0004_ORIGINAL"/>
+            </mets:div>
         </mets:div>
     </mets:structMap>
     <mets:structLink>
