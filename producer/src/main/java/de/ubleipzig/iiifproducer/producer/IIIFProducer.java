@@ -209,10 +209,6 @@ public class IIIFProducer implements ManifestBuilderProcess {
             final TemplateResource resource = new TemplateResource();
             resource.setResourceLabel(label);
 
-            //final String fileID = mets.getFile(div);
-            //logger.debug("File Id: {}", fileID);
-            //final String fileName = mets.getHref(fileID);
-            //logger.debug("File Name: {}", fileName);
             final ImageDimensions dimension = dimensions.get(atomicInteger.get());
             final String fileName = dimension.getFilename();
             logger.debug("File Name: {}", fileName);
@@ -238,7 +234,6 @@ public class IIIFProducer implements ManifestBuilderProcess {
             //set resourceID
             resource.setResourceId(resourceIri.getIRIString());
             //set Image Service
-            //TODO fix IIIP image service IRI format
             final String imageServiceContext = iriBuilder.buildImageServiceContext();
             final IRI serviceIRI = iriBuilder.buildServiceIRI(imageServiceContext, resourceFileId);
             resource.setService(new TemplateService(serviceIRI.getIRIString()));

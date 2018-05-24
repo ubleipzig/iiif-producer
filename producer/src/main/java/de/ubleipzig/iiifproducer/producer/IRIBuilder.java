@@ -20,6 +20,10 @@ package de.ubleipzig.iiifproducer.producer;
 
 import static java.io.File.separator;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.valueOf;
+import static java.lang.String.format;
+
+import java.io.File;
 
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.RDF;
@@ -73,17 +77,27 @@ public final class IRIBuilder {
      */
     public String buildImageServiceContext() {
         final int viewIdInt = parseInt(config.getViewId());
+        final String v = format("%010d", viewIdInt);
         final String imageDirPrefix = config.getImageServiceImageDirPrefix();
-        final StringBuilder newImageDir = new StringBuilder(Integer.toString(viewIdInt / 100));
-
-        while (newImageDir.length() < 4) {
-            newImageDir.insert(0, "0");
-        }
+        final int part1 = parseInt(v.substring(0,4));
+        final String first = format("%04d", part1);
+        final int part2 = parseInt(v.substring(5,8));
+        final String second = format("%04d", part2);
         if (config.getIsUBLImageService()) {
-            return config.getImageServiceBaseUrl() + imageDirPrefix + newImageDir + separator + config.getViewId();
+            return config.getImageServiceBaseUrl() + imageDirPrefix + first + separator + second + separator + v;
         } else {
             return config.getImageServiceBaseUrl() + config.getViewId();
         }
+    }
+
+    /**
+     * @param physical String
+     * @return String
+     */
+    public String buildCanvasIRIfromPhysical(final String physical) {
+        final String resourceContext = config.getResourceContext();
+        final Integer newId = valueOf(physical.substring(physical.indexOf("_") + 1));
+        return resourceContext + config.getCanvasContext() + File.separator + format("%08d", newId);
     }
 
     private IRIBuilder() {

@@ -37,16 +37,16 @@ public class IRIBuilderTest {
         final Config config = new Config();
         config.setIsUBLImageService(true);
         config.setViewId("0000004057");
-        config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=");
-        config.setImageServiceImageDirPrefix("/j2k/0000/");
+        config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/iiif");
+        config.setImageServiceImageDirPrefix("/j2k/");
         config.setImageServiceFileExtension(".jpx");
         final IRIBuilder iriBuilder = new IRIBuilder(config);
         final String imageServiceContext = iriBuilder.buildImageServiceContext();
         final String resourceIdString = "00000002";
         final IRI serviceIri = iriBuilder.buildServiceIRI(imageServiceContext, resourceIdString);
         assertNotNull(serviceIri);
-        assertEquals("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv" + "" + ""
-                + ".fcgi?iiif=/j2k/0000/0040/0000004057/00000002.jpx", serviceIri.getIRIString());
+        assertEquals(
+                "https://iiif.ub.uni-leipzig.de/iiif/j2k/0000/0040/0000004057/00000002.jpx", serviceIri.getIRIString());
     }
 
     @Test
@@ -69,8 +69,8 @@ public class IRIBuilderTest {
         final Config config = new Config();
         config.setBaseUrl("http://example.org/");
         config.setViewId("12345");
-        config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=");
-        config.setImageServiceImageDirPrefix("/j2k/0000/0000/");
+        config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/iiif");
+        config.setImageServiceImageDirPrefix("/j2k/");
         config.setCanvasContext("/canvas");
         final IRIBuilder iriBuilder = new IRIBuilder(config);
         final String viewId = "12345";
@@ -78,5 +78,17 @@ public class IRIBuilderTest {
         final String resourceIdString = config.getBaseUrl() + viewId + config.getCanvasContext() + "/" + resourceFileId;
         final IRI canvasIRI = iriBuilder.buildCanvasIRI(resourceIdString);
         assertEquals("http://example.org/12345/canvas/00000001", canvasIRI.getIRIString());
+    }
+
+    @Test
+    void testBuildImageServiceContext() {
+        final Config config = new Config();
+        config.setIsUBLImageService(true);
+        config.setViewId("12345");
+        config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/iiif");
+        config.setImageServiceImageDirPrefix("/j2k/");
+        final IRIBuilder iriBuilder = new IRIBuilder(config);
+        final String imageServiceContext = iriBuilder.buildImageServiceContext();
+        assertEquals("https://iiif.ub.uni-leipzig.de/iiif/j2k/0000/0123/0000012345", imageServiceContext);
     }
 }

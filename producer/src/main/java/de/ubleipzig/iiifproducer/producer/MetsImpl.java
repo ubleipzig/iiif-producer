@@ -148,7 +148,7 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public List<String> getCanvases(final String logical) {
-        final IRIUtils iri = new IRIUtils(this.config);
+        final IRIBuilder iri = new IRIBuilder(this.config);
         final List<String> canvases = new ArrayList<>();
         final List<String> physicals = xlinkmap.get(logical).stream().map(MetsData.Xlink::getXLinkTo).collect(toList());
         physicals.forEach(physical -> {
