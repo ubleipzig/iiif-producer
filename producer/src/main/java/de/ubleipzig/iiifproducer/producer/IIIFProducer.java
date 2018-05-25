@@ -89,7 +89,8 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
     @Override
     public void setRelated(final TemplateManifest body, final String urn) {
-        final String viewId = config.getViewId();
+        final Integer viewIdInput = Integer.valueOf(config.getViewId());
+        final String viewId = format("%010d", viewIdInput);
         final ArrayList<String> related = new ArrayList<>();
         related.add(config.getKatalogUrl() + urn);
         related.add(config.getViewerUrl() + viewId);
