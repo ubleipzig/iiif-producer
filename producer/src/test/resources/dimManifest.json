@@ -1,0 +1,173 @@
+{
+  "collection" : "http://iiif.ub.uni-leipzig.de/0000000504/manifest.json",
+  "images" : [
+    {
+      "filename" : "00000001.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000002.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000003.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000004.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000005.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000006.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000007.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000008.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000009.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000010.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000011.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000012.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000013.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000014.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000015.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000016.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000017.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000018.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000019.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000020.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000021.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000022.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000023.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000024.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000025.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000026.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    },
+    {
+      "filename" : "00000027.jpx",
+      "digest" : null,
+      "height" : 1767,
+      "width" : 1473
+    },
+    {
+      "filename" : "00000028.jpx",
+      "digest" : null,
+      "height" : 1784,
+      "width" : 1440
+    }
+  ]
+}

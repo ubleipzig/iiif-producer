@@ -67,6 +67,9 @@ class ArgParser {
 
         configOptions.addOption(
                 builder("s").longOpt("serializeImageManifest").desc("serializeImageManifest").required(false).build());
+
+        configOptions.addOption(
+                builder("u").longOpt("imageManifestUrl").hasArg(true).desc("ImageManifestUrl").required(false).build());
     }
 
     /**
@@ -141,11 +144,14 @@ class ArgParser {
         final String xmlSource = cmd.getOptionValue("x");
         final String imageSourceDir = cmd.getOptionValue("i");
         final String outputFile = cmd.getOptionValue("o");
+        final String imageManifestUrl = cmd.getOptionValue("u");
+
         config.setViewId(viewId);
         config.setXmlFile(xmlSource);
         config.setImageSourceDir(imageSourceDir);
         config.setOutputFile(outputFile);
         config.setSerializeImageManifest(cmd.hasOption("s"));
+        config.setImageManifestUrl(imageManifestUrl);
         return config;
     }
 

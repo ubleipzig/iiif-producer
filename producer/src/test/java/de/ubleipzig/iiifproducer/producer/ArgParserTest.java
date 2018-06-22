@@ -20,6 +20,8 @@ package de.ubleipzig.iiifproducer.producer;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -53,8 +55,8 @@ class ArgParserTest {
     void testRequiredArgs1() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-v", "004285964", "-i", imageSourceDir, "-x", testFileSource1, "-o",
-                "/tmp/" + pid + ".json", "-c", configFilePath};
+        args = new String[]{"-v", "004285964", "-i", imageSourceDir, "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
+                ".json", "-c", configFilePath};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
     }
@@ -63,8 +65,8 @@ class ArgParserTest {
     void testRequiredArgs2() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-v", "004285964", "-i", imageSourceDir2, "-x", testFileSource1, "-o",
-                "/tmp/" + pid + ".json", "-c", configFilePath};
+        args = new String[]{"-v", "004285964", "-i", imageSourceDir2, "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
+                ".json", "-c", configFilePath};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
     }
@@ -73,8 +75,19 @@ class ArgParserTest {
     void testOptionalArgs() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-v", "021340072", "-i", imageSourceDir2, "-x", testFileSource1, "-o",
-                "/tmp/" + pid + ".json", "-c", configFilePath, "-s"};
+        args = new String[]{"-v", "021340072", "-i", imageSourceDir2, "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
+                ".json", "-c", configFilePath, "-s"};
+        final ManifestBuilderProcess processor = parser.init(args);
+        processor.run();
+    }
+
+    @Test
+    void testOptionalArgs2() throws URISyntaxException, MalformedURLException {
+        parser = new ArgParser();
+        final String imageManifestUrl = ArgParserTest.class.getResource("/dimManifest.json").toURI().toURL().toString();
+        final String[] args;
+        args = new String[]{"-v", "021340072", "-i", imageSourceDir2, "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
+                ".json", "-u", imageManifestUrl, "-c", configFilePath};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
     }

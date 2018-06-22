@@ -39,8 +39,11 @@ bin/producer -x xmlFile -i imageSourceDir-o outputfile -v view_identifier -c con
 | view_identifier | The name of the IIIF viewer identifer | 004285964 | 
 | -c, --config | a yaml configuration File | etc/producer-config.yml |
 | -s, --serializeImageManifest | serialize image manifest | |
+| -u, --imageManifestUrl | imageManifestUrl | http://localhost:9098/extractor?type=dimensions&manifest=https://iiif.ub.uni-leipzig.de/0000000504/manifest.json |
 
 ## Image Dimension Manifest
+* If dimensions can be produced from an existing manifest serialization, then use the `-u` option to reference the dimension manifest API producer.
+
 * See [image](https://github.com/ubleipzig/image) for information about the image metadata creation process.
 * the image.metadata generator supports reading dimensions from JP2 and JPX files
 

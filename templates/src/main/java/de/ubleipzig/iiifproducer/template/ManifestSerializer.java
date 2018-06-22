@@ -34,10 +34,14 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 
@@ -96,6 +100,20 @@ public final class ManifestSerializer {
 
         public PrettyPrinter() {
             _arrayIndenter = SYSTEM_LINEFEED_INSTANCE;
+        }
+    }
+
+    /**
+     *
+     * @param input InputStream
+     * @return String
+     */
+    public static String read(final InputStream input) {
+        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(input))) {
+            return buffer.lines().collect(Collectors.joining("\n"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

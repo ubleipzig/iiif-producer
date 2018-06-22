@@ -65,6 +65,7 @@ public class Config {
 
     private String manifestHttpDir;
     private String imageManifestOutputDir;
+    private String imageManifestUrl;
 
     /**
      * @return String
@@ -415,5 +416,19 @@ public class Config {
     @JsonProperty
     public void setImageManifestOutputDir(final String imageManifestOutputDir) {
         this.imageManifestOutputDir = imageManifestOutputDir;
+    }
+
+    /**
+     * @return imageManifestUrl
+     */
+    public String getImageManifestUrl() {
+        return imageManifestUrl;
+    }
+
+    /**
+     * @param imageManifestUrl String
+     */
+    public void setImageManifestUrl(final String imageManifestUrl) {
+        this.imageManifestUrl = imageManifestUrl;
     }
 }

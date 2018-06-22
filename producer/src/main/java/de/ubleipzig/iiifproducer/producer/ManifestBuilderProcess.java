@@ -78,4 +78,10 @@ public interface ManifestBuilderProcess {
      * @return List
      */
     List<ImageDimensions> getImageDimensions(String imageSourceDir, String imageManifestOutputPath);
+
+    /**
+     * @param imageManifestUrl imageManifestUrl
+     * @return List
+     */
+    List<ImageDimensions> getImageDimensionsFromUrl(String imageManifestUrl);
 }

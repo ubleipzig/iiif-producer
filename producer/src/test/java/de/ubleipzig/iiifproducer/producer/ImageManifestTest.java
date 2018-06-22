@@ -25,6 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import de.ubleipzig.image.metadata.templates.ImageDimensions;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -40,8 +42,8 @@ public class ImageManifestTest {
     @BeforeEach
     void init() {
         imageSourceDir = ImageManifestTest.class.getResource("/MS_187_tif").getPath();
-        imageManifestPid =
-                "image-manifest-" + UUIDType5.nameUUIDFromNamespaceAndString(NAMESPACE_URL, imageSourceDir) + ".json";
+        imageManifestPid = "image-manifest-" + UUIDType5.nameUUIDFromNamespaceAndString(
+                NAMESPACE_URL, imageSourceDir) + ".json";
     }
 
     @Test
@@ -52,7 +54,7 @@ public class ImageManifestTest {
         config.setSerializeImageManifest(false);
         final IIIFProducer producer = new IIIFProducer(config);
         final List<ImageDimensions> dimlist = producer.getImageDimensions(imageSourceDir, null);
-        assertEquals(dimlist.get(1).getFilename(), "00000002.tif");
+        assertEquals("00000002.tif", dimlist.get(1).getFilename());
     }
 
     @Test
@@ -77,7 +79,17 @@ public class ImageManifestTest {
         final String imageManifestOutputPath = config.getImageSourceDir() + separator + imageManifestPid;
         final IIIFProducer producer = new IIIFProducer(config);
         final List<ImageDimensions> dimlist = producer.getImageDimensions(imageSourceDir, imageManifestOutputPath);
-        assertEquals(dimlist.get(1).getFilename(), "00000002.tif");
+        assertEquals( "00000002.tif", dimlist.get(1).getFilename());
+    }
+
+    @Test
+    void testGetDimensionsFromUrl() throws URISyntaxException, MalformedURLException {
+        final String xmlFile = ImageManifestTest.class.getResource("/MS_187.xml").getPath();
+        config.setXmlFile(xmlFile);
+        final IIIFProducer producer = new IIIFProducer(config);
+        final String imageManifestUrl = ArgParserTest.class.getResource("/dimManifest.json").toURI().toURL().toString();
+        final List<ImageDimensions> dimlist = producer.getImageDimensionsFromUrl(imageManifestUrl);
+        assertEquals("00000002.jpx", dimlist.get(1).getFilename());
     }
 
     @Test

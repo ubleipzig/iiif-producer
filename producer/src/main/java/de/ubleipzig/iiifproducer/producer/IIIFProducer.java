@@ -20,10 +20,12 @@ package de.ubleipzig.iiifproducer.producer;
 
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.HANDSHRIFT_TYPE;
 import static de.ubleipzig.iiifproducer.producer.UUIDType5.NAMESPACE_URL;
+import static de.ubleipzig.iiifproducer.template.ManifestSerializer.read;
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.writeToFile;
 import static java.io.File.separator;
 import static java.lang.String.format;
+import static java.util.Optional.ofNullable;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -44,6 +46,9 @@ import de.ubleipzig.image.metadata.templates.ImageDimensionManifest;
 import de.ubleipzig.image.metadata.templates.ImageDimensions;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -107,8 +112,8 @@ public class IIIFProducer implements ManifestBuilderProcess {
     }
 
     private String getImageManifestPid() {
-        return "image-manifest-" + UUIDType5.nameUUIDFromNamespaceAndString(NAMESPACE_URL, config.getImageSourceDir())
-                + ".json";
+        return "image-manifest-" + UUIDType5.nameUUIDFromNamespaceAndString(
+                NAMESPACE_URL, config.getImageSourceDir()) + ".json";
     }
 
     @Override
@@ -123,10 +128,25 @@ public class IIIFProducer implements ManifestBuilderProcess {
     }
 
     @Override
+    public List<ImageDimensions> getImageDimensionsFromUrl(final String ImageManifestUrl) {
+        final InputStream is;
+        try {
+            is = new URL(ImageManifestUrl).openStream();
+            final ImageMetadataServiceConfig imageMetadataGeneratorConfig = new ImageMetadataServiceConfig();
+            imageMetadataGeneratorConfig.setDimensionManifest(read(is));
+            final ImageMetadataService imageMetadataService = new ImageMetadataServiceImpl(
+                    imageMetadataGeneratorConfig);
+            return imageMetadataService.unmarshallDimensionManifestFromRemote();
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
     public List<ImageDimensions> getImageDimensions(final String imageSourceDir, final String
             dimensionManifestOutputPath) {
         final ImageMetadataServiceConfig imageMetadataGeneratorConfig = new ImageMetadataServiceConfig();
-        final Optional<String> out = Optional.ofNullable(dimensionManifestOutputPath);
+        final Optional<String> out = ofNullable(dimensionManifestOutputPath);
         final String dimensionManifestPath = out.orElse(
                 config.getImageManifestOutputDir() + separator + getImageManifestPid());
         //case 1: the image manifest exists at output path
@@ -171,10 +191,17 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
     @Override
     public void buildManifest() {
-        //TODO these filesystem dependencies should be abstracted to a repository container
-        final String imageManifestOutputPath = config.getImageSourceDir() + separator + getImageManifestPid();
-        final String imageSourceDir = config.getImageSourceDir();
-        final List<ImageDimensions> dimensions = getImageDimensions(imageSourceDir, imageManifestOutputPath);
+
+        final Optional<String> imageManifestUrl = ofNullable(config.getImageManifestUrl());
+        final List<ImageDimensions> dimensions;
+        if (imageManifestUrl.isPresent()) {
+            dimensions = getImageDimensionsFromUrl(imageManifestUrl.get());
+        } else {
+            //TODO these filesystem dependencies should be abstracted to a repository container
+            final String imageManifestOutputPath = config.getImageSourceDir() + separator + getImageManifestPid();
+            final String imageSourceDir = config.getImageSourceDir();
+            dimensions = getImageDimensions(imageSourceDir, imageManifestOutputPath);
+        }
 
         final TemplateManifest manifest = new TemplateManifest();
         setContext(manifest);
