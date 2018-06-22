@@ -29,6 +29,8 @@ public final class MetsConstants {
     public static final String GOOBI_TYPE = "goobi";
     public static final String URN_TYPE = "urn";
     public static final String SWB_TYPE = "swb-ppn";
+    public static final String METS_STRUCTURE_TYPE = "metsDivType";
+    public static final String METS_PARENT_LOGICAL_ID = "LOG_0000";
 
     private MetsConstants() {
     }

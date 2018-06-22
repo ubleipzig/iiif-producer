@@ -19,12 +19,14 @@
 package de.ubleipzig.iiifproducer.doc;
 
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.GOOBI_TYPE;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.SWB_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAuthor;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCallNumber;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCollection;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDate;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getOwner;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPhysState;
@@ -84,6 +86,8 @@ public class StandardMetadata {
         meta.add(new TemplateMetadata("Date of publication", getDate(mets)));
         meta.add(new TemplateMetadata("Publisher", getPublisher(mets)));
         meta.add(new TemplateMetadata("Physical description", getPhysState(mets)));
+        meta.add(new TemplateMetadata("Manifest Type", getLogicalType(mets, METS_PARENT_LOGICAL_ID)));
+
         logger.debug("Standard Metadata Added");
         return meta;
     }

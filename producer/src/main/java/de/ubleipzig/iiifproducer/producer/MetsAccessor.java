@@ -97,6 +97,13 @@ public interface MetsAccessor {
     List<TemplateStructure> buildStructures();
 
     /**
+     *
+     * @param logicalType String
+     * @return List
+     */
+    List<TemplateMetadata> buildStructureMetadata(String logicalType);
+
+    /**
      * @return String
      */
     String getMtype();

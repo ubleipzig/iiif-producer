@@ -52,6 +52,9 @@ public class TemplateStructure {
     @JsonProperty("canvases")
     private List<String> canvases;
 
+    @JsonProperty("metadata")
+    private List<TemplateMetadata> metadata;
+
     /**
      *
      */
@@ -115,5 +118,20 @@ public class TemplateStructure {
      */
     public void setRanges(final List<String> ranges) {
         this.ranges = ranges;
+    }
+
+    /**
+     * @return List
+     */
+    @JsonIgnore
+    public List<TemplateMetadata> getMetadata() {
+        return this.metadata;
+    }
+
+    /**
+     * @param metadata List
+     */
+    public void setMetadata(final List<TemplateMetadata> metadata) {
+        this.metadata = metadata;
     }
 }

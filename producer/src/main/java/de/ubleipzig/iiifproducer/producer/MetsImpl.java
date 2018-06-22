@@ -18,6 +18,7 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_STRUCTURE_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCensus;
@@ -27,6 +28,7 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastChildren;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastDescendent;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastParent;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogo;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
@@ -177,6 +179,14 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
+    public List<TemplateMetadata> buildStructureMetadata(final String logicalType) {
+        final List<TemplateMetadata> metadataList = new ArrayList<>();
+        final TemplateMetadata metadata = new TemplateMetadata(METS_STRUCTURE_TYPE, logicalType);
+        metadataList.add(metadata);
+        return metadataList;
+    }
+
+    @Override
     public List<TemplateStructure> buildStructures() {
         final String resourceContext = config.getResourceContext();
         final List<TemplateStructure> structures = synchronizedList(new ArrayList<>());
@@ -195,9 +205,12 @@ public class MetsImpl implements MetsAccessor {
                         final String descID = desc.getLogicalId().trim();
                         final String rangeId = resourceContext + config.getRangeContext() + separator + descID;
                         final String descLabel = getLogicalLabel(mets, descID);
+                        final String logType = getLogicalType(mets, descID);
                         ranges.add(0, rangeId);
                         descSt.setStructureId(rangeId);
                         descSt.setStructureLabel(descLabel);
+                        final List<TemplateMetadata> metadataList = buildStructureMetadata(logType);
+                        descSt.setMetadata(metadataList);
                         descSt.setCanvases(getCanvases(descID));
                         descendents.add(0, descSt);
                     });
@@ -206,7 +219,10 @@ public class MetsImpl implements MetsAccessor {
                             resourceContext + config.getRangeContext() + separator + lastParentId;
                     st.setStructureId(structureIdDesc);
                     final String logicalLabel = getLogicalLabel(mets, lastParentId);
+                    final String logType = getLogicalType(mets, lastParentId);
+                    final List<TemplateMetadata> metadataList = buildStructureMetadata(logType);
                     st.setStructureLabel(logicalLabel);
+                    st.setMetadata(metadataList);
                     ranges.sort(naturalOrder());
                     st.setRanges(ranges);
                     st.setCanvases(getCanvases(lastParentId));

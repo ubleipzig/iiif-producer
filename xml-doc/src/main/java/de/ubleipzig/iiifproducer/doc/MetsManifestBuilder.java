@@ -377,6 +377,16 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
+     * @param id String
+     * @return String
+     */
+    public static String getLogicalType(final MetsData mets, final String id) {
+        final ResourceBundle labels = ResourceBundle.getBundle("LabelsBundle", Locale.GERMAN);
+        return mets.getLogicalType(id).orElse("");
+    }
+
+    /**
+     * @param mets MetsData
      * @return List
      */
     public static List<MetsData.Xlink> getXlinks(final MetsData mets) {

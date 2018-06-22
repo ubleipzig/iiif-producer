@@ -18,11 +18,13 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDateCreated;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDimension;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getExtent;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLanguage;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLocation;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMaterial;
@@ -75,6 +77,7 @@ public class ManuscriptMetadata {
         meta.add(new TemplateMetadata("Kitodo", getManuscriptIdByType(mets, "goobi")));
         meta.add(new TemplateMetadata("URN", getManuscriptIdByType(mets, "urn")));
         meta.add(new TemplateMetadata("Signatur", getManuscriptIdByType(mets, "shelfmark")));
+        meta.add(new TemplateMetadata("Manifest Type", getLogicalType(mets, METS_PARENT_LOGICAL_ID)));
         logger.debug("Manuscript metadata Added");
         return meta;
     }
