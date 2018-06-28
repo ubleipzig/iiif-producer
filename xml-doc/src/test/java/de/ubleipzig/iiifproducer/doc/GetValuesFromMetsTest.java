@@ -146,6 +146,20 @@ class GetValuesFromMetsTest {
     }
 
     @Test
+    void testGetLabelForNonExistentResourceBundleKeyLogical() {
+        final String sourceFile = GetValuesFromMetsTest.class.getResource(
+                "/mets/JohaSpha_1499_470272783.xml").getPath();
+        final MetsData mets = getMets(sourceFile);
+        final List<MetsData.Xlink> xlinks = getXlinks(mets);
+        final Map<String, List<MetsData.Xlink>> xlinkmap = xlinks.stream().collect(
+                groupingBy(MetsData.Xlink::getXLinkFrom));
+        xlinkmap.keySet().forEach(logical -> {
+            final String descLabel = getLogicalLabel(mets, logical);
+            System.out.println(descLabel);
+        });
+    }
+
+    @Test
     void testGetTypeForLogical() {
         final MetsData mets = getMets(sourceFile);
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
@@ -157,7 +171,6 @@ class GetValuesFromMetsTest {
                 final String type = p.getLogicalType();
                 System.out.println(type);
             });
-
         });
     }
 

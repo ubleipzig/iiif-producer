@@ -18,6 +18,7 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
+import static org.slf4j.LoggerFactory.getLogger;
 import static org.xmlbeam.XBProjector.Flags.TO_STRING_RENDERS_XML;
 
 import java.io.File;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
 import org.xmlbeam.XBProjector;
 
 /**
@@ -34,6 +36,8 @@ import org.xmlbeam.XBProjector;
  * @author christopher-johnson
  */
 public final class MetsManifestBuilder {
+
+    private static Logger logger = getLogger(MetsManifestBuilder.class);
 
     private MetsManifestBuilder() {
     }
@@ -372,7 +376,16 @@ public final class MetsManifestBuilder {
      */
     public static String getLogicalLabel(final MetsData mets, final String id) {
         final ResourceBundle labels = ResourceBundle.getBundle("LabelsBundle", Locale.GERMAN);
-        return mets.getLogicalLabel(id).orElse(labels.getString(mets.getLogicalType(id).orElse("")));
+        final String type = mets.getLogicalType(id).orElse("");
+        final String label;
+        if (labels.containsKey(type)) {
+            final String translatedType = labels.getString(type);
+            label = mets.getLogicalLabel(id).orElse(translatedType);
+        } else {
+            label = mets.getLogicalLabel(id).orElse("");
+            logger.warn("Missing Resource Bundle Mapping for Key \"{}\"", type);
+        }
+        return label;
     }
 
     /**
@@ -381,7 +394,6 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getLogicalType(final MetsData mets, final String id) {
-        final ResourceBundle labels = ResourceBundle.getBundle("LabelsBundle", Locale.GERMAN);
         return mets.getLogicalType(id).orElse("");
     }
 
