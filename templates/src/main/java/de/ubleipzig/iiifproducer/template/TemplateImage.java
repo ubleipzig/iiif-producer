@@ -28,8 +28,11 @@ import de.ubleipzig.iiif.vocabulary.SCEnum;
  *
  * @author christopher-johnson
  */
-@JsonPropertyOrder({"@type", "motivation", "resource", "on"})
+@JsonPropertyOrder({"@id", "@type", "motivation", "resource", "on"})
 public class TemplateImage {
+
+    @JsonProperty("@id")
+    private String id;
 
     @JsonProperty("@type")
     private String type = "oa:Annotation";
@@ -42,6 +45,13 @@ public class TemplateImage {
 
     @JsonProperty
     private String on;
+
+    /**
+     * @param id String
+     */
+    public void setId(final String id) {
+        this.id = id;
+    }
 
     /**
      * @param resource TemplateResource

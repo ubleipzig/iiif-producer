@@ -24,6 +24,7 @@ import static java.lang.Integer.valueOf;
 import static java.lang.String.format;
 
 import java.io.File;
+import java.util.UUID;
 
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.RDF;
@@ -98,6 +99,14 @@ public final class IRIBuilder {
         final String resourceContext = config.getResourceContext();
         final Integer newId = valueOf(physical.substring(physical.indexOf("_") + 1));
         return resourceContext + config.getCanvasContext() + File.separator + format("%08d", newId);
+    }
+
+    /**
+     * @return String
+     */
+    public String buildAnnotationId() {
+        final String resourceContext = config.getResourceContext();
+        return resourceContext + config.getAnnotationContext() + File.separator + UUID.randomUUID();
     }
 
     private IRIBuilder() {

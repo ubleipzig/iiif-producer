@@ -57,6 +57,8 @@ public class Config {
     @NotNull
     private String canvasContext;
     @NotNull
+    private String annotationContext;
+    @NotNull
     private String rangeContext;
     private String license;
     private String attributionLicenseNote;
@@ -304,6 +306,22 @@ public class Config {
     @JsonProperty
     public void setCanvasContext(final String canvasContext) {
         this.canvasContext = canvasContext;
+    }
+
+    /**
+     * @return canvasContext
+     */
+    @JsonProperty
+    public String getAnnotationContext() {
+        return annotationContext;
+    }
+
+    /**
+     * @param annotationContext String
+     */
+    @JsonProperty
+    public void setAnnotationContext(final String annotationContext) {
+        this.annotationContext = annotationContext;
     }
 
     /**
