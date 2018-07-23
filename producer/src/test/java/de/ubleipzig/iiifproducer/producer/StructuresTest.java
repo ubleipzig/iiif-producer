@@ -102,5 +102,10 @@ class StructuresTest {
         producer.setStructures(top, manifest, mets);
         assertNull(manifest.getStructures());
     }
+
+    @Test
+    void testBuildStructureMetadata() {
+
+    }
 }
 

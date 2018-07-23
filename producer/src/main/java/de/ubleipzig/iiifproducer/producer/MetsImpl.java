@@ -18,6 +18,7 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_STRUCTURE_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
@@ -171,7 +172,7 @@ public class MetsImpl implements MetsAccessor {
         });
 
         final TemplateTopStructure st = new TemplateTopStructure();
-        st.setStructureId(resourceContext + config.getRangeContext() + separator + "r0");
+        st.setStructureId(resourceContext + config.getRangeContext() + separator + METS_PARENT_LOGICAL_ID);
         st.setStructureLabel("TOC");
         ranges.sort(naturalOrder());
         st.setRanges(ranges);
@@ -215,8 +216,8 @@ public class MetsImpl implements MetsAccessor {
                         descendents.add(0, descSt);
                     });
                     final TemplateStructure st = new TemplateStructure();
-                    final String structureIdDesc =
-                            resourceContext + config.getRangeContext() + separator + lastParentId;
+                    final String structureIdDesc = resourceContext + config.getRangeContext() + separator +
+                            lastParentId;
                     st.setStructureId(structureIdDesc);
                     final String logicalLabel = getLogicalLabel(mets, lastParentId);
                     final String logType = getLogicalType(mets, lastParentId);
@@ -227,7 +228,8 @@ public class MetsImpl implements MetsAccessor {
                     st.setRanges(ranges);
                     st.setCanvases(getCanvases(lastParentId));
                     if (!Objects.equals(
-                            st.getStructureId(), resourceContext + config.getRangeContext() + separator + "LOG_0000")) {
+                            st.getStructureId(),
+                            resourceContext + config.getRangeContext() + separator + METS_PARENT_LOGICAL_ID)) {
                         structures.add(0, st);
                     }
                 });

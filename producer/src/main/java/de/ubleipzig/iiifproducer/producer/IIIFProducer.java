@@ -266,8 +266,10 @@ public class IIIFProducer implements ManifestBuilderProcess {
             final IRI serviceIRI = iriBuilder.buildServiceIRI(imageServiceContext, resourceFileId);
             resource.setService(new TemplateService(serviceIRI.getIRIString()));
 
+            //set Annotation
             final TemplateImage image = new TemplateImage();
-            image.setId(iriBuilder.buildAnnotationId());
+            final String annotationId = iriBuilder.buildAnnotationId();
+            image.setId(annotationId);
             image.setResource(resource);
             image.setTarget(canvas.getCanvasId());
 
