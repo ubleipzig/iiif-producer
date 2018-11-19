@@ -33,15 +33,16 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogo;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptType;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMultiVolumeWorkTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNoteTypes;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNotesByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getOrderLabelForDiv;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPhysicalDivs;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getTopLogicals;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getVolumePartTitleOrPartNumber;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getXlinks;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.isManuscript;
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
-import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMetsAnchor;
 import static java.io.File.separator;
 import static java.util.Collections.synchronizedList;
 import static java.util.Comparator.comparing;
@@ -74,13 +75,11 @@ import java.util.stream.Stream;
 public class MetsImpl implements MetsAccessor {
 
     private MetsData mets;
-    private MetsData anchorDoc;
     private Config config;
     private Map<String, List<MetsData.Xlink>> xlinkmap;
 
     MetsImpl(final Config config) {
         this.mets = getMets(config.getXmlFile());
-        this.anchorDoc = getMetsAnchor(config.getXmlFile());
         this.config = config;
         this.xlinkmap = getXlinkMap();
     }
@@ -93,7 +92,7 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public void setManifestLabel(final TemplateManifest body) {
-        if (anchorDoc != null) {
+        if (!getCensus(mets).equals("")) {
             body.setLabel(getAnchorFileLabel());
         } else {
             body.setLabel(getManifestTitle(mets));
@@ -129,7 +128,7 @@ public class MetsImpl implements MetsAccessor {
         final StandardMetadata man = new StandardMetadata(mets);
         final List<TemplateMetadata> info = man.getInfo();
         final List<TemplateMetadata> metadata = new ArrayList<>(info);
-        if (anchorDoc != null) {
+        if (!getCensus(mets).equals("")) {
             metadata.add(getAnchorFileMetadata());
         }
         final List<String> noteTypes = getNoteTypes(mets);
@@ -141,12 +140,12 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public TemplateMetadata getAnchorFileMetadata() {
-        return new TemplateMetadata(config.getAnchorKey(), getManifestTitle(anchorDoc) + "; " + getCensus(mets));
+        return new TemplateMetadata(config.getAnchorKey(), getMultiVolumeWorkTitle(mets) + "; " + getCensus(mets));
     }
 
     @Override
     public String getAnchorFileLabel() {
-        return getManifestTitle(anchorDoc) + "; " + getManifestTitle(mets);
+        return getMultiVolumeWorkTitle(mets) + "; " + getVolumePartTitleOrPartNumber(mets);
     }
 
     @Override
@@ -173,7 +172,7 @@ public class MetsImpl implements MetsAccessor {
 
         final TemplateTopStructure st = new TemplateTopStructure();
         st.setStructureId(resourceContext + config.getRangeContext() + separator + METS_PARENT_LOGICAL_ID);
-        st.setStructureLabel("TOC");
+        st.setStructureLabel("Contents");
         ranges.sort(naturalOrder());
         st.setRanges(ranges);
         return st;
@@ -243,8 +242,8 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public String getMtype() {
-        return getManuscriptType(mets);
+    public Boolean getMtype() {
+        return isManuscript(mets);
     }
 
     @Override

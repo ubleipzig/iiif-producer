@@ -18,18 +18,17 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.HANDSHRIFT_TYPE;
-import static de.ubleipzig.iiifproducer.producer.UUIDType5.NAMESPACE_URL;
-import static de.ubleipzig.iiifproducer.template.ManifestSerializer.read;
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.writeToFile;
 import static java.io.File.separator;
 import static java.lang.String.format;
-import static java.util.Optional.ofNullable;
-import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.slf4j.LoggerFactory.getLogger;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import de.ubleipzig.iiif.vocabulary.SC;
+import de.ubleipzig.iiifproducer.template.ImageServiceResponse;
 import de.ubleipzig.iiifproducer.template.TemplateCanvas;
 import de.ubleipzig.iiifproducer.template.TemplateImage;
 import de.ubleipzig.iiifproducer.template.TemplateManifest;
@@ -39,11 +38,6 @@ import de.ubleipzig.iiifproducer.template.TemplateService;
 import de.ubleipzig.iiifproducer.template.TemplateStructure;
 import de.ubleipzig.iiifproducer.template.TemplateStructureList;
 import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
-import de.ubleipzig.image.metadata.ImageMetadataService;
-import de.ubleipzig.image.metadata.ImageMetadataServiceConfig;
-import de.ubleipzig.image.metadata.ImageMetadataServiceImpl;
-import de.ubleipzig.image.metadata.templates.ImageDimensionManifest;
-import de.ubleipzig.image.metadata.templates.ImageDimensions;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +45,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -67,6 +60,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
     private static Logger logger = getLogger(IIIFProducer.class);
     private final Config config;
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     /**
      * IIIFProducer Class.
@@ -93,9 +87,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
     }
 
     @Override
-    public void setRelated(final TemplateManifest body, final String urn) {
-        final Integer viewIdInput = Integer.valueOf(config.getViewId());
-        final String viewId = format("%010d", viewIdInput);
+    public void setRelated(final TemplateManifest body, final String urn, final String viewId) {
         final ArrayList<String> related = new ArrayList<>();
         related.add(config.getKatalogUrl() + urn);
         related.add(config.getViewerUrl() + viewId);
@@ -111,80 +103,15 @@ public class IIIFProducer implements ManifestBuilderProcess {
         return sequence;
     }
 
-    private String getImageManifestPid() {
-        return "image-manifest-" + UUIDType5.nameUUIDFromNamespaceAndString(
-                NAMESPACE_URL, config.getImageSourceDir()) + ".json";
-    }
-
-    @Override
-    public void setImageDimensions(final ImageDimensions dimensions, final TemplateCanvas canvas, final
-    TemplateResource resource) {
-        final Integer width = dimensions.getWidth();
-        final Integer height = dimensions.getHeight();
-        canvas.setCanvasWidth(width);
-        canvas.setCanvasHeight(height);
-        resource.setResourceWidth(width);
-        resource.setResourceHeight(height);
-    }
-
-    @Override
-    public List<ImageDimensions> getImageDimensionsFromUrl(final String ImageManifestUrl) {
-        final InputStream is;
-        try {
-            is = new URL(ImageManifestUrl).openStream();
-            final ImageMetadataServiceConfig imageMetadataGeneratorConfig = new ImageMetadataServiceConfig();
-            imageMetadataGeneratorConfig.setDimensionManifest(read(is));
-            final ImageMetadataService imageMetadataService = new ImageMetadataServiceImpl(
-                    imageMetadataGeneratorConfig);
-            return imageMetadataService.unmarshallDimensionManifestFromRemote();
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    @Override
-    public List<ImageDimensions> getImageDimensions(final String imageSourceDir, final String
-            dimensionManifestOutputPath) {
-        final ImageMetadataServiceConfig imageMetadataGeneratorConfig = new ImageMetadataServiceConfig();
-        final Optional<String> out = ofNullable(dimensionManifestOutputPath);
-        final String dimensionManifestPath = out.orElse(
-                config.getImageManifestOutputDir() + separator + getImageManifestPid());
-        //case 1: the image manifest exists at output path
-        if (new File(dimensionManifestPath).exists()) {
-            imageMetadataGeneratorConfig.setDimensionManifestFilePath(dimensionManifestPath);
-            final ImageMetadataService imageMetadataService = new ImageMetadataServiceImpl(
-                    imageMetadataGeneratorConfig);
-            return imageMetadataService.unmarshallDimensionManifestFromFile();
-        }
-        imageMetadataGeneratorConfig.setImageSourceDir(imageSourceDir);
-        final ImageMetadataService imageMetadataService = new ImageMetadataServiceImpl(imageMetadataGeneratorConfig);
-        //case 2: serialize new image manifest from binaries
-        if (config.getSerializeImageManifest()) {
-            if (!new File(imageSourceDir).exists()) {
-                throw new RuntimeException("no images found at " + imageSourceDir + " - Exiting");
-            }
-            final ImageDimensionManifest dimManifest = imageMetadataService.build();
-            imageMetadataService.serializeImageDimensionManifest(dimManifest, dimensionManifestPath);
-            imageMetadataGeneratorConfig.setDimensionManifestFilePath(dimensionManifestPath);
-            logger.debug("Writing Image Dimension Manifest to {}", dimensionManifestPath);
-            return imageMetadataService.unmarshallDimensionManifestFromFile();
-        } else {
-            //case 3: do not serialize manifest, just read binaries and return list of dimensions
-            if (!new File(imageSourceDir).exists()) {
-                throw new RuntimeException("no images found at " + imageSourceDir + " - Exiting");
-            }
-            final String imageManifest = imageMetadataService.buildImageMetadataManifest();
-            return imageMetadataService.buildDimensionManifestListFromImageMetadataManifest(imageManifest);
-        }
-    }
-
     TemplateManifest setStructures(final TemplateTopStructure top, final TemplateManifest manifest, final
     MetsAccessor mets) {
         if (top.getRanges().size() > 0) {
             final List<TemplateStructure> subStructures = mets.buildStructures();
-            final TemplateStructureList list = new TemplateStructureList(top, subStructures);
-            manifest.setStructures(list.getStructureList());
-            return manifest;
+            if (subStructures.size() > 0) {
+                final TemplateStructureList list = new TemplateStructureList(top, subStructures);
+                manifest.setStructures(list.getStructureList());
+                return manifest;
+            }
         }
         return manifest;
     }
@@ -192,41 +119,34 @@ public class IIIFProducer implements ManifestBuilderProcess {
     @Override
     public void buildManifest() {
 
-        final Optional<String> imageManifestUrl = ofNullable(config.getImageManifestUrl());
-        final List<ImageDimensions> dimensions;
-        if (imageManifestUrl.isPresent()) {
-            dimensions = getImageDimensionsFromUrl(imageManifestUrl.get());
-        } else {
-            //TODO these filesystem dependencies should be abstracted to a repository container
-            final String imageManifestOutputPath = config.getImageSourceDir() + separator + getImageManifestPid();
-            final String imageSourceDir = config.getImageSourceDir();
-            dimensions = getImageDimensions(imageSourceDir, imageManifestOutputPath);
-        }
-
         final TemplateManifest manifest = new TemplateManifest();
         setContext(manifest);
         setId(manifest);
 
         final MetsAccessor mets = new MetsImpl(this.config);
         final IRIBuilder iriBuilder = new IRIBuilder(this.config);
-
+        final Integer viewIdInput = Integer.valueOf(config.getViewId());
+        final String viewId = format("%010d", viewIdInput);
+        final String resourceContext = config.getResourceContext();
+        final String imageServiceContext = iriBuilder.buildImageServiceContext(viewId);
+        final String canvasContext = config.getCanvasContext();
         final String urn = mets.getUrnReference();
-        setRelated(manifest, urn);
+        setRelated(manifest, urn, viewId);
 
         mets.setManifestLabel(manifest);
         mets.setLicense(manifest);
         mets.setAttribution(manifest);
         mets.setLogo(manifest);
-        final String mtype = mets.getMtype();
+        final Boolean isManuscript = mets.getMtype();
 
-        if (Objects.equals(mtype, HANDSHRIFT_TYPE)) {
+        if (isManuscript) {
             mets.setHandschriftMetadata(manifest);
         } else {
             mets.setMetadata(manifest);
         }
 
         final List<TemplateCanvas> canvases = new ArrayList<>();
-        final AtomicInteger atomicInteger = new AtomicInteger(0);
+        final AtomicInteger atomicInteger = new AtomicInteger(1);
         final List<String> divs = mets.getPhysical();
         for (String div : divs) {
             final String label = mets.getOrderLabel(div);
@@ -234,36 +154,40 @@ public class IIIFProducer implements ManifestBuilderProcess {
             final TemplateCanvas canvas = new TemplateCanvas();
             canvas.setCanvasLabel(label);
 
+            //buildServiceIRI
+            final String resourceFileId = format("%08d", atomicInteger.getAndIncrement());
+            final IRI serviceIRI = iriBuilder.buildServiceIRI(imageServiceContext, resourceFileId);
+
             final TemplateResource resource = new TemplateResource();
             resource.setResourceLabel(label);
 
-            final ImageDimensions dimension = dimensions.get(atomicInteger.get());
-            final String fileName = dimension.getFilename();
-            logger.debug("File Name: {}", fileName);
-            setImageDimensions(dimension, canvas, resource);
+            //getDimensionsFromImageService
+            final InputStream is;
+            try {
+                is = new URL(serviceIRI.getIRIString() + "/info.json").openStream();
+            } catch (IOException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+            final ImageServiceResponse ir = mapServiceResponse(is);
+            final Integer height = ir.getHeight();
+            final Integer width = ir.getWidth();
+            canvas.setCanvasWidth(width);
+            canvas.setCanvasHeight(height);
+            resource.setResourceWidth(width);
+            resource.setResourceHeight(height);
 
-            //get resource context from config
-            final String resourceContext = config.getResourceContext();
-            //get integer identifier from filename
-            final Integer baseName = Integer.valueOf(getBaseName(fileName));
-            //pad integer to 8 digits
-            final String resourceFileId = format("%08d", baseName);
             //canvasId = resourceId
-            final String canvasIdString = resourceContext + config.getCanvasContext() + separator + resourceFileId;
+            final String canvasIdString = resourceContext + canvasContext + separator + resourceFileId;
+            final String resourceIdString =
+                    resourceContext + separator + resourceFileId + ".jpg";
             //cast canvas as IRI (failsafe)
             final IRI canvasIri = iriBuilder.buildCanvasIRI(canvasIdString);
             //set Canvas Id
             canvas.setCanvasId(canvasIri.getIRIString());
-            //resource IRI (original source file extension required by client)
-            //TODO coordinate with dereferenceable location / confirm file extension
-            final String resourceIdString = resourceContext + separator + resourceFileId + ".jpg";
             //cast resource as IRI (failsafe)
             final IRI resourceIri = iriBuilder.buildResourceIRI(resourceIdString);
             //set resourceID
             resource.setResourceId(resourceIri.getIRIString());
-            //set Image Service
-            final String imageServiceContext = iriBuilder.buildImageServiceContext();
-            final IRI serviceIRI = iriBuilder.buildServiceIRI(imageServiceContext, resourceFileId);
             resource.setService(new TemplateService(serviceIRI.getIRIString()));
 
             //set Annotation
@@ -277,9 +201,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
             images.add(image);
 
             canvas.setCanvasImages(images);
-
             canvases.add(canvas);
-            atomicInteger.getAndIncrement();
         }
 
         final List<TemplateSequence> sequence = addCanvasesToSequence(canvases);
@@ -297,6 +219,21 @@ public class IIIFProducer implements ManifestBuilderProcess {
         logger.info("Writing file to {}", outputFile);
         writeToFile(output, outfile);
         logger.debug("Manifest Output: {}", output);
+    }
+
+    /**
+     * mapServiceResponse.
+     *
+     * @param res String
+     * @return ImageServiceResponse
+     */
+    public static ImageServiceResponse mapServiceResponse(final InputStream res) {
+        try {
+            return MAPPER.readValue(res, new TypeReference<ImageServiceResponse>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }
 

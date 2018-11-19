@@ -41,7 +41,7 @@ public class IRIBuilderTest {
         config.setImageServiceImageDirPrefix("/j2k/");
         config.setImageServiceFileExtension(".jpx");
         final IRIBuilder iriBuilder = new IRIBuilder(config);
-        final String imageServiceContext = iriBuilder.buildImageServiceContext();
+        final String imageServiceContext = iriBuilder.buildImageServiceContext("0000004057");
         final String resourceIdString = "00000002";
         final IRI serviceIri = iriBuilder.buildServiceIRI(imageServiceContext, resourceIdString);
         assertNotNull(serviceIri);
@@ -57,7 +57,7 @@ public class IRIBuilderTest {
         config.setImageServiceBaseUrl("http://localhost:5000/iiif/");
         config.setImageServiceFileExtension(".tif");
         final IRIBuilder iriBuilder = new IRIBuilder(config);
-        final String imageServiceContext = iriBuilder.buildImageServiceContext();
+        final String imageServiceContext = iriBuilder.buildImageServiceContext("0000004057");
         final String resourceIdString = "00000002";
         final IRI serviceIri = iriBuilder.buildServiceIRI(imageServiceContext, resourceIdString);
         assertNotNull(serviceIri);
@@ -88,7 +88,7 @@ public class IRIBuilderTest {
         config.setImageServiceBaseUrl("https://iiif.ub.uni-leipzig.de/iiif");
         config.setImageServiceImageDirPrefix("/j2k/");
         final IRIBuilder iriBuilder = new IRIBuilder(config);
-        final String imageServiceContext = iriBuilder.buildImageServiceContext();
+        final String imageServiceContext = iriBuilder.buildImageServiceContext("12345");
         assertEquals("https://iiif.ub.uni-leipzig.de/iiif/j2k/0000/0123/0000012345", imageServiceContext);
     }
 }

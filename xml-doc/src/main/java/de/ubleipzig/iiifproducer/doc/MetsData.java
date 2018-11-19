@@ -36,6 +36,20 @@ public interface MetsData {
     @XBRead("//*[local-name()='mods']/*[local-name()='titleInfo']/*[local-name()='title']")
     Optional<String> getManifestTitle();
 
+
+    /**
+     * @return String
+     */
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']/*[local-name()='div'][@TYPE='multivolume_work']/@LABEL")
+    Optional<String> getMultiVolumeWorkTitle();
+
+    /**
+     * @return String
+     */
+    @XBRead("//*[local-name()='dmdSec'][@ID='DMDLOG_0001']//*[local-name()='mods']/*[local-name()" +
+            "='titleInfo']/*[local-name()='title']")
+    Optional<String> getVolumePartTitle();
+
     /**
      * @return String
      */
@@ -51,8 +65,8 @@ public interface MetsData {
     /**
      * @return String
      */
-    @XBRead("//*[local-name()='typeOfResource'][@manuscript='yes']")
-    Optional<String> getManuscriptType();
+    @XBRead("boolean(//*[local-name()='typeOfResource'][@manuscript='yes'])")
+    Boolean isManuscript();
 
     /**
      * @param idType String
@@ -64,7 +78,7 @@ public interface MetsData {
     /**
      * @return Optional
      */
-    @XBRead("//*[local-name()='subtitle']")
+    @XBRead("//*[local-name()='subTitle']")
     Optional<String> getSubtitle();
 
     /**
@@ -94,13 +108,13 @@ public interface MetsData {
     /**
      * @return Optional
      */
-    @XBRead("//*[local-name()='language']")
-    Optional<String> getLanguage();
+    @XBRead("//*[local-name()='languageTerm'][@type='text']")
+    Optional<String> getLanguageDescription();
 
     /**
      * @return Optional
      */
-    @XBRead("//*[local-name()='place'][@eventType='manufacture']")
+    @XBRead("//*[local-name()='placeTerm']")
     Optional<String> getLocation();
 
     /**
@@ -232,15 +246,15 @@ public interface MetsData {
      * @param id String
      * @return Logical
      */
-    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()" + "='div'][@ID='{0}']/*[local-name()"
-            + "='div'][last()]")
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()" + "='div'][@ID='{0}']/*[local-name()" +
+            "='div'][last()]")
     Logical getLogicalLastDescendent(String id);
 
     /**
      * @return List
      */
-    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']/*[local-name()" + "='div']/*[local-name()='div'][not"
-            + "(descendant::div)]")
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']/*[local-name()" + "='div']/*[local-name()='div'][not" +
+            "(descendant::div)]")
     List<Logical> getTopLogicals();
 
     /**

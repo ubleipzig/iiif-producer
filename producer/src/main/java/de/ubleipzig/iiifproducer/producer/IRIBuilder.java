@@ -74,10 +74,11 @@ public final class IRIBuilder {
     }
 
     /**
+     * @param viewId String
      * @return String
      */
-    public String buildImageServiceContext() {
-        final int viewIdInt = parseInt(config.getViewId());
+    public String buildImageServiceContext(final String viewId) {
+        final int viewIdInt = parseInt(viewId);
         final String v = format("%010d", viewIdInt);
         final String imageDirPrefix = config.getImageServiceImageDirPrefix();
         final int part1 = parseInt(v.substring(0,4));
@@ -87,7 +88,7 @@ public final class IRIBuilder {
         if (config.getIsUBLImageService()) {
             return config.getImageServiceBaseUrl() + imageDirPrefix + first + separator + second + separator + v;
         } else {
-            return config.getImageServiceBaseUrl() + config.getViewId();
+            return config.getImageServiceBaseUrl() + viewId;
         }
     }
 

@@ -41,11 +41,13 @@ import org.junit.jupiter.api.Test;
 class StructuresTest {
 
     private static String xmlFile;
+    private static String xmlFile2;
 
     @BeforeAll
     static void testBuildStructures() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         xmlFile = path + "/xml-doc/src/test/resources/mets/MS_85.xml";
+        xmlFile2 = path + "/producer/src/test/resources/ArumDomi_034678301.xml";
     }
 
     @Test
@@ -57,6 +59,17 @@ class StructuresTest {
         final MetsAccessor mets = new MetsImpl(config);
         final List<TemplateStructure> structures = mets.buildStructures();
         assertNotNull(structures.get(0));
+    }
+
+    @Test
+    void buildStructures2() {
+        final Config config = new Config();
+        config.setXmlFile(xmlFile2);
+        config.setOutputFile("/tmp/test.json");
+        config.setViewId("0000012885");
+        final MetsAccessor mets = new MetsImpl(config);
+        final List<TemplateStructure> structures = mets.buildStructures();
+        assertTrue(structures.isEmpty());
     }
 
     @Test

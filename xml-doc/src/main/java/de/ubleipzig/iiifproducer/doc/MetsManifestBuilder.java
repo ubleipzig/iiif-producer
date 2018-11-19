@@ -84,6 +84,22 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
+    public static String getMultiVolumeWorkTitle(final MetsData mets) {
+        return mets.getMultiVolumeWorkTitle().orElse("").trim();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
+    public static String getVolumePartTitleOrPartNumber(final MetsData mets) {
+        return mets.getVolumePartTitle().orElse(getCensus(mets)).trim();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
     public static String getUrnReference(final MetsData mets) {
         return mets.getManuscriptIdByType("urn").orElse("").trim();
     }
@@ -116,8 +132,8 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
-    public static String getManuscriptType(final MetsData mets) {
-        return mets.getManuscriptType().orElse("").trim();
+    public static Boolean isManuscript(final MetsData mets) {
+        return mets.isManuscript();
     }
 
     /**
@@ -165,8 +181,8 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
-    public static String getLanguage(final MetsData mets) {
-        return mets.getLanguage().orElse("").trim();
+    public static String getLanguageDescription(final MetsData mets) {
+        return mets.getLanguageDescription().orElse("").trim();
     }
 
     /**
@@ -394,7 +410,7 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getLogicalType(final MetsData mets, final String id) {
-        return mets.getLogicalType(id).orElse("");
+        return mets.getLogicalType(id).orElse("multivolume_work");
     }
 
     /**

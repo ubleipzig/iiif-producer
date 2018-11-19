@@ -54,7 +54,7 @@ class ArgParser {
 
         configOptions.addOption(
                 builder("i").longOpt("imageSourceDir").hasArg(true).desc("Image Source Directory").required(
-                        true).build());
+                        false).build());
 
         configOptions.addOption(
                 builder("x").longOpt("xmlinput").hasArg(true).desc("XML Source").required(true).build());

@@ -20,9 +20,7 @@ package de.ubleipzig.iiifproducer.producer;
 
 import de.ubleipzig.iiifproducer.template.TemplateCanvas;
 import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateResource;
 import de.ubleipzig.iiifproducer.template.TemplateSequence;
-import de.ubleipzig.image.metadata.templates.ImageDimensions;
 
 import java.util.List;
 
@@ -49,10 +47,11 @@ public interface ManifestBuilderProcess {
     void setId(TemplateManifest body);
 
     /**
+     * @param viewId String
      * @param urn urn
      * @param body TemplateManifest
      */
-    void setRelated(TemplateManifest body, String urn);
+    void setRelated(TemplateManifest body, String urn, String viewId);
 
     /**
      * @param canvases List
@@ -64,24 +63,4 @@ public interface ManifestBuilderProcess {
      *
      */
     void buildManifest();
-
-    /**
-     * @param dimensions ImageDimensions
-     * @param canvas TemplateCanvas
-     * @param resource TemplateResource
-     */
-    void setImageDimensions(ImageDimensions dimensions, TemplateCanvas canvas, TemplateResource resource);
-
-    /**
-     * @param imageManifestOutputPath imageManifestOutputPath
-     * @param imageSourceDir imageSourceDir
-     * @return List
-     */
-    List<ImageDimensions> getImageDimensions(String imageSourceDir, String imageManifestOutputPath);
-
-    /**
-     * @param imageManifestUrl imageManifestUrl
-     * @return List
-     */
-    List<ImageDimensions> getImageDimensionsFromUrl(String imageManifestUrl);
 }

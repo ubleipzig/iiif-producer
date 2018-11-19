@@ -106,7 +106,7 @@ public interface MetsAccessor {
     /**
      * @return String
      */
-    String getMtype();
+    Boolean getMtype();
 
     /**
      * @return String

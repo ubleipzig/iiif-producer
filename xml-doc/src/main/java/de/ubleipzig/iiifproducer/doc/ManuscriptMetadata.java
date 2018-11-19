@@ -18,17 +18,18 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.HANDSHRIFT_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCollection;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDateCreated;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDimension;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getExtent;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLanguage;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLanguageDescription;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLocation;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMaterial;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMedium;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getRecordIdentifier;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getSubtitle;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -66,11 +67,12 @@ public class ManuscriptMetadata {
         final List<TemplateMetadata> meta = new ArrayList<>();
         meta.add(new TemplateMetadata("Titel (aus Signatur)", getManifestTitle(mets)));
         meta.add(new TemplateMetadata("Objekttitel", getSubtitle(mets)));
-        meta.add(new TemplateMetadata("Medium", getMedium(mets)));
+        meta.add(new TemplateMetadata("Collection", getCollection(mets)));
+        meta.add(new TemplateMetadata("Medium", HANDSHRIFT_TYPE));
         meta.add(new TemplateMetadata("Beschreibstoff", getMaterial(mets)));
         meta.add(new TemplateMetadata("Umfang", getExtent(mets)));
         meta.add(new TemplateMetadata("Abmessungen", getDimension(mets)));
-        meta.add(new TemplateMetadata("Sprache", getLanguage(mets)));
+        meta.add(new TemplateMetadata("Sprache", getLanguageDescription(mets)));
         meta.add(new TemplateMetadata("Lokalisierung", getLocation(mets)));
         meta.add(new TemplateMetadata("Manuscripta Mediaevalia", getRecordIdentifier(mets)));
         meta.add(new TemplateMetadata("Datierung", getDateCreated(mets)));

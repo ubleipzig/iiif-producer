@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 
 public class IIIFProducerDriverTest {
 
-    private static String imageSourceDir;
     private static String testFileSource1;
     private static String testFileSource2;
     private static String configFilePath;
@@ -33,7 +32,6 @@ public class IIIFProducerDriverTest {
 
     @BeforeAll
     static void init() {
-        imageSourceDir = ArgParserTest.class.getResource("/MS_187_tif").getPath();
         testFileSource1 = ArgParserTest.class.getResource("/BlhDie_004285964.xml").getPath();
         testFileSource2 = ArgParserTest.class.getResource("/MS_187.xml").getPath();
         configFilePath = ArgParserTest.class.getResource("/producer-config-test.yml").getPath();
@@ -42,14 +40,14 @@ public class IIIFProducerDriverTest {
 
     @Test
     public void testStandardType() {
-        final String[] args = new String[]{"-v", "004285964", "-x", testFileSource1, "-i", imageSourceDir, "-o",
+        final String[] args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o",
                 "/tmp/" + pid + ".json", "-c", configFilePath};
         IIIFProducerDriver.main(args);
     }
 
     @Test
     public void testHandschriftType() {
-        final String[] args = new String[]{"-v", "004285964", "-x", testFileSource2, "-i", imageSourceDir, "-o",
+        final String[] args = new String[]{"-v", "0000000719", "-x", testFileSource2, "-o",
                 "/tmp/" + pid + ".json", "-c", configFilePath};
         IIIFProducerDriver.main(args);
     }

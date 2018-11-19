@@ -36,17 +36,17 @@ class ArgParserTest {
 
     private static String pid;
     private static String testFileSource1;
-    private static String imageSourceDir;
-    private static String imageSourceDir2;
+    private static String testFileSource2;
+    private static String testFileSource3;
     private static String configFilePath;
 
     private ArgParser parser;
 
     @BeforeAll
     static void init() {
-        imageSourceDir = ArgParserTest.class.getResource("/MS_187_tif").getPath();
-        imageSourceDir2 = ArgParserTest.class.getResource("/jp2").getPath();
         testFileSource1 = ArgParserTest.class.getResource("/MS_187.xml").getPath();
+        testFileSource2 = ArgParserTest.class.getResource("/MS_1495.xml").getPath();
+        testFileSource3 = ArgParserTest.class.getResource("/ArumDomi_034678301.xml").getPath();
         configFilePath = ArgParserTest.class.getResource("/producer-config-test.yml").getPath();
         pid = "producer-test-" + UUID.randomUUID().toString();
     }
@@ -55,7 +55,7 @@ class ArgParserTest {
     void testRequiredArgs1() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-v", "004285964", "-i", imageSourceDir, "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
+        args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
                 ".json", "-c", configFilePath};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
@@ -65,7 +65,27 @@ class ArgParserTest {
     void testRequiredArgs2() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-v", "004285964", "-i", imageSourceDir2, "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
+        args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
+                ".json", "-c", configFilePath};
+        final ManifestBuilderProcess processor = parser.init(args);
+        processor.run();
+    }
+
+    @Test
+    void testRequiredArgs3() {
+        parser = new ArgParser();
+        final String[] args;
+        args = new String[]{"-v", "0000013106", "-x", testFileSource2, "-o", "/tmp/" + pid + "" +
+                ".json", "-c", configFilePath};
+        final ManifestBuilderProcess processor = parser.init(args);
+        processor.run();
+    }
+
+    @Test
+    void testRequiredArgs4() {
+        parser = new ArgParser();
+        final String[] args;
+        args = new String[]{"-v", "0000012885", "-x", testFileSource3, "-o", "/tmp/" + pid + "" +
                 ".json", "-c", configFilePath};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
@@ -75,7 +95,7 @@ class ArgParserTest {
     void testOptionalArgs() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-v", "021340072", "-i", imageSourceDir2, "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
+        args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
                 ".json", "-c", configFilePath, "-s"};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
@@ -86,7 +106,7 @@ class ArgParserTest {
         parser = new ArgParser();
         final String imageManifestUrl = ArgParserTest.class.getResource("/dimManifest.json").toURI().toURL().toString();
         final String[] args;
-        args = new String[]{"-v", "021340072", "-i", imageSourceDir2, "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
+        args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o", "/tmp/" + pid + "" +
                 ".json", "-u", imageManifestUrl, "-c", configFilePath};
         final ManifestBuilderProcess processor = parser.init(args);
         processor.run();
@@ -96,7 +116,7 @@ class ArgParserTest {
     void testInvalidArgs() {
         parser = new ArgParser();
         final String[] args;
-        args = new String[]{"-q", "021340072", "-y", "MS_187", "-l", testFileSource1, "-p", "/tmp" + pid + ".json"};
+        args = new String[]{"-q", "0000004595", "-y", "MS_187", "-l", testFileSource1, "-p", "/tmp" + pid + ".json"};
         assertThrows(RuntimeException.class, () -> {
             parser.parseConfiguration(args);
         });

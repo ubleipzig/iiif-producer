@@ -11,11 +11,6 @@ A CLI tool that generates IIIF Presentation 2.1 Manifests from METS/MODS (produc
 ## Test
 `$ gradle test`
 
-## Requirements
-* imageMagick with openjp2 delegate
-
-See `buildtools/src/install/install-openjpeg.sh`
-
 ## Install
 * find distribution archive in `producer/build/distributions`
 * extract archive
@@ -28,28 +23,21 @@ See `etc/producer-config.yml`
 
 ## Usage
 ```bash
-bin/producer -x xmlFile -i imageSourceDir-o outputfile -v view_identifier -c configFile [-s]
+bin/producer -x xmlFile -o outputfile -v view_identifier -c configFile
 ```
 
 | Argument | Description | Example     |
 | -------- | ----------- | ----------- |
-| xmlFile  | A METS/MODS xml file path | /MS_187.xml |
-| imageSourceDir | the image source directory | /images |
-| outputfile | An JSON-LD output file path | /output.json |
-| view_identifier | The name of the IIIF viewer identifer | 004285964 | 
+| -x | A METS/MODS xml file path | /MS_187.xml |
+| -o | An JSON-LD output file path | /output.json |
+| -v | The name of the IIIF viewer identifer | 0004285964 |
 | -c, --config | a yaml configuration File | etc/producer-config.yml |
-| -s, --serializeImageManifest | serialize image manifest | |
-| -u, --imageManifestUrl | imageManifestUrl | http://localhost:9098/extractor?type=dimensions&manifest=https://iiif.ub.uni-leipzig.de/0000000504/manifest.json |
 
-## Image Dimension Manifest
-* If dimensions can be produced from an existing manifest serialization, then use the `-u` option to reference the dimension manifest API producer.
+## Images
+The images must already be present on the image server consistent the semantics of the service URL builder.
 
-* See [image](https://github.com/ubleipzig/image) for information about the image metadata creation process.
-* the image.metadata generator supports reading dimensions from JP2 and JPX files
+Example: `https://iiif.ub.uni-leipzig.de/iiif/j2k/{$viewId[0-4]}/{$viewId[5-8]}/{$viewId[0-10]}/{imageIndex[0-8]}.jpx`
 
-the default output location for the manifest when using the `-s` option is the `imageSourceDir`.
-It will have a filename like this `image-manifest-185c961d-774c-5540-a31d-c0bca454c47d` 
-   
 ## Java
 * This requires Java 8 or higher
 

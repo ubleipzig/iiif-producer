@@ -1,0 +1,219 @@
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/standards/premis/ http://www.loc.gov/standards/premis/v2/premis-v2-0.xsd http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-3.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/version17/mets.v1-7.xsd http://www.loc.gov/standards/mix/ http://www.loc.gov/standards/mix/mix.xsd">
+    <mets:metsHdr CREATEDATE="2018-10-15T08:30:02">
+        <mets:agent OTHERTYPE="SOFTWARE" ROLE="CREATOR" TYPE="OTHER">
+            <mets:name>Goobi - UGH-1.11.0-7b3c2be - 26−March−2015</mets:name>
+            <mets:note>Goobi</mets:note>
+        </mets:agent>
+    </mets:metsHdr>
+    <mets:dmdSec ID="DMDLOG_0001">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:identifier type="goobi">13637</mods:identifier>
+                    <mods:relatedItem type="series">
+                        <mods:titleInfo>
+                            <mods:title lang="ger">Drucke des 17. Jahrhunderts</mods:title>
+                        </mods:titleInfo>
+                    </mods:relatedItem>
+                    <mods:identifier type="urn">urn:nbn:de:bsz:15-0008-232267</mods:identifier>
+                    <mods:relatedItem type="host">
+                        <mods:recordInfo>
+                            <mods:recordIdentifier source="http://digital.ub.uni-leipzig.de/oai/">oai:de:ub.uni-leipzig:db:id-029207169</mods:recordIdentifier>
+                        </mods:recordInfo>
+                    </mods:relatedItem>
+                    <mods:identifier type="swb-ppn">034678301</mods:identifier>
+                    <mods:extension>
+                        <slub:slub xmlns:slub="http://slub-dresden.de/">
+                            <slub:id type="source">034678301</slub:id>
+                        </slub:slub>
+                    </mods:extension>
+                    <mods:identifier type="vd17">VD17 15:744130C</mods:identifier>
+                    <mods:titleInfo>
+                        <mods:title>
+                            Dominici Arumaei ... discursuum academicorum ad Auream Bullam Caroli IV. discursus secundus ad caput primum
+                        </mods:title>
+                    </mods:titleInfo>
+                    <mods:titleInfo type="alternative">
+                        <mods:title>
+                            Discursuum academicorum ad Auream Bullam Caroli IV. ... discursus secundus ad caput primum
+                        </mods:title>
+                    </mods:titleInfo>
+                    <mods:part order="0200" type="host">
+                        <mods:detail>
+                            <mods:number>2</mods:number>
+                        </mods:detail>
+                    </mods:part>
+                    <mods:language>
+                        <mods:languageTerm authority="rfc3066" type="code">lat</mods:languageTerm>
+                    </mods:language>
+                    <mods:originInfo>
+                        <mods:place>
+                            <mods:placeTerm type="text">Jenae</mods:placeTerm>
+                        </mods:place>
+                        <mods:dateIssued keyDate="yes">1635</mods:dateIssued>
+                        <mods:dateOther encoding="w3cdtf" type="order">1635</mods:dateOther>
+                    </mods:originInfo>
+                    <mods:name type="personal">
+                        <mods:role>
+                            <mods:roleTerm authority="marcrelator" type="code">aut</mods:roleTerm>
+                        </mods:role>
+                        <mods:namePart type="family">Arumäus</mods:namePart>
+                        <mods:namePart type="given">Dominicus</mods:namePart>
+                        <mods:displayForm>Arumäus, Dominicus</mods:displayForm>
+                    </mods:name>
+                    <mods:name type="personal">
+                        <mods:role>
+                            <mods:roleTerm authority="marcrelator" type="code">aut</mods:roleTerm>
+                        </mods:role>
+                        <mods:namePart type="family">Pfaffreutter</mods:namePart>
+                        <mods:namePart type="given">Johann Georg</mods:namePart>
+                        <mods:displayForm>Pfaffreutter, Johann Georg</mods:displayForm>
+                    </mods:name>
+                    <mods:physicalDescription>
+                        <mods:extent>[6] Bl.</mods:extent>
+                    </mods:physicalDescription>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDPHYS_0000">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:location>
+                        <mods:physicalLocation authority="marcorg" displayLabel="Leipzig University Library, Leipzig, Germany">DE-15</mods:physicalLocation>
+                        <mods:shelfLocator>Jus.publ.81-s:2</mods:shelfLocator>
+                    </mods:location>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:amdSec ID="AMD">
+        <mets:rightsMD ID="RIGHTS">
+            <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVRIGHTS">
+                <mets:xmlData>
+                    <dv:rights xmlns:dv="http://dfg-viewer.de/">
+                        <dv:owner>Leipzig University Library</dv:owner>
+                        <dv:ownerLogo>https://iiif.ub.uni-leipzig.de/ubl-logo.png</dv:ownerLogo>
+                        <dv:ownerSiteURL>https://ub.uni-leipzig.de</dv:ownerSiteURL>
+                        <dv:ownerContact>mailto:info@ub.uni-leipzig.de</dv:ownerContact>
+                    </dv:rights>
+                </mets:xmlData>
+            </mets:mdWrap>
+        </mets:rightsMD>
+        <mets:digiprovMD ID="DIGIPROV">
+            <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVLINKS">
+                <mets:xmlData>
+                    <dv:links xmlns:dv="http://dfg-viewer.de/">
+                        <dv:reference>
+                            https://katalog.ub.uni-leipzig.de/urn/urn:nbn:de:bsz:15-0008-232267
+                        </dv:reference>
+                        <dv:presentation>
+                            http://nbn-resolving.de/urn:nbn:de:bsz:15-0008-232267
+                        </dv:presentation>
+                    </dv:links>
+                </mets:xmlData>
+            </mets:mdWrap>
+        </mets:digiprovMD>
+    </mets:amdSec>
+    <mets:fileSec>
+        <mets:fileGrp USE="ORIGINAL">
+            <mets:file ID="FILE_0001_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000001.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0002_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000002.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0003_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000003.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0004_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000004.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0005_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000005.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0006_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000006.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0007_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000007.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0008_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000008.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0009_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000009.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0010_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000010.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0011_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000011.tif"/>
+            </mets:file>
+            <mets:file ID="FILE_0012_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ArumDomi_034678301_tif/00000012.tif"/>
+            </mets:file>
+        </mets:fileGrp>
+    </mets:fileSec>
+    <mets:structMap TYPE="LOGICAL">
+        <mets:div ID="LOG_0002" LABEL="Dominici Arumaei ... discursuum academicorum ad Auream Bullam Caroli IV. Romanorum imperatoris ..." ORDERLABEL="Dominici Arumaei ... discursuum academicorum ad Auream Bullam Caroli IV. Romanorum imperatoris ..." TYPE="multivolume_work">
+            <mets:mptr xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href=""/>
+            <mets:div ADMID="AMD" DMDID="DMDLOG_0001" ID="LOG_0003" LABEL="Dominici Arumaei ... discursuum academicorum ad Auream Bullam Caroli IV. discursus secundus ad caput primum" ORDER="0200" ORDERLABEL="Dominici Arumaei ... discursuum academicorum ad Auream Bullam Caroli IV. discursus secundus ad caput primum" TYPE="volume"/>
+        </mets:div>
+    </mets:structMap>
+    <mets:structMap TYPE="PHYSICAL">
+        <mets:div DMDID="DMDPHYS_0000" ID="PHYS_0000" TYPE="physSequence">
+            <mets:div ID="PHYS_0001" ORDER="1" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0001_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0002" ORDER="2" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0002_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0003" ORDER="3" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0003_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0004" ORDER="4" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0004_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0005" ORDER="5" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0005_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0006" ORDER="6" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0006_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0007" ORDER="7" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0007_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0008" ORDER="8" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0008_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0009" ORDER="9" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0009_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0010" ORDER="10" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0010_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0011" ORDER="11" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0011_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0012" ORDER="12" ORDERLABEL=" - " TYPE="page">
+                <mets:fptr FILEID="FILE_0012_ORIGINAL"/>
+            </mets:div>
+        </mets:div>
+    </mets:structMap>
+    <mets:structLink>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0001" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0002" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0003" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0004" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0005" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0006" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0007" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0008" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0009" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0010" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0011" xlink:from="LOG_0003"/>
+        <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0012" xlink:from="LOG_0003"/>
+    </mets:structLink>
+</mets:mets>

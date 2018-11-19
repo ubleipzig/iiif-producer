@@ -43,7 +43,7 @@ public class Config {
     private String katalogUrl;
 
     @NotNull
-    Boolean isUBLImageService;
+    private Boolean isUBLImageService;
     @NotNull
     private String imageServiceBaseUrl;
     @NotNull
