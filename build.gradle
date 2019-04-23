@@ -38,7 +38,7 @@ ext {
     mockitoVersion = '2.18.0'
     slf4jVersion = '1.7.25'
 
-    jacocoVersion = '0.8.1'
+    jacocoVersion = '0.8.3'
     checkstyleVersion = '8.8'
 
     jacocoTestProjects = [
@@ -69,8 +69,8 @@ configure(allprojects) { project ->
         }
     }
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = 1.11
+    targetCompatibility = 1.11
 
     ext {
         moduleName = "de.ubleipzig.iiifproducer"

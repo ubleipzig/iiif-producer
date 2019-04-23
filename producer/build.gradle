@@ -3,6 +3,11 @@ apply plugin: "application"
 mainClassName = "de.ubleipzig.iiifproducer.producer.IIIFProducerDriver"
 dependencies {
     implementation("de.ubleipzig:image.metadata:$imageMetadataVersion")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
+    implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
+    implementation("javax.validation:validation-api:2.0.1.Final")
     implementation project(":templates")
     implementation project(":xml-doc")
     implementation("de.ubleipzig:iiif.vocabulary:$iiifVocabularyVersion")
