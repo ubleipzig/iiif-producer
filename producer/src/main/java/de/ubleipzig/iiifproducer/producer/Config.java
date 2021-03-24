@@ -52,6 +52,7 @@ public class Config {
     private String imageServiceFileExtension;
     @NotNull
     private String manifestFilename;
+    private String dfgFilename;
     @NotNull
     private String defaultSequenceId;
     @NotNull
@@ -208,6 +209,21 @@ public class Config {
     @JsonProperty
     public void setKatalogUrl(final String katalogUrl) {
         this.katalogUrl = katalogUrl;
+    }
+
+    /**
+     * @return dfgUrl String
+     */
+    @JsonProperty
+    public String getDfgFilename() {
+        return dfgFilename;
+    }
+
+    /**
+     * @param dfgFilename String
+     */
+    public void setDfgFilename(final String dfgFilename) {
+        this.dfgFilename = dfgFilename;
     }
 
     /**

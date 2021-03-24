@@ -92,6 +92,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
         related.add(config.getKatalogUrl() + urn);
         related.add(config.getViewerUrl() + viewId);
         related.add(config.getBaseUrl() + viewId + separator + config.getManifestFilename());
+        related.add(config.getBaseUrl() + viewId + separator + config.getDfgFilename());
         body.setRelated(related);
     }
 

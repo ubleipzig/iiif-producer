@@ -23,7 +23,7 @@ ext {
     commonsIoVersion = '2.6'
     commonsRdfVersion = '0.5.0'
     imageMetadataVersion = '0.2.0-SNAPSHOT'
-    iiifVocabularyVersion = '0.1.0'
+    iiifVocabularyVersion = '0.1.1'
     logbackVersion = '1.2.3'
     metadataExtractorVersion = '2.11.0'
     xbeamVersion = '1.4.8'
@@ -159,10 +159,10 @@ configure(rootProject) {
     }
 
     task jacocoRootReport(type: JacocoReport, dependsOn: jacocoMerge) {
-        sourceDirectories = files(subprojects
+        sourceDirectories.from = files(subprojects
                 .findAll { it.name in jacocoTestProjects }
                 .sourceSets.main.allSource.srcDirs)
-        classDirectories = files(subprojects
+        classDirectories.from = files(subprojects
                 .findAll { it.name in jacocoTestProjects }
                 .sourceSets.main.output)
         executionData jacocoMerge.destinationFile
