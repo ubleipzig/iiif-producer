@@ -35,7 +35,10 @@ public class GetXMLFileTest {
     void testGetAnchorFile() {
         final String testFileSource = GetXMLFileTest.class.getResource("/mets/BntItin_021340072.xml").getPath();
         final MetsData mets = getMetsAnchor(testFileSource);
-        final String anchorFileLabel = Objects.requireNonNull(mets).getManifestTitle().orElse("");
+        String anchorFileLabel = "";
+        for (String title : Objects.requireNonNull(mets).getManifestTitles()) {
+            anchorFileLabel = title;
+        }
         assertEquals(
                 "Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft",
                 anchorFileLabel);

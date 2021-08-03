@@ -22,10 +22,14 @@ import static de.ubleipzig.iiifproducer.doc.MetsConstants.GOOBI_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.SWB_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAddressee;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAuthor;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCallNumber;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCallNumbers;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCollection;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDate;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDates;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getKalliopeID;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getOwner;
@@ -79,11 +83,18 @@ public class StandardMetadata {
         }
         meta.add(new TemplateMetadata("Source PPN (SWB)", getManuscriptIdByType(mets, SWB_TYPE)));
         meta.add(new TemplateMetadata("Collection", getCollection(mets)));
-        meta.add(new TemplateMetadata("Call number", getCallNumber(mets)));
+        if (getCollection(mets).contains("TestCollection") ^ getCollection(mets).contains("Heisenberg")) {
+            meta.add(new TemplateMetadata("Call number", getCallNumbers(mets)));
+            meta.add(new TemplateMetadata("Date of publication", getDates(mets)));
+            meta.add(new TemplateMetadata("Kalliope-ID", getKalliopeID(mets)));
+        } else {
+            meta.add(new TemplateMetadata("Call number", getCallNumber(mets)));
+            meta.add(new TemplateMetadata("Date of publication", getDate(mets)));
+        }
         meta.add(new TemplateMetadata("Owner", getOwner(mets)));
         meta.add(new TemplateMetadata("Author", getAuthor(mets)));
+        meta.add(new TemplateMetadata("Addressee", getAddressee(mets)));
         meta.add(new TemplateMetadata("Place of publication", getPlace(mets)));
-        meta.add(new TemplateMetadata("Date of publication", getDate(mets)));
         meta.add(new TemplateMetadata("Publisher", getPublisher(mets)));
         meta.add(new TemplateMetadata("Physical description", getPhysState(mets)));
         meta.add(new TemplateMetadata("Manifest Type", getLogicalType(mets, METS_PARENT_LOGICAL_ID)));

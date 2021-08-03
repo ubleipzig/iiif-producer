@@ -18,5 +18,7 @@ attributionLicenseNote: "No Copyright - Public Domain Marked"
 attributionKey: "Provided by "
 anchorKey: "Part of"
 
+dfgFilename: "presentation.xml"
+
 manifestHttpDir: "/mnt/http-server/"
 imageManifestOutputDir: "/tmp"

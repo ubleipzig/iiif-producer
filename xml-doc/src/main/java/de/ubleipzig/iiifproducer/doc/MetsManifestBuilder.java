@@ -76,6 +76,14 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
+    public static List<String> getManifestTitles(final MetsData mets) {
+        return mets.getManifestTitles();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
     public static String getManifestTitle(final MetsData mets) {
         return mets.getManifestTitle().orElse("").trim();
     }
@@ -110,6 +118,22 @@ public final class MetsManifestBuilder {
      */
     static String getSubtitle(final MetsData mets) {
         return mets.getSubtitle().orElse("").trim();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
+    public static List<String> getRightsUrl(final MetsData mets) {
+        return mets.getRightsUrl();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
+    public static List<String> getRightsValue(final MetsData mets) {
+        return mets.getRightsValue();
     }
 
     /**
@@ -246,6 +270,22 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
+    public static List<String> getKalliopeID(final MetsData mets) {
+        return mets.getKalliopeID();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
+    public static List<String> getCallNumbers(final MetsData mets) {
+        return mets.getCallNumbers();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
     public static String getCallNumber(final MetsData mets) {
         return mets.getCallNumber().orElse("").trim();
     }
@@ -270,8 +310,24 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
+    public static String getAddressee(final MetsData mets) {
+        return mets.getAddressee().orElse("").trim();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
     public static String getPlace(final MetsData mets) {
         return mets.getPlace().orElse("").trim();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
+    public static List<String> getDates(final MetsData mets) {
+        return mets.getDates();
     }
 
     /**

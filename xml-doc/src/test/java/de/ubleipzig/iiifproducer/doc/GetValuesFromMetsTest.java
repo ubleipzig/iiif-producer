@@ -23,7 +23,7 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastParent;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitles;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMimeTypeForFile;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNote;
@@ -55,7 +55,10 @@ class GetValuesFromMetsTest {
     @Test
     void testGetTitle() {
         final MetsData mets = getMets(sourceFile);
-        final String id = getManifestTitle(mets);
+        String id = "";
+        for (String title : getManifestTitles(mets)) {
+            id = title;
+        }
         assertEquals(id, "Leipzig, Universitätsbibliothek Leipzig, Ms 187");
     }
 

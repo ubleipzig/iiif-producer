@@ -18,11 +18,9 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_STRUCTURE_TYPE;
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCensus;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCollection;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getFileIdForDiv;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
@@ -32,12 +30,15 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastPa
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogo;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitles;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMultiVolumeWorkTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNoteTypes;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNotesByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getOrderLabelForDiv;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPhysicalDivs;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getRightsUrl;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getRightsValue;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getTopLogicals;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getVolumePartTitleOrPartNumber;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getXlinks;
@@ -51,6 +52,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 import de.ubleipzig.iiifproducer.doc.ManuscriptMetadata;
+import de.ubleipzig.iiifproducer.doc.MetsConstants;
 import de.ubleipzig.iiifproducer.doc.MetsData;
 import de.ubleipzig.iiifproducer.doc.StandardMetadata;
 import de.ubleipzig.iiifproducer.template.TemplateManifest;
@@ -95,19 +97,41 @@ public class MetsImpl implements MetsAccessor {
         if (!getCensus(mets).equals("")) {
             body.setLabel(getAnchorFileLabel());
         } else {
-            body.setLabel(getManifestTitle(mets));
+            if (getCollection(mets).contains("TestCollection") ^ getCollection(mets).contains("Heisenberg")) {
+                for (String title : getManifestTitles(mets)) {
+                    body.setLabel(title);
+                }
+            } else {
+                body.setLabel(getManifestTitle(mets));
+            }
         }
     }
 
     @Override
     public void setLicense(final TemplateManifest body) {
-        body.setLicense(config.getLicense());
+        if (getRightsUrl(mets).isEmpty()) {
+            body.setLicense(config.getLicense());
+        } else {
+            final StringBuilder content = new StringBuilder();
+            for (String url : getRightsUrl(mets)) {
+                content.append(url).append("<br/>");
+            }
+            body.setLicense(content.toString());
+        }
     }
 
     @Override
     public void setAttribution(final TemplateManifest body) {
-        body.setAttribution(
-                config.getAttributionKey() + getAttribution(mets) + "<br/>" + config.getAttributionLicenseNote());
+        if (getRightsValue(mets).isEmpty()) {
+            body.setAttribution(
+                    config.getAttributionKey() + getAttribution(mets) + "<br/>" + config.getAttributionLicenseNote());
+        } else {
+            final StringBuilder content = new StringBuilder();
+            for (String value : getRightsValue(mets)) {
+                content.append(value).append("<br/>");
+            }
+            body.setAttribution(content.toString());
+        }
     }
 
     @Override
@@ -171,7 +195,8 @@ public class MetsImpl implements MetsAccessor {
         });
 
         final TemplateTopStructure st = new TemplateTopStructure();
-        st.setStructureId(resourceContext + config.getRangeContext() + separator + METS_PARENT_LOGICAL_ID);
+        st.setStructureId(resourceContext + config.getRangeContext() + separator
+                + MetsConstants.METS_PARENT_LOGICAL_ID);
         st.setStructureLabel("Contents");
         ranges.sort(naturalOrder());
         st.setRanges(ranges);
@@ -181,7 +206,7 @@ public class MetsImpl implements MetsAccessor {
     @Override
     public List<TemplateMetadata> buildStructureMetadata(final String logicalType) {
         final List<TemplateMetadata> metadataList = new ArrayList<>();
-        final TemplateMetadata metadata = new TemplateMetadata(METS_STRUCTURE_TYPE, logicalType);
+        final TemplateMetadata metadata = new TemplateMetadata(MetsConstants.METS_STRUCTURE_TYPE, logicalType);
         metadataList.add(metadata);
         return metadataList;
     }
@@ -228,14 +253,15 @@ public class MetsImpl implements MetsAccessor {
                     st.setCanvases(getCanvases(lastParentId));
                     if (!Objects.equals(
                             st.getStructureId(),
-                            resourceContext + config.getRangeContext() + separator + METS_PARENT_LOGICAL_ID)) {
+                            resourceContext + config.getRangeContext() + separator
+                                    + MetsConstants.METS_PARENT_LOGICAL_ID)) {
                         structures.add(0, st);
                     }
                 });
 
             }
         });
-        final Comparator<TemplateStructure> c = Comparator.comparing(TemplateStructure::getStructureId);
+        final Comparator<TemplateStructure> c = comparing(TemplateStructure::getStructureId);
         return Stream.concat(structures.stream(), descendents.stream()).filter(
                 new ConcurrentSkipListSet<>(c)::add).sorted(comparing(TemplateStructure::getStructureId)).collect(
                 Collectors.toList());
@@ -248,7 +274,7 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public String getUrnReference() {
-        return getManuscriptIdByType(mets, URN_TYPE);
+        return getManuscriptIdByType(mets, MetsConstants.URN_TYPE);
     }
 
     @Override

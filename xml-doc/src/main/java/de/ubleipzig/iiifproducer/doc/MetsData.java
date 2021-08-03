@@ -34,8 +34,13 @@ public interface MetsData {
      * @return String
      */
     @XBRead("//*[local-name()='mods']/*[local-name()='titleInfo']/*[local-name()='title']")
-    Optional<String> getManifestTitle();
+    List<String> getManifestTitles();
 
+    /**
+     * @return String
+     */
+    @XBRead("//*[local-name()='mods']/*[local-name()='titleInfo']/*[local-name()='title']")
+    Optional<String> getManifestTitle();
 
     /**
      * @return String
@@ -49,6 +54,18 @@ public interface MetsData {
     @XBRead("//*[local-name()='dmdSec'][@ID='DMDLOG_0001']//*[local-name()='mods']/*[local-name()" +
             "='titleInfo']/*[local-name()='title']")
     Optional<String> getVolumePartTitle();
+
+    /**
+     * @return String
+     */
+    @XBRead("//*[local-name()='accessCondition']/@href")
+    List<String> getRightsUrl();
+
+    /**
+     * @return String
+     */
+    @XBRead("//*[local-name()='accessCondition']")
+    List<String> getRightsValue();
 
     /**
      * @return String
@@ -157,8 +174,20 @@ public interface MetsData {
     /**
      * @return String
      */
-    @XBRead("//*[local-name()='title']")
+    @XBRead("//*[local-name()='relatedItem']/*[local-name()='titleInfo']/*[local-name()='title']")
     Optional<String> getCollection();
+
+    /**
+     * @return String
+     */
+    @XBRead("//*[local-name()='extension']/*[local-name()='slub']/*[local-name()='id'][@type='source']")
+    List<String> getKalliopeID();
+
+    /**
+     * @return String
+     */
+    @XBRead("//*[local-name()='shelfLocator']")
+    List<String> getCallNumbers();
 
     /**
      * @return String
@@ -175,8 +204,14 @@ public interface MetsData {
     /**
      * @return String
      */
-    @XBRead("//*[local-name()='displayForm']")
+    @XBRead("//*[local-name()='roleTerm'][text()='aut']/parent::node()/parent::node()/*[local-name()='displayForm']")
     Optional<String> getAuthor();
+
+    /**
+     * @return String
+     */
+    @XBRead("//*[local-name()='roleTerm'][text()='rcp']/parent::node()/parent::node()/*[local-name()='displayForm']")
+    Optional<String> getAddressee();
 
     /**
      * @return String
@@ -187,7 +222,13 @@ public interface MetsData {
     /**
      * @return String
      */
-    @XBRead("//*[local-name()='dateOther']")
+    @XBRead("//*[local-name()='dateOther'] | //*[local-name()='dateIssued']")
+    List<String> getDates();
+
+    /**
+     * @return String
+     */
+    @XBRead("//*[local-name()='dateOther'] | //*[local-name()='dateIssued']")
     Optional<String> getDate();
 
     /**

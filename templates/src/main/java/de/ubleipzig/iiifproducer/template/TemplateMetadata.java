@@ -22,6 +22,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.util.List;
+
 /**
  * TemplateMetadata.
  *
@@ -43,6 +45,17 @@ public class TemplateMetadata {
     public TemplateMetadata(final String label, final String value) {
         this.label = label;
         this.value = value;
+    }
+
+    /**
+     * @param label String
+     * @param values String
+     */
+    public TemplateMetadata(final String label, final List<String> values) {
+        for (String value : values) {
+            this.label = label;
+            this.value = value;
+        }
     }
 
     /**
