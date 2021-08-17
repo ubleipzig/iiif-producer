@@ -23,6 +23,7 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastParent;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitles;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMimeTypeForFile;
@@ -59,6 +60,8 @@ class GetValuesFromMetsTest {
         for (String title : getManifestTitles(mets)) {
             id = title;
         }
+        // FIXME was ist der Sinn der Änderungen oben?
+        id = getManifestTitle(mets);
         assertEquals(id, "Leipzig, Universitätsbibliothek Leipzig, Ms 187");
     }
 
