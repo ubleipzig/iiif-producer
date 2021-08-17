@@ -31,7 +31,7 @@ import java.util.List;
  *
  * @author christopher-johnson
  */
-@JsonPropertyOrder({"@id", "@type", "label", "height", "width", "images"})
+@JsonPropertyOrder({"@id", "@type", "label", "height", "width", "images", "seeAlso"})
 public class TemplateCanvas {
 
     @JsonProperty("@id")
@@ -51,6 +51,8 @@ public class TemplateCanvas {
 
     @JsonProperty
     private List<TemplateImage> images;
+
+    private Object seeAlso;
 
     /**
      *

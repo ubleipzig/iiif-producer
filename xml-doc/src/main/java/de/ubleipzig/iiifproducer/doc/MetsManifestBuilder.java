@@ -154,6 +154,14 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
+     * @return Boolean
+     */
+    public static Boolean isHspCatalog(final MetsData mets) {
+        return mets.isHspCatalog();
+    }
+
+    /**
+     * @param mets MetsData
      * @return String
      */
     public static Boolean isManuscript(final MetsData mets) {
@@ -477,5 +485,19 @@ public final class MetsManifestBuilder {
         return mets.getXlinks();
     }
 
+    /**
+     * @param mods MetaData.HspCatalogMods
+     * @return String
+     */
+    public static String getSubtitle(final MetsData.HspCatalogMods mods) {
+        return mods.getSubtitle().orElse("");
+    }
 
+    /**
+     * @param mods MetaData.HspCatalogMods
+     * @return String
+     */
+    public static String getCallNumber(final MetsData.HspCatalogMods mods) {
+        return mods.getCallNumber().orElse("");
+    }
 }

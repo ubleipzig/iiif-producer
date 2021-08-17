@@ -42,6 +42,7 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getRightsValue;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getTopLogicals;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getVolumePartTitleOrPartNumber;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getXlinks;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.isHspCatalog;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.isManuscript;
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
 import static java.io.File.separator;
@@ -51,6 +52,7 @@ import static java.util.Comparator.naturalOrder;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
+import de.ubleipzig.iiifproducer.doc.HspCatalogStructureMetadata;
 import de.ubleipzig.iiifproducer.doc.ManuscriptMetadata;
 import de.ubleipzig.iiifproducer.doc.MetsConstants;
 import de.ubleipzig.iiifproducer.doc.MetsData;
@@ -76,9 +78,9 @@ import java.util.stream.Stream;
  */
 public class MetsImpl implements MetsAccessor {
 
-    private MetsData mets;
-    private Config config;
-    private Map<String, List<MetsData.Xlink>> xlinkmap;
+    private final MetsData mets;
+    private final Config config;
+    private final Map<String, List<MetsData.Xlink>> xlinkmap;
 
     MetsImpl(final Config config) {
         this.mets = getMets(config.getXmlFile());
@@ -234,8 +236,14 @@ public class MetsImpl implements MetsAccessor {
                         ranges.add(0, rangeId);
                         descSt.setStructureId(rangeId);
                         descSt.setStructureLabel(descLabel);
-                        final List<TemplateMetadata> metadataList = buildStructureMetadata(logType);
-                        descSt.setMetadata(metadataList);
+                        if (mets.isHspCatalog()) {
+                            final HspCatalogStructureMetadata hspMd = new HspCatalogStructureMetadata(mets, descID);
+                            final List<TemplateMetadata> metadataList = hspMd.getInfo();
+                            descSt.setMetadata(metadataList);
+                        } else {
+                            final List<TemplateMetadata> metadataList = buildStructureMetadata(logType);
+                            descSt.setMetadata(metadataList);
+                        }
                         descSt.setCanvases(getCanvases(descID));
                         descendents.add(0, descSt);
                     });
@@ -245,6 +253,7 @@ public class MetsImpl implements MetsAccessor {
                     st.setStructureId(structureIdDesc);
                     final String logicalLabel = getLogicalLabel(mets, lastParentId);
                     final String logType = getLogicalType(mets, lastParentId);
+                    // TODO set HSP range metadata
                     final List<TemplateMetadata> metadataList = buildStructureMetadata(logType);
                     st.setStructureLabel(logicalLabel);
                     st.setMetadata(metadataList);
@@ -265,6 +274,11 @@ public class MetsImpl implements MetsAccessor {
         return Stream.concat(structures.stream(), descendents.stream()).filter(
                 new ConcurrentSkipListSet<>(c)::add).sorted(comparing(TemplateStructure::getStructureId)).collect(
                 Collectors.toList());
+    }
+
+    @Override
+    public Boolean getCalalogType() {
+        return isHspCatalog(mets);
     }
 
     @Override

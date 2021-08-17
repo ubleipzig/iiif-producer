@@ -87,12 +87,19 @@ public class IIIFProducer implements ManifestBuilderProcess {
     }
 
     @Override
-    public void setRelated(final TemplateManifest body, final String urn, final String viewId) {
+    public void setRelated(final TemplateManifest body, final String urn, final String viewId, final boolean isHspCatalog) {
         final ArrayList<String> related = new ArrayList<>();
-        related.add(config.getKatalogUrl() + urn);
-        related.add(config.getViewerUrl() + viewId);
+        if (!isHspCatalog) {
+            logger.info("Kein HSP-Manifest");
+            related.add(config.getKatalogUrl() + urn);
+            related.add(config.getViewerUrl() + viewId);
+        } else {
+            logger.info("Ist HSP-Manifest");
+        }
         related.add(config.getBaseUrl() + viewId + separator + config.getManifestFilename());
-        related.add(config.getBaseUrl() + viewId + separator + config.getDfgFilename());
+        if (!isHspCatalog) {
+            related.add(config.getBaseUrl() + viewId + separator + config.getDfgFilename());
+        }
         body.setRelated(related);
     }
 
@@ -132,9 +139,11 @@ public class IIIFProducer implements ManifestBuilderProcess {
         final String imageServiceContext = iriBuilder.buildImageServiceContext(viewId);
         final String canvasContext = config.getCanvasContext();
         final String urn = mets.getUrnReference();
-        setRelated(manifest, urn, viewId);
+        final Boolean isCatalog = mets.getCalalogType();
+        setRelated(manifest, urn, viewId, isCatalog);
 
         mets.setManifestLabel(manifest);
+        // TODO HSP-Spezifika
         mets.setLicense(manifest);
         mets.setAttribution(manifest);
         mets.setLogo(manifest);
@@ -202,6 +211,8 @@ public class IIIFProducer implements ManifestBuilderProcess {
             images.add(image);
 
             canvas.setCanvasImages(images);
+            // TODO add alto to Canvas seeAlso
+
             canvases.add(canvas);
         }
 

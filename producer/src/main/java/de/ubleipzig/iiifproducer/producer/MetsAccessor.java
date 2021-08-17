@@ -104,6 +104,11 @@ public interface MetsAccessor {
     List<TemplateMetadata> buildStructureMetadata(String logicalType);
 
     /**
+     * @return boolean
+     */
+    Boolean getCalalogType();
+
+    /**
      * @return String
      */
     Boolean getMtype();

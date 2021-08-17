@@ -50,8 +50,9 @@ public interface ManifestBuilderProcess {
      * @param viewId String
      * @param urn urn
      * @param body TemplateManifest
+     * @param isHspCatalog boolean
      */
-    void setRelated(TemplateManifest body, String urn, String viewId);
+    void setRelated(TemplateManifest body, String urn, String viewId, boolean isHspCatalog);
 
     /**
      * @param canvases List

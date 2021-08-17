@@ -88,6 +88,7 @@ public class StandardMetadata {
             meta.add(new TemplateMetadata("Date of publication", getDates(mets)));
             meta.add(new TemplateMetadata("Kalliope-ID", getKalliopeID(mets)));
         } else {
+            // TODO no call number for catalog
             meta.add(new TemplateMetadata("Call number", getCallNumber(mets)));
             meta.add(new TemplateMetadata("Date of publication", getDate(mets)));
         }
