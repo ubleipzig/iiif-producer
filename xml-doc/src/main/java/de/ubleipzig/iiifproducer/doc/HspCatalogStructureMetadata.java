@@ -25,6 +25,7 @@ import de.ubleipzig.iiifproducer.template.TemplateMetadata;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,6 +71,9 @@ public class HspCatalogStructureMetadata {
         meta.add(new TemplateMetadata("Entstehungsort", joinValues(mods.getOriginPlace())));
         meta.add(new TemplateMetadata("Enstehungszeit", joinValues(mods.getOriginDate())));
         logger.debug("HSP catalog entry metadata added");
-        return meta;
+        return meta.stream()
+                .filter(templateMetadata -> templateMetadata.getValue() != null
+                        && !templateMetadata.getValue().isBlank())
+                .collect(Collectors.toList());
     }
 }

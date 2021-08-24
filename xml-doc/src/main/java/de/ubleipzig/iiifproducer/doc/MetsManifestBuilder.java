@@ -390,10 +390,19 @@ public final class MetsManifestBuilder {
     /**
      * @param mets MetsData
      * @param div String
+     * @param fileGrp String
      * @return String
      */
-    public static String getFileIdForDiv(final MetsData mets, final String div) {
-        return mets.getFileIdForDiv(div).orElse("").trim();
+    public static String getFileIdForDiv(final MetsData mets, final String div, final String fileGrp) {
+        final List<String> fileIds = mets.getFileIdForDiv(div);
+        if (fileIds != null && !fileIds.isEmpty()) {
+            for (String fileId : fileIds) {
+                if (mets.getFileIdInFileGrp(fileId, fileGrp)) {
+                    return fileId;
+                }
+            }
+        }
+        return "";
     }
 
     /**

@@ -48,6 +48,7 @@
           <mods:physicalDescription>
             <mods:extent>190 Seiten</mods:extent>
           </mods:physicalDescription>
+          <mods:accessCondition type="use and reproduction" href="http://rightsstatements.org/vocab/InC/1.0/">Urheberrechtsschutz 1.0</mods:accessCondition>
         </mods:mods>
       </mets:xmlData>
     </mets:mdWrap>

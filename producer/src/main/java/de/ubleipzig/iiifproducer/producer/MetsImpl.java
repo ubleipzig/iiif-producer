@@ -32,6 +32,7 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogo;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitles;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMimeTypeForFile;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMultiVolumeWorkTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNoteTypes;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNotesByType;
@@ -52,6 +53,7 @@ import static java.util.Comparator.naturalOrder;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
+import de.ubleipzig.iiifproducer.doc.HspCatalogMetadata;
 import de.ubleipzig.iiifproducer.doc.HspCatalogStructureMetadata;
 import de.ubleipzig.iiifproducer.doc.ManuscriptMetadata;
 import de.ubleipzig.iiifproducer.doc.MetsConstants;
@@ -119,6 +121,9 @@ public class MetsImpl implements MetsAccessor {
                 content.append(url).append("<br/>");
             }
             body.setLicense(content.toString());
+//            TODO why not the following?
+//            final String license = String.join("<br/>", getRightsUrl(mets));
+//            body.setLicense(license);
         }
     }
 
@@ -145,6 +150,14 @@ public class MetsImpl implements MetsAccessor {
     public void setHandschriftMetadata(final TemplateManifest body) {
         final ManuscriptMetadata man = new ManuscriptMetadata(mets);
         final List<TemplateMetadata> info = man.getInfo();
+        final List<TemplateMetadata> metadata = new ArrayList<>(info);
+        body.setMetadata(metadata);
+    }
+
+    @Override
+    public void setHspCatalogMetadata(final TemplateManifest body) {
+        final HspCatalogMetadata catalogMetadata = new HspCatalogMetadata(mets);
+        final List<TemplateMetadata> info = catalogMetadata.getInfo();
         final List<TemplateMetadata> metadata = new ArrayList<>(info);
         body.setMetadata(metadata);
     }
@@ -253,7 +266,6 @@ public class MetsImpl implements MetsAccessor {
                     st.setStructureId(structureIdDesc);
                     final String logicalLabel = getLogicalLabel(mets, lastParentId);
                     final String logType = getLogicalType(mets, lastParentId);
-                    // TODO set HSP range metadata
                     final List<TemplateMetadata> metadataList = buildStructureMetadata(logType);
                     st.setStructureLabel(logicalLabel);
                     st.setMetadata(metadataList);
@@ -302,12 +314,17 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public String getFile(final String div) {
-        return getFileIdForDiv(mets, div);
+    public String getFile(final String div, final String fileGrp) {
+        return getFileIdForDiv(mets, div, fileGrp);
     }
 
     @Override
     public String getHref(final String file) {
         return getHrefForFile(mets, file);
+    }
+
+    @Override
+    public String getFormatForFile(final String fileId) {
+        return getMimeTypeForFile(mets, fileId);
     }
 }

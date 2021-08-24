@@ -52,7 +52,8 @@ public class TemplateCanvas {
     @JsonProperty
     private List<TemplateImage> images;
 
-    private Object seeAlso;
+    @JsonProperty
+    private TemplateSeeAlso seeAlso;
 
     /**
      *
@@ -102,6 +103,13 @@ public class TemplateCanvas {
      */
     public void setCanvasId(final String id) {
         this.id = id;
+    }
+
+    /**
+     * @param seeAlso TemplateSeeAlso
+     */
+    public void setSeeAlso(final TemplateSeeAlso seeAlso) {
+        this.seeAlso = seeAlso;
     }
 }
 

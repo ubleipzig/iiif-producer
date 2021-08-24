@@ -264,11 +264,19 @@ public interface MetsData {
     Optional<String> getOrderLabelForDiv(String div);
 
     /**
+     * @param id file id
+     * @param fileGrp String USE attribute value of mets:fileGrp
+     * @return Boolean
+     */
+    @XBRead("boolean(//*[local-name()='fileGrp'][@USE='{1}']/*[local-name()='file'][@ID='{0}'])")
+    Boolean getFileIdInFileGrp(String id, String fileGrp);
+
+    /**
      * @param div String
      * @return String
      */
     @XBRead("//*[local-name()='div'][@ID='{0}']/descendant::node()/@FILEID")
-    Optional<String> getFileIdForDiv(String div);
+    List<String> getFileIdForDiv(String div);
 
     /**
      * @param file String

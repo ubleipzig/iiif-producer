@@ -21,3 +21,4 @@ xml-doc/.settings/
 xml-doc/iiifproducer.xml-doc.iml
 xml-doc/iiifproducer.xml-doc.main.iml
 xml-doc/iiifproducer.xml-doc.test.iml
+/bin/

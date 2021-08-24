@@ -33,6 +33,7 @@ import de.ubleipzig.iiifproducer.template.TemplateCanvas;
 import de.ubleipzig.iiifproducer.template.TemplateImage;
 import de.ubleipzig.iiifproducer.template.TemplateManifest;
 import de.ubleipzig.iiifproducer.template.TemplateResource;
+import de.ubleipzig.iiifproducer.template.TemplateSeeAlso;
 import de.ubleipzig.iiifproducer.template.TemplateSequence;
 import de.ubleipzig.iiifproducer.template.TemplateService;
 import de.ubleipzig.iiifproducer.template.TemplateStructure;
@@ -87,7 +88,8 @@ public class IIIFProducer implements ManifestBuilderProcess {
     }
 
     @Override
-    public void setRelated(final TemplateManifest body, final String urn, final String viewId, final boolean isHspCatalog) {
+    public void setRelated(final TemplateManifest body, final String urn, final String viewId,
+                           final boolean isHspCatalog) {
         final ArrayList<String> related = new ArrayList<>();
         if (!isHspCatalog) {
             logger.info("Kein HSP-Manifest");
@@ -101,6 +103,36 @@ public class IIIFProducer implements ManifestBuilderProcess {
             related.add(config.getBaseUrl() + viewId + separator + config.getDfgFilename());
         }
         body.setRelated(related);
+    }
+
+    /**
+     * @param canvas TemplateCanvas
+     * @param mets MetsAccessor
+     * @param div String
+     * @param viewId String
+     */
+    public void setCanvasSeeAlso(final TemplateCanvas canvas, final MetsAccessor mets, final String div,
+                                 final String viewId) {
+        final String fileId = mets.getFile(div, config.getFulltextFileGrp());
+        if (fileId != null && !fileId.isBlank()) {
+            final TemplateSeeAlso seeAlso = new TemplateSeeAlso();
+            final String href = mets.getHref(fileId);
+            final String format = mets.getFormatForFile(fileId);
+
+            final String fileName = new File(href).getName();
+
+            final String fulltextContext = config.getFulltextContext() == null
+                    || config.getFulltextContext().isBlank() ? "" : (config.getFulltextContext() + separator);
+
+            seeAlso.setId(config.getBaseUrl() + viewId + separator + fulltextContext + fileName);
+            // application/alto+xml vs application/xml+alto: https://github.com/dbmdz/mirador-textoverlay/issues/167
+            seeAlso.setFormat(format);
+            if ("application/alto+xml".equals(format)) {
+                // TODO use profile from xml file's xsd or have a configuration option (media type to profile)
+                seeAlso.setProfile("http://www.loc.gov/standards/alto/alto-v2.0.xsd");
+            }
+            canvas.setSeeAlso(seeAlso);
+        }
     }
 
     @Override
@@ -143,7 +175,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
         setRelated(manifest, urn, viewId, isCatalog);
 
         mets.setManifestLabel(manifest);
-        // TODO HSP-Spezifika
+        // TODO HSP-Spezifika - ggf bereits aus dem METS/MODS
         mets.setLicense(manifest);
         mets.setAttribution(manifest);
         mets.setLogo(manifest);
@@ -151,6 +183,8 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
         if (isManuscript) {
             mets.setHandschriftMetadata(manifest);
+        } else if (isCatalog) {
+            mets.setHspCatalogMetadata(manifest);
         } else {
             mets.setMetadata(manifest);
         }
@@ -211,7 +245,8 @@ public class IIIFProducer implements ManifestBuilderProcess {
             images.add(image);
 
             canvas.setCanvasImages(images);
-            // TODO add alto to Canvas seeAlso
+
+            setCanvasSeeAlso(canvas, mets, div, viewId);
 
             canvases.add(canvas);
         }
