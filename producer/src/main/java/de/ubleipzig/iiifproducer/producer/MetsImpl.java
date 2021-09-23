@@ -129,6 +129,7 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public void setAttribution(final TemplateManifest body) {
+        // TODO HTML content in IIIF should be wellformed XML https://iiif.io/api/presentation/2.1/#html-markup-in-property-values
         if (getRightsValue(mets).isEmpty()) {
             body.setAttribution(
                     config.getAttributionKey() + getAttribution(mets) + "<br/>" + config.getAttributionLicenseNote());
