@@ -355,13 +355,6 @@ public interface MetsData {
     @XBRead("//*[local-name()='dmdSec'][@ID='{0}']//*[local-name()='mods']")
     Optional<HspCatalogMods> getDmdMods(String dmdLogId);
 
-    /**
-     * @param dmdLogId String
-     * @return String
-     */
-    @XBRead("//*[local-name()='dmdSec'][@ID='{0}']/*[local-name()='mdWrap']/@MDTYPE")
-    String getDmdModsSomething(String dmdLogId);
-
     interface Xlink {
 
         @XBRead("@*[local-name()='from']")
