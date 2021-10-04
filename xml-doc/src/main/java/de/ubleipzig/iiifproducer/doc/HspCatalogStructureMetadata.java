@@ -69,7 +69,7 @@ public class HspCatalogStructureMetadata {
         meta.add(new TemplateMetadata("Umfang", joinValues(mods.getExtent())));
         meta.add(new TemplateMetadata("Abmessungen", joinValues(mods.getDimensions())));
         meta.add(new TemplateMetadata("Entstehungsort", joinValues(mods.getOriginPlace())));
-        meta.add(new TemplateMetadata("Enstehungszeit", joinValues(mods.getOriginDate())));
+        meta.add(new TemplateMetadata("Entstehungszeit", joinValues(mods.getOriginDate())));
         logger.debug("HSP catalog entry metadata added");
         return meta.stream()
                 .filter(templateMetadata -> templateMetadata.getValue() != null

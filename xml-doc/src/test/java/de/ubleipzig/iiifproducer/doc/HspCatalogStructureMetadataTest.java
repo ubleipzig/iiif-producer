@@ -60,6 +60,6 @@ public class HspCatalogStructureMetadataTest {
                 getMetadataByLabel(info, "Entstehungsort").getValue());
         assertEquals("um 1430/50\n" +
                 "               (Text, Buchschmuck), um 1470/80 (Miniaturen)",
-                getMetadataByLabel(info, "Enstehungszeit").getValue());
+                getMetadataByLabel(info, "Entstehungszeit").getValue());
     }
 }
