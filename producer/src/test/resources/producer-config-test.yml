@@ -20,3 +20,7 @@ anchorKey: "Part of"
 
 manifestHttpDir: "/mnt/http-server/"
 imageManifestOutputDir: "/tmp"
+
+imageFileGrp: "ORIGINAL"
+fulltextFileGrp: "FULLTEXT"
+fulltextContext: "alto"

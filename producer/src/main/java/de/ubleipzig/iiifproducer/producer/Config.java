@@ -70,6 +70,10 @@ public class Config {
     private String imageManifestOutputDir;
     private String imageManifestUrl;
 
+    private String imageFileGrp;
+    private String fulltextFileGrp;
+    private String fulltextContext;
+
     /**
      * @return String
      */
@@ -464,5 +468,47 @@ public class Config {
      */
     public void setImageManifestUrl(final String imageManifestUrl) {
         this.imageManifestUrl = imageManifestUrl;
+    }
+
+    /**
+     * @return String
+     */
+    public String getImageFileGrp() {
+        return imageFileGrp;
+    }
+
+    /**
+     * @param imageFileGrp String
+     */
+    public void setImageFileGrp(final String imageFileGrp) {
+        this.imageFileGrp = imageFileGrp;
+    }
+
+    /**
+     * @return String
+     */
+    public String getFulltextFileGrp() {
+        return fulltextFileGrp;
+    }
+
+    /**
+     * @param fulltextFileGrp String
+     */
+    public void setFulltextFileGrp(final String fulltextFileGrp) {
+        this.fulltextFileGrp = fulltextFileGrp;
+    }
+
+    /**
+     * @return String
+     */
+    public String getFulltextContext() {
+        return fulltextContext;
+    }
+
+    /**
+     * @param fulltextContext String
+     */
+    public void setFulltextContext(final String fulltextContext) {
+        this.fulltextContext = fulltextContext;
     }
 }

@@ -80,6 +80,13 @@ public interface MetsData {
     Optional<String> getLogo();
 
     /**
+     * @return Boolean
+     */
+    @XBRead("boolean(//*[local-name()='relatedItem']/*[local-name()='titleInfo']/*[local-name()='title']" +
+            "[text()='Handschriftenkataloge des Handschriftenportals'])")
+    Boolean isHspCatalog();
+
+    /**
      * @return String
      */
     @XBRead("boolean(//*[local-name()='typeOfResource'][@manuscript='yes'])")
@@ -257,11 +264,19 @@ public interface MetsData {
     Optional<String> getOrderLabelForDiv(String div);
 
     /**
+     * @param id file id
+     * @param fileGrp String USE attribute value of mets:fileGrp
+     * @return Boolean
+     */
+    @XBRead("boolean(//*[local-name()='fileGrp'][@USE='{1}']/*[local-name()='file'][@ID='{0}'])")
+    Boolean getFileIdInFileGrp(String id, String fileGrp);
+
+    /**
      * @param div String
      * @return String
      */
     @XBRead("//*[local-name()='div'][@ID='{0}']/descendant::node()/@FILEID")
-    Optional<String> getFileIdForDiv(String div);
+    List<String> getFileIdForDiv(String div);
 
     /**
      * @param file String
@@ -326,6 +341,20 @@ public interface MetsData {
     @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()" + "='div'][@ID='{0}']/@TYPE")
     Optional<String> getLogicalType(String id);
 
+    /**
+     * @param logicalDivId String
+     * @return Optional
+     */
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()='div'][@ID='{0}']/@DMDID")
+    Optional<String> getLogicalDmdId(String logicalDivId);
+
+    /**
+     * @param dmdLogId String
+     * @return Optional
+     */
+    @XBRead("//*[local-name()='dmdSec'][@ID='{0}']//*[local-name()='mods']")
+    Optional<HspCatalogMods> getDmdMods(String dmdLogId);
+
     interface Xlink {
 
         @XBRead("@*[local-name()='from']")
@@ -345,5 +374,31 @@ public interface MetsData {
 
         @XBRead("@*[local-name()='TYPE']")
         String getLogicalType();
+    }
+
+    interface HspCatalogMods {
+        @XBRead("./*[local-name()='titleInfo']/*[local-name()='title']")
+        String getTitle();
+
+        @XBRead("./*[local-name()='titleInfo']/*[local-name()='subTitle']")
+        Optional<String> getSubtitle();
+
+        @XBRead("./*[local-name()='identifier'][@type='shelfmark']")
+        Optional<String> getCallNumber();
+
+        @XBRead("./*[local-name()='physicalDescription']/*[local-name()='form'][@type='material']")
+        List<String> getMaterial();
+
+        @XBRead("./*[local-name()='physicalDescription']/*[local-name()='extent'][@unit='cm']")
+        List<String> getDimensions();
+
+        @XBRead("./*[local-name()='physicalDescription']/*[local-name()='extent'][@unit='leaves']")
+        List<String> getExtent();
+
+        @XBRead("./*[local-name()='originInfo']//*[local-name()='placeTerm'][@type='text']")
+        List<String> getOriginPlace();
+
+        @XBRead("./*[local-name()='originInfo']/*[local-name()='dateCreated'][@qualifier='inferred']")
+        List<String> getOriginDate();
     }
 }

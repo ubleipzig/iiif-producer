@@ -63,6 +63,11 @@ public interface MetsAccessor {
     /**
      * @param body TemplateManifest
      */
+    void setHspCatalogMetadata(TemplateManifest body);
+
+    /**
+     * @param body TemplateManifest
+     */
     void setMetadata(TemplateManifest body);
 
     /**
@@ -104,6 +109,11 @@ public interface MetsAccessor {
     List<TemplateMetadata> buildStructureMetadata(String logicalType);
 
     /**
+     * @return boolean
+     */
+    Boolean getCalalogType();
+
+    /**
      * @return String
      */
     Boolean getMtype();
@@ -126,13 +136,20 @@ public interface MetsAccessor {
 
     /**
      * @param div String
+     * @param fileGrp String
      * @return String
      */
-    String getFile(String div);
+    String getFile(String div, String fileGrp);
 
     /**
      * @param file String
      * @return String
      */
     String getHref(String file);
+
+    /**
+     * @param fileId String
+     * @return String media type for file
+     */
+    String getFormatForFile(String fileId);
 }

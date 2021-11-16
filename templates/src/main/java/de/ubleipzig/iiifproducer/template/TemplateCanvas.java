@@ -19,6 +19,7 @@
 package de.ubleipzig.iiifproducer.template;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -31,7 +32,8 @@ import java.util.List;
  *
  * @author christopher-johnson
  */
-@JsonPropertyOrder({"@id", "@type", "label", "height", "width", "images"})
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({"@id", "@type", "label", "height", "width", "images", "seeAlso"})
 public class TemplateCanvas {
 
     @JsonProperty("@id")
@@ -51,6 +53,9 @@ public class TemplateCanvas {
 
     @JsonProperty
     private List<TemplateImage> images;
+
+    @JsonProperty
+    private TemplateSeeAlso seeAlso;
 
     /**
      *
@@ -100,6 +105,13 @@ public class TemplateCanvas {
      */
     public void setCanvasId(final String id) {
         this.id = id;
+    }
+
+    /**
+     * @param seeAlso TemplateSeeAlso
+     */
+    public void setSeeAlso(final TemplateSeeAlso seeAlso) {
+        this.seeAlso = seeAlso;
     }
 }
 

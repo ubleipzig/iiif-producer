@@ -39,6 +39,8 @@ public class GetXMLFileTest {
         for (String title : Objects.requireNonNull(mets).getManifestTitles()) {
             anchorFileLabel = title;
         }
+        // FIXME: Warum die Zeilen oberhalb?
+        anchorFileLabel = Objects.requireNonNull(mets).getManifestTitle().orElse("");
         assertEquals(
                 "Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft",
                 anchorFileLabel);

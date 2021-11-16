@@ -23,6 +23,7 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastParent;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitles;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMimeTypeForFile;
@@ -34,6 +35,7 @@ import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -59,6 +61,8 @@ class GetValuesFromMetsTest {
         for (String title : getManifestTitles(mets)) {
             id = title;
         }
+        // FIXME was ist der Sinn der Änderungen oben?
+        id = getManifestTitle(mets);
         assertEquals(id, "Leipzig, Universitätsbibliothek Leipzig, Ms 187");
     }
 
@@ -182,5 +186,15 @@ class GetValuesFromMetsTest {
         final MetsData mets = getMets(sourceFile);
         final List<MetsData.Logical> logicals = mets.getTopLogicals();
         assertEquals(8, logicals.size());
+    }
+
+    @Test
+    void testGetFileIdInFileGrp() {
+        final String fileWithAlto = GetValuesFromMetsTest.class.getResource("/mets/DieHadeT_1525437259.xml").getPath();
+        final MetsData mets = getMets(fileWithAlto);
+        assertTrue(mets.getFileIdInFileGrp("FILE_0002_ORIGINAL", "ORIGINAL"));
+        assertTrue(!mets.getFileIdInFileGrp("FILE_0002_FULLTEXT", "ORIGINAL"));
+        assertTrue(mets.getFileIdInFileGrp("FILE_0002_FULLTEXT", "FULLTEXT"));
+        assertTrue(!mets.getFileIdInFileGrp("FILE_0002_ORIGINAL", "FULLTEXT"));
     }
 }

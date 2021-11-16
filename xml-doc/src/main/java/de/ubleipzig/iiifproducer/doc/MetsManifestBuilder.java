@@ -154,6 +154,14 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
+     * @return Boolean
+     */
+    public static Boolean isHspCatalog(final MetsData mets) {
+        return mets.isHspCatalog();
+    }
+
+    /**
+     * @param mets MetsData
      * @return String
      */
     public static Boolean isManuscript(final MetsData mets) {
@@ -382,10 +390,19 @@ public final class MetsManifestBuilder {
     /**
      * @param mets MetsData
      * @param div String
+     * @param fileGrp String
      * @return String
      */
-    public static String getFileIdForDiv(final MetsData mets, final String div) {
-        return mets.getFileIdForDiv(div).orElse("").trim();
+    public static String getFileIdForDiv(final MetsData mets, final String div, final String fileGrp) {
+        final List<String> fileIds = mets.getFileIdForDiv(div);
+        if (fileIds != null && !fileIds.isEmpty()) {
+            for (String fileId : fileIds) {
+                if (mets.getFileIdInFileGrp(fileId, fileGrp)) {
+                    return fileId;
+                }
+            }
+        }
+        return "";
     }
 
     /**
@@ -477,5 +494,19 @@ public final class MetsManifestBuilder {
         return mets.getXlinks();
     }
 
+    /**
+     * @param mods MetaData.HspCatalogMods
+     * @return String
+     */
+    public static String getSubtitle(final MetsData.HspCatalogMods mods) {
+        return mods.getSubtitle().orElse("");
+    }
 
+    /**
+     * @param mods MetaData.HspCatalogMods
+     * @return String
+     */
+    public static String getCallNumber(final MetsData.HspCatalogMods mods) {
+        return mods.getCallNumber().orElse("");
+    }
 }
