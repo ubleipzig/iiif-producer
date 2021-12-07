@@ -65,6 +65,7 @@ import de.ubleipzig.iiifproducer.template.TemplateStructure;
 import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -114,16 +115,9 @@ public class MetsImpl implements MetsAccessor {
     @Override
     public void setLicense(final TemplateManifest body) {
         if (getRightsUrl(mets).isEmpty()) {
-            body.setLicense(config.getLicense());
+            body.setLicense(Collections.singletonList(config.getLicense()));
         } else {
-            final StringBuilder content = new StringBuilder();
-            for (String url : getRightsUrl(mets)) {
-                content.append(url).append("<br/>");
-            }
-            body.setLicense(content.toString());
-//            TODO why not the following?
-//            final String license = String.join("<br/>", getRightsUrl(mets));
-//            body.setLicense(license);
+            body.setLicense(getRightsUrl(mets));
         }
     }
 

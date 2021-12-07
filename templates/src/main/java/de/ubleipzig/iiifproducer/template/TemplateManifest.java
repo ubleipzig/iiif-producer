@@ -18,6 +18,7 @@
 
 package de.ubleipzig.iiifproducer.template;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -50,7 +51,8 @@ public class TemplateManifest {
     private String label = "unnamed";
 
     @JsonProperty("license")
-    private String license;
+    @JsonFormat(with = JsonFormat.Feature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED)
+    private List<String> license;
 
     @JsonProperty("attribution")
     private String attribution;
@@ -107,7 +109,7 @@ public class TemplateManifest {
     /**
      * @param license String
      */
-    public void setLicense(final String license) {
+    public void setLicense(final List<String> license) {
         this.license = license;
     }
 
