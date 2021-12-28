@@ -18,27 +18,14 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
-import static de.ubleipzig.iiifproducer.template.ManifestSerializer.writeToFile;
-import static java.io.File.separator;
-import static java.lang.String.format;
-import static org.slf4j.LoggerFactory.getLogger;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import de.ubleipzig.iiif.vocabulary.SC;
-import de.ubleipzig.iiifproducer.template.ImageServiceResponse;
-import de.ubleipzig.iiifproducer.template.TemplateCanvas;
-import de.ubleipzig.iiifproducer.template.TemplateImage;
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateResource;
-import de.ubleipzig.iiifproducer.template.TemplateSeeAlso;
-import de.ubleipzig.iiifproducer.template.TemplateSequence;
-import de.ubleipzig.iiifproducer.template.TemplateService;
-import de.ubleipzig.iiifproducer.template.TemplateStructure;
-import de.ubleipzig.iiifproducer.template.TemplateStructureList;
-import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
+import de.ubleipzig.iiifproducer.template.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.rdf.api.IRI;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,60 +34,67 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.apache.commons.rdf.api.IRI;
-import org.slf4j.Logger;
+import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
+import static de.ubleipzig.iiifproducer.template.ManifestSerializer.writeToFile;
+import static java.io.File.separator;
+import static java.lang.String.format;
 
 /**
  * IIIFProducer.
  *
  * @author christopher-johnson
  */
-public class IIIFProducer implements ManifestBuilderProcess {
+@Slf4j
+@Builder
+@AllArgsConstructor
+public class IIIFProducer {
 
-    private static Logger logger = getLogger(IIIFProducer.class);
-    private final Config config;
+    private String baseUrl;
+    private String canvasContext;
+    private final Properties config;
+    private String defaultSequenceId;
+    private String dfgFileName;
+    private String katalogUrl;
+    private String fulltextContext;
+    private String fulltextFileGrp;
+    private String manifestFileName;
+    private String outputFile;
+    private String resourceContext;
+    private String viewId;
+    private String viewerUrl;
+    private String xmlFile;
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    /**
-     * IIIFProducer Class.
-     */
-    IIIFProducer(final Config config) {
-        this.config = config;
-    }
-
-    @Override
     public void run() {
-        logger.info("Running IIIF producer...");
+        log.info("Running IIIF producer...");
         buildManifest();
     }
 
-    @Override
     public void setContext(final TemplateManifest body) {
         body.setContext(SC.CONTEXT);
     }
 
-    @Override
     public void setId(final TemplateManifest body) {
-        final String resourceContext = config.getResourceContext();
-        body.setId(resourceContext + separator + config.getManifestFilename());
+        final String resourceContext = baseUrl + viewId;
+        body.setId(resourceContext + separator + manifestFileName);
     }
 
-    @Override
     public void setRelated(final TemplateManifest body, final String urn, final String viewId,
                            final boolean isHspCatalog) {
         final ArrayList<String> related = new ArrayList<>();
         if (!isHspCatalog) {
-            logger.info("Kein HSP-Manifest");
-            related.add(config.getKatalogUrl() + urn);
-            related.add(config.getViewerUrl() + viewId);
+            log.info("Kein HSP-Manifest");
+            related.add(katalogUrl + urn);
+            related.add(viewerUrl + viewId);
         } else {
-            logger.info("Ist HSP-Manifest");
+            log.info("Ist HSP-Manifest");
         }
-        related.add(config.getBaseUrl() + viewId + separator + config.getManifestFilename());
+        related.add(baseUrl + viewId + separator + manifestFileName);
         if (!isHspCatalog) {
-            related.add(config.getBaseUrl() + viewId + separator + config.getDfgFilename());
+            related.add(baseUrl + viewId + separator + dfgFileName);
         }
         body.setRelated(related);
     }
@@ -113,7 +107,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
      */
     public void setCanvasSeeAlso(final TemplateCanvas canvas, final MetsAccessor mets, final String div,
                                  final String viewId) {
-        final String fileId = mets.getFile(div, config.getFulltextFileGrp());
+        final String fileId = mets.getFile(div, fulltextFileGrp);
         if (fileId != null && !fileId.isBlank()) {
             final TemplateSeeAlso seeAlso = new TemplateSeeAlso();
             final String href = mets.getHref(fileId);
@@ -121,10 +115,10 @@ public class IIIFProducer implements ManifestBuilderProcess {
 
             final String fileName = new File(href).getName();
 
-            final String fulltextContext = config.getFulltextContext() == null
-                    || config.getFulltextContext().isBlank() ? "" : (config.getFulltextContext() + separator);
+            final String fulltextContextFull = fulltextContext == null || fulltextContext.isEmpty()
+                    ? "" : (fulltextContext + separator);
 
-            seeAlso.setId(config.getBaseUrl() + viewId + separator + fulltextContext + fileName);
+            seeAlso.setId(baseUrl + viewId + separator + fulltextContextFull + fileName);
             // application/alto+xml vs application/xml+alto: https://github.com/dbmdz/mirador-textoverlay/issues/167
             seeAlso.setFormat(format);
             if ("application/alto+xml".equals(format)) {
@@ -135,11 +129,9 @@ public class IIIFProducer implements ManifestBuilderProcess {
         }
     }
 
-    @Override
     public List<TemplateSequence> addCanvasesToSequence(final List<TemplateCanvas> canvases) {
-        final String resourceContext = config.getResourceContext();
         final List<TemplateSequence> sequence = new ArrayList<>();
-        sequence.add(new TemplateSequence(resourceContext + config.getDefaultSequenceId(), canvases));
+        sequence.add(new TemplateSequence(resourceContext + defaultSequenceId, canvases));
         return sequence;
     }
 
@@ -156,22 +148,39 @@ public class IIIFProducer implements ManifestBuilderProcess {
         return manifest;
     }
 
-    @Override
     public void buildManifest() {
 
         final TemplateManifest manifest = new TemplateManifest();
         setContext(manifest);
         setId(manifest);
+        final IRIBuilder iriBuilder = IRIBuilder.builder()
+                .annotationContext(config.getProperty("annotationContext"))
+                .canvasContext(config.getProperty("canvasContext"))
+                .imageServiceBaseUrl(config.getProperty("imageServiceBaseUrl"))
+                .imageServiceFileExtension(config.getProperty("imageServiceFileExtension"))
+                .imageServiceImageDirPrefix(config.getProperty("imageServiceImageDirPrefix"))
+                .isUBLImageService((boolean) config.get("isUBLImageService"))
+                .resourceContext(baseUrl + viewId)
+                .build();
 
-        final MetsAccessor mets = new MetsImpl(this.config);
-        final IRIBuilder iriBuilder = new IRIBuilder(this.config);
-        final Integer viewIdInput = Integer.valueOf(config.getViewId());
+        final MetsAccessor mets = MetsImpl.builder()
+                .anchorKey(config.getProperty("anchorKey"))
+                .attributionKey(config.getProperty("attributionKey"))
+                .attributionLicenseNote(config.getProperty("attributionLicenseNote"))
+                .iriBuilder(iriBuilder)
+                .license(config.getProperty("license"))
+                .rangeContext(config.getProperty("rangeContext"))
+                .resourceContext(resourceContext)
+                .xmlFile(xmlFile)
+                .mets()
+                .xlinkmap()
+                .build();
+
+        final Integer viewIdInput = Integer.valueOf(viewId);
         final String viewId = format("%010d", viewIdInput);
-        final String resourceContext = config.getResourceContext();
         final String imageServiceContext = iriBuilder.buildImageServiceContext(viewId);
-        final String canvasContext = config.getCanvasContext();
         final String urn = mets.getUrnReference();
-        final Boolean isCatalog = mets.getCalalogType();
+        final Boolean isCatalog = mets.getCatalogType();
         setRelated(manifest, urn, viewId, isCatalog);
 
         mets.setManifestLabel(manifest);
@@ -258,14 +267,13 @@ public class IIIFProducer implements ManifestBuilderProcess {
         final TemplateManifest structManifest;
         structManifest = setStructures(top, manifest, mets);
 
-        logger.info("Builder Process Complete, Serializing to Json ...");
+        log.info("Builder Process Complete, Serializing to Json ...");
         final Optional<String> json = serialize(structManifest);
         final String output = json.orElse(null);
-        final String outputFile = config.getOutputFile();
         final File outfile = new File(outputFile);
-        logger.info("Writing file to {}", outputFile);
+        log.info("Writing file to {}", outputFile);
         writeToFile(output, outfile);
-        logger.debug("Manifest Output: {}", output);
+        log.debug("Manifest Output: {}", output);
     }
 
     /**
@@ -276,7 +284,7 @@ public class IIIFProducer implements ManifestBuilderProcess {
      */
     public static ImageServiceResponse mapServiceResponse(final InputStream res) {
         try {
-            return MAPPER.readValue(res, new TypeReference<ImageServiceResponse>() {
+            return MAPPER.readValue(res, new TypeReference<>() {
             });
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());

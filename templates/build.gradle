@@ -5,5 +5,9 @@ dependencies {
     implementation("de.ubleipzig:iiif.vocabulary:$iiifVocabularyVersion")
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     testImplementation("org.mockito:mockito-core:$mockitoVersion")
-    testRuntimeClasspath("ch.qos.logback:logback-classic:$logbackVersion")
+    testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
+}
+
+repositories {
+    mavenCentral()
 }

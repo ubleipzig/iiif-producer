@@ -18,17 +18,16 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCallNumber;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getSubtitle;
-
 import de.ubleipzig.iiifproducer.template.TemplateMetadata;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCallNumber;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getSubtitle;
 
 /**
  * HspCatalogStructureMetadata. Used for descriptive metadata of manuscript catalog entries.

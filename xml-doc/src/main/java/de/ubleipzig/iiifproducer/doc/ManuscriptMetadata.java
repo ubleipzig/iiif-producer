@@ -18,28 +18,16 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.HANDSHRIFT_TYPE;
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCollection;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDateCreated;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDimension;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getExtent;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLanguageDescription;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLocation;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMaterial;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getRecordIdentifier;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getSubtitle;
-import static org.slf4j.LoggerFactory.getLogger;
-
 import de.ubleipzig.iiifproducer.template.TemplateMetadata;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.HANDSHRIFT_TYPE;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * ManuscriptMetadata.

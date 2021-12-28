@@ -18,14 +18,14 @@
 
 package de.ubleipzig.iiifproducer.template;
 
-import static java.lang.System.out;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.Test;
+import static java.lang.System.out;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * TemplateMetadataTest.

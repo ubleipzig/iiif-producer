@@ -18,20 +18,19 @@
 
 package de.ubleipzig.iiifproducer.template;
 
+import de.ubleipzig.iiif.vocabulary.SCEnum;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+
+import java.util.List;
+import java.util.Optional;
+
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
 import static java.lang.System.out;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import de.ubleipzig.iiif.vocabulary.SCEnum;
-
-import java.util.List;
-import java.util.Optional;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 /**
  * TemplateStructureTest.

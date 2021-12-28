@@ -18,31 +18,105 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static org.slf4j.LoggerFactory.getLogger;
+import lombok.extern.slf4j.Slf4j;
+import org.yaml.snakeyaml.Yaml;
+import picocli.CommandLine;
 
-import org.slf4j.Logger;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.Callable;
+import java.util.stream.Stream;
 
 /**
  * IIIFProducerDriver.
  *
  * @author christopher-johnson
  */
-public final class IIIFProducerDriver {
+@CommandLine.Command(
+        name = "producer",
+        description = "IIIF Producer",
+        mixinStandardHelpOptions = true
+)
+@Slf4j
+public final class IIIFProducerDriver implements Callable<Integer> {
 
-    private static Logger logger = getLogger(IIIFProducerDriver.class);
+    @CommandLine.Option(names = {"-v", "--viewid"}, required = true, description = "View identifier")
+    private String viewId;
 
-    /**
-     * @param args args
-     */
+    @CommandLine.Option(names = {"-x", "--xmlFile"}, required = false, description = "XML Source")
+    private String xmlFile;
+
+    @CommandLine.Option(names = {"-o", "--outputFile"}, required = false, description = "Output File")
+    private String outputFile = "/tmp/output.json";
+
+    @CommandLine.Option(names = {"-c", "--config"}, required = true, description = "Path to config file")
+    private String configFile = "etc/producer-config.yml";
+
+    @CommandLine.Option(names = {"-s", "--serializeImageManifest"}, required = false, description = "serializeImageManifest")
+    private boolean serializeImageManifest = false;
+
+    @CommandLine.Option(names = {"-u", "--imageManifestUrl"}, required = false, description = "imageManifestUrl")
+    private String imageManifestUrl = "image-manifest.json";
+
     public static void main(final String[] args) {
-        final IIIFProducerDriver driver = new IIIFProducerDriver();
-        driver.run(args);
+        int exitCode = new CommandLine(new IIIFProducerDriver()).execute(args);
+        System.exit(exitCode);
     }
 
-    private void run(final String[] args) {
+    @Override
+    public Integer call() {
+        File file = new File(configFile);
+        Properties config = retrieveConfig(file);
+        Properties configFromCLI = new Properties();
+        configFromCLI.setProperty("viewId", viewId);
+        configFromCLI.setProperty("xmlFile", xmlFile);
+        configFromCLI.setProperty("outputFile", outputFile);
+        configFromCLI.setProperty("imageManifestUrl", imageManifestUrl);
+        configFromCLI.setProperty("serializeImageManifest", String.valueOf(serializeImageManifest));
+        Properties finalProps = mergeProperties(config, configFromCLI);
+        IIIFProducer producer = IIIFProducer.builder()
+                .baseUrl(config.getProperty("baseUrl"))
+                .canvasContext(config.getProperty("canvasContext"))
+                .config(finalProps)
+                .defaultSequenceId(config.getProperty("defaultSequenceId"))
+                .fulltextFileGrp(config.getProperty("fulltextFileGrp"))
+                .manifestFileName(config.getProperty("manifestFilename"))
+                .outputFile(outputFile)
+                .resourceContext(config.getProperty("baseUrl") + viewId)
+                .viewId(viewId)
+                .xmlFile(xmlFile)
+                .build();
+        producer.buildManifest();
+        return 0;
+}
 
-        final ArgParser parser = new ArgParser();
-        final ManifestBuilderProcess processor = parser.init(args);
-        processor.run();
+    /**
+     * This method parses the provided configFile into its equivalent command-line args.
+     *
+     * @param configFile containing config args
+     * @return Array of args
+     */
+    private Properties retrieveConfig(final File configFile) {
+        if (!configFile.exists()) {
+            log.error("Configuration file does not exist: " + configFile);
+        }
+        log.debug("Loading configuration file: {}", configFile);
+        try {
+            Yaml yaml = new Yaml();
+            Properties map = yaml.loadAs(new FileInputStream(configFile), Properties.class);
+            Properties config = new Properties();
+            config.putAll(map);
+            return config;
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    private Properties mergeProperties(Properties... properties) {
+        return Stream.of(properties)
+                .collect(Properties::new, Map::putAll, Map::putAll);
     }
 }

@@ -18,10 +18,11 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import java.util.UUID;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.Objects;
+import java.util.UUID;
 
 public class IIIFProducerDriverTest {
 
@@ -32,9 +33,12 @@ public class IIIFProducerDriverTest {
 
     @BeforeAll
     static void init() {
-        testFileSource1 = ArgParserTest.class.getResource("/BlhDie_004285964.xml").getPath();
-        testFileSource2 = ArgParserTest.class.getResource("/MS_187.xml").getPath();
-        configFilePath = ArgParserTest.class.getResource("/producer-config-test.yml").getPath();
+        testFileSource1 = Objects.requireNonNull(
+                IIIFProducerDriverTest.class.getResource("/BlhDie_004285964.xml")).getPath();
+        testFileSource2 = Objects.requireNonNull(
+                IIIFProducerDriverTest.class.getResource("/MS_187.xml")).getPath();
+        configFilePath = Objects.requireNonNull(
+                IIIFProducerDriverTest.class.getResource("/producer-config-test.yml")).getPath();
         pid = "producer-test-" + UUID.randomUUID().toString();
     }
 

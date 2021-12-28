@@ -18,20 +18,20 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
+import de.ubleipzig.iiifproducer.template.TemplateManifest;
+import de.ubleipzig.iiifproducer.template.TemplateStructure;
+import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
 import static java.nio.file.Paths.get;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateStructure;
-import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 
 /**
  * StructuresTest.
@@ -52,45 +52,49 @@ class StructuresTest {
 
     @Test
     void buildStructures() {
-        final Config config = new Config();
-        config.setXmlFile(xmlFile);
-        config.setOutputFile("/tmp/test.json");
-        config.setViewId("004285964");
-        final MetsAccessor mets = new MetsImpl(config);
+
+//        config.setOutputFile("/tmp/test.json");
+//        config.setViewId("004285964");
+        final MetsAccessor mets = MetsImpl.builder()
+                .xmlFile(xmlFile)
+                .build();
         final List<TemplateStructure> structures = mets.buildStructures();
         assertNotNull(structures.get(0));
     }
 
     @Test
     void buildStructures2() {
-        final Config config = new Config();
-        config.setXmlFile(xmlFile2);
-        config.setOutputFile("/tmp/test.json");
-        config.setViewId("0000012885");
-        final MetsAccessor mets = new MetsImpl(config);
+//        config.setOutputFile("/tmp/test.json");
+//        config.setViewId("0000012885");
+        final MetsAccessor mets = MetsImpl.builder()
+                .xmlFile(xmlFile2)
+                .build();
         final List<TemplateStructure> structures = mets.buildStructures();
         assertTrue(structures.isEmpty());
     }
 
     @Test
     void buildTopStructure() {
-        final Config config = new Config();
-        config.setXmlFile(xmlFile);
-        config.setOutputFile("/tmp/test.json");
-        config.setViewId("004285964");
-        final MetsAccessor mets = new MetsImpl(config);
+//        config.setOutputFile("/tmp/test.json");
+//        config.setViewId("004285964");
+        final MetsAccessor mets = MetsImpl.builder()
+                .xmlFile(xmlFile)
+                .build();
         final TemplateStructure structure = mets.buildTopStructure();
         assertNotNull(structure);
     }
 
     @Test
     void testSetStructuresIfSet() {
-        final Config config = new Config();
-        config.setXmlFile(xmlFile);
-        config.setOutputFile("/tmp/test.json");
-        config.setViewId("004285964");
-        final MetsAccessor mets = new MetsImpl(config);
-        final IIIFProducer producer = new IIIFProducer(config);
+        final Properties config = new Properties();
+        config.setProperty("outputFile", "/tmp/test.json");
+        config.setProperty("viewId", "004285964");
+        final MetsAccessor mets = MetsImpl.builder()
+                .xmlFile(xmlFile)
+                .build();
+        final IIIFProducer producer = IIIFProducer.builder()
+                .config(config)
+                .build();
         final TemplateTopStructure top = new TemplateTopStructure();
         final List<String> ranges = new ArrayList<>();
         ranges.add("http://some-range/r1");
@@ -102,12 +106,15 @@ class StructuresTest {
 
     @Test
     void testSetStructuresDoNotSet() {
-        final Config config = new Config();
-        config.setXmlFile(xmlFile);
-        config.setOutputFile("/tmp/test.json");
-        config.setViewId("004285964");
-        final MetsAccessor mets = new MetsImpl(config);
-        final IIIFProducer producer = new IIIFProducer(config);
+        final Properties config = new Properties();
+        config.setProperty("outputFile", "/tmp/test.json");
+        config.setProperty("viewId", "004285964");
+        final MetsAccessor mets = MetsImpl.builder()
+                .xmlFile(xmlFile)
+                .build();
+        final IIIFProducer producer = IIIFProducer.builder()
+                .config(config)
+                .build();
         final TemplateTopStructure top = new TemplateTopStructure();
         final List<String> ranges = new ArrayList<>();
         top.setRanges(ranges);

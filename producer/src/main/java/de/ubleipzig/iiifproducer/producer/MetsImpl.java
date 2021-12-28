@@ -18,34 +18,22 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCensus;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCollection;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getFileIdForDiv;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastChildren;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastDescendent;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastParent;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogo;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitles;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMimeTypeForFile;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMultiVolumeWorkTitle;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNoteTypes;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNotesByType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getOrderLabelForDiv;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPhysicalDivs;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getRightsUrl;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getRightsValue;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getTopLogicals;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getVolumePartTitleOrPartNumber;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getXlinks;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.isHspCatalog;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.isManuscript;
-import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
+import de.ubleipzig.iiifproducer.doc.*;
+import de.ubleipzig.iiifproducer.template.TemplateManifest;
+import de.ubleipzig.iiifproducer.template.TemplateMetadata;
+import de.ubleipzig.iiifproducer.template.TemplateStructure;
+import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
 import static java.io.File.separator;
 import static java.util.Collections.synchronizedList;
 import static java.util.Comparator.comparing;
@@ -53,51 +41,45 @@ import static java.util.Comparator.naturalOrder;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
-import de.ubleipzig.iiifproducer.doc.HspCatalogMetadata;
-import de.ubleipzig.iiifproducer.doc.HspCatalogStructureMetadata;
-import de.ubleipzig.iiifproducer.doc.ManuscriptMetadata;
-import de.ubleipzig.iiifproducer.doc.MetsConstants;
-import de.ubleipzig.iiifproducer.doc.MetsData;
-import de.ubleipzig.iiifproducer.doc.StandardMetadata;
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
-import de.ubleipzig.iiifproducer.template.TemplateStructure;
-import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 /**
  * MetsImpl.
  *
  * @author christopher-johnson
  */
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
 public class MetsImpl implements MetsAccessor {
 
-    private final MetsData mets;
-    private final Config config;
-    private final Map<String, List<MetsData.Xlink>> xlinkmap;
+    private MetsData mets;
+    private Map<String, List<MetsData.Xlink>> xlinkmap;
+    private IRIBuilder iriBuilder;
+    private String anchorKey;
+    private String attributionKey;
+    private String attributionLicenseNote;
+    private String license;
+    private String rangeContext;
+    private String resourceContext;
+    private String xmlFile;
 
-    MetsImpl(final Config config) {
-        this.mets = getMets(config.getXmlFile());
-        this.config = config;
-        this.xlinkmap = getXlinkMap();
+    public static class MetsImplBuilder {
+        public MetsImplBuilder mets() {
+            this.mets = de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets(xmlFile);
+            return this;
+        }
+
+        public MetsImplBuilder xlinkmap() {
+            this.xlinkmap = getXlinkMap(this.mets);
+            return this;
+        }
     }
 
-    @Override
-    public Map<String, List<MetsData.Xlink>> getXlinkMap() {
+    public static Map<String, List<MetsData.Xlink>> getXlinkMap(MetsData mets) {
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
         return xlinks.stream().collect(groupingBy(MetsData.Xlink::getXLinkFrom));
     }
 
-    @Override
     public void setManifestLabel(final TemplateManifest body) {
         if (!getCensus(mets).equals("")) {
             body.setLabel(getAnchorFileLabel());
@@ -112,21 +94,19 @@ public class MetsImpl implements MetsAccessor {
         }
     }
 
-    @Override
     public void setLicense(final TemplateManifest body) {
         if (getRightsUrl(mets).isEmpty()) {
-            body.setLicense(Collections.singletonList(config.getLicense()));
+            body.setLicense(Collections.singletonList(license));
         } else {
             body.setLicense(getRightsUrl(mets));
         }
     }
 
-    @Override
     public void setAttribution(final TemplateManifest body) {
         // TODO HTML should be wellformed XML https://iiif.io/api/presentation/2.1/#html-markup-in-property-values
         if (getRightsValue(mets).isEmpty()) {
             body.setAttribution(
-                    config.getAttributionKey() + getAttribution(mets) + "<br/>" + config.getAttributionLicenseNote());
+                    attributionKey + getAttribution(mets) + "<br/>" + attributionLicenseNote);
         } else {
             final StringBuilder content = new StringBuilder();
             for (String value : getRightsValue(mets)) {
@@ -136,12 +116,10 @@ public class MetsImpl implements MetsAccessor {
         }
     }
 
-    @Override
     public void setLogo(final TemplateManifest body) {
         body.setLogo(getLogo(mets));
     }
 
-    @Override
     public void setHandschriftMetadata(final TemplateManifest body) {
         final ManuscriptMetadata man = new ManuscriptMetadata(mets);
         final List<TemplateMetadata> info = man.getInfo();
@@ -149,7 +127,6 @@ public class MetsImpl implements MetsAccessor {
         body.setMetadata(metadata);
     }
 
-    @Override
     public void setHspCatalogMetadata(final TemplateManifest body) {
         final HspCatalogMetadata catalogMetadata = new HspCatalogMetadata(mets);
         final List<TemplateMetadata> info = catalogMetadata.getInfo();
@@ -157,7 +134,6 @@ public class MetsImpl implements MetsAccessor {
         body.setMetadata(metadata);
     }
 
-    @Override
     public void setMetadata(final TemplateManifest body) {
         final StandardMetadata man = new StandardMetadata(mets);
         final List<TemplateMetadata> info = man.getInfo();
@@ -172,40 +148,34 @@ public class MetsImpl implements MetsAccessor {
         body.setMetadata(metadata);
     }
 
-    @Override
     public TemplateMetadata getAnchorFileMetadata() {
-        return new TemplateMetadata(config.getAnchorKey(), getMultiVolumeWorkTitle(mets) + "; " + getCensus(mets));
+        return new TemplateMetadata(anchorKey, getMultiVolumeWorkTitle(mets) + "; " + getCensus(mets));
     }
 
-    @Override
     public String getAnchorFileLabel() {
         return getMultiVolumeWorkTitle(mets) + "; " + getVolumePartTitleOrPartNumber(mets);
     }
 
-    @Override
     public List<String> getCanvases(final String logical) {
-        final IRIBuilder iri = new IRIBuilder(this.config);
         final List<String> canvases = new ArrayList<>();
         final List<String> physicals = xlinkmap.get(logical).stream().map(MetsData.Xlink::getXLinkTo).collect(toList());
         physicals.forEach(physical -> {
-            canvases.add(iri.buildCanvasIRIfromPhysical(physical));
+            canvases.add(iriBuilder.buildCanvasIRIfromPhysical(physical));
         });
         return canvases;
     }
 
-    @Override
     public TemplateTopStructure buildTopStructure() {
-        final String resourceContext = config.getResourceContext();
         final List<String> ranges = synchronizedList(new ArrayList<>());
 
         final List<MetsData.Logical> logs = getTopLogicals(mets);
         logs.forEach(logical -> {
-            final String rangeId = resourceContext + config.getRangeContext() + separator + logical.getLogicalId();
+            final String rangeId = resourceContext + rangeContext + separator + logical.getLogicalId();
             ranges.add(0, rangeId);
         });
 
         final TemplateTopStructure st = new TemplateTopStructure();
-        st.setStructureId(resourceContext + config.getRangeContext() + separator
+        st.setStructureId(resourceContext + rangeContext + separator
                 + MetsConstants.METS_PARENT_LOGICAL_ID);
         st.setStructureLabel("Contents");
         ranges.sort(naturalOrder());
@@ -213,7 +183,6 @@ public class MetsImpl implements MetsAccessor {
         return st;
     }
 
-    @Override
     public List<TemplateMetadata> buildStructureMetadata(final String logicalType) {
         final List<TemplateMetadata> metadataList = new ArrayList<>();
         final TemplateMetadata metadata = new TemplateMetadata(MetsConstants.METS_STRUCTURE_TYPE, logicalType);
@@ -221,9 +190,7 @@ public class MetsImpl implements MetsAccessor {
         return metadataList;
     }
 
-    @Override
     public List<TemplateStructure> buildStructures() {
-        final String resourceContext = config.getResourceContext();
         final List<TemplateStructure> structures = synchronizedList(new ArrayList<>());
         final List<TemplateStructure> descendents = synchronizedList(new ArrayList<>());
         xlinkmap.keySet().forEach(logical -> {
@@ -238,7 +205,7 @@ public class MetsImpl implements MetsAccessor {
                     lastChildren.forEach(desc -> {
                         final TemplateStructure descSt = new TemplateStructure();
                         final String descID = desc.getLogicalId().trim();
-                        final String rangeId = resourceContext + config.getRangeContext() + separator + descID;
+                        final String rangeId = resourceContext + rangeContext + separator + descID;
                         final String descLabel = getLogicalLabel(mets, descID);
                         final String logType = getLogicalType(mets, descID);
                         ranges.add(0, rangeId);
@@ -256,7 +223,7 @@ public class MetsImpl implements MetsAccessor {
                         descendents.add(0, descSt);
                     });
                     final TemplateStructure st = new TemplateStructure();
-                    final String structureIdDesc = resourceContext + config.getRangeContext() + separator +
+                    final String structureIdDesc = resourceContext + rangeContext + separator +
                             lastParentId;
                     st.setStructureId(structureIdDesc);
                     final String logicalLabel = getLogicalLabel(mets, lastParentId);
@@ -269,7 +236,7 @@ public class MetsImpl implements MetsAccessor {
                     st.setCanvases(getCanvases(lastParentId));
                     if (!Objects.equals(
                             st.getStructureId(),
-                            resourceContext + config.getRangeContext() + separator
+                            resourceContext + rangeContext + separator
                                     + MetsConstants.METS_PARENT_LOGICAL_ID)) {
                         structures.add(0, st);
                     }
@@ -283,42 +250,42 @@ public class MetsImpl implements MetsAccessor {
                 Collectors.toList());
     }
 
-    @Override
-    public Boolean getCalalogType() {
+
+    public Boolean getCatalogType() {
         return isHspCatalog(mets);
     }
 
-    @Override
+
     public Boolean getMtype() {
         return isManuscript(mets);
     }
 
-    @Override
+
     public String getUrnReference() {
         return getManuscriptIdByType(mets, MetsConstants.URN_TYPE);
     }
 
-    @Override
+
     public List<String> getPhysical() {
         return getPhysicalDivs(mets);
     }
 
-    @Override
+
     public String getOrderLabel(final String div) {
         return getOrderLabelForDiv(mets, div);
     }
 
-    @Override
+
     public String getFile(final String div, final String fileGrp) {
         return getFileIdForDiv(mets, div, fileGrp);
     }
 
-    @Override
+
     public String getHref(final String file) {
         return getHrefForFile(mets, file);
     }
 
-    @Override
+
     public String getFormatForFile(final String fileId) {
         return getMimeTypeForFile(mets, fileId);
     }

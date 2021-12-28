@@ -83,7 +83,9 @@ public interface MetsAccessor {
     /**
      * @return Map
      */
-    Map<String, List<MetsData.Xlink>> getXlinkMap();
+    static Map<String, List<MetsData.Xlink>> getXlinkMap(MetsData mets) {
+        return null;
+    }
 
     /**
      * @param logical String
@@ -111,7 +113,7 @@ public interface MetsAccessor {
     /**
      * @return boolean
      */
-    Boolean getCalalogType();
+    Boolean getCatalogType();
 
     /**
      * @return String

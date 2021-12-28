@@ -18,32 +18,18 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.GOOBI_TYPE;
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.SWB_TYPE;
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAddressee;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAuthor;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCallNumber;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCallNumbers;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCollection;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDate;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDates;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getKalliopeID;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getOwner;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPhysState;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPlace;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPublisher;
-import static org.slf4j.LoggerFactory.getLogger;
-
 import de.ubleipzig.iiifproducer.template.TemplateMetadata;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.GOOBI_TYPE;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.SWB_TYPE;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * StandardMetadata.

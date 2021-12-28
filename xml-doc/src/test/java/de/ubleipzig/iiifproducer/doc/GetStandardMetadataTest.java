@@ -17,15 +17,14 @@
  */
 package de.ubleipzig.iiifproducer.doc;
 
-import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import de.ubleipzig.iiifproducer.template.TemplateMetadata;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.Test;
+import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetStandardMetadataTest {
 

@@ -18,17 +18,16 @@
 
 package de.ubleipzig.iiifproducer.template;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import de.ubleipzig.iiif.vocabulary.SCEnum;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * TemplateManifestTest.
@@ -64,21 +63,20 @@ class TemplateManifestTest {
         mockManifest = new TemplateManifest();
         mockManifest.setId("http://test.org/002");
         mockManifest.setType(SCEnum.Manifest.compactedIRI());
-        List<String> licenses = Arrays.asList(
+        final List<String> licenses = Arrays.asList(
                 "http://foo.test",
                 "http://bar.test",
                 "http://foobar.test"
         );
         mockManifest.setLicense(licenses);
-        StringBuilder expected = new StringBuilder("\"license\" : [\n");
-        expected.append("    \"http://foo.test\",\n");
-        expected.append("    \"http://bar.test\",\n");
-        expected.append("    \"http://foobar.test\"\n");
-        expected.append("  ]");
+        final String expected = "\"license\" : [\n" + "    \"http://foo.test\",\n" +
+                "    \"http://bar.test\",\n" +
+                "    \"http://foobar.test\"\n" +
+                "  ]";
 
         final Optional<String> multiLicenseJson = ManifestSerializer.serialize(mockManifest);
         assertTrue(multiLicenseJson.isPresent());
-        assertTrue(multiLicenseJson.get().contains(expected.toString()));
+        assertTrue(multiLicenseJson.get().contains(expected));
     }
 
 }

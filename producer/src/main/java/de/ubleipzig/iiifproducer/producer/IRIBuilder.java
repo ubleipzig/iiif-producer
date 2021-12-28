@@ -18,34 +18,44 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.RDF;
+import org.apache.commons.rdf.simple.SimpleRDF;
+
+import java.io.File;
+import java.util.Properties;
+import java.util.UUID;
+
 import static java.io.File.separator;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
 import static java.lang.String.format;
-
-import java.io.File;
-import java.util.UUID;
-
-import org.apache.commons.rdf.api.IRI;
-import org.apache.commons.rdf.api.RDF;
-import org.apache.commons.rdf.simple.SimpleRDF;
 
 /**
  * IRIBuilder.
  *
  * @author christopher-johnson
  */
+@Builder
+@Setter
+@Getter
+@AllArgsConstructor
 public final class IRIBuilder {
 
-    private Config config;
-    private static final RDF rdf = new SimpleRDF();
+    private String annotationContext;
+    private String canvasContext;
+    private final Properties config;
+    private String imageServiceFileExtension;
+    private String imageServiceImageDirPrefix;
+    private String imageServiceBaseUrl;
+    private boolean isUBLImageService;
+    private String resourceContext;
 
-    /**
-     * @param config Config
-     */
-    public IRIBuilder(final Config config) {
-        this.config = config;
-    }
+    private static final RDF rdf = new SimpleRDF();
 
     /**
      * @param canvasIdString String
@@ -70,7 +80,7 @@ public final class IRIBuilder {
      */
     public IRI buildServiceIRI(final String imageServiceContext, final String resourceIdString) {
         return rdf.createIRI(
-                imageServiceContext + separator + resourceIdString + config.getImageServiceFileExtension());
+                imageServiceContext + separator + resourceIdString + imageServiceFileExtension);
     }
 
     /**
@@ -80,15 +90,15 @@ public final class IRIBuilder {
     public String buildImageServiceContext(final String viewId) {
         final int viewIdInt = parseInt(viewId);
         final String v = format("%010d", viewIdInt);
-        final String imageDirPrefix = config.getImageServiceImageDirPrefix();
+        final String imageDirPrefix = imageServiceImageDirPrefix;
         final int part1 = parseInt(v.substring(0,4));
         final String first = format("%04d", part1);
         final int part2 = parseInt(v.substring(5,8));
         final String second = format("%04d", part2);
-        if (config.getIsUBLImageService()) {
-            return config.getImageServiceBaseUrl() + imageDirPrefix + first + separator + second + separator + v;
+        if (isUBLImageService) {
+            return imageServiceBaseUrl + imageDirPrefix + first + separator + second + separator + v;
         } else {
-            return config.getImageServiceBaseUrl() + viewId;
+            return imageServiceBaseUrl + separator + viewId;
         }
     }
 
@@ -97,19 +107,14 @@ public final class IRIBuilder {
      * @return String
      */
     public String buildCanvasIRIfromPhysical(final String physical) {
-        final String resourceContext = config.getResourceContext();
         final Integer newId = valueOf(physical.substring(physical.indexOf("_") + 1));
-        return resourceContext + config.getCanvasContext() + File.separator + format("%08d", newId);
+        return resourceContext + canvasContext + File.separator + format("%08d", newId);
     }
 
     /**
      * @return String
      */
     public String buildAnnotationId() {
-        final String resourceContext = config.getResourceContext();
-        return resourceContext + config.getAnnotationContext() + File.separator + UUID.randomUUID();
-    }
-
-    private IRIBuilder() {
+        return resourceContext + annotationContext + File.separator + UUID.randomUUID();
     }
 }

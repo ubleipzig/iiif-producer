@@ -18,6 +18,17 @@
 
 package de.ubleipzig.iiifproducer.template;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.util.DefaultIndenter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.slf4j.Logger;
+
+import java.io.*;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import static com.fasterxml.jackson.core.util.DefaultIndenter.SYSTEM_LINEFEED_INSTANCE;
 import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
@@ -28,22 +39,6 @@ import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.slf4j.LoggerFactory.getLogger;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import org.slf4j.Logger;
 
 /**
  * ManifestSerializer.
@@ -59,6 +54,8 @@ public final class ManifestSerializer {
         MAPPER.configure(WRITE_DATES_AS_TIMESTAMPS, false);
         MAPPER.configure(INDENT_OUTPUT, true);
         MAPPER.registerModule(new JavaTimeModule());
+        MAPPER.setDefaultPrettyPrinter(new DefaultPrettyPrinter()
+                .withObjectIndenter(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE));
     }
 
     private ManifestSerializer() {
@@ -72,7 +69,7 @@ public final class ManifestSerializer {
      */
     public static Optional<String> serialize(final Object manifest) {
         try {
-            return of(MAPPER.writer(PrettyPrinter.instance).writeValueAsString(manifest));
+            return of(MAPPER.writeValueAsString(manifest));
         } catch (final JsonProcessingException ex) {
             return empty();
         }
@@ -92,15 +89,6 @@ public final class ManifestSerializer {
             return false;
         }
         return true;
-    }
-
-    private static class PrettyPrinter extends DefaultPrettyPrinter {
-
-        public static final PrettyPrinter instance = new PrettyPrinter();
-
-        public PrettyPrinter() {
-            _arrayIndenter = SYSTEM_LINEFEED_INSTANCE;
-        }
     }
 
     /**

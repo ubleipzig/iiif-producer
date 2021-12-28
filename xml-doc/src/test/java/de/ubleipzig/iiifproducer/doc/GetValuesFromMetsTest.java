@@ -18,24 +18,7 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAttribution;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getHrefForFile;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLabel;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalLastParent;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitles;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMimeTypeForFile;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNote;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPhysicalDivs;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getUrnReference;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getXlinks;
-import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -43,7 +26,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.Test;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
+import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * GetValuesFromMetsTest.

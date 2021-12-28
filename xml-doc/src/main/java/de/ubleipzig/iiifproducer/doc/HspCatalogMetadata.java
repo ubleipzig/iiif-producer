@@ -18,21 +18,15 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getAuthor;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDate;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPhysState;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPlace;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getPublisher;
-
 import de.ubleipzig.iiifproducer.template.TemplateMetadata;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
 
 /**
  * HspCatalogMetadata.

@@ -17,15 +17,14 @@
  */
 package de.ubleipzig.iiifproducer.template;
 
-import static java.lang.System.out;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import de.ubleipzig.iiif.vocabulary.SCEnum;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.Optional;
 
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import static java.lang.System.out;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TemplateMemberTest {
 

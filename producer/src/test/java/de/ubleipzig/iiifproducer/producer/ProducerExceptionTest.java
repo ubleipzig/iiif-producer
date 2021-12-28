@@ -18,23 +18,26 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
+import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
+
 import static java.nio.file.Paths.get;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.Test;
-
 public class ProducerExceptionTest {
-
-    private static final Config config = new Config();
 
     @Test
     void testRuntimeException() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String invalidPath = path + "/invalid-path";
-        config.setXmlFile(invalidPath);
-        config.setSerializeImageManifest(false);
+        final Properties config = new Properties();
+        config.setProperty("xmlFile", invalidPath);
+        config.setProperty("serializeImageManifest", "false");
         assertThrows(RuntimeException.class, () -> {
-            final IIIFProducer producer = new IIIFProducer(config);
+            IIIFProducer producer = IIIFProducer.builder()
+                    .config(config)
+                    .build();
             producer.run();
         });
     }
@@ -43,10 +46,13 @@ public class ProducerExceptionTest {
     void testRuntimeExceptionOptional() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String invalidPath = path + "/invalid-path";
-        config.setXmlFile(invalidPath);
-        config.setSerializeImageManifest(true);
+        final Properties config = new Properties();
+        config.setProperty("xmlFile", invalidPath);
+        config.setProperty("serializeImageManifest", "false");
         assertThrows(RuntimeException.class, () -> {
-            final IIIFProducer producer = new IIIFProducer(config);
+            IIIFProducer producer = IIIFProducer.builder()
+                    .config(config)
+                    .build();
             producer.run();
         });
     }
@@ -55,9 +61,12 @@ public class ProducerExceptionTest {
     void testIOException() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String testFileSource = path + "/xml-doc/src/test/resources/mets/invalid.xml";
-        config.setXmlFile(testFileSource);
+        final Properties config = new Properties();
+        config.setProperty("xmlFile", testFileSource);
         assertThrows(RuntimeException.class, () -> {
-            final IIIFProducer producer = new IIIFProducer(config);
+            IIIFProducer producer = IIIFProducer.builder()
+                    .config(config)
+                    .build();
             producer.run();
         });
     }
