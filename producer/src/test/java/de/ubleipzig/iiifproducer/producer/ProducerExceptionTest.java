@@ -20,8 +20,6 @@ package de.ubleipzig.iiifproducer.producer;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Properties;
-
 import static java.nio.file.Paths.get;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -31,12 +29,9 @@ public class ProducerExceptionTest {
     void testRuntimeException() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String invalidPath = path + "/invalid-path";
-        final Properties config = new Properties();
-        config.setProperty("xmlFile", invalidPath);
-        config.setProperty("serializeImageManifest", "false");
         assertThrows(RuntimeException.class, () -> {
             IIIFProducer producer = IIIFProducer.builder()
-                    .config(config)
+                    .xmlFile(invalidPath)
                     .build();
             producer.run();
         });
@@ -46,12 +41,9 @@ public class ProducerExceptionTest {
     void testRuntimeExceptionOptional() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String invalidPath = path + "/invalid-path";
-        final Properties config = new Properties();
-        config.setProperty("xmlFile", invalidPath);
-        config.setProperty("serializeImageManifest", "false");
         assertThrows(RuntimeException.class, () -> {
             IIIFProducer producer = IIIFProducer.builder()
-                    .config(config)
+                    .xmlFile(invalidPath)
                     .build();
             producer.run();
         });
@@ -61,11 +53,9 @@ public class ProducerExceptionTest {
     void testIOException() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String testFileSource = path + "/xml-doc/src/test/resources/mets/invalid.xml";
-        final Properties config = new Properties();
-        config.setProperty("xmlFile", testFileSource);
         assertThrows(RuntimeException.class, () -> {
             IIIFProducer producer = IIIFProducer.builder()
-                    .config(config)
+                    .xmlFile(testFileSource)
                     .build();
             producer.run();
         });

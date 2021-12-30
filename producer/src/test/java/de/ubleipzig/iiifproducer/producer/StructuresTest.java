@@ -40,34 +40,40 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class StructuresTest {
 
-    private static String xmlFile;
     private static String xmlFile2;
+    private static MetsAccessor mets;
+    private static IRIBuilder iriBuilder;
 
     @BeforeAll
     static void testBuildStructures() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
-        xmlFile = path + "/xml-doc/src/test/resources/mets/MS_85.xml";
+        String xmlFile = path + "/xml-doc/src/test/resources/mets/MS_85.xml";
+
+        iriBuilder = IRIBuilder.builder()
+                .build();
+
+        mets = MetsImpl.builder()
+                .iriBuilder(iriBuilder)
+                .xmlFile(xmlFile)
+                .mets()
+                .xlinkmap()
+                .build();
         xmlFile2 = path + "/producer/src/test/resources/ArumDomi_034678301.xml";
     }
 
     @Test
     void buildStructures() {
-
-//        config.setOutputFile("/tmp/test.json");
-//        config.setViewId("004285964");
-        final MetsAccessor mets = MetsImpl.builder()
-                .xmlFile(xmlFile)
-                .build();
         final List<TemplateStructure> structures = mets.buildStructures();
         assertNotNull(structures.get(0));
     }
 
     @Test
     void buildStructures2() {
-//        config.setOutputFile("/tmp/test.json");
-//        config.setViewId("0000012885");
         final MetsAccessor mets = MetsImpl.builder()
+                .iriBuilder(iriBuilder)
                 .xmlFile(xmlFile2)
+                .mets()
+                .xlinkmap()
                 .build();
         final List<TemplateStructure> structures = mets.buildStructures();
         assertTrue(structures.isEmpty());
@@ -75,51 +81,40 @@ class StructuresTest {
 
     @Test
     void buildTopStructure() {
-//        config.setOutputFile("/tmp/test.json");
-//        config.setViewId("004285964");
-        final MetsAccessor mets = MetsImpl.builder()
-                .xmlFile(xmlFile)
-                .build();
         final TemplateStructure structure = mets.buildTopStructure();
         assertNotNull(structure);
     }
 
     @Test
     void testSetStructuresIfSet() {
-        final Properties config = new Properties();
-        config.setProperty("outputFile", "/tmp/test.json");
-        config.setProperty("viewId", "004285964");
-        final MetsAccessor mets = MetsImpl.builder()
-                .xmlFile(xmlFile)
-                .build();
         final IIIFProducer producer = IIIFProducer.builder()
-                .config(config)
+                .iriBuilder(iriBuilder)
+                .mets(mets)
+                .outputFile("/tmp/test.json")
+                .viewId("004285964")
                 .build();
         final TemplateTopStructure top = new TemplateTopStructure();
         final List<String> ranges = new ArrayList<>();
         ranges.add("http://some-range/r1");
         top.setRanges(ranges);
         final TemplateManifest manifest = new TemplateManifest();
-        producer.setStructures(top, manifest, mets);
+        producer.setStructures(top, manifest);
         assertTrue(manifest.getStructures().size() > 1 );
     }
 
     @Test
     void testSetStructuresDoNotSet() {
-        final Properties config = new Properties();
-        config.setProperty("outputFile", "/tmp/test.json");
-        config.setProperty("viewId", "004285964");
-        final MetsAccessor mets = MetsImpl.builder()
-                .xmlFile(xmlFile)
-                .build();
         final IIIFProducer producer = IIIFProducer.builder()
-                .config(config)
+                .iriBuilder(iriBuilder)
+                .mets(mets)
+                .outputFile("/tmp/test.json")
+                .viewId("004285964")
                 .build();
         final TemplateTopStructure top = new TemplateTopStructure();
         final List<String> ranges = new ArrayList<>();
         top.setRanges(ranges);
         final TemplateManifest manifest = new TemplateManifest();
-        producer.setStructures(top, manifest, mets);
+        producer.setStructures(top, manifest);
         assertNull(manifest.getStructures());
     }
 

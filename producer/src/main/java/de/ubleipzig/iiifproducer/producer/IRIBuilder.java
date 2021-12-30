@@ -48,7 +48,6 @@ public final class IRIBuilder {
 
     private String annotationContext;
     private String canvasContext;
-    private final Properties config;
     private String imageServiceFileExtension;
     private String imageServiceImageDirPrefix;
     private String imageServiceBaseUrl;

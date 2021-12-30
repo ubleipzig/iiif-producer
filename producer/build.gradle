@@ -19,7 +19,6 @@ dependencies {
     implementation("org.apache.commons:commons-rdf-simple:$commonsRdfVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("commons-io:commons-io:$commonsIoVersion")
-    implementation("commons-cli:commons-cli:$commonsCLIVersion")
     implementation("org.yaml:snakeyaml:$snakeYamlVersion")
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")

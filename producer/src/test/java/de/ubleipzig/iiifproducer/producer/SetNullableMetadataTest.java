@@ -20,8 +20,10 @@ package de.ubleipzig.iiifproducer.producer;
 
 import de.ubleipzig.iiifproducer.template.TemplateManifest;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
@@ -37,20 +39,25 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SetNullableMetadataTest {
 
     private static String xmlFile;
+    private static MetsAccessor mets;
+    private static IRIBuilder iriBuilder;
 
-    @BeforeAll
-    static void setup() {
-        xmlFile = SetNullableMetadataTest.class.getResource("/BlhDie_004285964.xml").getPath();
+    @BeforeEach
+    void setup() {
+        xmlFile = Objects.requireNonNull(
+                SetNullableMetadataTest.class.getResource("/BlhDie_004285964.xml")).getPath();
+        iriBuilder = IRIBuilder.builder()
+                .build();
+        mets = MetsImpl.builder()
+                .iriBuilder(iriBuilder)
+                .xmlFile(xmlFile)
+                .mets()
+                .xlinkmap()
+                .build();
     }
 
     @Test
     void testSetManuscriptMetadata() {
-
-//        config.setProperty("outputFile", "/tmp/test.json");
-//        config.setProperty("viewId", "004285964");
-        final MetsAccessor mets = MetsImpl.builder()
-                .xmlFile(xmlFile)
-                .build();
         final TemplateManifest body = new TemplateManifest();
         mets.setHandschriftMetadata(body);
         final Optional<String> json = serialize(body);
@@ -60,9 +67,6 @@ public class SetNullableMetadataTest {
 
     @Test
     void testSetMetadata() {
-        final MetsAccessor mets = MetsImpl.builder()
-                .xmlFile(xmlFile)
-                .build();
         final TemplateManifest body = new TemplateManifest();
         mets.setMetadata(body);
         final Optional<String> json = serialize(body);
@@ -75,7 +79,10 @@ public class SetNullableMetadataTest {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         xmlFile = path + "/xml-doc/src/test/resources/mets/BntItin_021340072.xml";
         final MetsAccessor mets = MetsImpl.builder()
+                .iriBuilder(iriBuilder)
                 .xmlFile(xmlFile)
+                .mets()
+                .xlinkmap()
                 .build();
         final TemplateManifest body = new TemplateManifest();
         mets.setMetadata(body);

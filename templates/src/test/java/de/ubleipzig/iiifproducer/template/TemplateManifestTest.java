@@ -69,10 +69,7 @@ class TemplateManifestTest {
                 "http://foobar.test"
         );
         mockManifest.setLicense(licenses);
-        final String expected = "\"license\" : [\n" + "    \"http://foo.test\",\n" +
-                "    \"http://bar.test\",\n" +
-                "    \"http://foobar.test\"\n" +
-                "  ]";
+        final String expected = "[ \"http://foo.test\", \"http://bar.test\", \"http://foobar.test\" ]";
 
         final Optional<String> multiLicenseJson = ManifestSerializer.serialize(mockManifest);
         assertTrue(multiLicenseJson.isPresent());

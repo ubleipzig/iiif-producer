@@ -34,7 +34,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
@@ -54,13 +53,14 @@ public class IIIFProducer {
 
     private String baseUrl;
     private String canvasContext;
-    private final Properties config;
     private String defaultSequenceId;
     private String dfgFileName;
     private String katalogUrl;
     private String fulltextContext;
     private String fulltextFileGrp;
+    private IRIBuilder iriBuilder;
     private String manifestFileName;
+    private MetsAccessor mets;
     private String outputFile;
     private String resourceContext;
     private String viewId;
@@ -82,30 +82,29 @@ public class IIIFProducer {
         body.setId(resourceContext + separator + manifestFileName);
     }
 
-    public void setRelated(final TemplateManifest body, final String urn, final String viewId,
+    public void setRelated(final TemplateManifest body, final String urn, final String viewIdFormatted,
                            final boolean isHspCatalog) {
         final ArrayList<String> related = new ArrayList<>();
         if (!isHspCatalog) {
             log.info("Kein HSP-Manifest");
             related.add(katalogUrl + urn);
-            related.add(viewerUrl + viewId);
+            related.add(viewerUrl + viewIdFormatted);
         } else {
             log.info("Ist HSP-Manifest");
         }
-        related.add(baseUrl + viewId + separator + manifestFileName);
+        related.add(baseUrl + viewIdFormatted + separator + manifestFileName);
         if (!isHspCatalog) {
-            related.add(baseUrl + viewId + separator + dfgFileName);
+            related.add(baseUrl + viewIdFormatted + separator + dfgFileName);
         }
         body.setRelated(related);
     }
 
     /**
      * @param canvas TemplateCanvas
-     * @param mets MetsAccessor
      * @param div String
      * @param viewId String
      */
-    public void setCanvasSeeAlso(final TemplateCanvas canvas, final MetsAccessor mets, final String div,
+    public void setCanvasSeeAlso(final TemplateCanvas canvas, final String div,
                                  final String viewId) {
         final String fileId = mets.getFile(div, fulltextFileGrp);
         if (fileId != null && !fileId.isBlank()) {
@@ -135,8 +134,7 @@ public class IIIFProducer {
         return sequence;
     }
 
-    TemplateManifest setStructures(final TemplateTopStructure top, final TemplateManifest manifest, final
-    MetsAccessor mets) {
+    TemplateManifest setStructures(final TemplateTopStructure top, final TemplateManifest manifest) {
         if (top.getRanges().size() > 0) {
             final List<TemplateStructure> subStructures = mets.buildStructures();
             if (subStructures.size() > 0) {
@@ -153,35 +151,14 @@ public class IIIFProducer {
         final TemplateManifest manifest = new TemplateManifest();
         setContext(manifest);
         setId(manifest);
-        final IRIBuilder iriBuilder = IRIBuilder.builder()
-                .annotationContext(config.getProperty("annotationContext"))
-                .canvasContext(config.getProperty("canvasContext"))
-                .imageServiceBaseUrl(config.getProperty("imageServiceBaseUrl"))
-                .imageServiceFileExtension(config.getProperty("imageServiceFileExtension"))
-                .imageServiceImageDirPrefix(config.getProperty("imageServiceImageDirPrefix"))
-                .isUBLImageService((boolean) config.get("isUBLImageService"))
-                .resourceContext(baseUrl + viewId)
-                .build();
 
-        final MetsAccessor mets = MetsImpl.builder()
-                .anchorKey(config.getProperty("anchorKey"))
-                .attributionKey(config.getProperty("attributionKey"))
-                .attributionLicenseNote(config.getProperty("attributionLicenseNote"))
-                .iriBuilder(iriBuilder)
-                .license(config.getProperty("license"))
-                .rangeContext(config.getProperty("rangeContext"))
-                .resourceContext(resourceContext)
-                .xmlFile(xmlFile)
-                .mets()
-                .xlinkmap()
-                .build();
 
         final Integer viewIdInput = Integer.valueOf(viewId);
-        final String viewId = format("%010d", viewIdInput);
+        final String viewIdFormatted = format("%010d", viewIdInput);
         final String imageServiceContext = iriBuilder.buildImageServiceContext(viewId);
         final String urn = mets.getUrnReference();
         final Boolean isCatalog = mets.getCatalogType();
-        setRelated(manifest, urn, viewId, isCatalog);
+        setRelated(manifest, urn, viewIdFormatted, isCatalog);
 
         mets.setManifestLabel(manifest);
         // TODO HSP-Spezifika - ggf bereits aus dem METS/MODS
@@ -255,7 +232,7 @@ public class IIIFProducer {
 
             canvas.setCanvasImages(images);
 
-            setCanvasSeeAlso(canvas, mets, div, viewId);
+            setCanvasSeeAlso(canvas, div, viewIdFormatted);
 
             canvases.add(canvas);
         }
@@ -265,7 +242,7 @@ public class IIIFProducer {
 
         final TemplateTopStructure top = mets.buildTopStructure();
         final TemplateManifest structManifest;
-        structManifest = setStructures(top, manifest, mets);
+        structManifest = setStructures(top, manifest);
 
         log.info("Builder Process Complete, Serializing to Json ...");
         final Optional<String> json = serialize(structManifest);

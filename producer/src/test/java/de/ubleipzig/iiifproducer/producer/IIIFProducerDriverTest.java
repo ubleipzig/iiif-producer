@@ -39,7 +39,7 @@ public class IIIFProducerDriverTest {
                 IIIFProducerDriverTest.class.getResource("/MS_187.xml")).getPath();
         configFilePath = Objects.requireNonNull(
                 IIIFProducerDriverTest.class.getResource("/producer-config-test.yml")).getPath();
-        pid = "producer-test-" + UUID.randomUUID().toString();
+        pid = "producer-test-" + UUID.randomUUID();
     }
 
     @Test

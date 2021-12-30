@@ -14,13 +14,12 @@ plugins {
 
 ext {
 
-    commonsCLIVersion = '1.5.0'
     commonsCodecVersion = '1.11'
     commonsIoVersion = '2.11.0'
     commonsRdfVersion = '0.5.0'
     imageMetadataVersion = '0.2.0-SNAPSHOT'
     iiifVocabularyVersion = '0.1.1'
-    logbackVersion = '1.2.9'
+    logbackVersion = '1.2.10'
     lombokVersion = '1.18.22'
     metadataExtractorVersion = '2.11.0'
     xbeamVersion = '1.4.20'
@@ -80,15 +79,6 @@ configure(allprojects) { project ->
         mavenCentral()
         maven {
             url 'https://oss.sonatype.org/content/repositories/snapshots'
-        }
-    }
-
-    configurations {
-        all {
-            resolutionStrategy {
-                force "de.ubleipzig:image.metadata:$imageMetadataVersion"
-                cacheChangingModulesFor 0, 'seconds'
-            }
         }
     }
 
@@ -172,5 +162,9 @@ configure(rootProject) {
             xml.required = true
             csv.required = false
         }
+    }
+
+    test {
+        useJUnitPlatform()
     }
 }

@@ -80,6 +80,7 @@ public class MetsImpl implements MetsAccessor {
         return xlinks.stream().collect(groupingBy(MetsData.Xlink::getXLinkFrom));
     }
 
+    @Override
     public void setManifestLabel(final TemplateManifest body) {
         if (!getCensus(mets).equals("")) {
             body.setLabel(getAnchorFileLabel());
@@ -94,6 +95,7 @@ public class MetsImpl implements MetsAccessor {
         }
     }
 
+    @Override
     public void setLicense(final TemplateManifest body) {
         if (getRightsUrl(mets).isEmpty()) {
             body.setLicense(Collections.singletonList(license));
@@ -102,6 +104,7 @@ public class MetsImpl implements MetsAccessor {
         }
     }
 
+    @Override
     public void setAttribution(final TemplateManifest body) {
         // TODO HTML should be wellformed XML https://iiif.io/api/presentation/2.1/#html-markup-in-property-values
         if (getRightsValue(mets).isEmpty()) {
@@ -116,10 +119,12 @@ public class MetsImpl implements MetsAccessor {
         }
     }
 
+    @Override
     public void setLogo(final TemplateManifest body) {
         body.setLogo(getLogo(mets));
     }
 
+    @Override
     public void setHandschriftMetadata(final TemplateManifest body) {
         final ManuscriptMetadata man = new ManuscriptMetadata(mets);
         final List<TemplateMetadata> info = man.getInfo();
@@ -127,6 +132,7 @@ public class MetsImpl implements MetsAccessor {
         body.setMetadata(metadata);
     }
 
+    @Override
     public void setHspCatalogMetadata(final TemplateManifest body) {
         final HspCatalogMetadata catalogMetadata = new HspCatalogMetadata(mets);
         final List<TemplateMetadata> info = catalogMetadata.getInfo();
@@ -134,6 +140,7 @@ public class MetsImpl implements MetsAccessor {
         body.setMetadata(metadata);
     }
 
+    @Override
     public void setMetadata(final TemplateManifest body) {
         final StandardMetadata man = new StandardMetadata(mets);
         final List<TemplateMetadata> info = man.getInfo();
@@ -148,14 +155,17 @@ public class MetsImpl implements MetsAccessor {
         body.setMetadata(metadata);
     }
 
+    @Override
     public TemplateMetadata getAnchorFileMetadata() {
         return new TemplateMetadata(anchorKey, getMultiVolumeWorkTitle(mets) + "; " + getCensus(mets));
     }
 
+    @Override
     public String getAnchorFileLabel() {
         return getMultiVolumeWorkTitle(mets) + "; " + getVolumePartTitleOrPartNumber(mets);
     }
 
+    @Override
     public List<String> getCanvases(final String logical) {
         final List<String> canvases = new ArrayList<>();
         final List<String> physicals = xlinkmap.get(logical).stream().map(MetsData.Xlink::getXLinkTo).collect(toList());
@@ -165,6 +175,7 @@ public class MetsImpl implements MetsAccessor {
         return canvases;
     }
 
+    @Override
     public TemplateTopStructure buildTopStructure() {
         final List<String> ranges = synchronizedList(new ArrayList<>());
 
@@ -183,6 +194,7 @@ public class MetsImpl implements MetsAccessor {
         return st;
     }
 
+    @Override
     public List<TemplateMetadata> buildStructureMetadata(final String logicalType) {
         final List<TemplateMetadata> metadataList = new ArrayList<>();
         final TemplateMetadata metadata = new TemplateMetadata(MetsConstants.METS_STRUCTURE_TYPE, logicalType);
@@ -190,6 +202,7 @@ public class MetsImpl implements MetsAccessor {
         return metadataList;
     }
 
+    @Override
     public List<TemplateStructure> buildStructures() {
         final List<TemplateStructure> structures = synchronizedList(new ArrayList<>());
         final List<TemplateStructure> descendents = synchronizedList(new ArrayList<>());
@@ -250,42 +263,42 @@ public class MetsImpl implements MetsAccessor {
                 Collectors.toList());
     }
 
-
+    @Override
     public Boolean getCatalogType() {
         return isHspCatalog(mets);
     }
 
-
+    @Override
     public Boolean getMtype() {
         return isManuscript(mets);
     }
 
-
+    @Override
     public String getUrnReference() {
         return getManuscriptIdByType(mets, MetsConstants.URN_TYPE);
     }
 
-
+    @Override
     public List<String> getPhysical() {
         return getPhysicalDivs(mets);
     }
 
-
+    @Override
     public String getOrderLabel(final String div) {
         return getOrderLabelForDiv(mets, div);
     }
 
-
+    @Override
     public String getFile(final String div, final String fileGrp) {
         return getFileIdForDiv(mets, div, fileGrp);
     }
 
-
+    @Override
     public String getHref(final String file) {
         return getHrefForFile(mets, file);
     }
 
-
+    @Override
     public String getFormatForFile(final String fileId) {
         return getMimeTypeForFile(mets, fileId);
     }

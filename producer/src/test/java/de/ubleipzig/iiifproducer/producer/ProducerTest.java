@@ -35,14 +35,15 @@ class ProducerTest {
         final String xmlFile = Objects.requireNonNull(
                 ProducerTest.class.getResource("/BlhDie_004285964.xml")).getPath();
 
-        final Properties config = new Properties();
-        config.setProperty("outputFile", "/tmp/test.json");
-        config.setProperty("viewId", "004285964");
         final MetsAccessor mets = MetsImpl.builder()
                 .xmlFile(xmlFile)
+                .mets()
+                .xlinkmap()
                 .build();
         final IIIFProducer producer = IIIFProducer.builder()
-                .config(config)
+                .mets(mets)
+                .outputFile("/tmp/test.json")
+                .viewId("004285964")
                 .build();
     }
 }

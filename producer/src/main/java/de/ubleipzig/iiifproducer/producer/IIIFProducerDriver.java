@@ -55,12 +55,6 @@ public final class IIIFProducerDriver implements Callable<Integer> {
     @CommandLine.Option(names = {"-c", "--config"}, required = true, description = "Path to config file")
     private String configFile = "etc/producer-config.yml";
 
-    @CommandLine.Option(names = {"-s", "--serializeImageManifest"}, required = false, description = "serializeImageManifest")
-    private boolean serializeImageManifest = false;
-
-    @CommandLine.Option(names = {"-u", "--imageManifestUrl"}, required = false, description = "imageManifestUrl")
-    private String imageManifestUrl = "image-manifest.json";
-
     public static void main(final String[] args) {
         int exitCode = new CommandLine(new IIIFProducerDriver()).execute(args);
         System.exit(exitCode);
@@ -69,23 +63,47 @@ public final class IIIFProducerDriver implements Callable<Integer> {
     @Override
     public Integer call() {
         File file = new File(configFile);
-        Properties config = retrieveConfig(file);
-        Properties configFromCLI = new Properties();
-        configFromCLI.setProperty("viewId", viewId);
-        configFromCLI.setProperty("xmlFile", xmlFile);
-        configFromCLI.setProperty("outputFile", outputFile);
-        configFromCLI.setProperty("imageManifestUrl", imageManifestUrl);
-        configFromCLI.setProperty("serializeImageManifest", String.valueOf(serializeImageManifest));
-        Properties finalProps = mergeProperties(config, configFromCLI);
-        IIIFProducer producer = IIIFProducer.builder()
-                .baseUrl(config.getProperty("baseUrl"))
-                .canvasContext(config.getProperty("canvasContext"))
-                .config(finalProps)
-                .defaultSequenceId(config.getProperty("defaultSequenceId"))
-                .fulltextFileGrp(config.getProperty("fulltextFileGrp"))
-                .manifestFileName(config.getProperty("manifestFilename"))
+        Properties configFile = retrieveConfig(file);
+        Properties config = new Properties();
+        config.setProperty("viewId", viewId);
+        config.setProperty("xmlFile", xmlFile);
+        config.setProperty("outputFile", outputFile);
+        final Properties props = mergeProperties(configFile, config);
+        final String resourceContext = props.getProperty("baseUrl") + viewId;
+
+        final IRIBuilder iriBuilder = IRIBuilder.builder()
+                .annotationContext(props.getProperty("annotationContext"))
+                .canvasContext(props.getProperty("canvasContext"))
+                .imageServiceBaseUrl(props.getProperty("imageServiceBaseUrl"))
+                .imageServiceFileExtension(props.getProperty("imageServiceFileExtension"))
+                .imageServiceImageDirPrefix(props.getProperty("imageServiceImageDirPrefix"))
+                .isUBLImageService((boolean) props.get("isUBLImageService"))
+                .resourceContext(resourceContext)
+                .build();
+
+        final MetsAccessor mets = MetsImpl.builder()
+                .anchorKey(props.getProperty("anchorKey"))
+                .attributionKey(props.getProperty("attributionKey"))
+                .attributionLicenseNote(props.getProperty("attributionLicenseNote"))
+                .iriBuilder(iriBuilder)
+                .license(props.getProperty("license"))
+                .rangeContext(props.getProperty("rangeContext"))
+                .resourceContext(resourceContext)
+                .xmlFile(xmlFile)
+                .mets()
+                .xlinkmap()
+                .build();
+
+        final IIIFProducer producer = IIIFProducer.builder()
+                .baseUrl(props.getProperty("baseUrl"))
+                .canvasContext(props.getProperty("canvasContext"))
+                .defaultSequenceId(props.getProperty("defaultSequenceId"))
+                .fulltextFileGrp(props.getProperty("fulltextFileGrp"))
+                .iriBuilder(iriBuilder)
+                .manifestFileName(props.getProperty("manifestFilename"))
+                .mets(mets)
                 .outputFile(outputFile)
-                .resourceContext(config.getProperty("baseUrl") + viewId)
+                .resourceContext(resourceContext)
                 .viewId(viewId)
                 .xmlFile(xmlFile)
                 .build();
