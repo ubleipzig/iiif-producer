@@ -1,9 +1,11 @@
 dependencies {
-    implementation project(":templates")
+    implementation project(":model")
     implementation("commons-io:commons-io:$commonsIoVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("org.xmlbeam:xmlprojector:$xbeamVersion")
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
 }
 

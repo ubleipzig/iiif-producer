@@ -18,8 +18,8 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
-import org.slf4j.Logger;
+import de.ubleipzig.iiifproducer.model.Metadata;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,18 +29,16 @@ import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.SWB_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
-import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * StandardMetadata.
  *
  * @author christopher-johnson
  */
+@Slf4j
 public class StandardMetadata {
 
-    private static Logger logger = getLogger(StandardMetadata.class);
-
-    private MetsData mets;
+    private final MetsData mets;
 
     /**
      * @param mets MetsData
@@ -52,40 +50,39 @@ public class StandardMetadata {
     /**
      * @return List
      */
-    public List<TemplateMetadata> getInfo() {
-        final List<TemplateMetadata> meta = new ArrayList<>();
-        meta.add(new TemplateMetadata("Kitodo", getManuscriptIdByType(mets, GOOBI_TYPE)));
-        meta.add(new TemplateMetadata("URN", getManuscriptIdByType(mets, URN_TYPE)));
+    public List<Metadata> getInfo() {
+        final List<Metadata> meta = new ArrayList<>();
+        meta.add(Metadata.builder().label("Kitodo").value(getManuscriptIdByType(mets, GOOBI_TYPE)).build());
+        meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, URN_TYPE)).build());
         //this is ugly, but this is the way that collections are tagged in the XML
         final String vd16 = getManuscriptIdByType(mets, "vd16");
         final String vd17 = getManuscriptIdByType(mets, "vd17");
         if (!vd16.equals("")) {
-            meta.add(new TemplateMetadata("VD16", vd16));
-            meta.add(new TemplateMetadata("Collection", "VD16"));
+            meta.add(Metadata.builder().label("VD16").value(vd16).build());
+            meta.add(Metadata.builder().label("Collection").value("VD16").build());
         }
         if (!vd17.equals("")) {
-            meta.add(new TemplateMetadata("VD17", vd17));
-            meta.add(new TemplateMetadata("Collection", "VD17"));
+            meta.add(Metadata.builder().label("VD17").value(vd17).build());
+            meta.add(Metadata.builder().label("Collection").value("VD17").build());
         }
-        meta.add(new TemplateMetadata("Source PPN (SWB)", getManuscriptIdByType(mets, SWB_TYPE)));
-        meta.add(new TemplateMetadata("Collection", getCollection(mets)));
+        meta.add(Metadata.builder().label("Source PPN (SWB)").value(getManuscriptIdByType(mets, SWB_TYPE)).build());
+        meta.add(Metadata.builder().label("Collection").value(getCollection(mets)).build());
         if (getCollection(mets).contains("TestCollection") ^ getCollection(mets).contains("Heisenberg")) {
-            meta.add(new TemplateMetadata("Call number", getCallNumbers(mets)));
-            meta.add(new TemplateMetadata("Date of publication", getDates(mets)));
-            meta.add(new TemplateMetadata("Kalliope-ID", getKalliopeID(mets)));
+            meta.add(Metadata.builder().label("Call number").value(getCallNumbers(mets)).build());
+            meta.add(Metadata.builder().label("Date of publication").value(getDates(mets)).build());
+            meta.add(Metadata.builder().label("Kalliope-ID").value(getKalliopeID(mets)).build());
         } else {
-            meta.add(new TemplateMetadata("Call number", getCallNumber(mets)));
-            meta.add(new TemplateMetadata("Date of publication", getDate(mets)));
+            meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
+            meta.add(Metadata.builder().label("Date of publication").value(getDate(mets)).build());
         }
-        meta.add(new TemplateMetadata("Owner", getOwner(mets)));
-        meta.add(new TemplateMetadata("Author", getAuthor(mets)));
-        meta.add(new TemplateMetadata("Addressee", getAddressee(mets)));
-        meta.add(new TemplateMetadata("Place of publication", getPlace(mets)));
-        meta.add(new TemplateMetadata("Publisher", getPublisher(mets)));
-        meta.add(new TemplateMetadata("Physical description", getPhysState(mets)));
-        meta.add(new TemplateMetadata("Manifest Type", getLogicalType(mets, METS_PARENT_LOGICAL_ID)));
-
-        logger.debug("Standard Metadata Added");
+        meta.add(Metadata.builder().label("Owner").value(getOwner(mets)).build());
+        meta.add(Metadata.builder().label("Author").value(getAuthor(mets)).build());
+        meta.add(Metadata.builder().label("Addressee").value(getAddressee(mets)).build());
+        meta.add(Metadata.builder().label("Place of publication").value(getPlace(mets)).build());
+        meta.add(Metadata.builder().label("Publisher").value(getPublisher(mets)).build());
+        meta.add(Metadata.builder().label("Physical description").value(getPhysState(mets)).build());
+        meta.add(Metadata.builder().label("Manifest Type").value(getLogicalType(mets, METS_PARENT_LOGICAL_ID)).build());
+        log.debug("Standard Metadata Added");
         return meta;
     }
 }

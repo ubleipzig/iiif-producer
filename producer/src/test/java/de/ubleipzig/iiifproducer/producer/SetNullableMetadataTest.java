@@ -18,15 +18,14 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import org.junit.jupiter.api.BeforeAll;
+import de.ubleipzig.iiifproducer.model.v2.Manifest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
 import java.util.Optional;
 
-import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
+import static de.ubleipzig.iiifproducer.model.ManifestSerializer.serialize;
 import static java.lang.System.out;
 import static java.nio.file.Paths.get;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -49,6 +48,7 @@ public class SetNullableMetadataTest {
         iriBuilder = IRIBuilder.builder()
                 .build();
         mets = MetsImpl.builder()
+                .anchorKey("Part of")
                 .iriBuilder(iriBuilder)
                 .xmlFile(xmlFile)
                 .mets()
@@ -58,7 +58,7 @@ public class SetNullableMetadataTest {
 
     @Test
     void testSetManuscriptMetadata() {
-        final TemplateManifest body = new TemplateManifest();
+        final Manifest body = Manifest.builder().build();
         mets.setHandschriftMetadata(body);
         final Optional<String> json = serialize(body);
         assertTrue(json.isPresent());
@@ -67,7 +67,7 @@ public class SetNullableMetadataTest {
 
     @Test
     void testSetMetadata() {
-        final TemplateManifest body = new TemplateManifest();
+        final Manifest body = Manifest.builder().build();
         mets.setMetadata(body);
         final Optional<String> json = serialize(body);
         assertTrue(json.isPresent());
@@ -79,12 +79,13 @@ public class SetNullableMetadataTest {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         xmlFile = path + "/xml-doc/src/test/resources/mets/BntItin_021340072.xml";
         final MetsAccessor mets = MetsImpl.builder()
+                .anchorKey("Part of")
                 .iriBuilder(iriBuilder)
                 .xmlFile(xmlFile)
                 .mets()
                 .xlinkmap()
                 .build();
-        final TemplateManifest body = new TemplateManifest();
+        final Manifest body = Manifest.builder().build();
         mets.setMetadata(body);
         final Optional<String> json = serialize(body);
         assertTrue(json.isPresent());

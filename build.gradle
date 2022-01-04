@@ -28,11 +28,7 @@ ext {
     snakeYamlVersion = '1.30'
 
     /* Testing */
-    apiguardianVersion = '1.0.0'
-    httpClientOsgiVersion = '4.5.3'
-    jenaVersion = '3.7.0'
     junitVersion = "5.8.2"
-    xercesVersion = '2.11.0'
     mockitoVersion = '4.2.0'
     slf4jVersion = '1.7.32'
 
@@ -41,7 +37,7 @@ ext {
 
     jacocoTestProjects = [
             'producer',
-            'templates',
+            'model',
             'xml-doc',
     ]
 }
@@ -134,8 +130,16 @@ subprojects { subproj ->
         }
     }
 
-    test {
+    tasks.withType(Test).configureEach {
         useJUnitPlatform()
+
+        systemProperty 'java.util.logging.config.file', "${subproj.buildDir}/resources/test/logging-test.properties"
+
+        forkEvery = 1
+
+        testLogging {
+            showStandardStreams = true
+        }
     }
 }
 
@@ -163,8 +167,6 @@ configure(rootProject) {
             csv.required = false
         }
     }
-
-    test {
-        useJUnitPlatform()
-    }
 }
+
+

@@ -21,7 +21,6 @@ package de.ubleipzig.iiifproducer.producer;
 import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
-import java.util.Properties;
 
 /**
  * ProducerTest.

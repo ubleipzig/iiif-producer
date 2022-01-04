@@ -27,7 +27,6 @@ import org.apache.commons.rdf.api.RDF;
 import org.apache.commons.rdf.simple.SimpleRDF;
 
 import java.io.File;
-import java.util.Properties;
 import java.util.UUID;
 
 import static java.io.File.separator;

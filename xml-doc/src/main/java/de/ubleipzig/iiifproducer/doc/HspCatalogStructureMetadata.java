@@ -18,12 +18,12 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import de.ubleipzig.iiifproducer.model.Metadata;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCallNumber;
@@ -34,13 +34,12 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getSubtitle;
  *
  * @author Lutz Helm, helm@ub.uni-leipzig.de
  */
+@Slf4j
 public class HspCatalogStructureMetadata {
 
-    private static Logger logger = LoggerFactory.getLogger(HspCatalogStructureMetadata.class);
+    private final MetsData mets;
 
-    private MetsData mets;
-
-    private String dmdLogId;
+    private final String dmdLogId;
 
     /**
      * @param mets MetsData
@@ -58,21 +57,23 @@ public class HspCatalogStructureMetadata {
     /**
      * @return List
      */
-    public List<TemplateMetadata> getInfo() {
+    public List<Metadata> getInfo() {
         final MetsData.HspCatalogMods mods = mets.getDmdMods(this.dmdLogId).orElse(null);
-
-        final List<TemplateMetadata> meta = new ArrayList<>();
-        meta.add(new TemplateMetadata("Signatur", getCallNumber(mods)));
-        meta.add(new TemplateMetadata("Titel", getSubtitle(mods)));
-        meta.add(new TemplateMetadata("Beschreibstoff", joinValues(mods.getMaterial())));
-        meta.add(new TemplateMetadata("Umfang", joinValues(mods.getExtent())));
-        meta.add(new TemplateMetadata("Abmessungen", joinValues(mods.getDimensions())));
-        meta.add(new TemplateMetadata("Entstehungsort", joinValues(mods.getOriginPlace())));
-        meta.add(new TemplateMetadata("Entstehungszeit", joinValues(mods.getOriginDate())));
-        logger.debug("HSP catalog entry metadata added");
-        return meta.stream()
-                .filter(templateMetadata -> templateMetadata.getValue() != null
-                        && !templateMetadata.getValue().isBlank())
-                .collect(Collectors.toList());
+        if (mods != null) {
+            final List<Metadata> meta = new ArrayList<>();
+            meta.add(Metadata.builder().label("Signatur").value(getCallNumber(mods)).build());
+            meta.add(Metadata.builder().label("Titel").value(getSubtitle(mods)).build());
+            meta.add(Metadata.builder().label("Beschreibstoff").value(joinValues(mods.getMaterial())).build());
+            meta.add(Metadata.builder().label("Umfang").value(joinValues(mods.getExtent())).build());
+            meta.add(Metadata.builder().label("Abmessungen").value(joinValues(mods.getDimensions())).build());
+            meta.add(Metadata.builder().label("Entstehungsort").value(joinValues(mods.getOriginPlace())).build());
+            meta.add(Metadata.builder().label("Entstehungszeit").value(joinValues(mods.getOriginDate())).build());
+            log.debug("HSP catalog entry metadata added");
+            return meta.stream()
+                    .filter(Objects::nonNull)
+                    .filter(v -> v.getValue() instanceof String && !((String) v.getValue()).isEmpty())
+                    .collect(Collectors.toList());
+        }
+        return null;
     }
 }

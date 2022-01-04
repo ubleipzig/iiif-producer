@@ -18,8 +18,8 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
+import de.ubleipzig.iiifproducer.model.Metadata;
+import de.ubleipzig.iiifproducer.model.v2.Manifest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +44,7 @@ public class AnchorFileTest {
 
     @Test
     void testGetAnchorFileMetadata() {
-        final TemplateMetadata metadata = mets.getAnchorFileMetadata();
+        final Metadata metadata = mets.getAnchorFileMetadata();
         assertEquals("Part of", metadata.getLabel());
         assertEquals(
                 "Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft; 1",
@@ -53,7 +53,7 @@ public class AnchorFileTest {
 
     @Test
     void testSetAnchorFileMetadata() {
-        final TemplateManifest manifest = new TemplateManifest();
+        final Manifest manifest = Manifest.builder().build();
         mets.setManifestLabel(manifest);
         mets.setMetadata(manifest);
     }

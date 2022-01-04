@@ -21,7 +21,8 @@ package de.ubleipzig.iiifproducer.producer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.ubleipzig.iiif.vocabulary.SC;
-import de.ubleipzig.iiifproducer.template.*;
+import de.ubleipzig.iiifproducer.model.ImageServiceResponse;
+import de.ubleipzig.iiifproducer.model.v2.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
@@ -36,8 +37,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
-import static de.ubleipzig.iiifproducer.template.ManifestSerializer.writeToFile;
+import static de.ubleipzig.iiifproducer.model.ManifestSerializer.serialize;
+import static de.ubleipzig.iiifproducer.model.ManifestSerializer.writeToFile;
 import static java.io.File.separator;
 import static java.lang.String.format;
 
@@ -73,16 +74,7 @@ public class IIIFProducer {
         buildManifest();
     }
 
-    public void setContext(final TemplateManifest body) {
-        body.setContext(SC.CONTEXT);
-    }
-
-    public void setId(final TemplateManifest body) {
-        final String resourceContext = baseUrl + viewId;
-        body.setId(resourceContext + separator + manifestFileName);
-    }
-
-    public void setRelated(final TemplateManifest body, final String urn, final String viewIdFormatted,
+    public void setRelated(final Manifest body, final String urn, final String viewIdFormatted,
                            final boolean isHspCatalog) {
         final ArrayList<String> related = new ArrayList<>();
         if (!isHspCatalog) {
@@ -100,15 +92,15 @@ public class IIIFProducer {
     }
 
     /**
-     * @param canvas TemplateCanvas
+     * @param canvas Canvas
      * @param div String
      * @param viewId String
      */
-    public void setCanvasSeeAlso(final TemplateCanvas canvas, final String div,
+    public void setCanvasSeeAlso(final Canvas canvas, final String div,
                                  final String viewId) {
         final String fileId = mets.getFile(div, fulltextFileGrp);
         if (fileId != null && !fileId.isBlank()) {
-            final TemplateSeeAlso seeAlso = new TemplateSeeAlso();
+            final SeeAlso seeAlso = SeeAlso.builder().build();
             final String href = mets.getHref(fileId);
             final String format = mets.getFormatForFile(fileId);
 
@@ -128,17 +120,20 @@ public class IIIFProducer {
         }
     }
 
-    public List<TemplateSequence> addCanvasesToSequence(final List<TemplateCanvas> canvases) {
-        final List<TemplateSequence> sequence = new ArrayList<>();
-        sequence.add(new TemplateSequence(resourceContext + defaultSequenceId, canvases));
+    public List<Sequence> addCanvasesToSequence(final List<Canvas> canvases) {
+        final List<Sequence> sequence = new ArrayList<>();
+        sequence.add(Sequence.builder()
+                .context(resourceContext + defaultSequenceId)
+                .canvases(canvases)
+                .build());
         return sequence;
     }
 
-    TemplateManifest setStructures(final TemplateTopStructure top, final TemplateManifest manifest) {
+    Manifest setStructures(final TopStructure top, final Manifest manifest) {
         if (top.getRanges().size() > 0) {
-            final List<TemplateStructure> subStructures = mets.buildStructures();
+            final List<Structure> subStructures = mets.buildStructures();
             if (subStructures.size() > 0) {
-                final TemplateStructureList list = new TemplateStructureList(top, subStructures);
+                final StructureList list = StructureList.builder().top(top).structures(subStructures).build();
                 manifest.setStructures(list.getStructureList());
                 return manifest;
             }
@@ -148,10 +143,12 @@ public class IIIFProducer {
 
     public void buildManifest() {
 
-        final TemplateManifest manifest = new TemplateManifest();
-        setContext(manifest);
-        setId(manifest);
+        final String resourceContext = baseUrl + viewId;
 
+        final Manifest manifest = Manifest.builder()
+                .context(SC.CONTEXT)
+                .id(resourceContext + separator + manifestFileName)
+                .build();
 
         final Integer viewIdInput = Integer.valueOf(viewId);
         final String viewIdFormatted = format("%010d", viewIdInput);
@@ -175,21 +172,23 @@ public class IIIFProducer {
             mets.setMetadata(manifest);
         }
 
-        final List<TemplateCanvas> canvases = new ArrayList<>();
+        final List<Canvas> canvases = new ArrayList<>();
         final AtomicInteger atomicInteger = new AtomicInteger(1);
         final List<String> divs = mets.getPhysical();
         for (String div : divs) {
             final String label = mets.getOrderLabel(div);
 
-            final TemplateCanvas canvas = new TemplateCanvas();
-            canvas.setCanvasLabel(label);
+            final Canvas canvas = Canvas.builder()
+                    .label(label)
+                    .build();
 
             //buildServiceIRI
             final String resourceFileId = format("%08d", atomicInteger.getAndIncrement());
             final IRI serviceIRI = iriBuilder.buildServiceIRI(imageServiceContext, resourceFileId);
 
-            final TemplateResource resource = new TemplateResource();
-            resource.setResourceLabel(label);
+            final Body resource = Body.builder()
+                    .label(label)
+                    .build();
 
             //getDimensionsFromImageService
             final InputStream is;
@@ -201,10 +200,10 @@ public class IIIFProducer {
             final ImageServiceResponse ir = mapServiceResponse(is);
             final Integer height = ir.getHeight();
             final Integer width = ir.getWidth();
-            canvas.setCanvasWidth(width);
-            canvas.setCanvasHeight(height);
-            resource.setResourceWidth(width);
-            resource.setResourceHeight(height);
+            canvas.setWidth(width);
+            canvas.setHeight(height);
+            resource.setWidth(width);
+            resource.setHeight(height);
 
             //canvasId = resourceId
             final String canvasIdString = resourceContext + canvasContext + separator + resourceFileId;
@@ -213,35 +212,36 @@ public class IIIFProducer {
             //cast canvas as IRI (failsafe)
             final IRI canvasIri = iriBuilder.buildCanvasIRI(canvasIdString);
             //set Canvas Id
-            canvas.setCanvasId(canvasIri.getIRIString());
+            canvas.setId(canvasIri.getIRIString());
             //cast resource as IRI (failsafe)
             final IRI resourceIri = iriBuilder.buildResourceIRI(resourceIdString);
             //set resourceID
-            resource.setResourceId(resourceIri.getIRIString());
-            resource.setService(new TemplateService(serviceIRI.getIRIString()));
+            resource.setId(resourceIri.getIRIString());
+            resource.setService(Service.builder().id(serviceIRI.getIRIString()).build());
 
             //set Annotation
-            final TemplateImage image = new TemplateImage();
             final String annotationId = iriBuilder.buildAnnotationId();
-            image.setId(annotationId);
-            image.setResource(resource);
-            image.setTarget(canvas.getCanvasId());
+            final PaintingAnnotation image = PaintingAnnotation.builder()
+                    .id(annotationId)
+                    .resource(resource)
+                    .on(canvas.getId())
+                    .build();
 
-            final List<TemplateImage> images = new ArrayList<>();
+            final List<PaintingAnnotation> images = new ArrayList<>();
             images.add(image);
 
-            canvas.setCanvasImages(images);
+            canvas.setImages(images);
 
             setCanvasSeeAlso(canvas, div, viewIdFormatted);
 
             canvases.add(canvas);
         }
 
-        final List<TemplateSequence> sequence = addCanvasesToSequence(canvases);
+        final List<Sequence> sequence = addCanvasesToSequence(canvases);
         manifest.setSequences(sequence);
 
-        final TemplateTopStructure top = mets.buildTopStructure();
-        final TemplateManifest structManifest;
+        final TopStructure top = mets.buildTopStructure();
+        final Manifest structManifest;
         structManifest = setStructures(top, manifest);
 
         log.info("Builder Process Complete, Serializing to Json ...");

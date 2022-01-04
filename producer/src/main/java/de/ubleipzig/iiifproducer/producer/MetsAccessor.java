@@ -19,10 +19,10 @@
 package de.ubleipzig.iiifproducer.producer;
 
 import de.ubleipzig.iiifproducer.doc.MetsData;
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
-import de.ubleipzig.iiifproducer.template.TemplateStructure;
-import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
+import de.ubleipzig.iiifproducer.model.Metadata;
+import de.ubleipzig.iiifproducer.model.v2.Manifest;
+import de.ubleipzig.iiifproducer.model.v2.Structure;
+import de.ubleipzig.iiifproducer.model.v2.TopStructure;
 
 import java.util.List;
 import java.util.Map;
@@ -35,45 +35,45 @@ import java.util.Map;
 public interface MetsAccessor {
 
     /**
-     * @param body TemplateManifest
+     * @param body Manifest
      */
-    void setManifestLabel(TemplateManifest body);
+    void setManifestLabel(Manifest body);
 
     /**
-     * @param body TemplateManifest
+     * @param body Manifest
      */
-    void setLicense(TemplateManifest body);
+    void setLicense(Manifest body);
 
 
     /**
-     * @param body TemplateManifest
+     * @param body Manifest
      */
-    void setAttribution(TemplateManifest body);
+    void setAttribution(Manifest body);
 
     /**
-     * @param body TemplateManifest
+     * @param body Manifest
      */
-    void setLogo(TemplateManifest body);
+    void setLogo(Manifest body);
 
     /**
-     * @param body TemplateManifest
+     * @param body Manifest
      */
-    void setHandschriftMetadata(TemplateManifest body);
+    void setHandschriftMetadata(Manifest body);
 
     /**
-     * @param body TemplateManifest
+     * @param body Manifest
      */
-    void setHspCatalogMetadata(TemplateManifest body);
+    void setHspCatalogMetadata(Manifest body);
 
     /**
-     * @param body TemplateManifest
+     * @param body Manifest
      */
-    void setMetadata(TemplateManifest body);
+    void setMetadata(Manifest body);
 
     /**
-     * @return TemplateMetadata
+     * @return Metadata
      */
-    TemplateMetadata getAnchorFileMetadata();
+    Metadata getAnchorFileMetadata();
 
     /**
      * @return String
@@ -96,19 +96,19 @@ public interface MetsAccessor {
     /**
      * @return TemplateTopStructure
      */
-    TemplateTopStructure buildTopStructure();
+    TopStructure buildTopStructure();
 
     /**
      * @return List
      */
-    List<TemplateStructure> buildStructures();
+    List<Structure> buildStructures();
 
     /**
      *
      * @param logicalType String
      * @return List
      */
-    List<TemplateMetadata> buildStructureMetadata(String logicalType);
+    List<Metadata> buildStructureMetadata(String logicalType);
 
     /**
      * @return boolean

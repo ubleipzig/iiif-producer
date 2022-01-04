@@ -18,15 +18,14 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateStructure;
-import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
+import de.ubleipzig.iiifproducer.model.v2.Manifest;
+import de.ubleipzig.iiifproducer.model.v2.Structure;
+import de.ubleipzig.iiifproducer.model.v2.TopStructure;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import static java.nio.file.Paths.get;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -63,7 +62,7 @@ class StructuresTest {
 
     @Test
     void buildStructures() {
-        final List<TemplateStructure> structures = mets.buildStructures();
+        final List<Structure> structures = mets.buildStructures();
         assertNotNull(structures.get(0));
     }
 
@@ -75,13 +74,13 @@ class StructuresTest {
                 .mets()
                 .xlinkmap()
                 .build();
-        final List<TemplateStructure> structures = mets.buildStructures();
+        final List<Structure> structures = mets.buildStructures();
         assertTrue(structures.isEmpty());
     }
 
     @Test
     void buildTopStructure() {
-        final TemplateStructure structure = mets.buildTopStructure();
+        final Structure structure = mets.buildTopStructure();
         assertNotNull(structure);
     }
 
@@ -93,11 +92,11 @@ class StructuresTest {
                 .outputFile("/tmp/test.json")
                 .viewId("004285964")
                 .build();
-        final TemplateTopStructure top = new TemplateTopStructure();
+        final TopStructure top = TopStructure.builder().build();
         final List<String> ranges = new ArrayList<>();
         ranges.add("http://some-range/r1");
         top.setRanges(ranges);
-        final TemplateManifest manifest = new TemplateManifest();
+        final Manifest manifest = Manifest.builder().build();
         producer.setStructures(top, manifest);
         assertTrue(manifest.getStructures().size() > 1 );
     }
@@ -110,10 +109,10 @@ class StructuresTest {
                 .outputFile("/tmp/test.json")
                 .viewId("004285964")
                 .build();
-        final TemplateTopStructure top = new TemplateTopStructure();
+        final TopStructure top = TopStructure.builder().build();
         final List<String> ranges = new ArrayList<>();
         top.setRanges(ranges);
-        final TemplateManifest manifest = new TemplateManifest();
+        final Manifest manifest = Manifest.builder().build();
         producer.setStructures(top, manifest);
         assertNull(manifest.getStructures());
     }

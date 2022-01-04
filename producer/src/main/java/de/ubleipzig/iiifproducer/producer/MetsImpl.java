@@ -19,10 +19,10 @@
 package de.ubleipzig.iiifproducer.producer;
 
 import de.ubleipzig.iiifproducer.doc.*;
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
-import de.ubleipzig.iiifproducer.template.TemplateStructure;
-import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
+import de.ubleipzig.iiifproducer.model.Metadata;
+import de.ubleipzig.iiifproducer.model.v2.Manifest;
+import de.ubleipzig.iiifproducer.model.v2.Structure;
+import de.ubleipzig.iiifproducer.model.v2.TopStructure;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -81,7 +81,7 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public void setManifestLabel(final TemplateManifest body) {
+    public void setManifestLabel(final Manifest body) {
         if (!getCensus(mets).equals("")) {
             body.setLabel(getAnchorFileLabel());
         } else {
@@ -96,7 +96,7 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public void setLicense(final TemplateManifest body) {
+    public void setLicense(final Manifest body) {
         if (getRightsUrl(mets).isEmpty()) {
             body.setLicense(Collections.singletonList(license));
         } else {
@@ -105,7 +105,7 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public void setAttribution(final TemplateManifest body) {
+    public void setAttribution(final Manifest body) {
         // TODO HTML should be wellformed XML https://iiif.io/api/presentation/2.1/#html-markup-in-property-values
         if (getRightsValue(mets).isEmpty()) {
             body.setAttribution(
@@ -120,44 +120,44 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public void setLogo(final TemplateManifest body) {
+    public void setLogo(final Manifest body) {
         body.setLogo(getLogo(mets));
     }
 
     @Override
-    public void setHandschriftMetadata(final TemplateManifest body) {
+    public void setHandschriftMetadata(final Manifest body) {
         final ManuscriptMetadata man = new ManuscriptMetadata(mets);
-        final List<TemplateMetadata> info = man.getInfo();
-        final List<TemplateMetadata> metadata = new ArrayList<>(info);
+        final List<Metadata> info = man.getInfo();
+        final List<Metadata> metadata = new ArrayList<>(info);
         body.setMetadata(metadata);
     }
 
     @Override
-    public void setHspCatalogMetadata(final TemplateManifest body) {
+    public void setHspCatalogMetadata(final Manifest body) {
         final HspCatalogMetadata catalogMetadata = new HspCatalogMetadata(mets);
-        final List<TemplateMetadata> info = catalogMetadata.getInfo();
-        final List<TemplateMetadata> metadata = new ArrayList<>(info);
+        final List<Metadata> info = catalogMetadata.getInfo();
+        final List<Metadata> metadata = new ArrayList<>(info);
         body.setMetadata(metadata);
     }
 
     @Override
-    public void setMetadata(final TemplateManifest body) {
+    public void setMetadata(final Manifest body) {
         final StandardMetadata man = new StandardMetadata(mets);
-        final List<TemplateMetadata> info = man.getInfo();
-        final List<TemplateMetadata> metadata = new ArrayList<>(info);
+        final List<Metadata> info = man.getInfo();
+        final List<Metadata> metadata = new ArrayList<>(info);
         if (!getCensus(mets).equals("")) {
             metadata.add(getAnchorFileMetadata());
         }
         final List<String> noteTypes = getNoteTypes(mets);
         for (String nt : noteTypes) {
-            metadata.add(new TemplateMetadata(nt, getNotesByType(mets, nt).trim()));
+            metadata.add(Metadata.builder().label(nt).value(getNotesByType(mets, nt).trim()).build());
         }
         body.setMetadata(metadata);
     }
 
     @Override
-    public TemplateMetadata getAnchorFileMetadata() {
-        return new TemplateMetadata(anchorKey, getMultiVolumeWorkTitle(mets) + "; " + getCensus(mets));
+    public Metadata getAnchorFileMetadata() {
+        return Metadata.builder().label(anchorKey).value(getMultiVolumeWorkTitle(mets) + "; " + getCensus(mets)).build();
     }
 
     @Override
@@ -176,7 +176,7 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public TemplateTopStructure buildTopStructure() {
+    public TopStructure buildTopStructure() {
         final List<String> ranges = synchronizedList(new ArrayList<>());
 
         final List<MetsData.Logical> logs = getTopLogicals(mets);
@@ -185,27 +185,28 @@ public class MetsImpl implements MetsAccessor {
             ranges.add(0, rangeId);
         });
 
-        final TemplateTopStructure st = new TemplateTopStructure();
-        st.setStructureId(resourceContext + rangeContext + separator
-                + MetsConstants.METS_PARENT_LOGICAL_ID);
-        st.setStructureLabel("Contents");
+        final TopStructure st = TopStructure.builder()
+                .id(resourceContext + rangeContext + separator
+                        + MetsConstants.METS_PARENT_LOGICAL_ID)
+                .label("Contents")
+                .build();
         ranges.sort(naturalOrder());
         st.setRanges(ranges);
         return st;
     }
 
     @Override
-    public List<TemplateMetadata> buildStructureMetadata(final String logicalType) {
-        final List<TemplateMetadata> metadataList = new ArrayList<>();
-        final TemplateMetadata metadata = new TemplateMetadata(MetsConstants.METS_STRUCTURE_TYPE, logicalType);
+    public List<Metadata> buildStructureMetadata(final String logicalType) {
+        final List<Metadata> metadataList = new ArrayList<>();
+        final Metadata metadata = Metadata.builder().label(MetsConstants.METS_STRUCTURE_TYPE).value(logicalType).build();
         metadataList.add(metadata);
         return metadataList;
     }
 
     @Override
-    public List<TemplateStructure> buildStructures() {
-        final List<TemplateStructure> structures = synchronizedList(new ArrayList<>());
-        final List<TemplateStructure> descendents = synchronizedList(new ArrayList<>());
+    public List<Structure> buildStructures() {
+        final List<Structure> structures = synchronizedList(new ArrayList<>());
+        final List<Structure> descendents = synchronizedList(new ArrayList<>());
         xlinkmap.keySet().forEach(logical -> {
             final MetsData.Logical last = getLogicalLastDescendent(mets, logical);
             if (last != null) {
@@ -216,39 +217,40 @@ public class MetsImpl implements MetsAccessor {
 
                     final List<String> ranges = synchronizedList(new ArrayList<>());
                     lastChildren.forEach(desc -> {
-                        final TemplateStructure descSt = new TemplateStructure();
                         final String descID = desc.getLogicalId().trim();
                         final String rangeId = resourceContext + rangeContext + separator + descID;
                         final String descLabel = getLogicalLabel(mets, descID);
+                        final Structure descSt = Structure.builder()
+                                .id(rangeId)
+                                .label(descLabel)
+                                .build();
                         final String logType = getLogicalType(mets, descID);
                         ranges.add(0, rangeId);
-                        descSt.setStructureId(rangeId);
-                        descSt.setStructureLabel(descLabel);
                         if (mets.isHspCatalog()) {
                             final HspCatalogStructureMetadata hspMd = new HspCatalogStructureMetadata(mets, descID);
-                            final List<TemplateMetadata> metadataList = hspMd.getInfo();
+                            final List<Metadata> metadataList = hspMd.getInfo();
                             descSt.setMetadata(metadataList);
                         } else {
-                            final List<TemplateMetadata> metadataList = buildStructureMetadata(logType);
+                            final List<Metadata> metadataList = buildStructureMetadata(logType);
                             descSt.setMetadata(metadataList);
                         }
                         descSt.setCanvases(getCanvases(descID));
                         descendents.add(0, descSt);
                     });
-                    final TemplateStructure st = new TemplateStructure();
+                    final Structure st = new Structure();
                     final String structureIdDesc = resourceContext + rangeContext + separator +
                             lastParentId;
-                    st.setStructureId(structureIdDesc);
+                    st.setId(structureIdDesc);
                     final String logicalLabel = getLogicalLabel(mets, lastParentId);
                     final String logType = getLogicalType(mets, lastParentId);
-                    final List<TemplateMetadata> metadataList = buildStructureMetadata(logType);
-                    st.setStructureLabel(logicalLabel);
+                    final List<Metadata> metadataList = buildStructureMetadata(logType);
+                    st.setLabel(logicalLabel);
                     st.setMetadata(metadataList);
                     ranges.sort(naturalOrder());
                     st.setRanges(ranges);
                     st.setCanvases(getCanvases(lastParentId));
                     if (!Objects.equals(
-                            st.getStructureId(),
+                            st.getId(),
                             resourceContext + rangeContext + separator
                                     + MetsConstants.METS_PARENT_LOGICAL_ID)) {
                         structures.add(0, st);
@@ -257,9 +259,9 @@ public class MetsImpl implements MetsAccessor {
 
             }
         });
-        final Comparator<TemplateStructure> c = comparing(TemplateStructure::getStructureId);
+        final Comparator<Structure> c = comparing(Structure::getId);
         return Stream.concat(structures.stream(), descendents.stream()).filter(
-                new ConcurrentSkipListSet<>(c)::add).sorted(comparing(TemplateStructure::getStructureId)).collect(
+                new ConcurrentSkipListSet<>(c)::add).sorted(comparing(Structure::getId)).collect(
                 Collectors.toList());
     }
 

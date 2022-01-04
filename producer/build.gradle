@@ -5,14 +5,12 @@ application {
 }
 
 dependencies {
-    implementation("de.ubleipzig:image.metadata:$imageMetadataVersion")
     implementation("info.picocli:picocli:$picocliVersion")
     implementation("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
     implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
-    implementation("javax.validation:validation-api:2.0.1.Final")
-    implementation project(":templates")
+    implementation project(":model")
     implementation project(":xml-doc")
     implementation("de.ubleipzig:iiif.vocabulary:$iiifVocabularyVersion")
     implementation("org.apache.commons:commons-rdf-api:$commonsRdfVersion")

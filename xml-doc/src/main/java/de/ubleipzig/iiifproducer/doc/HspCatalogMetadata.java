@@ -18,9 +18,8 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import de.ubleipzig.iiifproducer.model.Metadata;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +32,8 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
  *
  * @author Lutz Helm, helm@ub.uni-leipzig.de
  */
+@Slf4j
 public class HspCatalogMetadata {
-
-    static final Logger logger = LoggerFactory.getLogger(HspCatalogMetadata.class);
 
     MetsData mets;
 
@@ -50,15 +48,15 @@ public class HspCatalogMetadata {
      * Get metadata for HSP catalog manifests.
      * @return String
      */
-    public List<TemplateMetadata> getInfo() {
-        final List<TemplateMetadata> metadata = new ArrayList<>();
-        metadata.add(new TemplateMetadata("URN", getManuscriptIdByType(mets, URN_TYPE)));
-        metadata.add(new TemplateMetadata("Autor:in", getAuthor(mets)));
-        metadata.add(new TemplateMetadata("Erscheinungsort", getPlace(mets)));
-        metadata.add(new TemplateMetadata("Verlag", getPublisher(mets)));
-        metadata.add(new TemplateMetadata("Erscheinungsjahr", getDate(mets)));
-        metadata.add(new TemplateMetadata("Umfang", getPhysState(mets)));
-        logger.debug("Added HSP catalog metadata.");
+    public List<Metadata> getInfo() {
+        final List<Metadata> metadata = new ArrayList<>();
+        metadata.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, URN_TYPE)).build());
+        metadata.add(Metadata.builder().label("Autor:in").value(getAuthor(mets)).build());
+        metadata.add(Metadata.builder().label("Erscheinungsort").value(getPlace(mets)).build());
+        metadata.add(Metadata.builder().label("Verlag").value(getPublisher(mets)).build());
+        metadata.add(Metadata.builder().label("Erscheinungsjahr").value(getDate(mets)).build());
+        metadata.add(Metadata.builder().label("Umfang").value(getPhysState(mets)).build());
+        log.debug("Added HSP catalog metadata.");
         return metadata;
     }
 }

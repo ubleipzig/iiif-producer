@@ -19,10 +19,11 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
+import de.ubleipzig.iiifproducer.model.Metadata;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
@@ -34,8 +35,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 public class HspCatalogStructureMetadataTest {
 
-    static TemplateMetadata getMetadataByLabel(final List<TemplateMetadata> info, final String label) {
-        final List<TemplateMetadata> forLabel = info.stream()
+    static Metadata getMetadataByLabel(final List<Metadata> info, final String label) {
+        final List<Metadata> forLabel = info.stream()
                 .filter(md -> md.getLabel() != null && md.getLabel().equals(label)).collect(Collectors.toList());
         return forLabel == null || forLabel.isEmpty() ? null : forLabel.get(0);
     }
@@ -43,10 +44,11 @@ public class HspCatalogStructureMetadataTest {
     @Test
     void testGetHspMetadata() {
         final String sourceFile
-                = HspCatalogStructureMetadataTest.class.getResource("/mets/DieHadeT_1525437259.xml").getPath();
+                = Objects.requireNonNull(
+                        HspCatalogStructureMetadataTest.class.getResource("/mets/DieHadeT_1525437259.xml")).getPath();
         final MetsData mets = getMets(sourceFile);
         final HspCatalogStructureMetadata metadata = new HspCatalogStructureMetadata(mets, "LOG_0024");
-        final List<TemplateMetadata> info = metadata.getInfo();
+        final List<Metadata> info = metadata.getInfo();
         assertNotNull(info);
 
         assertEquals("Ms. El. f. 91", getMetadataByLabel(info, "Signatur").getValue());

@@ -17,11 +17,11 @@
  */
 package de.ubleipzig.iiifproducer.doc;
 
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
+import de.ubleipzig.iiifproducer.model.Metadata;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,19 +30,23 @@ public class GetStandardMetadataTest {
 
     @Test
     void getStandardMetadataWithOptionalCollection() {
-        final String sourceFile = GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml").getPath();
+        final String sourceFile = Objects.requireNonNull(
+                GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml")).getPath();
         final MetsData mets = getMets(sourceFile);
         final StandardMetadata man = new StandardMetadata(mets);
-        final List<TemplateMetadata> info = man.getInfo();
-        assertEquals(1, info.stream().filter(x -> x.getLabel().contains("VD17")).collect(Collectors.toList()).size());
+        final List<Metadata> info = man.getInfo();
+        assertEquals(1, (int) info.stream().filter(
+                v -> v.getLabel() instanceof String && ((String) v.getLabel()).contains("VD17")).count());
     }
 
     @Test
     void getStandardMetadataWithOptionalCollection2() {
-        final String sourceFile = GetValuesFromMetsTest.class.getResource("/mets/LuthEnch_029330009.xml").getPath();
+        final String sourceFile = Objects.requireNonNull(
+                GetValuesFromMetsTest.class.getResource("/mets/LuthEnch_029330009.xml")).getPath();
         final MetsData mets = getMets(sourceFile);
         final StandardMetadata man = new StandardMetadata(mets);
-        final List<TemplateMetadata> info = man.getInfo();
-        assertEquals(1, info.stream().filter(x -> x.getLabel().contains("VD16")).collect(Collectors.toList()).size());
+        final List<Metadata> info = man.getInfo();
+        assertEquals(1, (int) info.stream().filter(
+                v -> v.getLabel() instanceof String && ((String) v.getLabel()).contains("VD16")).count());
     }
 }
