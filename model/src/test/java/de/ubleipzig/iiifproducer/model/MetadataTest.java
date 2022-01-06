@@ -28,11 +28,11 @@ import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * TemplateMetadataTest.
+ * MetadataTest.
  *
  * @author christopher-johnson
  */
-class TemplateMetadataTest {
+class MetadataTest {
 
     @Test
     void testSerialization() {

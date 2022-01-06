@@ -52,20 +52,30 @@ import static java.lang.String.format;
 @AllArgsConstructor
 public class IIIFProducer {
 
-    private String baseUrl;
-    private String canvasContext;
-    private String defaultSequenceId;
-    private String dfgFileName;
-    private String katalogUrl;
-    private String fulltextContext;
-    private String fulltextFileGrp;
+    @Builder.Default
+    private String baseUrl = "https://iiif.ub.uni-leipzig.de/";
+    @Builder.Default
+    private String canvasContext = "/canvas";
+    @Builder.Default
+    private String defaultSequenceId = "/sequence/1";
+    @Builder.Default
+    private String dfgFileName = "presentation.xml";
+    @Builder.Default
+    private String viewerUrl = "https://digital.ub.uni-leipzig.de/object/viewid/";
+    @Builder.Default
+    private String katalogUrl = "https://katalog.ub.uni-leipzig.de/urn/";
+    @Builder.Default
+    private String manifestFileName = "manifest.json";
+    @Builder.Default
+    private String fulltextContext = "alto";
+    @Builder.Default
+    private String fulltextFileGrp = "FULLTEXT";
+
     private IRIBuilder iriBuilder;
-    private String manifestFileName;
     private MetsAccessor mets;
     private String outputFile;
     private String resourceContext;
     private String viewId;
-    private String viewerUrl;
     private String xmlFile;
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
@@ -123,7 +133,7 @@ public class IIIFProducer {
     public List<Sequence> addCanvasesToSequence(final List<Canvas> canvases) {
         final List<Sequence> sequence = new ArrayList<>();
         sequence.add(Sequence.builder()
-                .context(resourceContext + defaultSequenceId)
+                .id(resourceContext + defaultSequenceId)
                 .canvases(canvases)
                 .build());
         return sequence;

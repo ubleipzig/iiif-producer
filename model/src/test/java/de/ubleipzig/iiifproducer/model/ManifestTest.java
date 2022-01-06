@@ -31,11 +31,11 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * TemplateManifestTest.
+ * ManifestTest.
  *
  * @author christopher-johnson
  */
-class TemplateManifestTest {
+class ManifestTest {
 
     @Mock
     private Manifest mockManifest;

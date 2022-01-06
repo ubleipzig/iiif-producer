@@ -45,12 +45,19 @@ import static java.lang.String.format;
 @AllArgsConstructor
 public final class IRIBuilder {
 
-    private String annotationContext;
-    private String canvasContext;
-    private String imageServiceFileExtension;
-    private String imageServiceImageDirPrefix;
-    private String imageServiceBaseUrl;
-    private boolean isUBLImageService;
+    @Builder.Default
+    private String annotationContext = "/anno";
+    @Builder.Default
+    private String canvasContext = "/canvas";
+    @Builder.Default
+    private String imageServiceFileExtension = ".jpx";
+    @Builder.Default
+    private String imageServiceImageDirPrefix = "/j2k/";
+    @Builder.Default
+    private String imageServiceBaseUrl = "https://iiif.ub.uni-leipzig.de/iiif";
+    @Builder.Default
+    private boolean isUBLImageService = true;
+
     private String resourceContext;
 
     private static final RDF rdf = new SimpleRDF();

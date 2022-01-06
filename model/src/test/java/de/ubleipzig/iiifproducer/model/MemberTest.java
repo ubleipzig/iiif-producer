@@ -15,39 +15,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-
 package de.ubleipzig.iiifproducer.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import de.ubleipzig.iiif.vocabulary.SCEnum;
+import de.ubleipzig.iiifproducer.model.v2.Member;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
-/**
- * TemplateMember.
- *
- * @author christopher-johnson
- */
-@JsonPropertyOrder({"@id", "@type", "label"})
-public class TemplateMember {
+import java.util.Optional;
 
-    @JsonProperty("@id")
-    private String id;
+import static java.lang.System.out;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-    @JsonProperty("@type")
-    private String type;
+public class MemberTest {
 
-    @JsonProperty
-    private String label;
+    @Mock
+    private Member mockMember = Member.builder()
+            .id("trellis:data/member")
+            .type(SCEnum.Canvas.compactedIRI())
+            .label("a member")
+            .build();
 
-    /**
-     * @param id String
-     * @param type String
-     * @param label String
-     */
-    public TemplateMember(final String id, final String type, final String label) {
-        this.id = id;
-        this.type = type;
-        this.label = label;
+    @Test
+    void testSerialization() {
+        final Optional<String> json = ManifestSerializer.serialize(mockMember);
+        assertTrue(json.isPresent());
+        out.println(json.get());
     }
-
 }
-

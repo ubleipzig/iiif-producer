@@ -27,7 +27,7 @@ import java.util.Optional;
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TemplateResourceTest {
+public class ResourceTest {
 
     @Mock
     private Body mockBody = Body.builder().build();

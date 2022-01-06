@@ -32,6 +32,7 @@
 package de.ubleipzig.iiifproducer.model.v2;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import de.ubleipzig.iiif.vocabulary.IIIFEnum;
@@ -44,6 +45,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"@context", "@id", "profile"})
 public class Service {
 

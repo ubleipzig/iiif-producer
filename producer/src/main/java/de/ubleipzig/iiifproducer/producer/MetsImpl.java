@@ -52,14 +52,20 @@ import static java.util.stream.Collectors.toList;
 @AllArgsConstructor
 public class MetsImpl implements MetsAccessor {
 
+    @Builder.Default
+    private String rangeContext = "/range";
+    @Builder.Default
+    private String anchorKey = "Part of";
+    @Builder.Default
+    private String attributionKey = "Provided by ";
+    @Builder.Default
+    private String attributionLicenseNote = "No Copyright - Public Domain Marked";
+    @Builder.Default
+    private String license = "https://creativecommons.org/publicdomain/mark/1.0/";
+
     private MetsData mets;
     private Map<String, List<MetsData.Xlink>> xlinkmap;
     private IRIBuilder iriBuilder;
-    private String anchorKey;
-    private String attributionKey;
-    private String attributionLicenseNote;
-    private String license;
-    private String rangeContext;
     private String resourceContext;
     private String xmlFile;
 

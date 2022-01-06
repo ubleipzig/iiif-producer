@@ -18,8 +18,8 @@
 
 package de.ubleipzig.iiifproducer.model;
 
-import de.ubleipzig.iiif.vocabulary.SCEnum;
 import de.ubleipzig.iiifproducer.model.v2.Structure;
+import de.ubleipzig.iiifproducer.model.v2.TopStructure;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -30,18 +30,17 @@ import java.util.Optional;
 import static de.ubleipzig.iiifproducer.model.ManifestSerializer.serialize;
 import static java.lang.System.out;
 import static java.util.Arrays.asList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * TemplateStructureTest.
+ * TopStructureTest.
  *
  * @author christopher-johnson
  */
-class TemplateStructureTest {
+class TopStructureTest {
 
     @Mock
-    private static Structure mockStructure = Structure.builder().build();
+    private static Structure mockTopStructure = TopStructure.builder().build();
 
     @BeforeAll
     static void setup() {
@@ -49,30 +48,15 @@ class TemplateStructureTest {
                 "https://iiif.ub.uni-leipzig.de/0000004084/range/0-0",
                 "https://iiif.ub" + ".uni-leipzig.de/0000004084/range/0-1",
                 "https://iiif.ub.uni-leipzig.de/0000004084/range/0-2");
-        final List<String> canvases = asList(
-                "https://iiif.ub.uni-leipzig.de/0000004084/canvas/1",
-                "https://iiif.ub" + ".uni-leipzig.de/0000004084/canvas/2");
-        mockStructure.setLabel("TOC");
-        mockStructure.setId("http://test.org/12345/range/0");
-        mockStructure.setType(SCEnum.Range.compactedIRI());
-        mockStructure.setRanges(ranges);
-        mockStructure.setCanvases(canvases);
+        mockTopStructure.setLabel("TOC");
+        mockTopStructure.setId("http://test.org/12345/range/0");
+        mockTopStructure.setRanges(ranges);
     }
 
     @Test
     void testSerialization() {
-        final Optional<String> json = serialize(mockStructure);
+        final Optional<String> json = serialize(mockTopStructure);
         assertTrue(json.isPresent());
         out.println(json.get());
     }
-
-    @Test
-    void testGetProperties() {
-        final List<String> ranges = mockStructure.getRanges();
-        assertEquals(3, ranges.size());
-        final String label = (String) mockStructure.getLabel();
-        assertEquals("TOC", label);
-    }
-
 }
-
