@@ -21,8 +21,10 @@ package de.ubleipzig.iiifproducer.producer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.ubleipzig.iiif.vocabulary.SC;
+import de.ubleipzig.iiifproducer.converter.ReserializerVersion3;
 import de.ubleipzig.iiifproducer.model.ImageServiceResponse;
 import de.ubleipzig.iiifproducer.model.v2.*;
+import de.ubleipzig.iiifproducer.model.v3.ManifestVersion3;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +36,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static de.ubleipzig.iiifproducer.model.ManifestSerializer.serialize;
@@ -60,6 +61,8 @@ public class IIIFProducer {
     private String defaultSequenceId = "/sequence/1";
     @Builder.Default
     private String dfgFileName = "presentation.xml";
+    @Builder.Default
+    private String format = "v3";
     @Builder.Default
     private String viewerUrl = "https://digital.ub.uni-leipzig.de/object/viewid/";
     @Builder.Default
@@ -103,7 +106,7 @@ public class IIIFProducer {
 
     /**
      * @param canvas Canvas
-     * @param div String
+     * @param div    String
      * @param viewId String
      */
     public void setCanvasSeeAlso(final Canvas canvas, final String div,
@@ -251,16 +254,24 @@ public class IIIFProducer {
         manifest.setSequences(sequence);
 
         final TopStructure top = mets.buildTopStructure();
-        final Manifest structManifest;
-        structManifest = setStructures(top, manifest);
+        final Manifest manifestVersion2;
+        manifestVersion2 = setStructures(top, manifest);
 
+        String manifestOutput;
+        if ("v3".equals(format)) {
+            ReserializerVersion3 reserializerVersion3 = ReserializerVersion3.builder()
+                    .manifest(manifestVersion2)
+                    .build();
+            ManifestVersion3 manifestVersion3 = reserializerVersion3.execute();
+            manifestOutput = serialize(manifestVersion3).orElse(null);
+        } else {
+            manifestOutput = serialize(manifestVersion2).orElse(null);
+        }
         log.info("Builder Process Complete, Serializing to Json ...");
-        final Optional<String> json = serialize(structManifest);
-        final String output = json.orElse(null);
         final File outfile = new File(outputFile);
         log.info("Writing file to {}", outputFile);
-        writeToFile(output, outfile);
-        log.debug("Manifest Output: {}", output);
+        writeToFile(manifestOutput, outfile);
+        log.debug("Manifest Output: {}", manifestOutput);
     }
 
     /**

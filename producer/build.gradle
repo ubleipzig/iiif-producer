@@ -10,6 +10,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
+    implementation project(":converter")
     implementation project(":model")
     implementation project(":xml-doc")
     implementation("de.ubleipzig:iiif.vocabulary:$iiifVocabularyVersion")

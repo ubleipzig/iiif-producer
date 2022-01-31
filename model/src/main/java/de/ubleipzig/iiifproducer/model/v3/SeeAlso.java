@@ -76,4 +76,7 @@ public class SeeAlso {
 
     @JsonProperty("format")
     private String format;
+
+    @JsonProperty
+    private String profile;
 }

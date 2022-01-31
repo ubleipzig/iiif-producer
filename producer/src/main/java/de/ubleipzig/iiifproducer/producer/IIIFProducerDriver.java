@@ -55,6 +55,9 @@ public final class IIIFProducerDriver implements Callable<Integer> {
     @CommandLine.Option(names = {"-c", "--config"}, required = true, description = "Path to config file")
     private String configFile = "etc/producer-config.yml";
 
+    @CommandLine.Option(names = {"-f", "--format"}, required = true, description = "Produce Version Format")
+    private String format = "v3";
+
     public static void main(final String[] args) {
         int exitCode = new CommandLine(new IIIFProducerDriver()).execute(args);
         System.exit(exitCode);
@@ -99,6 +102,7 @@ public final class IIIFProducerDriver implements Callable<Integer> {
                 .canvasContext(props.getProperty("canvasContext"))
                 .defaultSequenceId(props.getProperty("defaultSequenceId"))
                 .dfgFileName(props.getProperty("dfgFilename"))
+                .format(format)
                 .fulltextFileGrp(props.getProperty("fulltextFileGrp"))
                 .iriBuilder(iriBuilder)
                 .katalogUrl(props.getProperty("katalogUrl"))
