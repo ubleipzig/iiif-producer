@@ -45,14 +45,21 @@ public class IIIFProducerDriverTest {
     @Test
     public void testStandardType() {
         final String[] args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o",
-                "/tmp/" + pid + ".json", "-c", configFilePath, "-f", "v3"};
+                "/tmp/" + pid + ".json", "-c", configFilePath};
         IIIFProducerDriver.main(args);
     }
 
     @Test
     public void testHandschriftType() {
         final String[] args = new String[]{"-v", "0000000719", "-x", testFileSource2, "-o",
-                "/tmp/" + pid + ".json", "-c", configFilePath, "-f", "v3"};
+                "/tmp/" + pid + ".json", "-c", configFilePath};
+        IIIFProducerDriver.main(args);
+    }
+
+    @Test
+    public void testHandschriftTypeV2() {
+        final String[] args = new String[]{"-v", "0000000719", "-x", testFileSource2, "-o",
+                "/tmp/" + pid + ".json", "-c", configFilePath, "-f", "v2"};
         IIIFProducerDriver.main(args);
     }
 }

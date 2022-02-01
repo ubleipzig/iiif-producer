@@ -36,8 +36,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.*;
-import static de.ubleipzig.iiifproducer.converter.ReserializerUtils.buildLabelMap;
-import static de.ubleipzig.iiifproducer.model.ManifestSerializer.serialize;
+import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildLabelMap;
 import static java.io.File.separator;
 import static java.lang.String.format;
 import static java.util.Optional.ofNullable;
@@ -47,10 +46,10 @@ import static java.util.Optional.ofNullable;
 @Getter
 @AllArgsConstructor
 @Slf4j
-public class ReserializerVersion3 {
+public class ConverterVersion3 {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
-    private static final String NONE = "@none";
+    private static final String NONE = "none";
     private final Manifest manifest;
 
     public ManifestVersion3 execute() {
@@ -181,7 +180,7 @@ public class ReserializerVersion3 {
 
             return newManifest;
         } catch (IOException ex) {
-            throw new RuntimeException("Could not Reserialize Manifest", ex.getCause());
+            throw new RuntimeException("Could not Convert Manifest", ex.getCause());
         }
     }
 
@@ -245,7 +244,7 @@ public class ReserializerVersion3 {
         final Optional<Set<MetadataVersion3>> metaURN = Optional.of(finalMetadata.stream().filter(
                 y -> y.getLabel().values().stream().anyMatch(v -> v.contains("URN"))).collect(Collectors.toSet()));
         final Optional<MetadataVersion3> urn = metaURN.get().stream().findAny();
-        return urn.map(metadataVersion3 -> metadataVersion3.getValue().get(NONE).get(0)).orElse(null);
+        return urn.map(u -> u.getValue().get(NONE).get(0)).orElse(null);
     }
 
     /**

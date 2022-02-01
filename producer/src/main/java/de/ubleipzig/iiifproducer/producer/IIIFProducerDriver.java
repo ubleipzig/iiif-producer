@@ -46,16 +46,16 @@ public final class IIIFProducerDriver implements Callable<Integer> {
     @CommandLine.Option(names = {"-v", "--viewid"}, required = true, description = "View identifier")
     private String viewId;
 
-    @CommandLine.Option(names = {"-x", "--xmlFile"}, required = false, description = "XML Source")
+    @CommandLine.Option(names = {"-x", "--xmlFile"}, description = "XML Source")
     private String xmlFile;
 
-    @CommandLine.Option(names = {"-o", "--outputFile"}, required = false, description = "Output File")
+    @CommandLine.Option(names = {"-o", "--outputFile"}, description = "Output File")
     private String outputFile = "/tmp/output.json";
 
     @CommandLine.Option(names = {"-c", "--config"}, required = true, description = "Path to config file")
     private String configFile = "etc/producer-config.yml";
 
-    @CommandLine.Option(names = {"-f", "--format"}, required = true, description = "Produce Version Format")
+    @CommandLine.Option(names = {"-f", "--format"}, description = "Produce Version Format")
     private String format = "v3";
 
     public static void main(final String[] args) {

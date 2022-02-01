@@ -21,7 +21,7 @@ package de.ubleipzig.iiifproducer.producer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.ubleipzig.iiif.vocabulary.SC;
-import de.ubleipzig.iiifproducer.converter.ReserializerVersion3;
+import de.ubleipzig.iiifproducer.converter.ConverterVersion3;
 import de.ubleipzig.iiifproducer.model.ImageServiceResponse;
 import de.ubleipzig.iiifproducer.model.v2.*;
 import de.ubleipzig.iiifproducer.model.v3.ManifestVersion3;
@@ -259,7 +259,7 @@ public class IIIFProducer {
 
         String manifestOutput;
         if ("v3".equals(format)) {
-            ReserializerVersion3 reserializerVersion3 = ReserializerVersion3.builder()
+            ConverterVersion3 reserializerVersion3 = ConverterVersion3.builder()
                     .manifest(manifestVersion2)
                     .build();
             ManifestVersion3 manifestVersion3 = reserializerVersion3.execute();

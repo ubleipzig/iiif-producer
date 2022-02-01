@@ -26,9 +26,9 @@ import static de.ubleipzig.iiifproducer.converter.DomainConstants.targetBase;
 import static java.io.File.separator;
 import static java.lang.String.format;
 
-public final class ReserializerUtils {
+public final class ConverterUtils {
 
-    private ReserializerUtils() {
+    private ConverterUtils() {
     }
 
     public static Map<String, List<String>> buildLabelMap(final String value, String language) {

@@ -43,7 +43,7 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
     private static final String PERIOD = ".";
     private static final String ENGLISH = "en";
     private static final String DEUTSCH = "de";
-    private static final String NONE = "@none";
+    private static final String NONE = "none";
     private List<MetadataVersion3> finalMetadata;
 
     private MetadataVersion3 buildMetadata(final String language, final String label, final String value,
@@ -71,22 +71,7 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
 
     public Map<String, Object> convertListToMap(List<Metadata> metadata) {
         return metadata.stream()
-                .collect(Collectors.toMap(l -> (String) l.getLabel(), Function.identity()));
-    }
-
-   private List<MetadataVersion3> buildAuthors(Map<String, Object> newMetadata) {
-        final String authorKey = AUTHOR.getApiKey();
-        List<MetadataVersion3> mList = new ArrayList<>();
-        if (getValueAsMap(newMetadata, authorKey).isPresent()) {
-            final Map<String, String> authorMap = getValueAsMap(newMetadata, authorKey).get();
-            mList = buildAuthor(mList, authorMap);
-        } else if (getValueAsMapList(newMetadata, authorKey).isPresent()) {
-            final List<Map<String, String>> authors = getValueAsMapList(newMetadata, authorKey).get();
-            for (Map<String, String> authorMap : authors) {
-                mList = buildAuthor(mList, authorMap);
-            }
-        }
-        return mList;
+                .collect(Collectors.toMap(l -> (String) l.getLabel(), Metadata::getValue));
     }
 
     private List<MetadataVersion3> buildAuthor(List<MetadataVersion3> mList, Map<String, String> authorMap) {
@@ -146,7 +131,7 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
 
     private List<MetadataVersion3> addMetadataObject(final String language, final Map<String, Object> newMetadata,
                                                      final String key, final String label, final Integer displayOrder) {
-        final Optional<String> value = getValueAsString(newMetadata, key);
+        final Optional<String> value = getValueAsString(newMetadata, label);
         if (value.isPresent()) {
             final MetadataVersion3 m = buildMetadata(language, label, value.get(), displayOrder);
             finalMetadata.add(m);
@@ -156,15 +141,16 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
 
     public List<MetadataVersion3> buildFinalMetadata() {
         Map<String, Object> newMetadata = convertListToMap(metadata);
-        final List<MetadataVersion3> authors = buildAuthors(newMetadata);
+        //final List<MetadataVersion3> authors = buildMetadata(newMetadata);
 //        final List<MetadataVersion3> collections = setCollections();
 //        final List<MetadataVersion3> languages = setLanguages();
-        finalMetadata.addAll(authors);
+          finalMetadata = new ArrayList<>();
 //        finalMetadata.addAll(collections);
 //        finalMetadata.addAll(languages);
 
         final String manifestTypeKey = MANIFESTTYPE.getApiKey();
-        final Optional<String> manifestType = getValueAsString(newMetadata, manifestTypeKey);
+        final Optional<String> manifestType = getValueAsString(newMetadata, "Manifest Type");
+
         if (manifestType.isPresent()) {
             final String manifestTypeLabel = englishLabels.getString(manifestTypeKey);
             final String manifestTypeLabelDisplayOrderKey = manifestTypeKey + PERIOD + DISPLAYORDER.getApiKey();
@@ -174,9 +160,9 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
             finalMetadata.add(manifestTypeObj);
             if (manifestType.get().equals(MANUSCRIPT.getApiKey())) {
                 //hack for UBL mets/mods classification confusion
-                finalMetadata = addMetadataObject(DEUTSCH, newMetadata, SUBTITLE.getApiKey(), "Objekttitel", 2);
+                finalMetadata = addMetadataObject(DEUTSCH, newMetadata, SUBTITLE.getApiKey(), "Objekttitel", 3);
             } else {
-                finalMetadata = addMetadataObject(ENGLISH, newMetadata, SUBTITLE.getApiKey(), "Subtitle", 2);
+                finalMetadata = addMetadataObject(ENGLISH, newMetadata, SUBTITLE.getApiKey(), "Subtitle", 3);
                 //only show Physical Dimension for Non-manuscripts
                 finalMetadata = addMetadataObject(
                         ENGLISH, newMetadata, PHYSICAL_DESCRIPTION.getApiKey(), "Physical Description", 10);

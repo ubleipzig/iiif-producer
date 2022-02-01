@@ -16,7 +16,7 @@ package de.ubleipzig.iiifproducer.converter;
 
 public enum MetadataApiEnum {
 
-    AUTHOR("Author"), LABEL("label"), GND("GND"), STRUCTTYPE("structType"), COLLECTION("collection"), LANGUAGE(
+    AUTHOR("Author"), LABEL("label"), GND("GND"), STRUCTTYPE("structType"), COLLECTION("Collection"), LANGUAGE(
             "language-iso639-2"), DISPLAYORDER("displayOrder"), MANUSCRIPT("manuscript"), MANIFESTTYPE("manifestType"),
     LANGUAGE_NAME("Language Name"), SUBTITLE("subTitle"), PHYSICAL_DESCRIPTION("physicalDescription");
 

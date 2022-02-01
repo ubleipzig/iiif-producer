@@ -1,0 +1,453 @@
+{
+  "@context" : [
+    "http://www.w3.org/ns/anno.jsonld",
+    "http://iiif.io/api/presentation/3/context.json"
+  ],
+  "id" : "https://iiif.ub.uni-leipzig.de/0000000719/manifest.json",
+  "type" : "Manifest",
+  "label" : {
+    "none" : [
+      "Leipzig, Universitätsbibliothek Leipzig, Ms 187"
+    ]
+  },
+  "viewingDirection" : "left-to-right",
+  "behavior" : [
+    "paged"
+  ],
+  "rights" : "https://creativecommons.org/publicdomain/mark/1.0/",
+  "requiredStatement" : {
+    "label" : {
+      "en" : [
+        "Attribution"
+      ]
+    },
+    "value" : {
+      "en" : [
+        "Provided by Leipzig University Library<br/>No Copyright - Public Domain Marked"
+      ]
+    }
+  },
+  "logo" : {
+    "id" : "https://iiif.ub.uni-leipzig.de/ubl-logo.png",
+    "type" : "Image"
+  },
+  "seeAlso" : [
+    {
+      "id" : "https://katalog.ub.uni-leipzig.de/urn/urn:nbn:de:bsz:15-0012-161875",
+      "type" : "Application",
+      "profile" : "https://www.ub.uni-leipzig.de/profiles/application/v3",
+      "format" : "text/html"
+    },
+    {
+      "id" : "https://digital.ub.uni-leipzig.de/object/viewid/0000000719",
+      "type" : "Application",
+      "profile" : "https://www.ub.uni-leipzig.de/profiles/application/v3",
+      "format" : "text/html"
+    }
+  ],
+  "metadata" : [
+    {
+      "label" : {
+        "en" : [
+          "Manifest Type"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "manuscript"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Titel (aus Signatur)"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "Leipzig, Universitätsbibliothek Leipzig, Ms 187"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Objekttitel"
+        ]
+      },
+      "value" : {
+        "none" : [
+          ""
+        ]
+      }
+    },
+    {
+      "label" : {
+        "en" : [
+          "Collection"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "Andere Buchhandschriften"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Collection"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "Andere Buchhandschriften"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Medium"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "Handschrift"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Beschreibstoff"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "Pergament"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Umfang"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "184 Bll."
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Abmessungen"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "35 x 24,5 cm"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Sprache"
+        ]
+      },
+      "value" : {
+        "none" : [
+          ""
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Lokalisierung"
+        ]
+      },
+      "value" : {
+        "none" : [
+          ""
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Manuscripta Mediaevalia"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "http://www.manuscripta-mediaevalia.de/dokumente/html/obj31561349"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Datierung"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "13. Jahrhundert"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Kitodo"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "6550"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "URN"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "urn:nbn:de:bsz:15-0012-161875"
+        ]
+      }
+    },
+    {
+      "label" : {
+        "de" : [
+          "Signatur"
+        ]
+      },
+      "value" : {
+        "none" : [
+          "Ms 187"
+        ]
+      }
+    }
+  ],
+  "items" : [
+    {
+      "id" : "https://iiif.ub.uni-leipzig.de/0000000719/canvas/00000001",
+      "type" : "Canvas",
+      "label" : {
+        "none" : [
+          "Vorderdeckel"
+        ]
+      },
+      "height" : 2775,
+      "width" : 1929,
+      "items" : [
+        {
+          "id" : "https://iiif.ub.uni-leipzig.de/0000000719/page/f54f63d6-9091-4f36-beac-9a2a3172f280",
+          "type" : "AnnotationPage",
+          "items" : [
+            {
+              "id" : "https://iiif.ub.uni-leipzig.de/0000000719/anno/f3dfbb24-4a32-494b-98a8-8690f3afb990",
+              "type" : "Annotation",
+              "motivation" : "painting",
+              "body" : {
+                "id" : "https://iiif.ub.uni-leipzig.de/0000000719/00000001.jpg",
+                "type" : "Image",
+                "format" : "image/jpeg",
+                "service" : [
+                  {
+                    "id" : "https://iiif.ub.uni-leipzig.de/iiif/j2k/0000/0007/0000000719/00000001.jpx",
+                    "type" : "ImageService2",
+                    "profile" : "http://iiif.io/api/image/2/level1.json"
+                  }
+                ],
+                "height" : 2775,
+                "width" : 1929,
+                "label" : {
+                  "none" : [
+                    "Vorderdeckel"
+                  ]
+                }
+              },
+              "target" : "https://iiif.ub.uni-leipzig.de/0000000719/canvas/00000001"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id" : "https://iiif.ub.uni-leipzig.de/0000000719/canvas/00000002",
+      "type" : "Canvas",
+      "label" : {
+        "none" : [
+          "Vorderspiegel"
+        ]
+      },
+      "height" : 2775,
+      "width" : 1789,
+      "items" : [
+        {
+          "id" : "https://iiif.ub.uni-leipzig.de/0000000719/page/5399d793-0182-4d0f-a07e-10e4a3cdd2cf",
+          "type" : "AnnotationPage",
+          "items" : [
+            {
+              "id" : "https://iiif.ub.uni-leipzig.de/0000000719/anno/9180a102-d306-4320-ba7d-26cb3442b0bf",
+              "type" : "Annotation",
+              "motivation" : "painting",
+              "body" : {
+                "id" : "https://iiif.ub.uni-leipzig.de/0000000719/00000002.jpg",
+                "type" : "Image",
+                "format" : "image/jpeg",
+                "service" : [
+                  {
+                    "id" : "https://iiif.ub.uni-leipzig.de/iiif/j2k/0000/0007/0000000719/00000002.jpx",
+                    "type" : "ImageService2",
+                    "profile" : "http://iiif.io/api/image/2/level1.json"
+                  }
+                ],
+                "height" : 2775,
+                "width" : 1789,
+                "label" : {
+                  "none" : [
+                    "Vorderspiegel"
+                  ]
+                }
+              },
+              "target" : "https://iiif.ub.uni-leipzig.de/0000000719/canvas/00000002"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id" : "https://iiif.ub.uni-leipzig.de/0000000719/canvas/00000003",
+      "type" : "Canvas",
+      "label" : {
+        "none" : [
+          "1r"
+        ]
+      },
+      "height" : 2748,
+      "width" : 1769,
+      "items" : [
+        {
+          "id" : "https://iiif.ub.uni-leipzig.de/0000000719/page/7d695127-5388-47c4-b78e-6747c2cf370a",
+          "type" : "AnnotationPage",
+          "items" : [
+            {
+              "id" : "https://iiif.ub.uni-leipzig.de/0000000719/anno/a4bf1b6e-c8e4-48b8-bf55-19a8062bd455",
+              "type" : "Annotation",
+              "motivation" : "painting",
+              "body" : {
+                "id" : "https://iiif.ub.uni-leipzig.de/0000000719/00000003.jpg",
+                "type" : "Image",
+                "format" : "image/jpeg",
+                "service" : [
+                  {
+                    "id" : "https://iiif.ub.uni-leipzig.de/iiif/j2k/0000/0007/0000000719/00000003.jpx",
+                    "type" : "ImageService2",
+                    "profile" : "http://iiif.io/api/image/2/level1.json"
+                  }
+                ],
+                "height" : 2748,
+                "width" : 1769,
+                "label" : {
+                  "none" : [
+                    "1r"
+                  ]
+                }
+              },
+              "target" : "https://iiif.ub.uni-leipzig.de/0000000719/canvas/00000003"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id" : "https://iiif.ub.uni-leipzig.de/0000000719/canvas/00000004",
+      "type" : "Canvas",
+      "label" : {
+        "none" : [
+          "1v"
+        ]
+      },
+      "height" : 2748,
+      "width" : 1769,
+      "items" : [
+        {
+          "id" : "https://iiif.ub.uni-leipzig.de/0000000719/page/498802a8-1e02-43ea-bb4e-7bb37a0a89f8",
+          "type" : "AnnotationPage",
+          "items" : [
+            {
+              "id" : "https://iiif.ub.uni-leipzig.de/0000000719/anno/b798c7ce-58f0-48de-8e2b-c36ed3c96a5a",
+              "type" : "Annotation",
+              "motivation" : "painting",
+              "body" : {
+                "id" : "https://iiif.ub.uni-leipzig.de/0000000719/00000004.jpg",
+                "type" : "Image",
+                "format" : "image/jpeg",
+                "service" : [
+                  {
+                    "id" : "https://iiif.ub.uni-leipzig.de/iiif/j2k/0000/0007/0000000719/00000004.jpx",
+                    "type" : "ImageService2",
+                    "profile" : "http://iiif.io/api/image/2/level1.json"
+                  }
+                ],
+                "height" : 2748,
+                "width" : 1769,
+                "label" : {
+                  "none" : [
+                    "1v"
+                  ]
+                }
+              },
+              "target" : "https://iiif.ub.uni-leipzig.de/0000000719/canvas/00000004"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "structures" : [
+    {
+      "id" : "https://iiif.ub.uni-leipzig.de/0000000719/range/LOG_0000",
+      "type" : "Range",
+      "label" : {
+        "de" : [
+          "Contents"
+        ]
+      },
+      "items" : [
+        {
+          "id" : "https://iiif.ub.uni-leipzig.de/0000000719/range/LOG_0001",
+          "type" : "Range",
+          "label" : {
+            "de" : [
+              "Einband"
+            ]
+          },
+          "items" : [
+            {
+              "id" : "https://iiif.ub.uni-leipzig.de/0000000719/range/LOG_0002",
+              "items" : [
+                {
+                  "id" : "https://iiif.ub.uni-leipzig.de/0000000719/canvas/00000002",
+                  "type" : "Canvas"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

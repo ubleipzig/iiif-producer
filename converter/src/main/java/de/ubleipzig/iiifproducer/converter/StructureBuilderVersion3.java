@@ -35,8 +35,8 @@ import java.util.stream.Stream;
 
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.baseUrl;
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.structureBase;
-import static de.ubleipzig.iiifproducer.converter.ReserializerUtils.buildLabelMap;
-import static de.ubleipzig.iiifproducer.converter.ReserializerUtils.buildPaddedCanvases;
+import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildLabelMap;
+import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildPaddedCanvases;
 import static java.io.File.separator;
 import static java.util.Optional.ofNullable;
 
