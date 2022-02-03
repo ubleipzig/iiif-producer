@@ -46,8 +46,12 @@ import java.util.Map;
 @AllArgsConstructor
 public class MetadataVersion3 {
 
+    @JsonIgnore
+    private Integer displayOrder;
     @JsonProperty
     private Map<String, List<String>> label;
+    @JsonProperty
+    private Map<String, List<String>> value;
 
     public Map<String, List<String>> getLabel() {
         return label;
@@ -57,9 +61,6 @@ public class MetadataVersion3 {
         this.label = label;
     }
 
-    @JsonProperty
-    private Map<String, List<String>> value;
-
     public Map<String, List<String>> getValue() {
         return value;
     }
@@ -67,8 +68,5 @@ public class MetadataVersion3 {
     public void setValue(Map<String, List<String>> value) {
         this.value = value;
     }
-
-    @JsonIgnore
-    private Integer displayOrder;
 
 }

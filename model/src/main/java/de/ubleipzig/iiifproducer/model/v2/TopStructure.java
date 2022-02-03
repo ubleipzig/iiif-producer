@@ -52,8 +52,24 @@ import java.util.List;
 @JsonPropertyOrder({"@id", "@type", "label", "viewingHint", "ranges"})
 public class TopStructure extends Structure {
 
+    @JsonIgnore
+    private List<String> canvases;
+    @JsonProperty("@id")
+    private String id;
+    @JsonProperty("label")
+    private String label;
+    @JsonIgnore
+    private List<Member> members;
+    @JsonProperty("ranges")
+    private List<String> ranges;
+    @JsonProperty("@type")
+    private String type;
+    @JsonProperty("viewingHint")
+    private String viewingHint;
+
     @Builder
-    public TopStructure(String id, String type, String label, List<String> canvases, List<String> ranges, List<Member> members) {
+    public TopStructure(String id, String type, String label, List<String> canvases, List<String> ranges,
+                        List<Member> members) {
         super();
         this.id = id;
         this.type = SCEnum.Range.compactedIRI();
@@ -69,26 +85,5 @@ public class TopStructure extends Structure {
             super();
         }
     }
-
-    @JsonProperty("@id")
-    private String id;
-
-    @JsonProperty("@type")
-    private String type;
-
-    @JsonProperty("label")
-    private String label;
-
-    @JsonProperty("viewingHint")
-    private String viewingHint;
-
-    @JsonIgnore
-    private List<String> canvases;
-
-    @JsonProperty("ranges")
-    private List<String> ranges;
-
-    @JsonIgnore
-    private List<Member> members;
 
 }

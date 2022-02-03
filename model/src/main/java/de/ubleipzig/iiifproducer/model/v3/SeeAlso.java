@@ -44,8 +44,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonPropertyOrder({"id", "type", "profile"})
 public class SeeAlso {
+    @JsonProperty("format")
+    private String format;
     @JsonProperty("id")
     private String id;
+    @JsonProperty
+    private String profile;
+    @JsonProperty("type")
+    private String type;
 
     public String getId() {
         return id;
@@ -54,9 +60,6 @@ public class SeeAlso {
     public void setId(String id) {
         this.id = id;
     }
-
-    @JsonProperty("type")
-    private String type;
 
     /**
      * @return String
@@ -73,10 +76,4 @@ public class SeeAlso {
     public void setType(final String type) {
         this.type = type;
     }
-
-    @JsonProperty("format")
-    private String format;
-
-    @JsonProperty
-    private String profile;
 }

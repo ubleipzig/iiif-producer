@@ -54,23 +54,17 @@ public class Service {
     @Builder.Default
     @JsonProperty("@context")
     private String context = IIIFEnum.IMAGE_CONTEXT.IRIString();
-
-    @JsonProperty("@id")
-    private String id;
-
     @JsonProperty
     private Integer height;
-
-    @JsonProperty
-    private Integer width;
-
+    @JsonProperty("@id")
+    private String id;
     @Builder.Default
     @JsonProperty
     private String profile = IIIFEnum.SERVICE_PROFILE.IRIString();
-
     @JsonProperty
     private String protocol;
-
     @JsonProperty
     private Object tiles;
+    @JsonProperty
+    private Integer width;
 }

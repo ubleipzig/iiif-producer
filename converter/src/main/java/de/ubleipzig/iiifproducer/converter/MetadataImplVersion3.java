@@ -1,4 +1,21 @@
 /*
+ * IIIFProducer
+ * Copyright (C) 2017 Leipzig University Library <info@ub.uni-leipzig.de>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+/*
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,13 +38,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
-import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.*;
-import static java.util.Optional.ofNullable;
+import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.DISPLAYORDER;
+import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANIFESTTYPE;
+import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANUSCRIPT;
+import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.SUBTITLE;
 
 @Builder
 @Setter
@@ -35,81 +55,88 @@ import static java.util.Optional.ofNullable;
 @AllArgsConstructor
 @Slf4j
 public class MetadataImplVersion3 extends MetadataObjectTypes {
-    List<Metadata> metadata;
-    MetadataBuilderVersion3 metadataBuilder;
-
     private static final ResourceBundle deutschLabels = ResourceBundle.getBundle("metadataLabels", Locale.GERMAN);
     private static final ResourceBundle englishLabels = ResourceBundle.getBundle("metadataLabels", Locale.ENGLISH);
     private static final String PERIOD = ".";
     private static final String ENGLISH = "en";
     private static final String DEUTSCH = "de";
     private static final String NONE = "none";
+    List<Metadata> metadata;
+    MetadataBuilderVersion3 metadataBuilder;
     private List<MetadataVersion3> finalMetadata;
 
-    private MetadataVersion3 buildMetadata(final String language, final String label, final String value,
+    private MetadataVersion3 buildMetadata(final String language, final String label, List<String> values,
                                            final Integer displayOrder) {
-        final MetadataVersion3 metadataV3 = MetadataVersion3.builder().build();
+        if (!values.isEmpty()) {
+            final MetadataVersion3 metadataV3 = MetadataVersion3.builder().build();
 
-        final List<String> labels = new ArrayList<>();
-        labels.add(label);
-        Map<String, List<String>> labelsMap = new HashMap<>();
-        if (language.equals(ENGLISH)) {
-            labelsMap.put(ENGLISH, labels);
-        } else if (language.equals(DEUTSCH)) {
-            labelsMap.put(DEUTSCH, labels);
-        }
-        metadataV3.setLabel(labelsMap);
+            final List<String> labels = new ArrayList<>();
+            labels.add(label);
+            Map<String, List<String>> labelsMap = new HashMap<>();
+            if (language.equals(ENGLISH)) {
+                labelsMap.put(ENGLISH, labels);
+            } else if (language.equals(DEUTSCH)) {
+                labelsMap.put(DEUTSCH, labels);
+            }
+            metadataV3.setLabel(labelsMap);
 
-        final List<String> values = new ArrayList<>();
-        values.add(value);
-        final Map<String, List<String>> valuesMap = new HashMap<>();
-        valuesMap.put(NONE, values);
-        metadataV3.setValue(valuesMap);
-        metadataV3.setDisplayOrder(displayOrder);
-        return metadataV3;
-    }
-
-    public Map<String, Object> convertListToMap(List<Metadata> metadata) {
-        return metadata.stream()
-                .collect(Collectors.toMap(l -> (String) l.getLabel(), Metadata::getValue));
-    }
-
-    private List<MetadataVersion3> buildAuthor(List<MetadataVersion3> mList, Map<String, String> authorMap) {
-        final Optional<String> gnd = ofNullable(authorMap.get(GND.getApiKey()));
-        final String authorKey = AUTHOR.getApiKey();
-        final String authorLabel = englishLabels.getString(authorKey);
-        final String displayOrderKey = authorKey + PERIOD + DISPLAYORDER.getApiKey();
-        final Integer authorLabelDisplayOrder = Integer.valueOf(englishLabels.getString(displayOrderKey));
-        if (gnd.isPresent()) {
-            final String author = authorMap.get(LABEL.getApiKey());
-            final String authorValue = author + " [" + gnd.get() + "]";
-            final MetadataVersion3 m1 = buildMetadata(ENGLISH, authorLabel, authorValue, authorLabelDisplayOrder);
-            mList.add(m1);
+            final Map<String, List<String>> valuesMap = new HashMap<>();
+            valuesMap.put(NONE, values);
+            metadataV3.setValue(valuesMap);
+            metadataV3.setDisplayOrder(displayOrder);
+            return metadataV3;
         } else {
-            final String authorValue = authorMap.get(LABEL.getApiKey());
-            final MetadataVersion3 m1 = buildMetadata(ENGLISH, authorLabel, authorValue, authorLabelDisplayOrder);
-            mList.add(m1);
+            return null;
         }
-        return mList;
     }
 
-    private List<MetadataVersion3> addMetadataStringOrList(final String language,
-                                                           final Map<String, Object> newMetadata, final String key,
-                                                           final String displayLabel, Integer displayOrder) {
-        final List<MetadataVersion3> mList = new ArrayList<>();
-        if (getValueAsString(newMetadata, key).isPresent()) {
-            final String value = getValueAsString(newMetadata, key).get();
-            final MetadataVersion3 m1 = buildMetadata(language, displayLabel, value, displayOrder);
-            mList.add(m1);
-        } else if (getValueAsStringList(newMetadata, key).isPresent()) {
-            final List<String> values = getValueAsStringList(newMetadata, key).get();
-            values.forEach(v -> {
-                final MetadataVersion3 m1 = buildMetadata(language, displayLabel, v, displayOrder);
-                mList.add(m1);
-            });
-        }
-        return mList;
+    public MultiValuedMap<String, String> convertListToMap(List<Metadata> metadata) {
+        MultiValuedMap<String, String> map = new ArrayListValuedHashMap<>();
+        metadata.stream()
+                .filter(m -> m.getValue() != null && !StringUtils.isBlank(m.getValue().toString())
+                        && !m.getValue().toString().startsWith("\""))
+                .forEach(m -> {
+                    map.put((String) m.getLabel(), (String) m.getValue());
+                });
+        return map;
     }
+
+//    private List<MetadataVersion3> buildAuthor(List<MetadataVersion3> mList, Map<String, String> authorMap) {
+//        final Optional<String> gnd = ofNullable(authorMap.get(GND.getApiKey()));
+//        final String authorKey = AUTHOR.getApiKey();
+//        final String authorLabel = englishLabels.getString(authorKey);
+//        final String displayOrderKey = authorKey + PERIOD + DISPLAYORDER.getApiKey();
+//        final Integer authorLabelDisplayOrder = Integer.valueOf(englishLabels.getString(displayOrderKey));
+//        if (gnd.isPresent()) {
+//            final String author = authorMap.get(LABEL.getApiKey());
+//            final String authorValue = author + " [" + gnd.get() + "]";
+//            final MetadataVersion3 m1 = buildMetadata(ENGLISH, authorLabel, authorValue, authorLabelDisplayOrder);
+//            mList.add(m1);
+//        } else {
+//            final String authorValue = authorMap.get(LABEL.getApiKey());
+//            final MetadataVersion3 m1 = buildMetadata(ENGLISH, authorLabel, authorValue, authorLabelDisplayOrder);
+//            mList.add(m1);
+//        }
+//        return mList;
+//    }
+//
+//    private List<MetadataVersion3> addMetadataStringOrList(final String language,
+//                                                           final Map<String, Object> newMetadata, final String key,
+//                                                           final String displayLabel, Integer displayOrder) {
+//        final List<MetadataVersion3> mList = new ArrayList<>();
+//        if (getValueAsString(newMetadata, key).isPresent()) {
+//            final String value = getValueAsString(newMetadata, key).get();
+//            final MetadataVersion3 m1 = buildMetadata(language, displayLabel, value, displayOrder);
+//            mList.add(m1);
+//        } else if (getValueAsStringList(newMetadata, key).isPresent()) {
+//            final List<String> values = getValueAsStringList(newMetadata, key).get();
+//            values.forEach(v -> {
+//                final MetadataVersion3 m1 = buildMetadata(language, displayLabel, v, displayOrder);
+//                mList.add(m1);
+//            });
+//        }
+//        return mList;
+//    }
 
 /*    private List<MetadataVersion3> setCollections() {
         final String collectionKey = COLLECTION.getApiKey();
@@ -129,43 +156,41 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
         return addMetadataStringOrList(ENGLISH, newMetadata, languageKey, languageLabel, languageLabelOrder);
     }*/
 
-    private List<MetadataVersion3> addMetadataObject(final String language, final Map<String, Object> newMetadata,
+    private List<MetadataVersion3> addMetadataObject(final String language,
+                                                     final MultiValuedMap<String, String> newMetadata,
                                                      final String key, final String label, final Integer displayOrder) {
-        final Optional<String> value = getValueAsString(newMetadata, label);
-        if (value.isPresent()) {
-            final MetadataVersion3 m = buildMetadata(language, label, value.get(), displayOrder);
+        List<String> values = new ArrayList<>(newMetadata.get(label));
+        final MetadataVersion3 m = buildMetadata(language, label, values, displayOrder);
+        if (m != null && !m.getValue().isEmpty()) {
             finalMetadata.add(m);
         }
         return finalMetadata;
     }
 
     public List<MetadataVersion3> buildFinalMetadata() {
-        Map<String, Object> newMetadata = convertListToMap(metadata);
+        MultiValuedMap<String, String> newMetadata = convertListToMap(metadata);
         //final List<MetadataVersion3> authors = buildMetadata(newMetadata);
 //        final List<MetadataVersion3> collections = setCollections();
 //        final List<MetadataVersion3> languages = setLanguages();
-          finalMetadata = new ArrayList<>();
+        finalMetadata = new ArrayList<>();
 //        finalMetadata.addAll(collections);
 //        finalMetadata.addAll(languages);
 
         final String manifestTypeKey = MANIFESTTYPE.getApiKey();
-        final Optional<String> manifestType = getValueAsString(newMetadata, "Manifest Type");
-
-        if (manifestType.isPresent()) {
+        final List<String> manifestTypeList = new ArrayList<>(newMetadata.get("Manifest Type"));
+        String manifestType = manifestTypeList.stream().findFirst().orElse(null);
+        if (manifestType != null) {
             final String manifestTypeLabel = englishLabels.getString(manifestTypeKey);
             final String manifestTypeLabelDisplayOrderKey = manifestTypeKey + PERIOD + DISPLAYORDER.getApiKey();
             final Integer displayOrder = Integer.valueOf(englishLabels.getString(manifestTypeLabelDisplayOrderKey));
             final MetadataVersion3 manifestTypeObj = buildMetadata(
-                    ENGLISH, manifestTypeLabel, manifestType.get(), displayOrder);
+                    ENGLISH, manifestTypeLabel, manifestTypeList, displayOrder);
             finalMetadata.add(manifestTypeObj);
-            if (manifestType.get().equals(MANUSCRIPT.getApiKey())) {
+            if (manifestType.equals(MANUSCRIPT.getApiKey())) {
                 //hack for UBL mets/mods classification confusion
                 finalMetadata = addMetadataObject(DEUTSCH, newMetadata, SUBTITLE.getApiKey(), "Objekttitel", 3);
             } else {
                 finalMetadata = addMetadataObject(ENGLISH, newMetadata, SUBTITLE.getApiKey(), "Subtitle", 3);
-                //only show Physical Dimension for Non-manuscripts
-                finalMetadata = addMetadataObject(
-                        ENGLISH, newMetadata, PHYSICAL_DESCRIPTION.getApiKey(), "Physical Description", 10);
             }
         }
 
@@ -177,7 +202,8 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
         return finalMetadata;
     }
 
-    private void setFilteredLabelMetadata(final Map<String, Object> newMetadata, final Set<String> filteredLabels,
+    private void setFilteredLabelMetadata(final MultiValuedMap<String, String> newMetadata,
+                                          final Set<String> filteredLabels,
                                           final ResourceBundle bundle) {
         filteredLabels.forEach(l -> {
             final String displayLabel = bundle.getString(l);

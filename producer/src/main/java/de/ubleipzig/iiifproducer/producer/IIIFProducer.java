@@ -53,6 +53,7 @@ import static java.lang.String.format;
 @AllArgsConstructor
 public class IIIFProducer {
 
+    private static final ObjectMapper MAPPER = new ObjectMapper();
     @Builder.Default
     private String baseUrl = "https://iiif.ub.uni-leipzig.de/";
     @Builder.Default
@@ -64,23 +65,36 @@ public class IIIFProducer {
     @Builder.Default
     private String format = "v3";
     @Builder.Default
-    private String viewerUrl = "https://digital.ub.uni-leipzig.de/object/viewid/";
+    private String fulltextContext = "alto";
+    @Builder.Default
+    private String fulltextFileGrp = "FULLTEXT";
+    private IRIBuilder iriBuilder;
     @Builder.Default
     private String katalogUrl = "https://katalog.ub.uni-leipzig.de/urn/";
     @Builder.Default
     private String manifestFileName = "manifest.json";
-    @Builder.Default
-    private String fulltextContext = "alto";
-    @Builder.Default
-    private String fulltextFileGrp = "FULLTEXT";
-
-    private IRIBuilder iriBuilder;
     private MetsAccessor mets;
     private String outputFile;
     private String resourceContext;
     private String viewId;
+    @Builder.Default
+    private String viewerUrl = "https://digital.ub.uni-leipzig.de/object/viewid/";
     private String xmlFile;
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+
+    /**
+     * mapServiceResponse.
+     *
+     * @param res String
+     * @return ImageServiceResponse
+     */
+    public static ImageServiceResponse mapServiceResponse(final InputStream res) {
+        try {
+            return MAPPER.readValue(res, new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 
     public void run() {
         log.info("Running IIIF producer...");
@@ -272,21 +286,6 @@ public class IIIFProducer {
         log.info("Writing file to {}", outputFile);
         writeToFile(manifestOutput, outfile);
         log.debug("Manifest Output: {}", manifestOutput);
-    }
-
-    /**
-     * mapServiceResponse.
-     *
-     * @param res String
-     * @return ImageServiceResponse
-     */
-    public static ImageServiceResponse mapServiceResponse(final InputStream res) {
-        try {
-            return MAPPER.readValue(res, new TypeReference<>() {
-            });
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        }
     }
 }
 

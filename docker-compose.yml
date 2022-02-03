@@ -30,16 +30,16 @@ services:
 volumes:
   iipsrv-volume:
     driver_opts:
-        type: none
-        device: /mnt/serialization/binaries
-        o: bind
+      type: none
+      device: /mnt/serialization/binaries
+      o: bind
   mirador-volume:
     driver_opts:
-          type: none
-          device: /mnt/mirador-data
-          o: bind
+      type: none
+      device: /mnt/mirador-data
+      o: bind
   nginx-volume:
     driver_opts:
-          type: none
-          device: /mnt/http-server
-          o: bind
+      type: none
+      device: /mnt/http-server
+      o: bind

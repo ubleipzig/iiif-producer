@@ -1,4 +1,21 @@
 /*
+ * IIIFProducer
+ * Copyright (C) 2017 Leipzig University Library <info@ub.uni-leipzig.de>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+/*
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,8 +52,8 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import static de.ubleipzig.iiifproducer.converter.DomainConstants.*;
 import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildLabelMap;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.*;
 import static java.io.File.separator;
 import static java.lang.String.format;
 import static java.util.Optional.ofNullable;
@@ -52,10 +69,25 @@ public class ConverterVersion3 {
     private static final String NONE = "none";
     private final Manifest manifest;
 
+    /**
+     * mapServiceResponse.
+     *
+     * @param res String
+     * @return ImageServiceResponse
+     */
+    public static ImageServiceResponse mapServiceResponse(final InputStream res) {
+        try {
+            return MAPPER.readValue(res, new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
     public ManifestVersion3 execute() {
         try {
             MetadataBuilderVersion3 metadataBuilderVersion3 = MetadataBuilderVersion3.builder()
-                            .manifest(manifest).build();
+                    .manifest(manifest).build();
 
             final List<CanvasVersion3> canvases = new ArrayList<>();
             final String viewId = new URL(manifest.getId()).getPath().split(separator)[1];
@@ -89,10 +121,10 @@ public class ConverterVersion3 {
                         width = ir.getWidth();
 
                         final ServiceVersion3 service = ServiceVersion3.builder()
-                            .id(iiifService)
-                            .type(IIIF_SERVICE_TYPE)
-                            .profile(IIIF_SERVICE_PROFILE)
-                            .build();
+                                .id(iiifService)
+                                .type(IIIF_SERVICE_TYPE)
+                                .profile(IIIF_SERVICE_PROFILE)
+                                .build();
                         final List<ServiceVersion3> services = new ArrayList<>();
                         services.add(service);
 
@@ -169,7 +201,8 @@ public class ConverterVersion3 {
 
             //set seeAlso
             final Optional<String> finalURN = ofNullable(getURNfromFinalMetadata(finalMetadata));
-            final List<SeeAlso> seeAlso = setSeeAlso(viewId, finalURN.orElse(null));
+            List<String> related = (List<String>) manifest.getRelated();
+            final List<SeeAlso> seeAlso = setSeeAlso(viewId, finalURN.orElse(null), related);
             newManifest.setSeeAlso(seeAlso);
             newManifest.setMetadata(finalMetadata);
 
@@ -202,9 +235,9 @@ public class ConverterVersion3 {
         requiredStatement.setValue(value);
 
         final ManifestVersion3.Logo logo = ManifestVersion3.Logo.builder()
-                        .id(domainLogo)
-                        .type("Image")
-                        .build();
+                .id(domainLogo)
+                .type("Image")
+                .build();
 
         return ManifestVersion3.builder()
                 .context(contexts)
@@ -219,24 +252,48 @@ public class ConverterVersion3 {
                 .build();
     }
 
-    public List<SeeAlso> setSeeAlso(final String viewId, final String urn) {
+    public List<SeeAlso> setSeeAlso(final String viewId, final String urn, List<String> related) {
         final ArrayList<SeeAlso> seeAlso = new ArrayList<>();
+        String katalogId = katalogUrl + urn;
+        String viewerId = viewerUrl + viewId;
         if (urn != null) {
             final SeeAlso katalogReference = SeeAlso.builder()
-            .id(katalogUrl + urn)
-            .format("text/html")
-            .type("Application")
-            .profile(SEE_ALSO_PROFILE)
+                    .id(katalogId)
+                    .format("text/html")
+                    .type("Application")
+                    .profile(SEE_ALSO_PROFILE)
                     .build();
             seeAlso.add(katalogReference);
         }
         final SeeAlso katalogReference = SeeAlso.builder()
-                .id(viewerUrl + viewId)
+                .id(viewerId)
                 .format("text/html")
                 .type("Application")
                 .profile(SEE_ALSO_PROFILE)
                 .build();
         seeAlso.add(katalogReference);
+        List<String> filteredRelated = related.stream()
+                .filter(r -> !katalogId.equals(r) && !viewerId.equals(r)).collect(Collectors.toList());
+        filteredRelated.forEach(r -> {
+            if (r.contains("json")) {
+                SeeAlso sa = SeeAlso.builder()
+                        .id(r)
+                        .format("application/json")
+                        .type("Dataset")
+                        .profile(IIIF_VERSION3_CONTEXT)
+                        .build();
+                seeAlso.add(sa);
+            } else if (r.contains("xml")) {
+                SeeAlso sa = SeeAlso.builder()
+                        .id(r)
+                        .format("application/xml")
+                        .type("Dataset")
+                        .profile(METS_PROFILE)
+                        .build();
+                seeAlso.add(sa);
+            }
+        });
+
         return seeAlso;
     }
 
@@ -245,20 +302,5 @@ public class ConverterVersion3 {
                 y -> y.getLabel().values().stream().anyMatch(v -> v.contains("URN"))).collect(Collectors.toSet()));
         final Optional<MetadataVersion3> urn = metaURN.get().stream().findAny();
         return urn.map(u -> u.getValue().get(NONE).get(0)).orElse(null);
-    }
-
-    /**
-     * mapServiceResponse.
-     *
-     * @param res String
-     * @return ImageServiceResponse
-     */
-    public static ImageServiceResponse mapServiceResponse(final InputStream res) {
-        try {
-            return MAPPER.readValue(res, new TypeReference<>() {
-            });
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        }
     }
 }

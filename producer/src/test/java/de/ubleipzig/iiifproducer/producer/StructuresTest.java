@@ -98,7 +98,7 @@ class StructuresTest {
         top.setRanges(ranges);
         final Manifest manifest = Manifest.builder().build();
         producer.setStructures(top, manifest);
-        assertTrue(manifest.getStructures().size() > 1 );
+        assertTrue(manifest.getStructures().size() > 1);
     }
 
     @Test

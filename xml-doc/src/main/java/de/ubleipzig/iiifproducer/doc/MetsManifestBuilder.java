@@ -169,7 +169,7 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     * @param mets MetsData
+     * @param mets   MetsData
      * @param idType String
      * @return String
      */
@@ -380,7 +380,7 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
-     * @param div String
+     * @param div  String
      * @return String
      */
     public static String getOrderLabelForDiv(final MetsData mets, final String div) {
@@ -388,8 +388,8 @@ public final class MetsManifestBuilder {
     }
 
     /**
-     * @param mets MetsData
-     * @param div String
+     * @param mets    MetsData
+     * @param div     String
      * @param fileGrp String
      * @return String
      */
@@ -425,7 +425,7 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
-     * @param id String
+     * @param id   String
      * @return Logical
      */
     public static MetsData.Logical getLogicalLastDescendent(final MetsData mets, final String id) {
@@ -434,7 +434,7 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
-     * @param id String
+     * @param id   String
      * @return List
      */
     public static List<MetsData.Logical> getLogicalLastParent(final MetsData mets, final String id) {
@@ -451,7 +451,7 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
-     * @param id String
+     * @param id   String
      * @return List
      */
     public static List<MetsData.Logical> getLogicalLastChildren(final MetsData mets, final String id) {
@@ -460,7 +460,7 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
-     * @param id String
+     * @param id   String
      * @return String
      */
     public static String getLogicalLabel(final MetsData mets, final String id) {
@@ -479,7 +479,7 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
-     * @param id String
+     * @param id   String
      * @return String
      */
     public static String getLogicalType(final MetsData mets, final String id) {

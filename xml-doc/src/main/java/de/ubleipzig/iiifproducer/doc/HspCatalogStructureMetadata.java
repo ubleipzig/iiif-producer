@@ -42,7 +42,7 @@ public class HspCatalogStructureMetadata {
     private final String dmdLogId;
 
     /**
-     * @param mets MetsData
+     * @param mets         MetsData
      * @param logicalDivId logicalDivId
      */
     public HspCatalogStructureMetadata(final MetsData mets, final String logicalDivId) {

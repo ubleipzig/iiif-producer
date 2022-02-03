@@ -51,44 +51,36 @@ import java.util.Map;
         "navDate", "rights", "requiredStatement", "logo", "seeAlso", "metadata", "items", "structures"})
 public class ManifestVersion3 {
 
-    @JsonProperty("@context")
-    private List<String> context;
-
-    @JsonProperty("id")
-    private String id;
-
-    @JsonProperty("type")
-    private String type;
-
-    @JsonProperty
-    private Map<String, List<String>> label;
-
-    @JsonProperty
-    private List<MetadataVersion3> metadata;
-
-    @JsonProperty
-    private MetadataVersion3 requiredStatement;
-
-    @JsonProperty
-    private Map<String, List<String>> summary;
-
-    @JsonProperty
-    private String rights;
-
-    @JsonProperty
-    private String viewingDirection;
-
     @JsonProperty
     private List<String> behavior;
-
+    @JsonProperty("@context")
+    private List<String> context;
+    @JsonProperty("id")
+    private String id;
     @JsonProperty
-    private String navDate;
-
+    private List<CanvasVersion3> items;
     @JsonProperty
-    private List<SeeAlso> seeAlso;
-
+    private Map<String, List<String>> label;
     @JsonProperty
     private Logo logo;
+    @JsonProperty
+    private List<MetadataVersion3> metadata;
+    @JsonProperty
+    private String navDate;
+    @JsonProperty
+    private MetadataVersion3 requiredStatement;
+    @JsonProperty
+    private String rights;
+    @JsonProperty
+    private List<SeeAlso> seeAlso;
+    @JsonProperty
+    private List<Item> structures;
+    @JsonProperty
+    private Map<String, List<String>> summary;
+    @JsonProperty("type")
+    private String type;
+    @JsonProperty
+    private String viewingDirection;
 
     @Builder
     @Setter
@@ -99,12 +91,10 @@ public class ManifestVersion3 {
     public static class Logo {
         @JsonProperty("id")
         private String id;
-
-        @JsonProperty("type")
-        private String type;
-
         @JsonProperty
         private List<ServiceVersion3> service;
+        @JsonProperty("type")
+        private String type;
 
         public List<ServiceVersion3> getService() {
             return service;
@@ -114,11 +104,5 @@ public class ManifestVersion3 {
             this.service = service;
         }
     }
-
-    @JsonProperty
-    private List<CanvasVersion3> items;
-
-    @JsonProperty
-    private List<Item> structures;
 
 }

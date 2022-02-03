@@ -35,40 +35,11 @@ import java.util.Map;
 public interface MetsAccessor {
 
     /**
-     * @param body Manifest
+     * @return Map
      */
-    void setManifestLabel(Manifest body);
-
-    /**
-     * @param body Manifest
-     */
-    void setLicense(Manifest body);
-
-
-    /**
-     * @param body Manifest
-     */
-    void setAttribution(Manifest body);
-
-    /**
-     * @param body Manifest
-     */
-    void setLogo(Manifest body);
-
-    /**
-     * @param body Manifest
-     */
-    void setHandschriftMetadata(Manifest body);
-
-    /**
-     * @param body Manifest
-     */
-    void setHspCatalogMetadata(Manifest body);
-
-    /**
-     * @param body Manifest
-     */
-    void setMetadata(Manifest body);
+    static Map<String, List<MetsData.Xlink>> getXlinkMap(MetsData mets) {
+        return null;
+    }
 
     /**
      * @return Metadata
@@ -79,13 +50,6 @@ public interface MetsAccessor {
      * @return String
      */
     String getAnchorFileLabel();
-
-    /**
-     * @return Map
-     */
-    static Map<String, List<MetsData.Xlink>> getXlinkMap(MetsData mets) {
-        return null;
-    }
 
     /**
      * @param logical String
@@ -104,7 +68,6 @@ public interface MetsAccessor {
     List<Structure> buildStructures();
 
     /**
-     *
      * @param logicalType String
      * @return List
      */
@@ -137,7 +100,7 @@ public interface MetsAccessor {
     String getOrderLabel(String div);
 
     /**
-     * @param div String
+     * @param div     String
      * @param fileGrp String
      * @return String
      */
@@ -154,4 +117,39 @@ public interface MetsAccessor {
      * @return String media type for file
      */
     String getFormatForFile(String fileId);
+
+    /**
+     * @param body Manifest
+     */
+    void setAttribution(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setHandschriftMetadata(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setHspCatalogMetadata(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setLicense(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setLogo(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setManifestLabel(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setMetadata(Manifest body);
 }

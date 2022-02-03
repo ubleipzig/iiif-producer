@@ -50,26 +50,20 @@ import lombok.Setter;
 @JsonPropertyOrder({"id", "type", "label", "format", "height", "width", "service"})
 public class Body {
 
-    @JsonProperty("@id")
-    private String id;
-
-    @Builder.Default
-    @JsonProperty("@type")
-    private String type  = "dctypes:Image";
-
-    @JsonProperty
-    private String label;
-
     @Builder.Default
     @JsonProperty
     private String format = "image/jpeg";
-
     @JsonProperty
     private Integer height;
-
+    @JsonProperty("@id")
+    private String id;
     @JsonProperty
-    private Integer width;
-
+    private String label;
     @JsonProperty
     private Service service;
+    @Builder.Default
+    @JsonProperty("@type")
+    private String type = "dctypes:Image";
+    @JsonProperty
+    private Integer width;
 }

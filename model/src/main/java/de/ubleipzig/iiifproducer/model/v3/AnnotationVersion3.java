@@ -47,21 +47,17 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "type", "motivation", "body", "target"})
 public class AnnotationVersion3 {
+    @JsonProperty("body")
+    private BodyVersion3 body;
     @JsonProperty("@context")
     private List<String> context;
-
     @JsonProperty("id")
     private String id;
-
-    @JsonProperty("type")
-    private String type;
-
     @JsonProperty("motivation")
     private String motivation;
 
     @JsonProperty("target")
     private String target;
-
-    @JsonProperty("body")
-    private BodyVersion3 body;
+    @JsonProperty("type")
+    private String type;
 }

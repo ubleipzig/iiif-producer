@@ -47,10 +47,8 @@ import java.util.List;
 public class AnnotationPage {
     @JsonProperty("id")
     private String id;
-
-    @JsonProperty("type")
-    private String type;
-
     @JsonProperty
     private List<AnnotationVersion3> items;
+    @JsonProperty("type")
+    private String type;
 }

@@ -36,6 +36,16 @@ public class SerializerExceptionTest {
     @Mock
     private Structure mockStructure;
 
+    @SuppressWarnings("unchecked")
+    private static <T extends Throwable> void sneakyThrow(final Throwable e) throws T {
+        throw (T) e;
+    }
+
+    private static void sneakyJsonException() {
+        sneakyThrow(new JsonProcessingException("expected") {
+        });
+    }
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -58,15 +68,5 @@ public class SerializerExceptionTest {
         final String json = "{}";
         final File outfile = new File("/an-invalid-path");
         assertEquals(false, ManifestSerializer.writeToFile(json, outfile));
-    }
-
-    @SuppressWarnings("unchecked")
-    private static <T extends Throwable> void sneakyThrow(final Throwable e) throws T {
-        throw (T) e;
-    }
-
-    private static void sneakyJsonException() {
-        sneakyThrow(new JsonProcessingException("expected") {
-        });
     }
 }

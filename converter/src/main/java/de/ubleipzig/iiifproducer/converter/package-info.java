@@ -16,31 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.model.v2;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-
 /**
- * TemplateSeeAlso.
  *
- * @author Lutz Helm, helm@ub.uni-leipzig.de
  */
-@Builder
-@Setter
-@Getter
-@AllArgsConstructor
-@JsonPropertyOrder({"@id", "format", "profile"})
-public class SeeAlso {
 
-    @JsonProperty
-    private String format;
-    @JsonProperty("@id")
-    private String id;
-    @JsonProperty
-    private String profile;
-}
+package de.ubleipzig.iiifproducer.converter;

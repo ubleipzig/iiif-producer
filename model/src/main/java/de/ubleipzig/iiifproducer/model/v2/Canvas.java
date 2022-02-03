@@ -54,41 +54,29 @@ public class Canvas {
 
     @JsonProperty("@context")
     private String context;
-
+    @JsonProperty("height")
+    private Integer height;
     @JsonProperty("@id")
     private String id;
-
+    @JsonProperty("images")
+    private List<PaintingAnnotation> images;
+    @JsonProperty("label")
+    private String label;
+    @JsonProperty("metadata")
+    private List<Metadata> metadata;
+    @JsonProperty
+    private List<Object> otherContent;
+    @JsonProperty("related")
+    private Object related;
+    @JsonProperty
+    private SeeAlso seeAlso;
+    @JsonProperty("service")
+    private Object service;
+    @JsonProperty("thumbnail")
+    private Object thumbnail;
     @Builder.Default
     @JsonProperty("@type")
     private String type = SCEnum.Canvas.compactedIRI();
-
-    @JsonProperty("images")
-    private List<PaintingAnnotation> images;
-
-    @JsonProperty("metadata")
-    private List<Metadata> metadata;
-
-    @JsonProperty("label")
-    private String label;
-
-    @JsonProperty("height")
-    private Integer height;
-
     @JsonProperty("width")
     private Integer width;
-
-    @JsonProperty("thumbnail")
-    private Object thumbnail;
-
-    @JsonProperty("related")
-    private Object related;
-
-    @JsonProperty("service")
-    private Object service;
-
-    @JsonProperty
-    private SeeAlso seeAlso;
-
-    @JsonProperty
-    private List<Object> otherContent;
 }

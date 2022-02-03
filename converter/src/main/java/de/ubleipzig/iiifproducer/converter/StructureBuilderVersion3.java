@@ -1,4 +1,21 @@
 /*
+ * IIIFProducer
+ * Copyright (C) 2017 Leipzig University Library <info@ub.uni-leipzig.de>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+/*
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,10 +50,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static de.ubleipzig.iiifproducer.converter.DomainConstants.baseUrl;
-import static de.ubleipzig.iiifproducer.converter.DomainConstants.structureBase;
 import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildLabelMap;
 import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildPaddedCanvases;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.baseUrl;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.structureBase;
 import static java.io.File.separator;
 import static java.util.Optional.ofNullable;
 
@@ -73,7 +90,7 @@ public class StructureBuilderVersion3 {
                 } else {
                     final String newStructureId =
                             baseUrl + viewId + separator + structureBase + separator + "LOG_" + String.format(
-                            "%04d", ai.getAndIncrement());
+                                    "%04d", ai.getAndIncrement());
                     backReferenceMap.put(s.getId(), newStructureId);
                     //unset within (fix for early manifests)
                     s.setWithin(null);
@@ -106,9 +123,9 @@ public class StructureBuilderVersion3 {
                     final Optional<String> newRange = ofNullable(backReferenceMap.get(r1));
                     newRange.ifPresent(r -> {
                         final Item nr = Item.builder()
-                                        .id(r)
-                                        .type("Range")
-                                        .build();
+                                .id(r)
+                                .type("Range")
+                                .build();
                         newRanges.add(nr);
                     });
                 }

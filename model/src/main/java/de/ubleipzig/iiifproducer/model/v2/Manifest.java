@@ -60,69 +60,51 @@ import java.util.List;
         "sequences", "service"})
 public class Manifest {
 
+    @JsonProperty
+    private String attribution;
     @JsonIgnoreProperties({"rendering", "logo"})
 
     @JsonProperty("@context")
     private String context;
-
+    @JsonProperty
+    private Object description;
     @JsonProperty("@id")
     private String id;
-
-    @Builder.Default
-    @JsonProperty("@type")
-    private String type = SCEnum.Manifest.compactedIRI();
-
     @JsonProperty("label")
     private String label;
-
     @JsonProperty("license")
     @JsonFormat(with = JsonFormat.Feature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED)
     private List<String> license;
-
-    @JsonProperty
-    private String viewingDirection;
-
-    @JsonProperty
-    private String within;
-
-    @JsonProperty
-    private Object description;
-
-    @JsonProperty
-    private String attribution;
-
-    @JsonProperty
-    private Object thumbnail;
-
     @JsonProperty("logo")
     private Object logo;
-
+    @JsonProperty("metadata")
+    private List<Metadata> metadata;
+    @JsonProperty
+    private String navDate;
     @JsonProperty("related")
     private Object related;
-
+    @JsonProperty
+    private Object rendering;
+    @JsonProperty
+    private Object seeAlso;
     @JsonProperty("sequences")
     private List<Sequence> sequences;
 
     @JsonProperty("service")
-    private  Object service;
-
-    @JsonProperty
-    private Object seeAlso;
-
-    @JsonProperty("metadata")
-    private List<Metadata> metadata;
-
+    private Object service;
     @JsonProperty("structures")
     private List<Structure> structures;
-
+    @JsonProperty
+    private Object thumbnail;
+    @Builder.Default
+    @JsonProperty("@type")
+    private String type = SCEnum.Manifest.compactedIRI();
+    @JsonProperty
+    private String viewingDirection;
     @JsonProperty
     private String viewingHint;
-
     @JsonProperty
-    private Object rendering;
-
-    @JsonProperty
-    private String navDate;
+    private String within;
 
 }
 

@@ -53,112 +53,25 @@ import static java.util.stream.Collectors.toList;
 public class MetsImpl implements MetsAccessor {
 
     @Builder.Default
-    private String rangeContext = "/range";
-    @Builder.Default
     private String anchorKey = "Part of";
     @Builder.Default
     private String attributionKey = "Provided by ";
     @Builder.Default
     private String attributionLicenseNote = "No Copyright - Public Domain Marked";
+    private IRIBuilder iriBuilder;
     @Builder.Default
     private String license = "https://creativecommons.org/publicdomain/mark/1.0/";
 
     private MetsData mets;
-    private Map<String, List<MetsData.Xlink>> xlinkmap;
-    private IRIBuilder iriBuilder;
+    @Builder.Default
+    private String rangeContext = "/range";
     private String resourceContext;
+    private Map<String, List<MetsData.Xlink>> xlinkmap;
     private String xmlFile;
-
-    public static class MetsImplBuilder {
-        public MetsImplBuilder mets() {
-            this.mets = de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets(xmlFile);
-            return this;
-        }
-
-        public MetsImplBuilder xlinkmap() {
-            this.xlinkmap = getXlinkMap(this.mets);
-            return this;
-        }
-    }
 
     public static Map<String, List<MetsData.Xlink>> getXlinkMap(MetsData mets) {
         final List<MetsData.Xlink> xlinks = getXlinks(mets);
         return xlinks.stream().collect(groupingBy(MetsData.Xlink::getXLinkFrom));
-    }
-
-    @Override
-    public void setManifestLabel(final Manifest body) {
-        if (!getCensus(mets).equals("")) {
-            body.setLabel(getAnchorFileLabel());
-        } else {
-            if (getCollection(mets).contains("TestCollection") ^ getCollection(mets).contains("Heisenberg")) {
-                for (String title : getManifestTitles(mets)) {
-                    body.setLabel(title);
-                }
-            } else {
-                body.setLabel(getManifestTitle(mets));
-            }
-        }
-    }
-
-    @Override
-    public void setLicense(final Manifest body) {
-        if (getRightsUrl(mets).isEmpty()) {
-            body.setLicense(Collections.singletonList(license));
-        } else {
-            body.setLicense(getRightsUrl(mets));
-        }
-    }
-
-    @Override
-    public void setAttribution(final Manifest body) {
-        // TODO HTML should be wellformed XML https://iiif.io/api/presentation/2.1/#html-markup-in-property-values
-        if (getRightsValue(mets).isEmpty()) {
-            body.setAttribution(
-                    attributionKey + getAttribution(mets) + "<br/>" + attributionLicenseNote);
-        } else {
-            final StringBuilder content = new StringBuilder();
-            for (String value : getRightsValue(mets)) {
-                content.append(value).append("<br/>");
-            }
-            body.setAttribution(content.toString());
-        }
-    }
-
-    @Override
-    public void setLogo(final Manifest body) {
-        body.setLogo(getLogo(mets));
-    }
-
-    @Override
-    public void setHandschriftMetadata(final Manifest body) {
-        final ManuscriptMetadata man = new ManuscriptMetadata(mets);
-        final List<Metadata> info = man.getInfo();
-        final List<Metadata> metadata = new ArrayList<>(info);
-        body.setMetadata(metadata);
-    }
-
-    @Override
-    public void setHspCatalogMetadata(final Manifest body) {
-        final HspCatalogMetadata catalogMetadata = new HspCatalogMetadata(mets);
-        final List<Metadata> info = catalogMetadata.getInfo();
-        final List<Metadata> metadata = new ArrayList<>(info);
-        body.setMetadata(metadata);
-    }
-
-    @Override
-    public void setMetadata(final Manifest body) {
-        final StandardMetadata man = new StandardMetadata(mets);
-        final List<Metadata> info = man.getInfo();
-        final List<Metadata> metadata = new ArrayList<>(info);
-        if (!getCensus(mets).equals("")) {
-            metadata.add(getAnchorFileMetadata());
-        }
-        final List<String> noteTypes = getNoteTypes(mets);
-        for (String nt : noteTypes) {
-            metadata.add(Metadata.builder().label(nt).value(getNotesByType(mets, nt).trim()).build());
-        }
-        body.setMetadata(metadata);
     }
 
     @Override
@@ -204,7 +117,8 @@ public class MetsImpl implements MetsAccessor {
     @Override
     public List<Metadata> buildStructureMetadata(final String logicalType) {
         final List<Metadata> metadataList = new ArrayList<>();
-        final Metadata metadata = Metadata.builder().label(MetsConstants.METS_STRUCTURE_TYPE).value(logicalType).build();
+        final Metadata metadata =
+                Metadata.builder().label(MetsConstants.METS_STRUCTURE_TYPE).value(logicalType).build();
         metadataList.add(metadata);
         return metadataList;
     }
@@ -309,5 +223,92 @@ public class MetsImpl implements MetsAccessor {
     @Override
     public String getFormatForFile(final String fileId) {
         return getMimeTypeForFile(mets, fileId);
+    }
+
+    public static class MetsImplBuilder {
+        public MetsImplBuilder mets() {
+            this.mets = de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets(xmlFile);
+            return this;
+        }
+
+        public MetsImplBuilder xlinkmap() {
+            this.xlinkmap = getXlinkMap(this.mets);
+            return this;
+        }
+    }
+
+    @Override
+    public void setAttribution(final Manifest body) {
+        // TODO HTML should be wellformed XML https://iiif.io/api/presentation/2.1/#html-markup-in-property-values
+        if (getRightsValue(mets).isEmpty()) {
+            body.setAttribution(
+                    attributionKey + getAttribution(mets) + "<br/>" + attributionLicenseNote);
+        } else {
+            final StringBuilder content = new StringBuilder();
+            for (String value : getRightsValue(mets)) {
+                content.append(value).append("<br/>");
+            }
+            body.setAttribution(content.toString());
+        }
+    }
+
+    @Override
+    public void setHandschriftMetadata(final Manifest body) {
+        final ManuscriptMetadata man = new ManuscriptMetadata(mets);
+        final List<Metadata> info = man.getInfo();
+        final List<Metadata> metadata = new ArrayList<>(info);
+        body.setMetadata(metadata);
+    }
+
+    @Override
+    public void setHspCatalogMetadata(final Manifest body) {
+        final HspCatalogMetadata catalogMetadata = new HspCatalogMetadata(mets);
+        final List<Metadata> info = catalogMetadata.getInfo();
+        final List<Metadata> metadata = new ArrayList<>(info);
+        body.setMetadata(metadata);
+    }
+
+    @Override
+    public void setLicense(final Manifest body) {
+        if (getRightsUrl(mets).isEmpty()) {
+            body.setLicense(Collections.singletonList(license));
+        } else {
+            body.setLicense(getRightsUrl(mets));
+        }
+    }
+
+    @Override
+    public void setLogo(final Manifest body) {
+        body.setLogo(getLogo(mets));
+    }
+
+    @Override
+    public void setManifestLabel(final Manifest body) {
+        if (!getCensus(mets).equals("")) {
+            body.setLabel(getAnchorFileLabel());
+        } else {
+            if (getCollection(mets).contains("TestCollection") ^ getCollection(mets).contains("Heisenberg")) {
+                for (String title : getManifestTitles(mets)) {
+                    body.setLabel(title);
+                }
+            } else {
+                body.setLabel(getManifestTitle(mets));
+            }
+        }
+    }
+
+    @Override
+    public void setMetadata(final Manifest body) {
+        final StandardMetadata man = new StandardMetadata(mets);
+        final List<Metadata> info = man.getInfo();
+        final List<Metadata> metadata = new ArrayList<>(info);
+        if (!getCensus(mets).equals("")) {
+            metadata.add(getAnchorFileMetadata());
+        }
+        final List<String> noteTypes = getNoteTypes(mets);
+        for (String nt : noteTypes) {
+            metadata.add(Metadata.builder().label(nt).value(getNotesByType(mets, nt).trim()).build());
+        }
+        body.setMetadata(metadata);
     }
 }

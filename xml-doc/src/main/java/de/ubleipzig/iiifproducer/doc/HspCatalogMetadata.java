@@ -46,6 +46,7 @@ public class HspCatalogMetadata {
 
     /**
      * Get metadata for HSP catalog manifests.
+     *
      * @return String
      */
     public List<Metadata> getInfo() {

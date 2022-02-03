@@ -36,25 +36,18 @@ public class ImageServiceResponse {
 
     @JsonProperty("@context")
     private String context;
-
-    @JsonProperty("@id")
-    private String id;
-
-    @JsonProperty
-    private String protocol;
-
-    @JsonProperty
-    private Integer width;
-
     @JsonProperty
     private Integer height;
-
-    @JsonProperty
-    private List<Object> sizes;
-
+    @JsonProperty("@id")
+    private String id;
     @JsonProperty
     private List<Object> profile;
-
+    @JsonProperty
+    private String protocol;
+    @JsonProperty
+    private List<Object> sizes;
     @JsonProperty
     private List<Object> tiles;
+    @JsonProperty
+    private Integer width;
 }

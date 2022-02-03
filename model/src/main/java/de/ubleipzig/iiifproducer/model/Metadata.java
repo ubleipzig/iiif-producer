@@ -50,12 +50,10 @@ import lombok.Setter;
 @JsonPropertyOrder({"label", "value"})
 public class Metadata {
 
-    @JsonProperty("label")
-    private Object label;
-
-    @JsonProperty("value")
-    private Object value;
-
     @JsonIgnore
     private Integer displayOrder;
+    @JsonProperty("label")
+    private Object label;
+    @JsonProperty("value")
+    private Object value;
 }

@@ -48,21 +48,16 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "type", "label", "height", "width", "items"})
 public class CanvasVersion3 {
-    @JsonProperty("id")
-    private String id;
-
-    @JsonProperty("type")
-    private String type;
-
-    @JsonProperty
-    private Map<String, List<String>> label;
-
-    @JsonProperty
-    private List<AnnotationPage> items;
-
     @JsonProperty
     private Integer height;
-
+    @JsonProperty("id")
+    private String id;
+    @JsonProperty
+    private List<AnnotationPage> items;
+    @JsonProperty
+    private Map<String, List<String>> label;
+    @JsonProperty("type")
+    private String type;
     @JsonProperty
     private Integer width;
 }

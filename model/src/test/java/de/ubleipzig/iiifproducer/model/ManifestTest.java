@@ -53,7 +53,8 @@ class ManifestTest {
 
     @Test
     void testLicense() {
-        mockManifest = Manifest.builder().build();;
+        mockManifest = Manifest.builder().build();
+        ;
         mockManifest.setId("http://test.org/002");
         mockManifest.setType(SCEnum.Manifest.compactedIRI());
         mockManifest.setLicense(Collections.singletonList("http://rightsstatements.org/vocab/InC/1.0/"));
@@ -61,7 +62,8 @@ class ManifestTest {
         assertTrue(json.isPresent());
         assertTrue(json.get().contains("\"license\" : \"http://rightsstatements.org/vocab/InC/1.0/\""));
 
-        mockManifest = Manifest.builder().build();;
+        mockManifest = Manifest.builder().build();
+        ;
         mockManifest.setId("http://test.org/002");
         mockManifest.setType(SCEnum.Manifest.compactedIRI());
         final List<String> licenses = Arrays.asList(

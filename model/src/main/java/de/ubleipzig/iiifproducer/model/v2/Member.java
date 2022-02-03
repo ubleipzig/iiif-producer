@@ -39,11 +39,9 @@ public class Member {
 
     @JsonProperty("@id")
     private String id;
-
-    @JsonProperty("@type")
-    private String type;
-
     @JsonProperty
     private String label;
+    @JsonProperty("@type")
+    private String type;
 }
 

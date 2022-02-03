@@ -63,19 +63,15 @@ public class PaintingAnnotation {
 
     @JsonProperty
     private String label;
-
-    @Builder.Default
-    @JsonProperty("@type")
-    private String type = "oa:Annotation";
-
     @Builder.Default
     @JsonProperty
     private String motivation = SCEnum.painting.compactedIRI();
-
-    @JsonProperty
-    private Body resource;
-
     @JsonProperty
     private String on;
+    @JsonProperty
+    private Body resource;
+    @Builder.Default
+    @JsonProperty("@type")
+    private String type = "oa:Annotation";
 
 }

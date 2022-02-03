@@ -18,48 +18,36 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public class IIIFProducerDriverTest {
+public class ProducerMonographTest {
 
+    private static final String configFilePath = Objects.requireNonNull(ProducerMonographTest.class.getResource(
+            "/producer-config-test.yml")).getPath();
+    private static final String pid = "producer-test-" + UUID.randomUUID();
     private static String testFileSource1;
-    private static String testFileSource2;
-    private static String configFilePath;
-    private static String pid;
-
-    @BeforeAll
-    static void init() {
-        testFileSource1 = Objects.requireNonNull(
-                IIIFProducerDriverTest.class.getResource("/BlhDie_004285964.xml")).getPath();
-        testFileSource2 = Objects.requireNonNull(
-                IIIFProducerDriverTest.class.getResource("/MS_187.xml")).getPath();
-        configFilePath = Objects.requireNonNull(
-                IIIFProducerDriverTest.class.getResource("/producer-config-test.yml")).getPath();
-        pid = "producer-test-" + UUID.randomUUID();
-    }
 
     @Test
+    @Order(1)
     public void testStandardType() {
+        testFileSource1 = Objects.requireNonNull(
+                ProducerMonographTest.class.getResource("/BlhDie_004285964.xml")).getPath();
         final String[] args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o",
                 "/tmp/" + pid + ".json", "-c", configFilePath};
         IIIFProducerDriver.main(args);
     }
 
     @Test
-    public void testHandschriftType() {
-        final String[] args = new String[]{"-v", "0000000719", "-x", testFileSource2, "-o",
-                "/tmp/" + pid + ".json", "-c", configFilePath};
-        IIIFProducerDriver.main(args);
-    }
-
-    @Test
-    public void testHandschriftTypeV2() {
-        final String[] args = new String[]{"-v", "0000000719", "-x", testFileSource2, "-o",
+    @Order(2)
+    public void testStandardTypeV2() {
+        final String[] args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o",
                 "/tmp/" + pid + ".json", "-c", configFilePath, "-f", "v2"};
         IIIFProducerDriver.main(args);
     }
+
+
 }

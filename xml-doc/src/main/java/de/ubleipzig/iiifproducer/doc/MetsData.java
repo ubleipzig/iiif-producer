@@ -264,7 +264,7 @@ public interface MetsData {
     Optional<String> getOrderLabelForDiv(String div);
 
     /**
-     * @param id file id
+     * @param id      file id
      * @param fileGrp String USE attribute value of mets:fileGrp
      * @return Boolean
      */

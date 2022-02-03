@@ -46,24 +46,18 @@ import java.util.Map;
 @AllArgsConstructor
 @JsonPropertyOrder({"id", "type", "format", "service", "height", "width"})
 public class BodyVersion3 {
-    @JsonProperty("id")
-    private String id;
-
-    @JsonProperty("type")
-    private String type;
-
-    @JsonProperty
-    private Map<String, List<String>> label;
-
     @JsonProperty("format")
     private String format;
-
-    @JsonProperty
-    private List<ServiceVersion3> service;
-
     @JsonProperty
     private Integer height;
-
+    @JsonProperty("id")
+    private String id;
+    @JsonProperty
+    private Map<String, List<String>> label;
+    @JsonProperty
+    private List<ServiceVersion3> service;
+    @JsonProperty("type")
+    private String type;
     @JsonProperty
     private Integer width;
 }

@@ -45,22 +45,20 @@ import static java.lang.String.format;
 @AllArgsConstructor
 public final class IRIBuilder {
 
+    private static final RDF rdf = new SimpleRDF();
     @Builder.Default
     private String annotationContext = "/anno";
     @Builder.Default
     private String canvasContext = "/canvas";
     @Builder.Default
+    private String imageServiceBaseUrl = "https://iiif.ub.uni-leipzig.de/iiif";
+    @Builder.Default
     private String imageServiceFileExtension = ".jpx";
     @Builder.Default
     private String imageServiceImageDirPrefix = "/j2k/";
     @Builder.Default
-    private String imageServiceBaseUrl = "https://iiif.ub.uni-leipzig.de/iiif";
-    @Builder.Default
     private boolean isUBLImageService = true;
-
     private String resourceContext;
-
-    private static final RDF rdf = new SimpleRDF();
 
     /**
      * @param canvasIdString String
@@ -80,7 +78,7 @@ public final class IRIBuilder {
 
     /**
      * @param imageServiceContext String
-     * @param resourceIdString String
+     * @param resourceIdString    String
      * @return IRI
      */
     public IRI buildServiceIRI(final String imageServiceContext, final String resourceIdString) {
@@ -96,9 +94,9 @@ public final class IRIBuilder {
         final int viewIdInt = parseInt(viewId);
         final String v = format("%010d", viewIdInt);
         final String imageDirPrefix = imageServiceImageDirPrefix;
-        final int part1 = parseInt(v.substring(0,4));
+        final int part1 = parseInt(v.substring(0, 4));
         final String first = format("%04d", part1);
-        final int part2 = parseInt(v.substring(5,8));
+        final int part2 = parseInt(v.substring(5, 8));
         final String second = format("%04d", part2);
         if (isUBLImageService) {
             return imageServiceBaseUrl + imageDirPrefix + first + separator + second + separator + v;

@@ -43,20 +43,16 @@ import java.util.stream.Stream;
 @Slf4j
 public final class IIIFProducerDriver implements Callable<Integer> {
 
-    @CommandLine.Option(names = {"-v", "--viewid"}, required = true, description = "View identifier")
-    private String viewId;
-
-    @CommandLine.Option(names = {"-x", "--xmlFile"}, description = "XML Source")
-    private String xmlFile;
-
-    @CommandLine.Option(names = {"-o", "--outputFile"}, description = "Output File")
-    private String outputFile = "/tmp/output.json";
-
     @CommandLine.Option(names = {"-c", "--config"}, required = true, description = "Path to config file")
     private String configFile = "etc/producer-config.yml";
-
     @CommandLine.Option(names = {"-f", "--format"}, description = "Produce Version Format")
     private String format = "v3";
+    @CommandLine.Option(names = {"-o", "--outputFile"}, description = "Output File")
+    private String outputFile = "/tmp/output.json";
+    @CommandLine.Option(names = {"-v", "--viewid"}, required = true, description = "View identifier")
+    private String viewId;
+    @CommandLine.Option(names = {"-x", "--xmlFile"}, description = "XML Source")
+    private String xmlFile;
 
     public static void main(final String[] args) {
         int exitCode = new CommandLine(new IIIFProducerDriver()).execute(args);
@@ -116,7 +112,7 @@ public final class IIIFProducerDriver implements Callable<Integer> {
                 .build();
         producer.buildManifest();
         return 0;
-}
+    }
 
     /**
      * This method parses the provided configFile into its equivalent command-line args.

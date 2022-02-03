@@ -48,8 +48,8 @@ import java.util.List;
 @AllArgsConstructor
 public class StructureList {
 
-    private TopStructure top;
     private List<Structure> structures;
+    private TopStructure top;
 
     /**
      * @return List

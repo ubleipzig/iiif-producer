@@ -55,31 +55,24 @@ import java.util.List;
 @JsonPropertyOrder({"@id", "@type", "viewingHint", "canvases"})
 public class Sequence {
 
+    @JsonProperty
+    private List<Canvas> canvases;
     @JsonProperty("@context")
     private String context;
-
     @JsonProperty("@id")
     private String id;
-
-    @Builder.Default
-    @JsonProperty("@type")
-    private String type = SCEnum.Sequence.compactedIRI();
-
     @JsonProperty
     private Object label;
 
     @JsonProperty
     private List<Object> rendering;
-
-    @JsonProperty
-    private String viewingHint;
-
     @JsonProperty
     private String startCanvas;
-
+    @Builder.Default
+    @JsonProperty("@type")
+    private String type = SCEnum.Sequence.compactedIRI();
     @JsonProperty
     private String viewingDirection;
-
     @JsonProperty
-    private List<Canvas> canvases;
+    private String viewingHint;
 }

@@ -91,7 +91,6 @@ public final class ManifestSerializer {
     }
 
     /**
-     *
      * @param input InputStream
      * @return String
      */

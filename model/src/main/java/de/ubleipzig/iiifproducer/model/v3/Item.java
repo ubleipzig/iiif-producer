@@ -48,18 +48,14 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "type", "label", "items"})
 public class Item {
-    @JsonProperty("id")
-    private String id;
-
-    @JsonProperty("type")
-    private String type;
-
-    @JsonProperty
-    private Map<String, List<String>> label;
-
-    @JsonProperty
-    private List<Item> items;
-
     @JsonProperty
     private List<String> behavior;
+    @JsonProperty("id")
+    private String id;
+    @JsonProperty
+    private List<Item> items;
+    @JsonProperty
+    private Map<String, List<String>> label;
+    @JsonProperty("type")
+    private String type;
 }

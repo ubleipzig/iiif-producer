@@ -58,40 +58,29 @@ import java.util.List;
 @JsonPropertyOrder({"@id", "@type", "label", "viewingHint", "ranges", "canvases"})
 public class Structure {
 
+    @JsonProperty("attribution")
+    private String attribution;
+    @JsonProperty("canvases")
+    private List<String> canvases;
+    @JsonProperty("description")
+    private String description;
     @JsonProperty("@id")
     private String id;
-
+    @JsonProperty("label")
+    private Object label;
+    @JsonProperty("license")
+    private String license;
+    @JsonProperty("logo")
+    private String logo;
+    @JsonProperty("metadata")
+    private List<Metadata> metadata;
+    @JsonProperty("ranges")
+    private List<String> ranges;
     @Builder.Default
     @JsonProperty("@type")
     private String type = SCEnum.Range.compactedIRI();
-
-    @JsonProperty("label")
-    private Object label;
-
-    @JsonProperty
-    private String within;
-
-    @JsonProperty("ranges")
-    private List<String> ranges;
-
-    @JsonProperty("canvases")
-    private List<String> canvases;
-
     @JsonProperty("viewingHint")
     private String viewingHint;
-
-    @JsonProperty("metadata")
-    private List<Metadata> metadata;
-
-    @JsonProperty("attribution")
-    private String attribution;
-
-    @JsonProperty("description")
-    private String description;
-
-    @JsonProperty("logo")
-    private String logo;
-
-    @JsonProperty("license")
-    private String license;
+    @JsonProperty
+    private String within;
 }
