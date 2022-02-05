@@ -31,6 +31,7 @@
 
 package de.ubleipzig.iiifproducer.converter;
 
+import de.ubleipzig.iiifproducer.model.Metadata;
 import de.ubleipzig.iiifproducer.model.v2.Structure;
 import de.ubleipzig.iiifproducer.model.v3.Item;
 import de.ubleipzig.iiifproducer.model.v3.MetadataVersion3;
@@ -38,14 +39,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -54,6 +52,13 @@ import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildLabelMap;
 import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildPaddedCanvases;
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.baseUrl;
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.structureBase;
+import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.DISPLAYORDER;
+import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.STRUCTTYPE;
+import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.DEUTSCH;
+import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.ENGLISH;
+import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.PERIOD;
+import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.deutschLabels;
+import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.englishLabels;
 import static java.io.File.separator;
 import static java.util.Optional.ofNullable;
 
@@ -64,8 +69,10 @@ import static java.util.Optional.ofNullable;
 public class StructureBuilderVersion3 {
     private final List<Structure> structures;
     private final String viewId;
-    private final List<MetadataVersion3> metadataImplVersion3;
     private final Map<String, String> backReferenceMap = new HashMap<>();
+    MetadataImplVersion3 metadataImplVersion3;
+    Set<String> enFilteredLabels;
+    Set<String> deFilteredLabels;
 
     public void buildIncrements() {
         final AtomicInteger ai = new AtomicInteger(0);
@@ -100,6 +107,9 @@ public class StructureBuilderVersion3 {
     }
 
     public List<Item> build() {
+        metadataImplVersion3 = MetadataImplVersion3.builder().build();
+        enFilteredLabels = metadataImplVersion3.buildFilteredLabelSet(englishLabels);
+        deFilteredLabels = metadataImplVersion3.buildFilteredLabelSet(deutschLabels);
         final List<Item> newStructures = new ArrayList<>();
         for (Structure struct : structures) {
             final Item newStructure = Item.builder().build();
@@ -122,10 +132,24 @@ public class StructureBuilderVersion3 {
                 for (String r1 : fr.get()) {
                     final Optional<String> newRange = ofNullable(backReferenceMap.get(r1));
                     newRange.ifPresent(r -> {
+                        String sId = null;
+                        try {
+                            sId = new URL(r).getPath().split(separator)[3];
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
                         final Item nr = Item.builder()
                                 .id(r)
                                 .type("Range")
                                 .build();
+                        final Optional<List<MetadataVersion3>> structureMetadata = ofNullable(
+                                buildStructureMetadataForId(sId));
+                        if (structureMetadata.isPresent()) {
+                            List<MetadataVersion3> m = structureMetadata.get();
+                            if (!m.isEmpty()) {
+                                nr.setMetadata(m);
+                            }
+                        }
                         newRanges.add(nr);
                     });
                 }
@@ -139,10 +163,14 @@ public class StructureBuilderVersion3 {
             final String sId;
             try {
                 sId = new URL(newStructId).getPath().split(separator)[3];
-                //TODO
-/*                final Optional<List<MetadataVersion3>> structureMetadata = ofNullable(
-                        metadataImplVersion3.buildStructureMetadataForId(sId));*/
-                //structureMetadata.ifPresent(struct::setMetadata);
+               final Optional<List<MetadataVersion3>> structureMetadata = ofNullable(
+                        buildStructureMetadataForId(sId));
+                if (structureMetadata.isPresent()) {
+                    List<MetadataVersion3> m = structureMetadata.get();
+                    if (!m.isEmpty()) {
+                        structureMetadata.ifPresent(newStructure::setMetadata);
+                    }
+                }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -159,6 +187,13 @@ public class StructureBuilderVersion3 {
                 if (item.isPresent()) {
                     final Map<String, List<String>> label = item.get().getLabel();
                     ti.setLabel(label);
+                    Optional<List<MetadataVersion3>> meta = ofNullable(ti.getMetadata());
+                    if (meta.isPresent()) {
+                        List<MetadataVersion3> m = meta.get();
+                        if (!m.isEmpty()) {
+                            meta.ifPresent(ti::setMetadata);
+                        }
+                    }
                     final List<Item> items = item.get().getItems();
                     final List<Item> ranges = items.stream().filter(t -> t.getType().equals("Range")).collect(
                             Collectors.toList());
@@ -172,6 +207,8 @@ public class StructureBuilderVersion3 {
                             final Map<String, List<String>> labelMap = si.getLabel();
                             subItem.setLabel(labelMap);
                             subItem.setId(siId);
+                            Optional<List<MetadataVersion3>> meta2 = ofNullable(si.getMetadata());
+                            meta2.ifPresent(subItem::setMetadata);
                             final List<Item> subRange = newStructures.stream().filter(
                                     i -> i.getId().equals(siId)).collect(Collectors.toList());
                             final List<Item> subRangeCanvases = subRange.get(0).getItems();
@@ -189,5 +226,52 @@ public class StructureBuilderVersion3 {
             return finalStructure;
         }
         return null;
+    }
+
+    public List<MetadataVersion3> buildStructureMetadataForId(final String structId) {
+        final Optional<List<Structure>> filteredSubList = Optional.of(
+                structures.stream().filter(s -> s.getId().contains(structId)).collect(Collectors.toList()));
+        List<MetadataVersion3> finalMetadata = new ArrayList<>();
+        filteredSubList.ifPresent(maps -> maps.forEach(sm -> {
+            final Optional<List<Metadata>> metadata = ofNullable(sm.getMetadata());
+            if (metadata.isPresent()) {
+                MultiValuedMap<String, String> newMetadata = metadataImplVersion3.convertListToMap(sm.getMetadata());
+                List<MetadataVersion3> em = buildFilteredLabelMetadata(newMetadata, enFilteredLabels, englishLabels);
+                List<MetadataVersion3> dm = buildFilteredLabelMetadata(newMetadata, deFilteredLabels, deutschLabels);
+                finalMetadata.addAll(em);
+                finalMetadata.addAll(dm);
+            }
+        }));
+        return finalMetadata;
+    }
+
+    List<MetadataVersion3> addMetadataObject(final String language,
+                                             final MultiValuedMap<String, String> newMetadata,
+                                             final String key, final String label, final Integer displayOrder) {
+        final List<MetadataVersion3> metadata = new ArrayList<>();
+        List<String> values = new ArrayList<>(newMetadata.get(label));
+        final MetadataVersion3 m = metadataImplVersion3.buildMetadata(language, label, values, displayOrder);
+        if (m != null && !m.getValue().isEmpty()) {
+            metadata.add(m);
+        }
+        return metadata;
+    }
+
+    List<MetadataVersion3> buildFilteredLabelMetadata(final MultiValuedMap<String, String> newMetadata,
+                                  final Set<String> filteredLabels,
+                                  final ResourceBundle bundle) {
+        List<MetadataVersion3> metadata = new ArrayList<>();
+        for (String l : filteredLabels) {
+            final String displayLabel = bundle.getString(l);
+            final String displayOrderKey = l + PERIOD + DISPLAYORDER.getApiKey();
+            final Integer displayOrder = Integer.valueOf(bundle.getString(displayOrderKey));
+            final String languageTag = bundle.getLocale().toLanguageTag();
+            if (languageTag.equals(ENGLISH)) {
+                metadata.addAll(addMetadataObject(ENGLISH, newMetadata, l, displayLabel, displayOrder));
+            } else if (languageTag.equals(DEUTSCH)) {
+                metadata.addAll(addMetadataObject(DEUTSCH, newMetadata, l, displayLabel, displayOrder));
+            }
+        }
+        return metadata;
     }
 }

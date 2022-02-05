@@ -32,6 +32,7 @@
 package de.ubleipzig.iiifproducer.converter;
 
 import de.ubleipzig.iiifproducer.model.Metadata;
+import de.ubleipzig.iiifproducer.model.v2.Structure;
 import de.ubleipzig.iiifproducer.model.v3.MetadataVersion3;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,10 +44,12 @@ import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.DISPLAYORDER;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANIFESTTYPE;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANUSCRIPT;
+import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.STRUCTTYPE;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.SUBTITLE;
 
 @Builder
@@ -55,17 +58,18 @@ import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.SUBTITLE;
 @AllArgsConstructor
 @Slf4j
 public class MetadataImplVersion3 extends MetadataObjectTypes {
-    private static final ResourceBundle deutschLabels = ResourceBundle.getBundle("metadataLabels", Locale.GERMAN);
-    private static final ResourceBundle englishLabels = ResourceBundle.getBundle("metadataLabels", Locale.ENGLISH);
-    private static final String PERIOD = ".";
-    private static final String ENGLISH = "en";
-    private static final String DEUTSCH = "de";
-    private static final String NONE = "none";
+    static final ResourceBundle deutschLabels = ResourceBundle.getBundle("metadataLabels", Locale.GERMAN);
+    static final ResourceBundle englishLabels = ResourceBundle.getBundle("metadataLabels", Locale.ENGLISH);
+    static final String PERIOD = ".";
+    static final String ENGLISH = "en";
+    static final String DEUTSCH = "de";
+    static final String NONE = "none";
     List<Metadata> metadata;
+    List<Structure> structures;
     MetadataBuilderVersion3 metadataBuilder;
     private List<MetadataVersion3> finalMetadata;
 
-    private MetadataVersion3 buildMetadata(final String language, final String label, List<String> values,
+    MetadataVersion3 buildMetadata(final String language, final String label, List<String> values,
                                            final Integer displayOrder) {
         if (!values.isEmpty()) {
             final MetadataVersion3 metadataV3 = MetadataVersion3.builder().build();
@@ -101,61 +105,6 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
         return map;
     }
 
-//    private List<MetadataVersion3> buildAuthor(List<MetadataVersion3> mList, Map<String, String> authorMap) {
-//        final Optional<String> gnd = ofNullable(authorMap.get(GND.getApiKey()));
-//        final String authorKey = AUTHOR.getApiKey();
-//        final String authorLabel = englishLabels.getString(authorKey);
-//        final String displayOrderKey = authorKey + PERIOD + DISPLAYORDER.getApiKey();
-//        final Integer authorLabelDisplayOrder = Integer.valueOf(englishLabels.getString(displayOrderKey));
-//        if (gnd.isPresent()) {
-//            final String author = authorMap.get(LABEL.getApiKey());
-//            final String authorValue = author + " [" + gnd.get() + "]";
-//            final MetadataVersion3 m1 = buildMetadata(ENGLISH, authorLabel, authorValue, authorLabelDisplayOrder);
-//            mList.add(m1);
-//        } else {
-//            final String authorValue = authorMap.get(LABEL.getApiKey());
-//            final MetadataVersion3 m1 = buildMetadata(ENGLISH, authorLabel, authorValue, authorLabelDisplayOrder);
-//            mList.add(m1);
-//        }
-//        return mList;
-//    }
-//
-//    private List<MetadataVersion3> addMetadataStringOrList(final String language,
-//                                                           final Map<String, Object> newMetadata, final String key,
-//                                                           final String displayLabel, Integer displayOrder) {
-//        final List<MetadataVersion3> mList = new ArrayList<>();
-//        if (getValueAsString(newMetadata, key).isPresent()) {
-//            final String value = getValueAsString(newMetadata, key).get();
-//            final MetadataVersion3 m1 = buildMetadata(language, displayLabel, value, displayOrder);
-//            mList.add(m1);
-//        } else if (getValueAsStringList(newMetadata, key).isPresent()) {
-//            final List<String> values = getValueAsStringList(newMetadata, key).get();
-//            values.forEach(v -> {
-//                final MetadataVersion3 m1 = buildMetadata(language, displayLabel, v, displayOrder);
-//                mList.add(m1);
-//            });
-//        }
-//        return mList;
-//    }
-
-/*    private List<MetadataVersion3> setCollections() {
-        final String collectionKey = COLLECTION.getApiKey();
-        final String collectionLabel = englishLabels.getString(collectionKey);
-        final String displayOrderKey = collectionKey + PERIOD + DISPLAYORDER.getApiKey();
-        final Integer collectionLabelOrder = Integer.valueOf(englishLabels.getString(displayOrderKey));
-        final Map<String, Object> newMetadata = metsMods.getMetadata();
-        return addMetadataStringOrList(ENGLISH, newMetadata, collectionKey, collectionLabel, collectionLabelOrder);
-    }*/
-
-/*    private List<MetadataVersion3> setLanguages() {
-        final String languageKey = LANGUAGE.getApiKey();
-        final String languageLabel = englishLabels.getString(languageKey);
-        final String displayOrderKey = languageKey + PERIOD + DISPLAYORDER.getApiKey();
-        final Integer languageLabelOrder = Integer.valueOf(englishLabels.getString(displayOrderKey));
-        final Map<String, Object> newMetadata = metsMods.getMetadata();
-        return addMetadataStringOrList(ENGLISH, newMetadata, languageKey, languageLabel, languageLabelOrder);
-    }*/
-
     private List<MetadataVersion3> addMetadataObject(final String language,
                                                      final MultiValuedMap<String, String> newMetadata,
                                                      final String key, final String label, final Integer displayOrder) {
@@ -169,12 +118,7 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
 
     public List<MetadataVersion3> buildFinalMetadata() {
         MultiValuedMap<String, String> newMetadata = convertListToMap(metadata);
-        //final List<MetadataVersion3> authors = buildMetadata(newMetadata);
-//        final List<MetadataVersion3> collections = setCollections();
-//        final List<MetadataVersion3> languages = setLanguages();
         finalMetadata = new ArrayList<>();
-//        finalMetadata.addAll(collections);
-//        finalMetadata.addAll(languages);
 
         final String manifestTypeKey = MANIFESTTYPE.getApiKey();
         final List<String> manifestTypeList = new ArrayList<>(newMetadata.get("Manifest Type"));
@@ -187,7 +131,6 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
                     ENGLISH, manifestTypeLabel, manifestTypeList, displayOrder);
             finalMetadata.add(manifestTypeObj);
             if (manifestType.equals(MANUSCRIPT.getApiKey())) {
-                //hack for UBL mets/mods classification confusion
                 finalMetadata = addMetadataObject(DEUTSCH, newMetadata, SUBTITLE.getApiKey(), "Objekttitel", 3);
             } else {
                 finalMetadata = addMetadataObject(ENGLISH, newMetadata, SUBTITLE.getApiKey(), "Subtitle", 3);
@@ -217,48 +160,4 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
             }
         });
     }
-
-/*    @Override
-    public List<MetadataVersion3> buildStructureMetadataForId(final String structId) {
-        final List<MetadataVersion3> mList = new ArrayList<>();
-        final String authorKey = AUTHOR.getApiKey();
-        final String authorNameKey = LABEL.getApiKey();
-        final String authorLabel = englishLabels.getString(authorKey);
-        final String displayOrderKey = authorKey + PERIOD + DISPLAYORDER.getApiKey();
-        final Integer authorLabelDisplayOrder = Integer.valueOf(englishLabels.getString(displayOrderKey));
-        final List<Map<String, Object>> structureMetadata = metsMods.getStructures();
-        final Optional<List<Map<String, Object>>> filteredSubList = Optional.of(
-                structureMetadata.stream().filter(s -> s.containsValue(structId)).collect(Collectors.toList()));
-        filteredSubList.ifPresent(maps -> maps.forEach(sm -> {
-            if (getValueAsMap(sm, authorKey).isPresent()) {
-                final Map<String, String> authorMap = getValueAsMap(sm, authorKey).get();
-                final Optional<String> gnd = ofNullable(authorMap.get(GND.getApiKey()));
-                if (gnd.isPresent()) {
-                    final String author = authorMap.get(authorNameKey);
-                    final String authorValue = author + " [" + gnd.get() + "]";
-                    final MetadataVersion3 m1 = buildMetadata(
-                            ENGLISH, authorLabel, authorValue, authorLabelDisplayOrder);
-                    mList.add(m1);
-                } else {
-                    final String authorValue = authorMap.get(authorNameKey);
-                    final MetadataVersion3 m1 = buildMetadata(
-                            ENGLISH, authorLabel, authorValue, authorLabelDisplayOrder);
-                    mList.add(m1);
-                }
-            }
-            final String structureTypeKey = STRUCTTYPE.getApiKey();
-            final Optional<String> structureType = getValueAsString(sm, structureTypeKey);
-            if (structureType.isPresent()) {
-                final String structureTypeLabel = englishLabels.getString(structureTypeKey);
-                final MetadataVersion3 structureTypeObj = buildMetadata(
-                        ENGLISH, structureTypeLabel, structureType.get(), 1);
-                mList.add(structureTypeObj);
-            }
-        }));
-        if (!mList.isEmpty()) {
-            return mList;
-        } else {
-            return null;
-        }
-    }*/
 }

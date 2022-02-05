@@ -33,6 +33,7 @@ package de.ubleipzig.iiifproducer.converter;
 
 import de.ubleipzig.iiifproducer.model.Metadata;
 import de.ubleipzig.iiifproducer.model.v2.Manifest;
+import de.ubleipzig.iiifproducer.model.v2.Structure;
 import de.ubleipzig.iiifproducer.model.v3.MetadataVersion3;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,6 +41,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -57,35 +59,18 @@ public class MetadataBuilderVersion3 {
 
     public List<MetadataVersion3> execute() {
         final Optional<List<Metadata>> metadata = ofNullable(manifest.getMetadata());
+        List<Metadata> m = new ArrayList<>();
+        List<Structure> s = new ArrayList<>();
+        final Optional<List<Structure>> structures = ofNullable(manifest.getStructures());
         if (metadata.isPresent()) {
-            List<Metadata> harmonizedMetadata = harmonizeIdentifierLabels(metadata.get());
-            final Optional<Metadata> metaURN = harmonizedMetadata.stream().filter(
-                    y -> y.getLabel().equals("URN")).findAny();
-            final Optional<Metadata> metaPPN = harmonizedMetadata.stream().filter(
-                    y -> y.getLabel().equals("Source PPN (SWB)")).findAny();
-            metadataImplVersion3 = MetadataImplVersion3.builder().metadata(metadata.get()).build();
-            return metadataImplVersion3.buildFinalMetadata();
+            m = metadata.get();
+        } else if (structures.isPresent()) {
+            s = structures.get();
         }
-        return Collections.emptyList();
-    }
-
-    public List<Metadata> harmonizeIdentifierLabels(final List<Metadata> metadata) {
-        metadata.forEach(m -> {
-            final Optional<?> label = ofNullable(m.getLabel());
-            final Optional<String> labelString = label.filter(String.class::isInstance).map(String.class::cast);
-            labelString.ifPresent(l -> {
-                switch (l) {
-                    case "urn":
-                        m.setLabel("URN");
-                        break;
-                    case "swb-ppn":
-                        m.setLabel("Source PPN (SWB)");
-                        break;
-                    default:
-                        break;
-                }
-            });
-        });
-        return metadata;
+        metadataImplVersion3 = MetadataImplVersion3.builder()
+                .metadata(m)
+                .structures(s)
+                .build();
+        return metadataImplVersion3.buildFinalMetadata();
     }
 }

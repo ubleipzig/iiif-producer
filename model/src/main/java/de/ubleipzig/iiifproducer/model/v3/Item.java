@@ -55,6 +55,8 @@ public class Item {
     @JsonProperty
     private List<Item> items;
     @JsonProperty
+    private List<MetadataVersion3> metadata;
+    @JsonProperty
     private Map<String, List<String>> label;
     @JsonProperty("type")
     private String type;

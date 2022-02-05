@@ -109,16 +109,8 @@ public class ConverterVersion3 {
                             iiifService = iiifService.replace("http", "https");
                         }
 
-                        //getDimensionsFromImageService
-                        InputStream is = null;
-                        try {
-                            is = new URL(iiifService + "/info.json").openStream();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        final ImageServiceResponse ir = mapServiceResponse(is);
-                        height = ir.getHeight();
-                        width = ir.getWidth();
+                        height = i.getResource().getService().getHeight();
+                        width = i.getResource().getService().getWidth();
 
                         final ServiceVersion3 service = ServiceVersion3.builder()
                                 .id(iiifService)
@@ -190,7 +182,6 @@ public class ConverterVersion3 {
             if (structures.isPresent()) {
                 final List<Structure> structs = structures.get();
                 final StructureBuilderVersion3 sbuilder = StructureBuilderVersion3.builder()
-                        .metadataImplVersion3(finalMetadata)
                         .structures(structs)
                         .viewId(viewId)
                         .build();
@@ -201,7 +192,9 @@ public class ConverterVersion3 {
 
             //set seeAlso
             final Optional<String> finalURN = ofNullable(getURNfromFinalMetadata(finalMetadata));
+            @SuppressWarnings("unchecked")
             List<String> related = (List<String>) manifest.getRelated();
+
             final List<SeeAlso> seeAlso = setSeeAlso(viewId, finalURN.orElse(null), related);
             newManifest.setSeeAlso(seeAlso);
             newManifest.setMetadata(finalMetadata);
