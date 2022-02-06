@@ -49,5 +49,14 @@ public class ProducerMonographTest {
         IIIFProducerDriver.main(args);
     }
 
+    @Test
+    public void testStandardType2() {
+        String testFileSource1 = Objects.requireNonNull(
+                ProducerHSPTest.class.getResource("/JohaSpha_1499_470272783.xml")).getPath();
+        final String[] args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o",
+                "/tmp/" + pid + ".json", "-c", configFilePath};
+        IIIFProducerDriver.main(args);
+    }
+
 
 }

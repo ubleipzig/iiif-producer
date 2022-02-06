@@ -49,8 +49,6 @@ import java.util.stream.Collectors;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.DISPLAYORDER;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANIFESTTYPE;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANUSCRIPT;
-import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.STRUCTTYPE;
-import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.SUBTITLE;
 
 @Builder
 @Setter
@@ -69,21 +67,11 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
     MetadataBuilderVersion3 metadataBuilder;
     private List<MetadataVersion3> finalMetadata;
 
-    MetadataVersion3 buildMetadata(final String language, final String label, List<String> values,
+    MetadataVersion3 buildMetadata(final Map<String, List<String>> languageLabels, List<String> values,
                                            final Integer displayOrder) {
         if (!values.isEmpty()) {
             final MetadataVersion3 metadataV3 = MetadataVersion3.builder().build();
-
-            final List<String> labels = new ArrayList<>();
-            labels.add(label);
-            Map<String, List<String>> labelsMap = new HashMap<>();
-            if (language.equals(ENGLISH)) {
-                labelsMap.put(ENGLISH, labels);
-            } else if (language.equals(DEUTSCH)) {
-                labelsMap.put(DEUTSCH, labels);
-            }
-            metadataV3.setLabel(labelsMap);
-
+            metadataV3.setLabel(languageLabels);
             final Map<String, List<String>> valuesMap = new HashMap<>();
             valuesMap.put(NONE, values);
             metadataV3.setValue(valuesMap);
@@ -105,17 +93,6 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
         return map;
     }
 
-    private List<MetadataVersion3> addMetadataObject(final String language,
-                                                     final MultiValuedMap<String, String> newMetadata,
-                                                     final String key, final String label, final Integer displayOrder) {
-        List<String> values = new ArrayList<>(newMetadata.get(label));
-        final MetadataVersion3 m = buildMetadata(language, label, values, displayOrder);
-        if (m != null && !m.getValue().isEmpty()) {
-            finalMetadata.add(m);
-        }
-        return finalMetadata;
-    }
-
     public List<MetadataVersion3> buildFinalMetadata() {
         MultiValuedMap<String, String> newMetadata = convertListToMap(metadata);
         finalMetadata = new ArrayList<>();
@@ -124,40 +101,80 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
         final List<String> manifestTypeList = new ArrayList<>(newMetadata.get("Manifest Type"));
         String manifestType = manifestTypeList.stream().findFirst().orElse(null);
         if (manifestType != null) {
-            final String manifestTypeLabel = englishLabels.getString(manifestTypeKey);
             final String manifestTypeLabelDisplayOrderKey = manifestTypeKey + PERIOD + DISPLAYORDER.getApiKey();
             final Integer displayOrder = Integer.valueOf(englishLabels.getString(manifestTypeLabelDisplayOrderKey));
-            final MetadataVersion3 manifestTypeObj = buildMetadata(
-                    ENGLISH, manifestTypeLabel, manifestTypeList, displayOrder);
-            finalMetadata.add(manifestTypeObj);
-            if (manifestType.equals(MANUSCRIPT.getApiKey())) {
-                finalMetadata = addMetadataObject(DEUTSCH, newMetadata, SUBTITLE.getApiKey(), "Objekttitel", 3);
+             if (manifestType.equals(MANUSCRIPT.getApiKey())) {
+                List<String> values = new ArrayList<>(newMetadata.get("Objekttitel"));
+                Map<String, List<String>> labelMap = new HashMap<>();
+                labelMap.put(DEUTSCH, Collections.singletonList("Objekttitel"));
+                final MetadataVersion3 m = buildMetadata(labelMap, values, displayOrder);
+                if (m != null && !m.getValue().isEmpty()) {
+                    finalMetadata.add(m);
+                }
             } else {
-                finalMetadata = addMetadataObject(ENGLISH, newMetadata, SUBTITLE.getApiKey(), "Subtitle", 3);
+                List<String> values = new ArrayList<>(newMetadata.get("Subtitle"));
+                Map<String, List<String>> labelMap = new HashMap<>();
+                labelMap.put(DEUTSCH, Collections.singletonList("Subtitle"));
+                final MetadataVersion3 m = buildMetadata(labelMap, values, displayOrder);
+                if (m != null && !m.getValue().isEmpty()) {
+                    finalMetadata.add(m);
+                }
             }
         }
 
-        final Set<String> enFilteredLabels = buildFilteredLabelSet(englishLabels);
-        final Set<String> deFilteredLabels = buildFilteredLabelSet(deutschLabels);
-        setFilteredLabelMetadata(newMetadata, enFilteredLabels, englishLabels);
-        setFilteredLabelMetadata(newMetadata, deFilteredLabels, deutschLabels);
+        buildFilteredLabelMetadata(newMetadata, englishLabels);
+        buildFilteredLabelMetadata(newMetadata, deutschLabels);
         finalMetadata.sort(Comparator.comparing(MetadataVersion3::getDisplayOrder));
         return finalMetadata;
     }
 
-    private void setFilteredLabelMetadata(final MultiValuedMap<String, String> newMetadata,
-                                          final Set<String> filteredLabels,
+    void buildFilteredLabelMetadata(final MultiValuedMap<String, String> newMetadata,
                                           final ResourceBundle bundle) {
-        filteredLabels.forEach(l -> {
-            final String displayLabel = bundle.getString(l);
-            final String displayOrderKey = l + PERIOD + DISPLAYORDER.getApiKey();
-            final Integer displayOrder = Integer.valueOf(bundle.getString(displayOrderKey));
-            final String languageTag = bundle.getLocale().toLanguageTag();
-            if (languageTag.equals(ENGLISH)) {
-                finalMetadata = addMetadataObject(ENGLISH, newMetadata, l, displayLabel, displayOrder);
-            } else if (languageTag.equals(DEUTSCH)) {
-                finalMetadata = addMetadataObject(DEUTSCH, newMetadata, l, displayLabel, displayOrder);
-            }
-        });
+        final Set<String> enFilteredLabelKeys = buildFilteredLabelSet(englishLabels);
+        final Set<String> deFilteredLabelKeys = buildFilteredLabelSet(deutschLabels);
+         if (DEUTSCH.equals(bundle.getLocale().toLanguageTag())) {
+            for (String labelKey : deFilteredLabelKeys) {
+                final Map<String, List<String>> labelMap = new HashMap<>();
+                final String displayLabel = bundle.getString(labelKey);
+                final String displayOrderKey = labelKey + PERIOD + DISPLAYORDER.getApiKey();
+                final Integer displayOrder = Integer.valueOf(bundle.getString(displayOrderKey));
+                Optional<Set<String>> enlabelSet =
+                        Optional.of(enFilteredLabelKeys.stream().filter(en -> en.contains(labelKey)).collect(Collectors.toSet()));
+                final String enLabel = enlabelSet.get().stream().findFirst().orElse(null);
+                if (enLabel != null) {
+                    final Optional<String> englishDisplayLabel = Optional.of(englishLabels.getString(enLabel));
+                    englishDisplayLabel.ifPresent(s -> labelMap.put(ENGLISH, Collections.singletonList(s)));
+                }
+                labelMap.put(DEUTSCH, Collections.singletonList(displayLabel));
+                final List<String> values = new ArrayList<>();
+                newMetadata.get(displayLabel).stream().findFirst().ifPresent(values::add);
+                final MetadataVersion3 m = buildMetadata(labelMap, values, displayOrder);
+                if (m != null && !m.getValue().isEmpty()) {
+                    finalMetadata.add(m);
+                }
+            };
+        } else {
+            for (String labelKey : enFilteredLabelKeys) {
+                final Map<String, List<String>> labelMap = new HashMap<>();
+                final String displayLabel = bundle.getString(labelKey);
+                final String displayOrderKey = labelKey + PERIOD + DISPLAYORDER.getApiKey();
+                final Integer displayOrder = Integer.valueOf(bundle.getString(displayOrderKey));
+                Optional<Set<String>> delabelSet =
+                        Optional.of(deFilteredLabelKeys.stream().filter(en -> en.contains(labelKey)).collect(Collectors.toSet()));
+                final String deLabel = delabelSet.get().stream().findFirst().orElse(null);
+                if (deLabel != null) {
+                    final Optional<String> deutschDisplayLabel = Optional.of(
+                            deutschLabels.getString(deLabel));
+                    deutschDisplayLabel.ifPresent(s -> labelMap.put(DEUTSCH, Collections.singletonList(s)));
+                }
+                labelMap.put(ENGLISH, Collections.singletonList(displayLabel));
+                final List<String> values = new ArrayList<>();
+                newMetadata.get(displayLabel).stream().findFirst().ifPresent(values::add);
+                final MetadataVersion3 m = buildMetadata(labelMap, values, displayOrder);
+                if (m != null && !m.getValue().isEmpty()) {
+                    finalMetadata.add(m);
+                }
+            };
+        }
     }
 }

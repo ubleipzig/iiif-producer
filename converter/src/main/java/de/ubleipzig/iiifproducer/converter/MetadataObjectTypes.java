@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.*;
+import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.DISPLAYORDER;
 import static java.util.Optional.ofNullable;
 
 public abstract class MetadataObjectTypes {
@@ -69,8 +69,11 @@ public abstract class MetadataObjectTypes {
         final Stream<String> labelStream = StreamSupport.stream(
                 Spliterators.spliteratorUnknownSize(bundleLabelKeys.asIterator(), Spliterator.ORDERED), false);
         return labelStream.filter(
-                (s) -> !s.contains(DISPLAYORDER.getApiKey()) && !s.contains(LANGUAGE.getApiKey()) && !s.contains(
-                        COLLECTION.getApiKey()) && !s.contains(AUTHOR.getApiKey()) && !s.contains(
-                        MANIFESTTYPE.getApiKey()) && !s.contains(STRUCTTYPE.getApiKey())).collect(Collectors.toSet());
+                (s) -> !s.contains(DISPLAYORDER.getApiKey())).collect(Collectors.toSet());
+    }
+
+    Set<String> intersectBundles(final Set<String> labels1, final Set<String> labels2 ) {
+        labels1.retainAll(labels2);
+        return labels1;
     }
 }

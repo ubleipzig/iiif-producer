@@ -35,5 +35,4 @@ public class ProducerHSPTest {
                 "/tmp/" + pid + ".json", "-c", configFilePath};
         IIIFProducerDriver.main(args);
     }
-
 }
