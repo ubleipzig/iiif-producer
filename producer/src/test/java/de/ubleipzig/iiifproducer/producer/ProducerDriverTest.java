@@ -1,4 +1,4 @@
-/*
+package de.ubleipzig.iiifproducer.producer;/*
  * IIIFProducer
  * Copyright (C) 2017 Leipzig University Library <info@ub.uni-leipzig.de>
  *
@@ -15,24 +15,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package de.ubleipzig.iiifproducer.producer;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Objects;
-import java.util.UUID;
+import static uk.org.webcompere.systemstubs.SystemStubs.catchSystemExit;
 
-public class ProducerMultiVolumeWorkV2Test {
-    private static final String configFilePath = Objects.requireNonNull(ProducerMonographTest.class.getResource(
-            "/producer-config-test.yml")).getPath();
-    private static final String pid = "producer-test-" + UUID.randomUUID();
+public class ProducerDriverTest extends AbstractProducerTest {
+
+    @ParameterizedTest
+    @MethodSource("supplyArguments")
+    public void testProducer(String[] args) throws Exception {
+        catchSystemExit(() -> {
+            runProducer(args);
+        });
+    }
 
     @Test
-    public void testMVTypeV2() {
-        String testFileSource3 = Objects.requireNonNull(
-                ProducerMonographTest.class.getResource("/ArumDomi_034678301.xml")).getPath();
-        final String[] args = new String[]{"-v", "0000004595", "-x", testFileSource3, "-o",
-                "/tmp/" + pid + ".json", "-c", configFilePath, "-f", "v2"};
-        IIIFProducerDriver.main(args);
+    public void multiVolumeWorkTest() {
+        String[] args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o",
+                "/tmp/" + pid + ".json", "-c", configFilePath};
+        runProducer(args);
     }
+
 }

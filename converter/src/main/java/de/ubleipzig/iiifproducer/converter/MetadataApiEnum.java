@@ -37,7 +37,7 @@ public enum MetadataApiEnum {
             "language-iso639-2"), DISPLAYORDER("displayOrder"), MANUSCRIPT("manuscript"), MANIFESTTYPE("manifestType"),
     LANGUAGE_NAME("Language Name"), SUBTITLE("subTitle"), PHYSICAL_DESCRIPTION("physicalDescription");
 
-    private String apiKey;
+    private final String apiKey;
 
     MetadataApiEnum(final String apiKey) {
         this.apiKey = apiKey;

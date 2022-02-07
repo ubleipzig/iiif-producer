@@ -46,6 +46,10 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.DEUTSCH;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.ENGLISH;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.PERIOD;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.NONE;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.DISPLAYORDER;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANIFESTTYPE;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANUSCRIPT;
@@ -58,10 +62,7 @@ import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANUSCRIPT;
 public class MetadataImplVersion3 extends MetadataObjectTypes {
     static final ResourceBundle deutschLabels = ResourceBundle.getBundle("metadataLabels", Locale.GERMAN);
     static final ResourceBundle englishLabels = ResourceBundle.getBundle("metadataLabels", Locale.ENGLISH);
-    static final String PERIOD = ".";
-    static final String ENGLISH = "en";
-    static final String DEUTSCH = "de";
-    static final String NONE = "none";
+
     List<Metadata> metadata;
     List<Structure> structures;
     MetadataBuilderVersion3 metadataBuilder;
@@ -146,13 +147,12 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
                     englishDisplayLabel.ifPresent(s -> labelMap.put(ENGLISH, Collections.singletonList(s)));
                 }
                 labelMap.put(DEUTSCH, Collections.singletonList(displayLabel));
-                final List<String> values = new ArrayList<>();
-                newMetadata.get(displayLabel).stream().findFirst().ifPresent(values::add);
+                List<String> values = new ArrayList<>(newMetadata.get(displayLabel));
                 final MetadataVersion3 m = buildMetadata(labelMap, values, displayOrder);
                 if (m != null && !m.getValue().isEmpty()) {
                     finalMetadata.add(m);
                 }
-            };
+            }
         } else {
             for (String labelKey : enFilteredLabelKeys) {
                 final Map<String, List<String>> labelMap = new HashMap<>();
@@ -168,13 +168,12 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
                     deutschDisplayLabel.ifPresent(s -> labelMap.put(DEUTSCH, Collections.singletonList(s)));
                 }
                 labelMap.put(ENGLISH, Collections.singletonList(displayLabel));
-                final List<String> values = new ArrayList<>();
-                newMetadata.get(displayLabel).stream().findFirst().ifPresent(values::add);
+                List<String> values = new ArrayList<>(newMetadata.get(displayLabel));
                 final MetadataVersion3 m = buildMetadata(labelMap, values, displayOrder);
                 if (m != null && !m.getValue().isEmpty()) {
                     finalMetadata.add(m);
                 }
-            };
+            }
         }
     }
 }

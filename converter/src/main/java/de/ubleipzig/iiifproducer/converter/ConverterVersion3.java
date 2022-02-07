@@ -31,9 +31,7 @@
 
 package de.ubleipzig.iiifproducer.converter;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.ubleipzig.iiifproducer.model.ImageServiceResponse;
 import de.ubleipzig.iiifproducer.model.v2.Canvas;
 import de.ubleipzig.iiifproducer.model.v2.Manifest;
 import de.ubleipzig.iiifproducer.model.v2.PaintingAnnotation;
@@ -46,7 +44,6 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -54,6 +51,7 @@ import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildLabelMap;
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.*;
+import static de.ubleipzig.iiifproducer.model.v3.TypeConstants.*;
 import static java.io.File.separator;
 import static java.lang.String.format;
 import static java.util.Optional.ofNullable;
@@ -68,21 +66,6 @@ public class ConverterVersion3 {
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final String NONE = "none";
     private final Manifest manifest;
-
-    /**
-     * mapServiceResponse.
-     *
-     * @param res String
-     * @return ImageServiceResponse
-     */
-    public static ImageServiceResponse mapServiceResponse(final InputStream res) {
-        try {
-            return MAPPER.readValue(res, new TypeReference<>() {
-            });
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
 
     public ManifestVersion3 execute() {
         try {
@@ -109,8 +92,8 @@ public class ConverterVersion3 {
                             iiifService = iiifService.replace("http", "https");
                         }
 
-                        height = i.getResource().getService().getHeight();
-                        width = i.getResource().getService().getWidth();
+                        height = i.getResource().getHeight();
+                        width = i.getResource().getWidth();
 
                         final ServiceVersion3 service = ServiceVersion3.builder()
                                 .id(iiifService)
@@ -124,7 +107,7 @@ public class ConverterVersion3 {
                         body.setService(services);
                         body.setHeight(height);
                         body.setWidth(width);
-                        body.setType("Image");
+                        body.setType(IMAGE);
                         body.setFormat("image/jpeg");
                         String resourceId = i.getResource().getId();
                         //hack for Mirador file extension check
@@ -145,7 +128,7 @@ public class ConverterVersion3 {
                     final List<AnnotationVersion3> annotations = new ArrayList<>();
                     final AnnotationVersion3 anno = AnnotationVersion3.builder()
                             .id(baseUrl + viewId + separator + annotationBase + separator + UUID.randomUUID())
-                            .type("Annotation")
+                            .type(ANNOTATION)
                             .motivation("painting")
                             .body(body)
                             .target(canvasId)
@@ -156,14 +139,14 @@ public class ConverterVersion3 {
                     final List<AnnotationPage> annoPages = new ArrayList<>();
                     final AnnotationPage annoPage = AnnotationPage.builder()
                             .id(baseUrl + viewId + separator + annotationPageBase + separator + UUID.randomUUID())
-                            .type("AnnotationPage")
+                            .type(ANNOTATION_PAGE)
                             .items(annotations)
                             .build();
                     annoPages.add(annoPage);
 
                     //setCanvas
                     canvas.setId(canvasId);
-                    canvas.setType("Canvas");
+                    canvas.setType(CANVAS);
                     canvas.setItems(annoPages);
                     canvas.setHeight(height);
                     canvas.setWidth(width);
@@ -221,21 +204,22 @@ public class ConverterVersion3 {
         final List<String> behaviors = new ArrayList<>();
         behaviors.add("paged");
 
-        final MetadataVersion3 requiredStatement = MetadataVersion3.builder().build();
-        final Map<String, List<String>> label = buildLabelMap("Attribution", "en");
-        final Map<String, List<String>> value = buildLabelMap(domainAttribution, "en");
-        requiredStatement.setLabel(label);
-        requiredStatement.setValue(value);
+        final Map<String, List<String>> label = buildLabelMap("Attribution", ENGLISH);
+        final Map<String, List<String>> value = buildLabelMap(domainAttribution, ENGLISH);
+        final MetadataVersion3 requiredStatement = MetadataVersion3.builder()
+                .label(label)
+                .value(value)
+                .build();
 
         final ManifestVersion3.Logo logo = ManifestVersion3.Logo.builder()
                 .id(domainLogo)
-                .type("Image")
+                .type(IMAGE)
                 .build();
 
         return ManifestVersion3.builder()
                 .context(contexts)
                 .id(id)
-                .type("Manifest")
+                .type(MANIFEST)
                 .viewingDirection("left-to-right")
                 .behavior(behaviors)
                 .rights(domainLicense)
@@ -253,18 +237,18 @@ public class ConverterVersion3 {
             final SeeAlso katalogReference = SeeAlso.builder()
                     .id(katalogId)
                     .format("text/html")
-                    .type("Application")
+                    .type(APPLICATION)
                     .profile(SEE_ALSO_PROFILE)
                     .build();
             seeAlso.add(katalogReference);
         }
-        final SeeAlso katalogReference = SeeAlso.builder()
+        final SeeAlso viewerReference = SeeAlso.builder()
                 .id(viewerId)
                 .format("text/html")
-                .type("Application")
+                .type(APPLICATION)
                 .profile(SEE_ALSO_PROFILE)
                 .build();
-        seeAlso.add(katalogReference);
+        seeAlso.add(viewerReference);
         List<String> filteredRelated = related.stream()
                 .filter(r -> !katalogId.equals(r) && !viewerId.equals(r)).collect(Collectors.toList());
         filteredRelated.forEach(r -> {
@@ -272,7 +256,7 @@ public class ConverterVersion3 {
                 SeeAlso sa = SeeAlso.builder()
                         .id(r)
                         .format("application/json")
-                        .type("Dataset")
+                        .type(DATASET)
                         .profile(IIIF_VERSION3_CONTEXT)
                         .build();
                 seeAlso.add(sa);
@@ -280,7 +264,7 @@ public class ConverterVersion3 {
                 SeeAlso sa = SeeAlso.builder()
                         .id(r)
                         .format("application/xml")
-                        .type("Dataset")
+                        .type(DATASET)
                         .profile(METS_PROFILE)
                         .build();
                 seeAlso.add(sa);

@@ -33,7 +33,7 @@ ext {
     junitVersion = "5.8.2"
     mockitoVersion = '4.2.0'
     slf4jVersion = '1.7.32'
-
+    systemStubsVersion = '2.0.1'
     jacocoVersion = '0.8.7'
     checkstyleVersion = '8.8'
 

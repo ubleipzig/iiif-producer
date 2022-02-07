@@ -56,6 +56,11 @@ public final class DomainConstants {
     static String IIIF_VERSION3_CONTEXT = "http://iiif.io/api/presentation/3/context.json";
     static String WEB_ANNOTATION_CONTEXT = "http://www.w3.org/ns/anno.jsonld";
 
+    static final String PERIOD = ".";
+    static final String ENGLISH = "en";
+    static final String DEUTSCH = "de";
+    static final String NONE = "none";
+
     private DomainConstants() {
     }
 }

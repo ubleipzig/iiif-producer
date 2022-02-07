@@ -23,6 +23,8 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     testImplementation("org.mockito:mockito-core:$mockitoVersion")
     testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
+    testImplementation("uk.org.webcompere:system-stubs-jupiter:$systemStubsVersion")
+
 }
 
 repositories {

@@ -50,14 +50,12 @@ import java.util.stream.Stream;
 
 import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildLabelMap;
 import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildPaddedCanvases;
-import static de.ubleipzig.iiifproducer.converter.DomainConstants.baseUrl;
-import static de.ubleipzig.iiifproducer.converter.DomainConstants.structureBase;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.*;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.DISPLAYORDER;
-import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.DEUTSCH;
-import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.ENGLISH;
-import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.PERIOD;
 import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.deutschLabels;
 import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.englishLabels;
+import static de.ubleipzig.iiifproducer.model.v3.TypeConstants.CANVAS;
+import static de.ubleipzig.iiifproducer.model.v3.TypeConstants.RANGE;
 import static java.io.File.separator;
 import static java.util.Optional.ofNullable;
 
@@ -110,23 +108,22 @@ public class StructureBuilderVersion3 {
         final List<Item> newStructures = new ArrayList<>();
         for (Structure struct : structures) {
             final Item newStructure = Item.builder().build();
-            final Object structureLabel = struct.getLabel();
-            final Map<String, List<String>> labelMap = buildLabelMap((String) structureLabel, "de");
+            final Map<String, List<String>> labelMap = buildLabelMap("Contents", ENGLISH);
             newStructure.setLabel(labelMap);
-            final Optional<List<String>> fr = ofNullable(struct.getRanges());
+            final Optional<List<String>> ranges = ofNullable(struct.getRanges());
             final List<Item> newRanges = new ArrayList<>();
             final List<Item> newCanvases = new ArrayList<>();
             final Optional<List<String>> canvases = ofNullable(struct.getCanvases());
             canvases.ifPresent(cs -> cs.forEach(c -> {
                 final Item newCanvas = Item.builder()
                         .id(c)
-                        .type("Canvas")
+                        .type(CANVAS)
                         .build();
                 newCanvases.add(newCanvas);
             }));
 
-            if (fr.isPresent()) {
-                for (String r1 : fr.get()) {
+            if (ranges.isPresent()) {
+                for (String r1 : ranges.get()) {
                     final Optional<String> newRange = ofNullable(backReferenceMap.get(r1));
                     newRange.ifPresent(r -> {
                         String sId = null;
@@ -137,8 +134,18 @@ public class StructureBuilderVersion3 {
                         }
                         final Item nr = Item.builder()
                                 .id(r)
-                                .type("Range")
+                                .type(RANGE)
                                 .build();
+                        final Optional<List<String>> structureLabels = ofNullable(
+                                buildStructureLabelsForId(sId));
+                        if (structureLabels.isPresent()) {
+                            List<String> rangeLabels = structureLabels.get();
+                            if (!rangeLabels.isEmpty()) {
+                                final Map<String, List<String>> rangeLabelMap = new HashMap<>();
+                                rangeLabelMap.put(DEUTSCH, rangeLabels);
+                                nr.setLabel(rangeLabelMap);
+                            }
+                        }
                         final Optional<List<MetadataVersion3>> structureMetadata = ofNullable(
                                 buildStructureMetadataForId(sId));
                         if (structureMetadata.isPresent()) {
@@ -203,6 +210,7 @@ public class StructureBuilderVersion3 {
                             final String siId = si.getId();
                             final Map<String, List<String>> labelMap = si.getLabel();
                             subItem.setLabel(labelMap);
+                            subItem.setType(RANGE);
                             subItem.setId(siId);
                             Optional<List<MetadataVersion3>> meta2 = ofNullable(si.getMetadata());
                             meta2.ifPresent(subItem::setMetadata);
@@ -218,7 +226,7 @@ public class StructureBuilderVersion3 {
             });
             final List<Item> finalStructure = new ArrayList<>();
             final Item top = topStructure.get();
-            top.setType("Range");
+            top.setType(RANGE);
             finalStructure.add(top);
             return finalStructure;
         }
@@ -242,6 +250,17 @@ public class StructureBuilderVersion3 {
         return finalMetadata;
     }
 
+    public List<String> buildStructureLabelsForId(final String structId) {
+        final Optional<List<Structure>> filteredSubList = Optional.of(
+                structures.stream().filter(s -> s.getId().contains(structId)).collect(Collectors.toList()));
+        List<String> labels = new ArrayList<>();
+        filteredSubList.ifPresent(maps -> maps.forEach(sm -> {
+            Optional<String> labelOpt = ofNullable((String) sm.getLabel());
+            labelOpt.ifPresent(labels::add);
+        }));
+        return labels;
+    }
+
     List<MetadataVersion3> buildFilteredLabelMetadata(final MultiValuedMap<String, String> newMetadata,
                                   final ResourceBundle bundle) {
         final List<MetadataVersion3> metadata = new ArrayList<>();
@@ -261,8 +280,7 @@ public class StructureBuilderVersion3 {
                     englishDisplayLabel.ifPresent(s -> labelMap.put(ENGLISH, Collections.singletonList(s)));
                 }
                 labelMap.put(DEUTSCH, Collections.singletonList(displayLabel));
-                final List<String> values = new ArrayList<>();
-                newMetadata.get(displayLabel).stream().findFirst().ifPresent(values::add);
+                List<String> values = new ArrayList<>(newMetadata.get(displayLabel));
                 final MetadataVersion3 m = metadataImplVersion3.buildMetadata(labelMap, values, displayOrder);
                 if (m != null && !m.getValue().isEmpty()) {
                     metadata.add(m);
@@ -283,8 +301,7 @@ public class StructureBuilderVersion3 {
                     deutschDisplayLabel.ifPresent(s -> labelMap.put(DEUTSCH, Collections.singletonList(s)));
                 }
                 labelMap.put(ENGLISH, Collections.singletonList(displayLabel));
-                final List<String> values = new ArrayList<>();
-                newMetadata.get(displayLabel).stream().findFirst().ifPresent(values::add);
+                List<String> values = new ArrayList<>(newMetadata.get(displayLabel));
                 final MetadataVersion3 m = metadataImplVersion3.buildMetadata(labelMap, values, displayOrder);
                 if (m != null && !m.getValue().isEmpty()) {
                     metadata.add(m);
