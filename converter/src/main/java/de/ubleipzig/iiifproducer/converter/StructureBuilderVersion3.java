@@ -119,7 +119,6 @@ public class StructureBuilderVersion3 {
 
             if (ranges.isPresent()) {
                 for (String r1 : ranges.get()) {
-                    //final Optional<String> newRange = ofNullable(backReferenceMap.get(r1));
                         String sId = null;
                         try {
                             sId = new URL(r1).getPath().split(separator)[3];
@@ -155,7 +154,6 @@ public class StructureBuilderVersion3 {
             final List<Item> newItems = combinedItems.collect(Collectors.toList());
             newStructure.setItems(newItems);
             final String structId = struct.getId();
-            //final String newStructId = backReferenceMap.get(structId);
             newStructure.setId(structId);
             final String sId;
             try {

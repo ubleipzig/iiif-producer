@@ -2,9 +2,6 @@ plugins {
     id 'java'
 }
 
-group 'de.ubleipzig'
-version '0.3.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
 }

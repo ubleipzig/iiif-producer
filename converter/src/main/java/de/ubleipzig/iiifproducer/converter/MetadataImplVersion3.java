@@ -48,8 +48,8 @@ import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.DEUTSCH;
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.ENGLISH;
-import static de.ubleipzig.iiifproducer.converter.DomainConstants.PERIOD;
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.NONE;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.PERIOD;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.DISPLAYORDER;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANIFESTTYPE;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANUSCRIPT;
@@ -69,7 +69,7 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
     private List<MetadataVersion3> finalMetadata;
 
     MetadataVersion3 buildMetadata(final Map<String, List<String>> languageLabels, List<String> values,
-                                           final Integer displayOrder) {
+                                   final Integer displayOrder) {
         if (!values.isEmpty()) {
             final MetadataVersion3 metadataV3 = MetadataVersion3.builder().build();
             metadataV3.setLabel(languageLabels);
@@ -104,7 +104,7 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
         if (manifestType != null) {
             final String manifestTypeLabelDisplayOrderKey = manifestTypeKey + PERIOD + DISPLAYORDER.getApiKey();
             final Integer displayOrder = Integer.valueOf(englishLabels.getString(manifestTypeLabelDisplayOrderKey));
-             if (manifestType.equals(MANUSCRIPT.getApiKey())) {
+            if (manifestType.equals(MANUSCRIPT.getApiKey())) {
                 List<String> values = new ArrayList<>(newMetadata.get("Objekttitel"));
                 Map<String, List<String>> labelMap = new HashMap<>();
                 labelMap.put(DEUTSCH, Collections.singletonList("Objekttitel"));
@@ -130,10 +130,11 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
     }
 
     void buildFilteredLabelMetadata(final MultiValuedMap<String, String> newMetadata,
-                                          final ResourceBundle bundle) {
+                                    final ResourceBundle bundle) {
         final Set<String> enFilteredLabelKeys = buildFilteredLabelSet(englishLabels);
         final Set<String> deFilteredLabelKeys = buildFilteredLabelSet(deutschLabels);
-         if (DEUTSCH.equals(bundle.getLocale().toLanguageTag())) {
+        //defaults to DEUTSCH primary
+        if (DEUTSCH.equals(bundle.getLocale().toLanguageTag())) {
             for (String labelKey : deFilteredLabelKeys) {
                 final Map<String, List<String>> labelMap = new HashMap<>();
                 final String displayLabel = bundle.getString(labelKey);
