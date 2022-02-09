@@ -92,10 +92,7 @@ public class StructureBuilderVersion3 {
                     s.setWithin(null);
                     ai.getAndIncrement();
                 } else {
-                    final String newStructureId =
-                            baseUrl + viewId + separator + structureBase + separator + "LOG_" + String.format(
-                                    "%04d", ai.getAndIncrement());
-                    backReferenceMap.put(s.getId(), newStructureId);
+                    backReferenceMap.put(s.getId(), s.getId());
                     //unset within (fix for early manifests)
                     s.setWithin(null);
                 }
@@ -108,8 +105,6 @@ public class StructureBuilderVersion3 {
         final List<Item> newStructures = new ArrayList<>();
         for (Structure struct : structures) {
             final Item newStructure = Item.builder().build();
-            final Map<String, List<String>> labelMap = buildLabelMap("Contents", ENGLISH);
-            newStructure.setLabel(labelMap);
             final Optional<List<String>> ranges = ofNullable(struct.getRanges());
             final List<Item> newRanges = new ArrayList<>();
             final List<Item> newCanvases = new ArrayList<>();
@@ -124,16 +119,15 @@ public class StructureBuilderVersion3 {
 
             if (ranges.isPresent()) {
                 for (String r1 : ranges.get()) {
-                    final Optional<String> newRange = ofNullable(backReferenceMap.get(r1));
-                    newRange.ifPresent(r -> {
+                    //final Optional<String> newRange = ofNullable(backReferenceMap.get(r1));
                         String sId = null;
                         try {
-                            sId = new URL(r).getPath().split(separator)[3];
+                            sId = new URL(r1).getPath().split(separator)[3];
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         }
                         final Item nr = Item.builder()
-                                .id(r)
+                                .id(r1)
                                 .type(RANGE)
                                 .build();
                         final Optional<List<String>> structureLabels = ofNullable(
@@ -155,24 +149,34 @@ public class StructureBuilderVersion3 {
                             }
                         }
                         newRanges.add(nr);
-                    });
                 }
             }
             final Stream<Item> combinedItems = Stream.concat(newRanges.stream(), newCanvases.stream());
             final List<Item> newItems = combinedItems.collect(Collectors.toList());
             newStructure.setItems(newItems);
             final String structId = struct.getId();
-            final String newStructId = backReferenceMap.get(structId);
-            newStructure.setId(newStructId);
+            //final String newStructId = backReferenceMap.get(structId);
+            newStructure.setId(structId);
             final String sId;
             try {
-                sId = new URL(newStructId).getPath().split(separator)[3];
+                sId = new URL(structId).getPath().split(separator)[3];
                final Optional<List<MetadataVersion3>> structureMetadata = ofNullable(
                         buildStructureMetadataForId(sId));
                 if (structureMetadata.isPresent()) {
                     List<MetadataVersion3> m = structureMetadata.get();
                     if (!m.isEmpty()) {
                         structureMetadata.ifPresent(newStructure::setMetadata);
+                    }
+                }
+
+                final Optional<List<String>> structureLabels = ofNullable(
+                        buildStructureLabelsForId(sId));
+                if (structureLabels.isPresent()) {
+                    final Map<String, List<String>> labelMap = new HashMap<>();
+                    List<String> m = structureLabels.get();
+                    if (!m.isEmpty()) {
+                        labelMap.put(DEUTSCH, m);
+                        newStructure.setLabel(labelMap);
                     }
                 }
             } catch (MalformedURLException e) {
@@ -184,10 +188,12 @@ public class StructureBuilderVersion3 {
         final Optional<Item> topStructure = newStructures.stream().filter(
                 s -> s.getId().contains("LOG_0000")).findAny();
         if (topStructure.isPresent()) {
+            final Map<String, List<String>> topStructurelabelMap = buildLabelMap("Contents", ENGLISH);
+            topStructure.get().setLabel(topStructurelabelMap);
             final List<Item> topStructureItems = topStructure.get().getItems();
             topStructureItems.forEach(ti -> {
-                final Optional<Item> item = newStructures.stream().filter(
-                        s -> s.getId().contains(ti.getId())).findAny();
+                final Optional<Item> item = newStructures.stream()
+                        .filter(s -> s.getId().contains(ti.getId())).findAny();
                 if (item.isPresent()) {
                     final Map<String, List<String>> label = item.get().getLabel();
                     ti.setLabel(label);

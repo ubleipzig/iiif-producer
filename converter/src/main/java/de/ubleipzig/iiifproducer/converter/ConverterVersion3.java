@@ -252,15 +252,7 @@ public class ConverterVersion3 {
         List<String> filteredRelated = related.stream()
                 .filter(r -> !katalogId.equals(r) && !viewerId.equals(r)).collect(Collectors.toList());
         filteredRelated.forEach(r -> {
-            if (r.contains("json")) {
-                SeeAlso sa = SeeAlso.builder()
-                        .id(r)
-                        .format("application/json")
-                        .type(DATASET)
-                        .profile(IIIF_VERSION3_CONTEXT)
-                        .build();
-                seeAlso.add(sa);
-            } else if (r.contains("xml")) {
+            if (r.contains("xml")) {
                 SeeAlso sa = SeeAlso.builder()
                         .id(r)
                         .format("application/xml")

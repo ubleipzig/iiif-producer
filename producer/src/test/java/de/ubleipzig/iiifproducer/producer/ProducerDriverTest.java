@@ -33,9 +33,16 @@ public class ProducerDriverTest extends AbstractProducerTest {
     }
 
     @Test
-    public void multiVolumeWorkTest() {
+    public void HSPTest() {
         String[] args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o",
                 "/tmp/" + pid + ".json", "-c", configFilePath};
+        runProducer(args);
+    }
+
+    @Test
+    public void HSPTestV2() {
+        String[] args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o",
+                "/tmp/" + pid + ".json", "-c", configFilePath, "-f", "v2"};
         runProducer(args);
     }
 
