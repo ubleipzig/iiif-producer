@@ -41,27 +41,4 @@ public class SeeAlso {
     @JsonProperty("type")
     private String type;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     * @return String
-     */
-    @JsonIgnore
-    public String getType() {
-        return this.type;
-    }
-
-    /**
-     * @param type type
-     */
-    @JsonIgnore
-    public void setType(final String type) {
-        this.type = type;
-    }
 }
