@@ -18,8 +18,6 @@
 
 package de.ubleipzig.iiifproducer.model.v2;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import de.ubleipzig.iiif.vocabulary.SCEnum;
@@ -42,7 +40,6 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(Include.NON_NULL)
 @JsonPropertyOrder({"@id", "@type", "label", "viewingHint", "ranges", "canvases"})
 public class Structure {
 

@@ -18,7 +18,6 @@
 
 package de.ubleipzig.iiifproducer.model.v2;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import de.ubleipzig.iiif.vocabulary.SCEnum;
@@ -38,7 +37,6 @@ import java.util.List;
 @Setter
 @Getter
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"@context", "id", "type", "motivation", "body", "target"})
 public class PaintingAnnotation {
 

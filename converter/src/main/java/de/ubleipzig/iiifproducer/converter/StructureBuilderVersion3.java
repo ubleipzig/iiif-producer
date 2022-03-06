@@ -37,7 +37,11 @@ import java.util.stream.Stream;
 
 import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildLabelMap;
 import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildPaddedCanvases;
-import static de.ubleipzig.iiifproducer.converter.DomainConstants.*;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.DEUTSCH;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.ENGLISH;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.PERIOD;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.baseUrl;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.structureBase;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.DISPLAYORDER;
 import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.deutschLabels;
 import static de.ubleipzig.iiifproducer.converter.MetadataImplVersion3.englishLabels;
@@ -174,6 +178,7 @@ public class StructureBuilderVersion3 {
                 s -> s.getId().contains("LOG_0000")).findAny();
         if (topStructure.isPresent()) {
             final Map<String, List<String>> topStructurelabelMap = buildLabelMap("Contents", ENGLISH);
+            topStructurelabelMap.put(DEUTSCH, List.of("Inhalt"));
             topStructure.get().setLabel(topStructurelabelMap);
             final List<Item> topStructureItems = topStructure.get().getItems();
             topStructureItems.forEach(ti -> {

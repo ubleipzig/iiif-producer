@@ -23,7 +23,7 @@
     },
     "value" : {
       "en" : [
-        "Provided by Leipzig University Library<br/>No Copyright - Public Domain Marked"
+        "<div>Provided by Leipzig University Library<br/>No Copyright - Public Domain Marked<br/><a href=\"https://creativecommons.org/publicdomain/mark/1.0/\">https://creativecommons.org/publicdomain/mark/1.0/</a></div>"
       ]
     }
   },
@@ -31,25 +31,19 @@
     "id" : "https://iiif.ub.uni-leipzig.de/ubl-logo.png",
     "type" : "Image"
   },
-  "seeAlso" : [
+  "homepage" : [
     {
       "id" : "https://katalog.ub.uni-leipzig.de/urn/urn:nbn:de:bsz:15-0008-232267",
-      "type" : "Application",
-      "profile" : "https://www.ub.uni-leipzig.de/profiles/application/v3",
+      "type" : "Text",
       "format" : "text/html"
     },
     {
       "id" : "https://digital.ub.uni-leipzig.de/object/viewid/0000004595",
-      "type" : "Application",
-      "profile" : "https://www.ub.uni-leipzig.de/profiles/application/v3",
+      "type" : "Text",
       "format" : "text/html"
-    },
-    {
-      "id" : "https://iiif.ub.uni-leipzig.de/0000004595/manifest.json",
-      "type" : "Dataset",
-      "profile" : "http://iiif.io/api/presentation/3/context.json",
-      "format" : "application/json"
-    },
+    }
+  ],
+  "seeAlso" : [
     {
       "id" : "https://iiif.ub.uni-leipzig.de/0000004595/presentation.xml",
       "type" : "Dataset",
@@ -60,6 +54,9 @@
   "metadata" : [
     {
       "label" : {
+        "de" : [
+          "Manifest Typ"
+        ],
         "en" : [
           "Manifest Type"
         ]
@@ -232,11 +229,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/d6b9e4f6-330f-4bef-9ea4-cdfbaeaf4691",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/e61fd61e-654b-45c0-9d65-8a3ac78cf835",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/ec3e3419-fa6d-49e5-af81-236cb46bb49d",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/26543348-5531-41f9-b4c3-4fb321dc45d6",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -276,11 +273,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/74eee398-d3fe-4bed-8943-c82a9c0e1dce",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/ee11a3ba-7e0a-417c-931d-7ede0c7a63c0",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/291f688a-8805-49e8-a7b8-f625e57c9e9c",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/807c6be5-2f62-4a1b-996a-0c0182aa404d",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -320,11 +317,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/7092c980-b994-4a39-8767-d5dbc40b2aa7",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/1c3de1ff-ff60-452b-a8d8-e0be687e2312",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/2e44fe28-d8df-4976-b4ee-9a2643eafce7",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/e0122936-5b06-4dbd-babf-bed6cf01d50f",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -364,11 +361,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/481eb20a-66a9-48be-b4d8-941bcb548b66",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/8bc9baeb-1b8c-4337-9799-0c36d19676c1",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/cb7abb5c-75a8-42db-a8c0-da370bf48e02",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/26226e55-b252-4fd0-9269-34b67d3bd459",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -408,11 +405,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/7abc8cbb-f2ce-46e0-9b47-334e8f7d01be",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/9edb6683-271d-434d-88ca-9162ef962cd1",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/d9abd34e-1757-480b-8663-89a87ecc68ad",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/ba7bab25-306b-4f38-9c0d-e01164042ec8",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -452,11 +449,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/51e38ac2-ad90-4279-863f-bd207e8acb25",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/0a39d3e4-9bfc-4f82-9dc1-b0b368951986",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/928b63bc-49a7-415d-85a9-9e7002eadd4a",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/2d37ed82-8596-4afc-a449-9abf4faa501f",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -496,11 +493,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/87a42949-4947-4603-8d41-3a4136637f3c",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/391cc9cb-74bc-4b88-bdd6-cc5aa8b9ddc7",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/0e4b60dd-2e88-4b79-968b-f67dc6231be6",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/e4b4709c-14b6-41f8-b206-b2cf00c9e234",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -540,11 +537,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/d9365277-f165-48d2-ab58-f85154b16430",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/a9748616-f719-45a2-80d1-ab3a7ff39cec",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/fc062498-7e4c-45ca-828f-35b61fd9ed57",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/32d31d06-5827-4163-80a1-ac13f922752a",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -584,11 +581,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/54812e3b-50e2-4ced-bba5-1d678b8744b6",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/69f89d36-fe8f-4e0d-9d23-68a255bdd24a",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/7d6860a6-f6e0-4e40-8b24-356b82ecb7f7",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/25d809b8-5401-4f3d-b52e-dbdb7135b6e2",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -628,11 +625,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/2af25d61-f195-4369-b8b5-392658e388dd",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/764c1c14-63b2-43fc-ba6c-dd00d1fe0086",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/f65f9291-9052-400d-9a0a-74a91b030809",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/bb866ca7-ee05-4955-afac-b288cf957afa",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -672,11 +669,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/bf44bbab-1970-4bf4-8ba9-9dabeaf69462",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/31567fcc-85a2-4ff4-b1f4-cec3d1496cfc",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/91e6335b-7681-47ed-8ef7-95f8ca7b5274",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/52e05ed9-f627-4604-90c8-45c472fdc549",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {
@@ -716,11 +713,11 @@
       "width" : 3840,
       "items" : [
         {
-          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/b70c20c0-5ccc-45a3-8f41-d53dcf217c0d",
+          "id" : "https://iiif.ub.uni-leipzig.de/0000004595/page/8c9ebdbe-ff28-49a1-b2a3-f4c7916a1624",
           "type" : "AnnotationPage",
           "items" : [
             {
-              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/a182a5d8-cdd4-4682-afe4-b68fddbee8c8",
+              "id" : "https://iiif.ub.uni-leipzig.de/0000004595/anno/4b53cc25-4dcf-4b5a-8010-f6b14d64e445",
               "type" : "Annotation",
               "motivation" : "painting",
               "body" : {

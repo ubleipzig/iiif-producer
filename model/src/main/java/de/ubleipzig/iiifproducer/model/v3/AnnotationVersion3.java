@@ -18,7 +18,6 @@
 
 package de.ubleipzig.iiifproducer.model.v3;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
@@ -32,7 +31,6 @@ import java.util.List;
 @Setter
 @Getter
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "type", "motivation", "body", "target"})
 public class AnnotationVersion3 {
     @JsonProperty("body")

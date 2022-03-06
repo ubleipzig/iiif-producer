@@ -29,4 +29,9 @@ public final class TypeConstants {
     public static String IMAGE = "Image";
     public static String MANIFEST = "Manifest";
     public static String RANGE = "Range";
+    public static String TEXT = "Text";
+    public static String LEFT_TO_RIGHT = "left-to-right";
+    public static String PAGED = "paged";
+    public static String IMAGE_JPEG = "image/jpeg";
+    public static String PAINTING = "painting";
 }

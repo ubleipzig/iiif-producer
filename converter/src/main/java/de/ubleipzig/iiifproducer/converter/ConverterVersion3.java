@@ -18,7 +18,6 @@
 
 package de.ubleipzig.iiifproducer.converter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import de.ubleipzig.iiifproducer.model.v2.Canvas;
 import de.ubleipzig.iiifproducer.model.v2.Manifest;
 import de.ubleipzig.iiifproducer.model.v2.PaintingAnnotation;
@@ -32,9 +31,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.converter.ConverterUtils.buildLabelMap;
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.*;
@@ -50,14 +52,10 @@ import static java.util.Optional.ofNullable;
 @Slf4j
 public class ConverterVersion3 {
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
-    private static final String NONE = "none";
     private final Manifest manifest;
 
     public ManifestVersion3 execute() {
         try {
-            MetadataBuilderVersion3 metadataBuilderVersion3 = MetadataBuilderVersion3.builder()
-                    .manifest(manifest).build();
 
             final List<CanvasVersion3> canvases = new ArrayList<>();
             final String viewId = new URL(manifest.getId()).getPath().split(separator)[1];
@@ -67,11 +65,11 @@ public class ConverterVersion3 {
                 for (Canvas c : sq.getCanvases()) {
                     Integer height = null;
                     Integer width = null;
-                    final CanvasVersion3 canvas = CanvasVersion3.builder().build();
+
                     final BodyVersion3 body = BodyVersion3.builder().build();
                     for (PaintingAnnotation i : c.getImages()) {
                         String iiifService = i.getResource().getService().getId();
-                        //hack to fix service
+                        //fix service
                         if (iiifService.contains(IIPSRV_DEFAULT)) {
                             iiifService = iiifService.replace(IIPSRV_DEFAULT, "iiif");
                         }
@@ -95,9 +93,9 @@ public class ConverterVersion3 {
                         body.setHeight(height);
                         body.setWidth(width);
                         body.setType(IMAGE);
-                        body.setFormat("image/jpeg");
+                        body.setFormat(IMAGE_JPEG);
                         String resourceId = i.getResource().getId();
-                        //hack for Mirador file extension check
+                        //fix for Mirador file extension check
                         if (resourceId.contains("jpx")) {
                             final String jpgResource = resourceId.replace("jpx", "jpg");
                             body.setId(jpgResource);
@@ -112,69 +110,51 @@ public class ConverterVersion3 {
                     //createAnnotation
                     final String canvasId = baseUrl + viewId + separator + targetBase + separator + format(
                             "%08d", index.getAndIncrement());
-                    final List<AnnotationVersion3> annotations = new ArrayList<>();
+
                     final AnnotationVersion3 anno = AnnotationVersion3.builder()
                             .id(baseUrl + viewId + separator + annotationBase + separator + UUID.randomUUID())
                             .type(ANNOTATION)
-                            .motivation("painting")
+                            .motivation(PAINTING)
                             .body(body)
                             .target(canvasId)
                             .build();
-                    annotations.add(anno);
+                    final List<AnnotationVersion3> annotations = List.of(anno);
 
                     //createAnnotationPage
-                    final List<AnnotationPage> annoPages = new ArrayList<>();
                     final AnnotationPage annoPage = AnnotationPage.builder()
                             .id(baseUrl + viewId + separator + annotationPageBase + separator + UUID.randomUUID())
                             .type(ANNOTATION_PAGE)
                             .items(annotations)
                             .build();
-                    annoPages.add(annoPage);
+                    final List<AnnotationPage> annoPages = List.of(annoPage);
 
                     //setCanvas
-                    canvas.setId(canvasId);
-                    canvas.setType(CANVAS);
-                    canvas.setItems(annoPages);
-                    canvas.setHeight(height);
-                    canvas.setWidth(width);
                     final String canvasLabel = c.getLabel();
                     final Map<String, List<String>> canvasLabelMap = buildLabelMap(canvasLabel, NONE);
-                    canvas.setLabel(canvasLabelMap);
+                    final Optional<de.ubleipzig.iiifproducer.model.v2.SeeAlso> canvasSeeAlso = ofNullable(c.getSeeAlso());
+                    SeeAlso canvasSeeAlsoV3 = null;
+                    if (canvasSeeAlso.isPresent()) {
+                        canvasSeeAlsoV3 = SeeAlso.builder()
+                                .format(canvasSeeAlso.get().getFormat())
+                                .id(canvasSeeAlso.get().getId())
+                                .type(DATASET)
+                                .profile(canvasSeeAlso.get().getProfile())
+                                .build();
+                    }
+                    final CanvasVersion3 canvas = CanvasVersion3.builder()
+                            .height(height)
+                            .id(canvasId)
+                            .items(annoPages)
+                            .label(canvasLabelMap)
+                            .seeAlso(canvasSeeAlsoV3)
+                            .type(CANVAS)
+                            .width(width)
+                            .build();
                     canvases.add(canvas);
                 }
             });
 
-            List<MetadataVersion3> finalMetadata = metadataBuilderVersion3.execute();
-            ManifestVersion3 newManifest = buildManifest(viewId, canvases);
-
-            //build structures objects
-            final Optional<List<Structure>> structures = ofNullable(manifest.getStructures());
-            if (structures.isPresent()) {
-                final List<Structure> structs = structures.get();
-                final StructureBuilderVersion3 sbuilder = StructureBuilderVersion3.builder()
-                        .structures(structs)
-                        .viewId(viewId)
-                        .build();
-                sbuilder.buildIncrements();
-                List<Item> newStructures = sbuilder.build();
-                newManifest.setStructures(newStructures);
-            }
-
-            //set seeAlso
-            final Optional<String> finalURN = ofNullable(getURNfromFinalMetadata(finalMetadata));
-            @SuppressWarnings("unchecked")
-            List<String> related = (List<String>) manifest.getRelated();
-
-            final List<SeeAlso> seeAlso = setSeeAlso(viewId, finalURN.orElse(null), related);
-            newManifest.setSeeAlso(seeAlso);
-            newManifest.setMetadata(finalMetadata);
-
-            //set manifest label
-            final String manifestLabel = manifest.getLabel();
-            final Map<String, List<String>> manifestLabelMap = buildLabelMap(manifestLabel, NONE);
-            newManifest.setLabel(manifestLabelMap);
-
-            return newManifest;
+            return buildManifest(viewId, canvases);
         } catch (IOException ex) {
             throw new RuntimeException("Could not Convert Manifest", ex.getCause());
         }
@@ -182,81 +162,79 @@ public class ConverterVersion3 {
 
     public ManifestVersion3 buildManifest(final String viewId, final List<CanvasVersion3> canvases) {
 
+        final ConverterUtils converterUtils = ConverterUtils.builder().build();
+        MetadataBuilderVersion3 metadataBuilderVersion3 = MetadataBuilderVersion3.builder()
+                .manifest(manifest).build();
+
+        // build Contexts
         final List<String> contexts = new ArrayList<>();
         contexts.add(WEB_ANNOTATION_CONTEXT);
         contexts.add(IIIF_VERSION3_CONTEXT);
 
+        // build id
         final String id = baseUrl + viewId + separator + manifestBase + ".json";
 
-        final List<String> behaviors = new ArrayList<>();
-        behaviors.add("paged");
+        // build Behaviors
+        final List<String> behaviors = List.of(PAGED);
 
-        final Map<String, List<String>> label = buildLabelMap("Attribution", ENGLISH);
-        final Map<String, List<String>> value = buildLabelMap(domainAttribution, ENGLISH);
-        final MetadataVersion3 requiredStatement = MetadataVersion3.builder()
-                .label(label)
-                .value(value)
-                .build();
+        // build Required Statement
+        final MetadataVersion3 requiredStatement = converterUtils.buildRequiredStatement(manifest);
 
+        //build Rights (use first match)
+        final String rights = manifest.getLicense().stream().findFirst().orElse(null);
+
+        //build Logo
         final ManifestVersion3.Logo logo = ManifestVersion3.Logo.builder()
                 .id(domainLogo)
                 .type(IMAGE)
                 .build();
 
-        return ManifestVersion3.builder()
-                .context(contexts)
-                .id(id)
-                .type(MANIFEST)
-                .viewingDirection("left-to-right")
-                .behavior(behaviors)
-                .rights(domainLicense)
-                .requiredStatement(requiredStatement)
-                .items(canvases)
-                .logo(logo)
-                .build();
-    }
+        // build Metadata
+        List<MetadataVersion3> finalMetadata = metadataBuilderVersion3.execute();
 
-    public List<SeeAlso> setSeeAlso(final String viewId, final String urn, List<String> related) {
-        final ArrayList<SeeAlso> seeAlso = new ArrayList<>();
-        String katalogId = katalogUrl + urn;
-        String viewerId = viewerUrl + viewId;
-        if (urn != null) {
-            final SeeAlso katalogReference = SeeAlso.builder()
-                    .id(katalogId)
-                    .format("text/html")
-                    .type(APPLICATION)
-                    .profile(SEE_ALSO_PROFILE)
+        //build Structures
+        final Optional<List<Structure>> structures = ofNullable(manifest.getStructures());
+        List<Item> newStructures = null;
+        if (structures.isPresent()) {
+            final List<Structure> structs = structures.get();
+            final StructureBuilderVersion3 sbuilder = StructureBuilderVersion3.builder()
+                    .structures(structs)
+                    .viewId(viewId)
                     .build();
-            seeAlso.add(katalogReference);
+            sbuilder.buildIncrements();
+            newStructures = sbuilder.build();
         }
-        final SeeAlso viewerReference = SeeAlso.builder()
-                .id(viewerId)
-                .format("text/html")
-                .type(APPLICATION)
-                .profile(SEE_ALSO_PROFILE)
+
+        //build seeAlso
+        final String finalURN = converterUtils.getURNfromFinalMetadata(finalMetadata);
+        @SuppressWarnings("unchecked")
+        List<String> related = (List<String>) manifest.getRelated();
+        final List<SeeAlso> seeAlso = converterUtils.buildSeeAlso(viewId, finalURN, related);
+
+        //build Homepages
+        boolean isHSP = converterUtils.isHspManifest(manifest);
+        final List<Homepage> homepages = converterUtils.buildHomepages(viewId, finalURN, isHSP);
+
+        //build manifest label
+        final String manifestLabel = manifest.getLabel();
+        final Map<String, List<String>> manifestLabelMap = buildLabelMap(manifestLabel, NONE);
+
+        return ManifestVersion3.builder()
+                .behavior(behaviors)
+                .context(contexts)
+                .homepage(homepages)
+                .id(id)
+                .items(canvases)
+                .label(manifestLabelMap)
+                .logo(logo)
+                .metadata(finalMetadata)
+                .requiredStatement(requiredStatement)
+                .rights(rights)
+                .seeAlso(seeAlso)
+                .structures(newStructures)
+                .type(MANIFEST)
+                .viewingDirection(LEFT_TO_RIGHT)
                 .build();
-        seeAlso.add(viewerReference);
-        List<String> filteredRelated = related.stream()
-                .filter(r -> !katalogId.equals(r) && !viewerId.equals(r)).collect(Collectors.toList());
-        filteredRelated.forEach(r -> {
-            if (r.contains("xml")) {
-                SeeAlso sa = SeeAlso.builder()
-                        .id(r)
-                        .format("application/xml")
-                        .type(DATASET)
-                        .profile(METS_PROFILE)
-                        .build();
-                seeAlso.add(sa);
-            }
-        });
-
-        return seeAlso;
     }
 
-    public String getURNfromFinalMetadata(final List<MetadataVersion3> finalMetadata) {
-        final Optional<Set<MetadataVersion3>> metaURN = Optional.of(finalMetadata.stream().filter(
-                y -> y.getLabel().values().stream().anyMatch(v -> v.contains("URN"))).collect(Collectors.toSet()));
-        final Optional<MetadataVersion3> urn = metaURN.get().stream().findAny();
-        return urn.map(u -> u.getValue().get(NONE).get(0)).orElse(null);
-    }
 }

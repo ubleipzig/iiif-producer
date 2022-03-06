@@ -33,15 +33,16 @@ import java.util.Map;
 @Setter
 @Getter
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"@context", "id", "type", "label", "summary", "thumbnail", "viewingDirection", "behavior",
-        "navDate", "rights", "requiredStatement", "logo", "seeAlso", "metadata", "items", "structures"})
+        "navDate", "rights", "requiredStatement", "logo", "homepage", "seeAlso", "metadata", "items", "structures"})
 public class ManifestVersion3 {
 
     @JsonProperty
     private List<String> behavior;
     @JsonProperty("@context")
     private List<String> context;
+    @JsonProperty
+    private List<Homepage> homepage;
     @JsonProperty("id")
     private String id;
     @JsonProperty

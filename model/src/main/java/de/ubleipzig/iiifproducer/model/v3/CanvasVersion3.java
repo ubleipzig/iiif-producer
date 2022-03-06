@@ -18,7 +18,6 @@
 
 package de.ubleipzig.iiifproducer.model.v3;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
@@ -33,7 +32,6 @@ import java.util.Map;
 @Setter
 @Getter
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "type", "label", "height", "width", "items"})
 public class CanvasVersion3 {
     @JsonProperty
@@ -44,6 +42,8 @@ public class CanvasVersion3 {
     private List<AnnotationPage> items;
     @JsonProperty
     private Map<String, List<String>> label;
+    @JsonProperty
+    private SeeAlso seeAlso;
     @JsonProperty("type")
     private String type;
     @JsonProperty

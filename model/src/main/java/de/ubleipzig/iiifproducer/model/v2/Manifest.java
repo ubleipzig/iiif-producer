@@ -20,8 +20,6 @@ package de.ubleipzig.iiifproducer.model.v2;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import de.ubleipzig.iiif.vocabulary.SCEnum;
@@ -42,7 +40,6 @@ import java.util.List;
 @Setter
 @Getter
 @AllArgsConstructor
-@JsonInclude(Include.NON_NULL)
 @JsonPropertyOrder({"@context", "@id", "@type", "label", "license", "attribution", "logo", "related", "metadata",
         "sequences", "service"})
 public class Manifest {

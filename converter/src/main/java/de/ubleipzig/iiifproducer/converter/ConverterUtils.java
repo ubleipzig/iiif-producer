@@ -18,18 +18,26 @@
 
 package de.ubleipzig.iiifproducer.converter;
 
+import de.ubleipzig.iiifproducer.model.Metadata;
+import de.ubleipzig.iiifproducer.model.v2.Canvas;
+import de.ubleipzig.iiifproducer.model.v2.Manifest;
+import de.ubleipzig.iiifproducer.model.v3.Homepage;
+import de.ubleipzig.iiifproducer.model.v3.MetadataVersion3;
+import de.ubleipzig.iiifproducer.model.v3.SeeAlso;
+import lombok.Builder;
+
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
-import static de.ubleipzig.iiifproducer.converter.DomainConstants.baseUrl;
-import static de.ubleipzig.iiifproducer.converter.DomainConstants.targetBase;
+import static de.ubleipzig.iiifproducer.converter.DomainConstants.*;
+import static de.ubleipzig.iiifproducer.model.v3.TypeConstants.DATASET;
+import static de.ubleipzig.iiifproducer.model.v3.TypeConstants.TEXT;
 import static java.io.File.separator;
 import static java.lang.String.format;
 
+@Builder
 public final class ConverterUtils {
 
     private ConverterUtils() {
@@ -55,5 +63,100 @@ public final class ConverterUtils {
             }
         });
         return paddedCanvases;
+    }
+
+
+    public List<Homepage> buildHomepages(final String viewId, final String urn, boolean isHSP) {
+        final ArrayList<Homepage> homepages = new ArrayList<>();
+        String katalogId = katalogUrl + urn;
+        String viewerId = viewerUrl + viewId;
+        if (!isHSP) {
+            if (urn != null) {
+                final Homepage katalogReference = Homepage.builder()
+                        .id(katalogId)
+                        .format("text/html")
+                        .type(TEXT)
+                        .build();
+                homepages.add(katalogReference);
+            }
+            final Homepage viewerReference = Homepage.builder()
+                    .id(viewerId)
+                    .format("text/html")
+                    .type(TEXT)
+                    .build();
+            homepages.add(viewerReference);
+        }
+        return homepages;
+    }
+
+    public List<SeeAlso> buildSeeAlso(final String viewId, final String urn, List<String> related) {
+        String katalogId = katalogUrl + urn;
+        String viewerId = viewerUrl + viewId;
+        final ArrayList<SeeAlso> seeAlso = new ArrayList<>();
+        List<String> filteredRelated = related.stream()
+                .filter(r -> !katalogId.equals(r) && !viewerId.equals(r)).collect(Collectors.toList());
+        filteredRelated.forEach(r -> {
+            if (r.contains("xml")) {
+                SeeAlso sa = SeeAlso.builder()
+                        .id(r)
+                        .format("application/xml")
+                        .type(DATASET)
+                        .profile(METS_PROFILE)
+                        .build();
+                seeAlso.add(sa);
+            }
+        });
+        if (!seeAlso.isEmpty()) {
+            return seeAlso;
+        } else {
+            return null;
+        }
+    }
+
+    public String getURNfromFinalMetadata(final List<MetadataVersion3> finalMetadata) {
+        final Optional<Set<MetadataVersion3>> metaURN = Optional.of(finalMetadata.stream().filter(
+                y -> y.getLabel().values().stream().anyMatch(v -> v.contains("URN"))).collect(Collectors.toSet()));
+        final Optional<MetadataVersion3> urn = metaURN.get().stream().findAny();
+        return urn.map(u -> u.getValue().get(DomainConstants.NONE).get(0)).orElse(null);
+    }
+
+    public MetadataVersion3 buildRequiredStatement(Manifest manifest) {
+        //build Required Statement
+        final List<String> formattedLicenses = new ArrayList<>();
+        List<String> licenses = manifest.getLicense();
+        licenses.forEach(l -> {
+            String htmlLicense = "<a href=\"" + l + "\">" + l + "</a>";
+            formattedLicenses.add(htmlLicense);
+        });
+        final String rightsString = String.join("<br/>", formattedLicenses);
+        final Map<String, List<String>> label = buildLabelMap("Attribution", ENGLISH);
+        final String attribution = manifest.getAttribution();
+        final String htmlStatement = "<div>" + attribution + "<br/>" + rightsString + "</div>";
+        final Map<String, List<String>> value = buildLabelMap(htmlStatement, ENGLISH);
+        return MetadataVersion3.builder()
+                .label(label)
+                .value(value)
+                .build();
+    }
+
+    public boolean isHspManifest(Manifest manifest) {
+        final Optional<Metadata> mType = manifest.getMetadata().stream().filter(m -> "Manifest Type".equals(m.getLabel())).findFirst();
+        boolean isHSP = false;
+        if (mType.isPresent()) {
+            if  ("HSP".equals(mType.get().getValue())) {
+                isHSP = true;
+            }
+        }
+        return isHSP;
+    }
+
+    public SeeAlso buildCanvasSeeAlso(Canvas c) {
+        final de.ubleipzig.iiifproducer.model.v2.SeeAlso canvasSeeAlso = c.getSeeAlso();
+        return SeeAlso.builder()
+                .format(canvasSeeAlso.getFormat())
+                .id(canvasSeeAlso.getId())
+                .type(DATASET)
+                .profile(canvasSeeAlso.getProfile())
+                .build();
     }
 }

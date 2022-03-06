@@ -16,6 +16,7 @@ package de.ubleipzig.iiifproducer.producer;/*
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -40,6 +41,14 @@ public class ProducerDriverTest extends AbstractProducerTest {
     }
 
     @Test
+    public void MultiVolumeWorkTest() {
+        String[] args = new String[]{"-v", "0000004595", "-x", testFileSource6, "-o",
+                "/tmp/" + pid + ".json", "-c", configFilePath};
+        runProducer(args);
+    }
+
+    @Test
+    @Disabled
     public void HSPTestV2() {
         String[] args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o",
                 "/tmp/" + pid + ".json", "-c", configFilePath, "-f", "v2"};

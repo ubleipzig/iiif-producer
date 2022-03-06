@@ -18,6 +18,7 @@
 
 package de.ubleipzig.iiifproducer.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -52,6 +53,8 @@ public final class ManifestSerializer {
         MAPPER.configure(WRITE_DATES_AS_TIMESTAMPS, false);
         MAPPER.configure(INDENT_OUTPUT, true);
         MAPPER.registerModule(new JavaTimeModule());
+        MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        MAPPER.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
         MAPPER.setDefaultPrettyPrinter(new DefaultPrettyPrinter()
                 .withArrayIndenter(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE)
                 .withObjectIndenter(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE));

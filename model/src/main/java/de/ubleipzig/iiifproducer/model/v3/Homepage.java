@@ -16,48 +16,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package de.ubleipzig.iiifproducer.model.v2;
+package de.ubleipzig.iiifproducer.model.v3;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import de.ubleipzig.iiif.vocabulary.SCEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
-/**
- * Sequence.
- *
- * @author christopher-johnson
- */
 @Builder
 @Setter
 @Getter
 @AllArgsConstructor
-@JsonPropertyOrder({"@id", "@type", "viewingHint", "canvases"})
-public class Sequence {
-
-    @JsonProperty
-    private List<Canvas> canvases;
-    @JsonProperty("@context")
-    private String context;
-    @JsonProperty("@id")
+@JsonPropertyOrder({"id", "type", "label", "format", "language"})
+public class Homepage {
+    @JsonProperty("format")
+    private String format;
+    @JsonProperty("id")
     private String id;
     @JsonProperty
-    private Object label;
-
-    @JsonProperty
-    private List<Object> rendering;
-    @JsonProperty
-    private String startCanvas;
-    @Builder.Default
-    @JsonProperty("@type")
-    private String type = SCEnum.Sequence.compactedIRI();
-    @JsonProperty
-    private String viewingDirection;
-    @JsonProperty
-    private String viewingHint;
+    private Map<String, List<String>> label;
+    @JsonProperty("type")
+    private String type;
+    @JsonProperty("language")
+    private List<String> language;
 }
