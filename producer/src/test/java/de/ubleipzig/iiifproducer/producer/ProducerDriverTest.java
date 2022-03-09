@@ -1,4 +1,4 @@
-package de.ubleipzig.iiifproducer.producer;/*
+/*
  * IIIFProducer
  * Copyright (C) 2017 Leipzig University Library <info@ub.uni-leipzig.de>
  *
@@ -15,6 +15,7 @@ package de.ubleipzig.iiifproducer.producer;/*
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+package de.ubleipzig.iiifproducer.producer;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,7 @@ public class ProducerDriverTest extends AbstractProducerTest {
     }
 
     @Test
+    @Disabled
     public void HSPTest() {
         String[] args = new String[]{"-v", "0000004595", "-x", testFileSource1, "-o",
                 "/tmp/" + pid + ".json", "-c", configFilePath};
@@ -41,6 +43,7 @@ public class ProducerDriverTest extends AbstractProducerTest {
     }
 
     @Test
+    @Disabled
     public void MultiVolumeWorkTest() {
         String[] args = new String[]{"-v", "0000004595", "-x", testFileSource6, "-o",
                 "/tmp/" + pid + ".json", "-c", configFilePath};

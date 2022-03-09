@@ -85,8 +85,7 @@ public class ConverterVersion3 {
                                 .type(IIIF_SERVICE_TYPE)
                                 .profile(IIIF_SERVICE_PROFILE)
                                 .build();
-                        final List<ServiceVersion3> services = new ArrayList<>();
-                        services.add(service);
+                        final List<ServiceVersion3> services = List.of(service);
 
                         //createBody
                         body.setService(services);
@@ -167,9 +166,7 @@ public class ConverterVersion3 {
                 .manifest(manifest).build();
 
         // build Contexts
-        final List<String> contexts = new ArrayList<>();
-        contexts.add(WEB_ANNOTATION_CONTEXT);
-        contexts.add(IIIF_VERSION3_CONTEXT);
+        final List<String> contexts = List.of(WEB_ANNOTATION_CONTEXT, IIIF_VERSION3_CONTEXT);
 
         // build id
         final String id = baseUrl + viewId + separator + manifestBase + ".json";

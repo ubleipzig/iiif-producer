@@ -19,7 +19,6 @@
 package de.ubleipzig.iiifproducer.converter;
 
 import de.ubleipzig.iiifproducer.model.Metadata;
-import de.ubleipzig.iiifproducer.model.v2.Canvas;
 import de.ubleipzig.iiifproducer.model.v2.Manifest;
 import de.ubleipzig.iiifproducer.model.v3.Homepage;
 import de.ubleipzig.iiifproducer.model.v3.MetadataVersion3;
@@ -131,7 +130,15 @@ public final class ConverterUtils {
         final String rightsString = String.join("<br/>", formattedLicenses);
         final Map<String, List<String>> label = buildLabelMap("Attribution", ENGLISH);
         final String attribution = manifest.getAttribution();
-        final String htmlStatement = "<div>" + attribution + "<br/>" + rightsString + "</div>";
+        String cleanAttribution;
+        // do not strip <br/> from domain constant attribution
+        if (!attribution.contains("Provided by Leipzig University Library")) {
+            cleanAttribution = attribution.replaceAll("<[^>]*>", "")
+                    .replaceAll("\n", "");
+        } else {
+            cleanAttribution = attribution;
+        }
+        final String htmlStatement = "<div>" + cleanAttribution + "<br/>" + rightsString + "</div>";
         final Map<String, List<String>> value = buildLabelMap(htmlStatement, ENGLISH);
         return MetadataVersion3.builder()
                 .label(label)
@@ -148,15 +155,5 @@ public final class ConverterUtils {
             }
         }
         return isHSP;
-    }
-
-    public SeeAlso buildCanvasSeeAlso(Canvas c) {
-        final de.ubleipzig.iiifproducer.model.v2.SeeAlso canvasSeeAlso = c.getSeeAlso();
-        return SeeAlso.builder()
-                .format(canvasSeeAlso.getFormat())
-                .id(canvasSeeAlso.getId())
-                .type(DATASET)
-                .profile(canvasSeeAlso.getProfile())
-                .build();
     }
 }
