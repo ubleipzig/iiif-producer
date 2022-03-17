@@ -223,7 +223,7 @@ public class ConverterVersion3 {
                 .id(id)
                 .items(canvases)
                 .label(manifestLabelMap)
-                .logo(logo)
+                .logo(!isHSP ? logo : null)
                 .metadata(finalMetadata)
                 .requiredStatement(requiredStatement)
                 .rights(rights)

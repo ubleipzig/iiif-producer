@@ -27,10 +27,6 @@
       ]
     }
   },
-  "logo" : {
-    "id" : "https://iiif.ub.uni-leipzig.de/ubl-logo.png",
-    "type" : "Image"
-  },
   "metadata" : [
     {
       "label" : {
