@@ -1,5 +1,6 @@
 rootProject.name = 'iiifproducer'
 include 'producer'
-include 'templates'
+include 'model'
 include 'xml-doc'
+include 'converter'
 

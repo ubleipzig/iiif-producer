@@ -1,0 +1,15 @@
+dependencies {
+    implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
+    implementation("de.ubleipzig:iiif.vocabulary:$iiifVocabularyVersion")
+    implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    testImplementation("org.mockito:mockito-core:$mockitoVersion")
+    testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
+}
+
+repositories {
+    mavenCentral()
+}

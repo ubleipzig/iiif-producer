@@ -18,10 +18,10 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
+import org.xmlbeam.annotation.XBRead;
+
 import java.util.List;
 import java.util.Optional;
-
-import org.xmlbeam.annotation.XBRead;
 
 /**
  * MetsData.
@@ -264,7 +264,7 @@ public interface MetsData {
     Optional<String> getOrderLabelForDiv(String div);
 
     /**
-     * @param id file id
+     * @param id      file id
      * @param fileGrp String USE attribute value of mets:fileGrp
      * @return Boolean
      */

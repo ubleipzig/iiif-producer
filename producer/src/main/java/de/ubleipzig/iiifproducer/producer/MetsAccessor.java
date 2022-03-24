@@ -19,10 +19,10 @@
 package de.ubleipzig.iiifproducer.producer;
 
 import de.ubleipzig.iiifproducer.doc.MetsData;
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
-import de.ubleipzig.iiifproducer.template.TemplateStructure;
-import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
+import de.ubleipzig.iiifproducer.model.Metadata;
+import de.ubleipzig.iiifproducer.model.v2.Manifest;
+import de.ubleipzig.iiifproducer.model.v2.Structure;
+import de.ubleipzig.iiifproducer.model.v2.TopStructure;
 
 import java.util.List;
 import java.util.Map;
@@ -35,55 +35,21 @@ import java.util.Map;
 public interface MetsAccessor {
 
     /**
-     * @param body TemplateManifest
+     * @return Map
      */
-    void setManifestLabel(TemplateManifest body);
+    static Map<String, List<MetsData.Xlink>> getXlinkMap(MetsData mets) {
+        return null;
+    }
 
     /**
-     * @param body TemplateManifest
+     * @return Metadata
      */
-    void setLicense(TemplateManifest body);
-
-
-    /**
-     * @param body TemplateManifest
-     */
-    void setAttribution(TemplateManifest body);
-
-    /**
-     * @param body TemplateManifest
-     */
-    void setLogo(TemplateManifest body);
-
-    /**
-     * @param body TemplateManifest
-     */
-    void setHandschriftMetadata(TemplateManifest body);
-
-    /**
-     * @param body TemplateManifest
-     */
-    void setHspCatalogMetadata(TemplateManifest body);
-
-    /**
-     * @param body TemplateManifest
-     */
-    void setMetadata(TemplateManifest body);
-
-    /**
-     * @return TemplateMetadata
-     */
-    TemplateMetadata getAnchorFileMetadata();
+    Metadata getAnchorFileMetadata();
 
     /**
      * @return String
      */
     String getAnchorFileLabel();
-
-    /**
-     * @return Map
-     */
-    Map<String, List<MetsData.Xlink>> getXlinkMap();
 
     /**
      * @param logical String
@@ -94,24 +60,23 @@ public interface MetsAccessor {
     /**
      * @return TemplateTopStructure
      */
-    TemplateTopStructure buildTopStructure();
+    TopStructure buildTopStructure();
 
     /**
      * @return List
      */
-    List<TemplateStructure> buildStructures();
+    List<Structure> buildStructures();
 
     /**
-     *
      * @param logicalType String
      * @return List
      */
-    List<TemplateMetadata> buildStructureMetadata(String logicalType);
+    List<Metadata> buildStructureMetadata(String logicalType);
 
     /**
      * @return boolean
      */
-    Boolean getCalalogType();
+    Boolean getCatalogType();
 
     /**
      * @return String
@@ -135,7 +100,7 @@ public interface MetsAccessor {
     String getOrderLabel(String div);
 
     /**
-     * @param div String
+     * @param div     String
      * @param fileGrp String
      * @return String
      */
@@ -152,4 +117,39 @@ public interface MetsAccessor {
      * @return String media type for file
      */
     String getFormatForFile(String fileId);
+
+    /**
+     * @param body Manifest
+     */
+    void setAttribution(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setHandschriftMetadata(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setHspCatalogMetadata(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setLicense(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setLogo(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setManifestLabel(Manifest body);
+
+    /**
+     * @param body Manifest
+     */
+    void setMetadata(Manifest body);
 }

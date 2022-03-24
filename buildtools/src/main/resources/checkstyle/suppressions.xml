@@ -3,12 +3,20 @@
         "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 <suppressions>
     <suppress checks="JavadocMethod" files="src[/\\]test[/\\]java"/>
+    <suppress checks="LineLength" files=".*\.java$"/>
     <suppress checks="JavadocPackage" files="src[/\\]test[/\\]java"/>
     <suppress checks="JavadocVariable" files="src[/\\]test[/\\]java"/>
     <suppress checks="JavadocType" files="src[/\\]test[/\\]java"/>
     <suppress checks="JavadocStyleCheck" files="src[/\\]test[/\\]java"/>
     <suppress checks="IndentationCheck" files=".*\.java$"/>
-    <suppress checks="MultipleStringLiterals" files="src[/\\]test[/\\]java"/>
     <suppress checks="MultipleVariableDeclarations" files="src[/\\]test[/\\]java"/>
+    <suppress checks="RightCurly" files=".*\.java$"/>
+    <suppress checks="JavadocMethod" files=".*\.java$"/>
+    <suppress checks="FinalLocalVariable" files=".*\.java$"/>
+    <suppress checks="FinalParameters" files=".*\.java$"/>
+    <suppress checks="AbbreviationAsWordInName" files=".*\.java$"/>
+    <suppress checks="ImportOrder" files=".*\.java$"/>
+    <suppress checks="AvoidStarImport" files=".*\.java$"/>
+    <suppress checks="MultipleStringLiterals" files=".*\.java$"/>
 </suppressions>
 

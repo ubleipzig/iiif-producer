@@ -18,33 +18,33 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static java.nio.file.Paths.get;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
-
+import de.ubleipzig.iiifproducer.model.Metadata;
+import de.ubleipzig.iiifproducer.model.v2.Manifest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static java.nio.file.Paths.get;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class AnchorFileTest {
 
-    private static Config config = new Config();
+    private static MetsAccessor mets;
 
     @BeforeAll
     static void setup() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
         final String sourceFile = path + "/xml-doc/src/test/resources/mets/BntItin_021340072.xml";
-        config.setXmlFile(sourceFile);
-        config.setOutputFile("/tmp/test.json");
-        config.setViewId("004285964");
-        config.setAnchorKey("Part of");
+        mets = MetsImpl.builder()
+                .anchorKey("Part of")
+                .xmlFile(sourceFile)
+                .mets()
+                .xlinkmap()
+                .build();
     }
 
     @Test
     void testGetAnchorFileMetadata() {
-        final MetsAccessor mets = new MetsImpl(config);
-        final TemplateMetadata metadata = mets.getAnchorFileMetadata();
+        final Metadata metadata = mets.getAnchorFileMetadata();
         assertEquals("Part of", metadata.getLabel());
         assertEquals(
                 "Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft; 1",
@@ -53,8 +53,7 @@ public class AnchorFileTest {
 
     @Test
     void testSetAnchorFileMetadata() {
-        final MetsAccessor mets = new MetsImpl(config);
-        final TemplateManifest manifest = new TemplateManifest();
+        final Manifest manifest = Manifest.builder().build();
         mets.setManifestLabel(manifest);
         mets.setMetadata(manifest);
     }

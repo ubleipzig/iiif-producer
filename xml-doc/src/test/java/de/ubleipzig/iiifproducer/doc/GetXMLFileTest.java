@@ -18,16 +18,16 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
+import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.util.Objects;
+
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMetsFromFile;
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMetsAnchor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.io.File;
-import java.util.Objects;
-
-import org.junit.jupiter.api.Test;
 
 public class GetXMLFileTest {
 

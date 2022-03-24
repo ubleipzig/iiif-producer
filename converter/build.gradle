@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
+    implementation("de.ubleipzig:iiif.vocabulary:$iiifVocabularyVersion")
+    implementation("org.apache.commons:commons-collections4:$commonsCollectionVersion")
+    implementation("org.apache.commons:commons-lang3:$commonsLangVersion")
+    implementation project(":model")
+    implementation project(":xml-doc")
+    implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+}
+
+test {
+    useJUnitPlatform()
+}

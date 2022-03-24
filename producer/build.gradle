@@ -1,21 +1,32 @@
 apply plugin: "application"
 
-mainClassName = "de.ubleipzig.iiifproducer.producer.IIIFProducerDriver"
+application {
+    mainClass = "de.ubleipzig.iiifproducer.producer.IIIFProducerDriver"
+}
+
 dependencies {
-    implementation("de.ubleipzig:image.metadata:$imageMetadataVersion")
+    implementation("info.picocli:picocli:$picocliVersion")
     implementation("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
     implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
-    implementation("javax.validation:validation-api:2.0.1.Final")
-    implementation project(":templates")
+    implementation project(":converter")
+    implementation project(":model")
     implementation project(":xml-doc")
     implementation("de.ubleipzig:iiif.vocabulary:$iiifVocabularyVersion")
     implementation("org.apache.commons:commons-rdf-api:$commonsRdfVersion")
     implementation("org.apache.commons:commons-rdf-simple:$commonsRdfVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("commons-io:commons-io:$commonsIoVersion")
-    implementation("commons-cli:commons-cli:$commonsCLIVersion")
+    implementation("org.yaml:snakeyaml:$snakeYamlVersion")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     testImplementation("org.mockito:mockito-core:$mockitoVersion")
-    testRuntimeClasspath("ch.qos.logback:logback-classic:$logbackVersion")
+    testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
+    testImplementation("uk.org.webcompere:system-stubs-jupiter:$systemStubsVersion")
+
+}
+
+repositories {
+    mavenCentral()
 }

@@ -18,17 +18,17 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
+import de.ubleipzig.iiifproducer.model.v2.Manifest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.Objects;
+import java.util.Optional;
+
+import static de.ubleipzig.iiifproducer.model.ManifestSerializer.serialize;
 import static java.lang.System.out;
 import static java.nio.file.Paths.get;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-
-import java.util.Optional;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 
 /**
  * SetNullableMetadataTest.
@@ -37,21 +37,28 @@ import org.junit.jupiter.api.Test;
  */
 public class SetNullableMetadataTest {
 
-    private static String sourceFile;
+    private static String xmlFile;
+    private static MetsAccessor mets;
+    private static IRIBuilder iriBuilder;
 
-    @BeforeAll
-    static void setup() {
-        sourceFile = SetNullableMetadataTest.class.getResource("/BlhDie_004285964.xml").getPath();
+    @BeforeEach
+    void setup() {
+        xmlFile = Objects.requireNonNull(
+                SetNullableMetadataTest.class.getResource("/BlhDie_004285964.xml")).getPath();
+        iriBuilder = IRIBuilder.builder()
+                .build();
+        mets = MetsImpl.builder()
+                .anchorKey("Part of")
+                .iriBuilder(iriBuilder)
+                .xmlFile(xmlFile)
+                .mets()
+                .xlinkmap()
+                .build();
     }
 
     @Test
     void testSetManuscriptMetadata() {
-        final Config config = new Config();
-        config.setXmlFile(sourceFile);
-        config.setOutputFile("/tmp/test.json");
-        config.setViewId("004285964");
-        final MetsAccessor mets = new MetsImpl(config);
-        final TemplateManifest body = new TemplateManifest();
+        final Manifest body = Manifest.builder().build();
         mets.setHandschriftMetadata(body);
         final Optional<String> json = serialize(body);
         assertTrue(json.isPresent());
@@ -60,12 +67,7 @@ public class SetNullableMetadataTest {
 
     @Test
     void testSetMetadata() {
-        final Config config = new Config();
-        config.setXmlFile(sourceFile);
-        config.setOutputFile("/tmp/test.json");
-        config.setViewId("004285964");
-        final MetsAccessor mets = new MetsImpl(config);
-        final TemplateManifest body = new TemplateManifest();
+        final Manifest body = Manifest.builder().build();
         mets.setMetadata(body);
         final Optional<String> json = serialize(body);
         assertTrue(json.isPresent());
@@ -75,13 +77,15 @@ public class SetNullableMetadataTest {
     @Test
     void testSetMetadataWithNotes() {
         final String path = get(".").toAbsolutePath().normalize().getParent().toString();
-        sourceFile = path + "/xml-doc/src/test/resources/mets/BntItin_021340072.xml";
-        final Config config = new Config();
-        config.setXmlFile(sourceFile);
-        config.setOutputFile("/tmp/test.json");
-        config.setViewId("004285964");
-        final MetsAccessor mets = new MetsImpl(config);
-        final TemplateManifest body = new TemplateManifest();
+        xmlFile = path + "/xml-doc/src/test/resources/mets/BntItin_021340072.xml";
+        final MetsAccessor mets = MetsImpl.builder()
+                .anchorKey("Part of")
+                .iriBuilder(iriBuilder)
+                .xmlFile(xmlFile)
+                .mets()
+                .xlinkmap()
+                .build();
+        final Manifest body = Manifest.builder().build();
         mets.setMetadata(body);
         final Optional<String> json = serialize(body);
         assertTrue(json.isPresent());

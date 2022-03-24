@@ -18,27 +18,17 @@
 
 package de.ubleipzig.iiifproducer.producer;
 
-import static de.ubleipzig.iiifproducer.template.ManifestSerializer.serialize;
-import static de.ubleipzig.iiifproducer.template.ManifestSerializer.writeToFile;
-import static java.io.File.separator;
-import static java.lang.String.format;
-import static org.slf4j.LoggerFactory.getLogger;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import de.ubleipzig.iiif.vocabulary.SC;
-import de.ubleipzig.iiifproducer.template.ImageServiceResponse;
-import de.ubleipzig.iiifproducer.template.TemplateCanvas;
-import de.ubleipzig.iiifproducer.template.TemplateImage;
-import de.ubleipzig.iiifproducer.template.TemplateManifest;
-import de.ubleipzig.iiifproducer.template.TemplateResource;
-import de.ubleipzig.iiifproducer.template.TemplateSeeAlso;
-import de.ubleipzig.iiifproducer.template.TemplateSequence;
-import de.ubleipzig.iiifproducer.template.TemplateService;
-import de.ubleipzig.iiifproducer.template.TemplateStructure;
-import de.ubleipzig.iiifproducer.template.TemplateStructureList;
-import de.ubleipzig.iiifproducer.template.TemplateTopStructure;
+import de.ubleipzig.iiifproducer.converter.ConverterVersion3;
+import de.ubleipzig.iiifproducer.model.ImageServiceResponse;
+import de.ubleipzig.iiifproducer.model.v2.*;
+import de.ubleipzig.iiifproducer.model.v3.ManifestVersion3;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.rdf.api.IRI;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,85 +36,107 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.apache.commons.rdf.api.IRI;
-import org.slf4j.Logger;
+import static de.ubleipzig.iiifproducer.model.ManifestSerializer.serialize;
+import static de.ubleipzig.iiifproducer.model.ManifestSerializer.writeToFile;
+import static java.io.File.separator;
+import static java.lang.String.format;
 
 /**
  * IIIFProducer.
  *
  * @author christopher-johnson
  */
-public class IIIFProducer implements ManifestBuilderProcess {
+@Slf4j
+@Builder
+@AllArgsConstructor
+public class IIIFProducer {
 
-    private static Logger logger = getLogger(IIIFProducer.class);
-    private final Config config;
     private static final ObjectMapper MAPPER = new ObjectMapper();
+    @Builder.Default
+    private String baseUrl = "https://iiif.ub.uni-leipzig.de/";
+    @Builder.Default
+    private String canvasContext = "/canvas";
+    @Builder.Default
+    private String defaultSequenceId = "/sequence/1";
+    @Builder.Default
+    private String dfgFileName = "presentation.xml";
+    @Builder.Default
+    private String format = "v3";
+    @Builder.Default
+    private String fulltextContext = "alto";
+    @Builder.Default
+    private String fulltextFileGrp = "FULLTEXT";
+    private IRIBuilder iriBuilder;
+    @Builder.Default
+    private String katalogUrl = "https://katalog.ub.uni-leipzig.de/urn/";
+    @Builder.Default
+    private String manifestFileName = "manifest.json";
+    private MetsAccessor mets;
+    private String outputFile;
+    private String resourceContext;
+    private String viewId;
+    @Builder.Default
+    private String viewerUrl = "https://digital.ub.uni-leipzig.de/object/viewid/";
+    private String xmlFile;
 
     /**
-     * IIIFProducer Class.
+     * mapServiceResponse.
+     *
+     * @param res String
+     * @return ImageServiceResponse
      */
-    IIIFProducer(final Config config) {
-        this.config = config;
+    public static ImageServiceResponse mapServiceResponse(final InputStream res) {
+        try {
+            return MAPPER.readValue(res, new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
-    @Override
     public void run() {
-        logger.info("Running IIIF producer...");
+        log.info("Running IIIF producer...");
         buildManifest();
     }
 
-    @Override
-    public void setContext(final TemplateManifest body) {
-        body.setContext(SC.CONTEXT);
-    }
-
-    @Override
-    public void setId(final TemplateManifest body) {
-        final String resourceContext = config.getResourceContext();
-        body.setId(resourceContext + separator + config.getManifestFilename());
-    }
-
-    @Override
-    public void setRelated(final TemplateManifest body, final String urn, final String viewId,
+    public void setRelated(final Manifest body, final String urn, final String viewIdFormatted,
                            final boolean isHspCatalog) {
         final ArrayList<String> related = new ArrayList<>();
         if (!isHspCatalog) {
-            logger.info("Kein HSP-Manifest");
-            related.add(config.getKatalogUrl() + urn);
-            related.add(config.getViewerUrl() + viewId);
+            log.info("Kein HSP-Manifest");
+            related.add(katalogUrl + urn);
+            related.add(viewerUrl + viewIdFormatted);
         } else {
-            logger.info("Ist HSP-Manifest");
+            log.info("Ist HSP-Manifest");
         }
-        related.add(config.getBaseUrl() + viewId + separator + config.getManifestFilename());
+        related.add(baseUrl + viewIdFormatted + separator + manifestFileName);
         if (!isHspCatalog) {
-            related.add(config.getBaseUrl() + viewId + separator + config.getDfgFilename());
+            related.add(baseUrl + viewIdFormatted + separator + dfgFileName);
         }
         body.setRelated(related);
     }
 
     /**
-     * @param canvas TemplateCanvas
-     * @param mets MetsAccessor
-     * @param div String
+     * @param canvas Canvas
+     * @param div    String
      * @param viewId String
      */
-    public void setCanvasSeeAlso(final TemplateCanvas canvas, final MetsAccessor mets, final String div,
+    public void setCanvasSeeAlso(final Canvas canvas, final String div,
                                  final String viewId) {
-        final String fileId = mets.getFile(div, config.getFulltextFileGrp());
+        final String fileId = mets.getFile(div, fulltextFileGrp);
         if (fileId != null && !fileId.isBlank()) {
-            final TemplateSeeAlso seeAlso = new TemplateSeeAlso();
+            final SeeAlso seeAlso = SeeAlso.builder().build();
             final String href = mets.getHref(fileId);
             final String format = mets.getFormatForFile(fileId);
 
             final String fileName = new File(href).getName();
 
-            final String fulltextContext = config.getFulltextContext() == null
-                    || config.getFulltextContext().isBlank() ? "" : (config.getFulltextContext() + separator);
+            final String fulltextContextFull = fulltextContext == null || fulltextContext.isEmpty()
+                    ? "" : (fulltextContext + separator);
 
-            seeAlso.setId(config.getBaseUrl() + viewId + separator + fulltextContext + fileName);
+            seeAlso.setId(baseUrl + viewId + separator + fulltextContextFull + fileName);
             // application/alto+xml vs application/xml+alto: https://github.com/dbmdz/mirador-textoverlay/issues/167
             seeAlso.setFormat(format);
             if ("application/alto+xml".equals(format)) {
@@ -135,20 +147,20 @@ public class IIIFProducer implements ManifestBuilderProcess {
         }
     }
 
-    @Override
-    public List<TemplateSequence> addCanvasesToSequence(final List<TemplateCanvas> canvases) {
-        final String resourceContext = config.getResourceContext();
-        final List<TemplateSequence> sequence = new ArrayList<>();
-        sequence.add(new TemplateSequence(resourceContext + config.getDefaultSequenceId(), canvases));
+    public List<Sequence> addCanvasesToSequence(final List<Canvas> canvases) {
+        final List<Sequence> sequence = new ArrayList<>();
+        sequence.add(Sequence.builder()
+                .id(resourceContext + defaultSequenceId)
+                .canvases(canvases)
+                .build());
         return sequence;
     }
 
-    TemplateManifest setStructures(final TemplateTopStructure top, final TemplateManifest manifest, final
-    MetsAccessor mets) {
+    Manifest setStructures(final TopStructure top, final Manifest manifest) {
         if (top.getRanges().size() > 0) {
-            final List<TemplateStructure> subStructures = mets.buildStructures();
+            final List<Structure> subStructures = mets.buildStructures();
             if (subStructures.size() > 0) {
-                final TemplateStructureList list = new TemplateStructureList(top, subStructures);
+                final StructureList list = StructureList.builder().top(top).structures(subStructures).build();
                 manifest.setStructures(list.getStructureList());
                 return manifest;
             }
@@ -156,23 +168,21 @@ public class IIIFProducer implements ManifestBuilderProcess {
         return manifest;
     }
 
-    @Override
     public void buildManifest() {
 
-        final TemplateManifest manifest = new TemplateManifest();
-        setContext(manifest);
-        setId(manifest);
+        final String resourceContext = baseUrl + viewId;
 
-        final MetsAccessor mets = new MetsImpl(this.config);
-        final IRIBuilder iriBuilder = new IRIBuilder(this.config);
-        final Integer viewIdInput = Integer.valueOf(config.getViewId());
-        final String viewId = format("%010d", viewIdInput);
-        final String resourceContext = config.getResourceContext();
+        final Manifest manifest = Manifest.builder()
+                .context(SC.CONTEXT)
+                .id(resourceContext + separator + manifestFileName)
+                .build();
+
+        final Integer viewIdInput = Integer.valueOf(viewId);
+        final String viewIdFormatted = format("%010d", viewIdInput);
         final String imageServiceContext = iriBuilder.buildImageServiceContext(viewId);
-        final String canvasContext = config.getCanvasContext();
         final String urn = mets.getUrnReference();
-        final Boolean isCatalog = mets.getCalalogType();
-        setRelated(manifest, urn, viewId, isCatalog);
+        final Boolean isCatalog = mets.getCatalogType();
+        setRelated(manifest, urn, viewIdFormatted, isCatalog);
 
         mets.setManifestLabel(manifest);
         // TODO HSP-Spezifika - ggf bereits aus dem METS/MODS
@@ -189,21 +199,23 @@ public class IIIFProducer implements ManifestBuilderProcess {
             mets.setMetadata(manifest);
         }
 
-        final List<TemplateCanvas> canvases = new ArrayList<>();
+        final List<Canvas> canvases = new ArrayList<>();
         final AtomicInteger atomicInteger = new AtomicInteger(1);
         final List<String> divs = mets.getPhysical();
         for (String div : divs) {
             final String label = mets.getOrderLabel(div);
 
-            final TemplateCanvas canvas = new TemplateCanvas();
-            canvas.setCanvasLabel(label);
+            final Canvas canvas = Canvas.builder()
+                    .label(label)
+                    .build();
 
             //buildServiceIRI
             final String resourceFileId = format("%08d", atomicInteger.getAndIncrement());
             final IRI serviceIRI = iriBuilder.buildServiceIRI(imageServiceContext, resourceFileId);
 
-            final TemplateResource resource = new TemplateResource();
-            resource.setResourceLabel(label);
+            final Body resource = Body.builder()
+                    .label(label)
+                    .build();
 
             //getDimensionsFromImageService
             final InputStream is;
@@ -215,10 +227,10 @@ public class IIIFProducer implements ManifestBuilderProcess {
             final ImageServiceResponse ir = mapServiceResponse(is);
             final Integer height = ir.getHeight();
             final Integer width = ir.getWidth();
-            canvas.setCanvasWidth(width);
-            canvas.setCanvasHeight(height);
-            resource.setResourceWidth(width);
-            resource.setResourceHeight(height);
+            canvas.setWidth(width);
+            canvas.setHeight(height);
+            resource.setWidth(width);
+            resource.setHeight(height);
 
             //canvasId = resourceId
             final String canvasIdString = resourceContext + canvasContext + separator + resourceFileId;
@@ -227,60 +239,53 @@ public class IIIFProducer implements ManifestBuilderProcess {
             //cast canvas as IRI (failsafe)
             final IRI canvasIri = iriBuilder.buildCanvasIRI(canvasIdString);
             //set Canvas Id
-            canvas.setCanvasId(canvasIri.getIRIString());
+            canvas.setId(canvasIri.getIRIString());
             //cast resource as IRI (failsafe)
             final IRI resourceIri = iriBuilder.buildResourceIRI(resourceIdString);
             //set resourceID
-            resource.setResourceId(resourceIri.getIRIString());
-            resource.setService(new TemplateService(serviceIRI.getIRIString()));
+            resource.setId(resourceIri.getIRIString());
+            resource.setService(Service.builder().id(serviceIRI.getIRIString()).build());
 
             //set Annotation
-            final TemplateImage image = new TemplateImage();
             final String annotationId = iriBuilder.buildAnnotationId();
-            image.setId(annotationId);
-            image.setResource(resource);
-            image.setTarget(canvas.getCanvasId());
+            final PaintingAnnotation image = PaintingAnnotation.builder()
+                    .id(annotationId)
+                    .resource(resource)
+                    .on(canvas.getId())
+                    .build();
 
-            final List<TemplateImage> images = new ArrayList<>();
+            final List<PaintingAnnotation> images = new ArrayList<>();
             images.add(image);
 
-            canvas.setCanvasImages(images);
+            canvas.setImages(images);
 
-            setCanvasSeeAlso(canvas, mets, div, viewId);
+            setCanvasSeeAlso(canvas, div, viewIdFormatted);
 
             canvases.add(canvas);
         }
 
-        final List<TemplateSequence> sequence = addCanvasesToSequence(canvases);
+        final List<Sequence> sequence = addCanvasesToSequence(canvases);
         manifest.setSequences(sequence);
 
-        final TemplateTopStructure top = mets.buildTopStructure();
-        final TemplateManifest structManifest;
-        structManifest = setStructures(top, manifest, mets);
+        final TopStructure top = mets.buildTopStructure();
+        final Manifest manifestVersion2;
+        manifestVersion2 = setStructures(top, manifest);
 
-        logger.info("Builder Process Complete, Serializing to Json ...");
-        final Optional<String> json = serialize(structManifest);
-        final String output = json.orElse(null);
-        final String outputFile = config.getOutputFile();
-        final File outfile = new File(outputFile);
-        logger.info("Writing file to {}", outputFile);
-        writeToFile(output, outfile);
-        logger.debug("Manifest Output: {}", output);
-    }
-
-    /**
-     * mapServiceResponse.
-     *
-     * @param res String
-     * @return ImageServiceResponse
-     */
-    public static ImageServiceResponse mapServiceResponse(final InputStream res) {
-        try {
-            return MAPPER.readValue(res, new TypeReference<ImageServiceResponse>() {
-            });
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
+        String manifestOutput;
+        if ("v3".equals(format)) {
+            ConverterVersion3 reserializerVersion3 = ConverterVersion3.builder()
+                    .manifest(manifestVersion2)
+                    .build();
+            ManifestVersion3 manifestVersion3 = reserializerVersion3.execute();
+            manifestOutput = serialize(manifestVersion3).orElse(null);
+        } else {
+            manifestOutput = serialize(manifestVersion2).orElse(null);
         }
+        log.info("Builder Process Complete, Serializing to Json ...");
+        final File outfile = new File(outputFile);
+        log.info("Writing file to {}", outputFile);
+        writeToFile(manifestOutput, outfile);
+        log.debug("Manifest Output: {}", manifestOutput);
     }
 }
 

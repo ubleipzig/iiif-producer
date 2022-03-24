@@ -18,14 +18,14 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
+import org.slf4j.Logger;
+
+import java.io.File;
+
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMetsFromFile;
 import static java.io.File.separator;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.slf4j.LoggerFactory.getLogger;
-
-import java.io.File;
-
-import org.slf4j.Logger;
 
 /**
  * ResourceLoader.

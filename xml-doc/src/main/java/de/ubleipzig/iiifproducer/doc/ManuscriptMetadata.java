@@ -18,37 +18,23 @@
 
 package de.ubleipzig.iiifproducer.doc;
 
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.HANDSHRIFT_TYPE;
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getCollection;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDateCreated;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getDimension;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getExtent;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLanguageDescription;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLocation;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getLogicalType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManifestTitle;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getManuscriptIdByType;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getMaterial;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getRecordIdentifier;
-import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getSubtitle;
-import static org.slf4j.LoggerFactory.getLogger;
-
-import de.ubleipzig.iiifproducer.template.TemplateMetadata;
+import de.ubleipzig.iiifproducer.model.Metadata;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.HANDSHRIFT_TYPE;
+import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
 
 /**
  * ManuscriptMetadata.
  *
  * @author christopher-johnson
  */
+@Slf4j
 public class ManuscriptMetadata {
-
-    private static Logger logger = getLogger(ManuscriptMetadata.class);
 
     private MetsData mets;
 
@@ -62,25 +48,25 @@ public class ManuscriptMetadata {
     /**
      * @return List
      */
-    public List<TemplateMetadata> getInfo() {
+    public List<Metadata> getInfo() {
 
-        final List<TemplateMetadata> meta = new ArrayList<>();
-        meta.add(new TemplateMetadata("Titel (aus Signatur)", getManifestTitle(mets)));
-        meta.add(new TemplateMetadata("Objekttitel", getSubtitle(mets)));
-        meta.add(new TemplateMetadata("Collection", getCollection(mets)));
-        meta.add(new TemplateMetadata("Medium", HANDSHRIFT_TYPE));
-        meta.add(new TemplateMetadata("Beschreibstoff", getMaterial(mets)));
-        meta.add(new TemplateMetadata("Umfang", getExtent(mets)));
-        meta.add(new TemplateMetadata("Abmessungen", getDimension(mets)));
-        meta.add(new TemplateMetadata("Sprache", getLanguageDescription(mets)));
-        meta.add(new TemplateMetadata("Lokalisierung", getLocation(mets)));
-        meta.add(new TemplateMetadata("Manuscripta Mediaevalia", getRecordIdentifier(mets)));
-        meta.add(new TemplateMetadata("Datierung", getDateCreated(mets)));
-        meta.add(new TemplateMetadata("Kitodo", getManuscriptIdByType(mets, "goobi")));
-        meta.add(new TemplateMetadata("URN", getManuscriptIdByType(mets, "urn")));
-        meta.add(new TemplateMetadata("Signatur", getManuscriptIdByType(mets, "shelfmark")));
-        meta.add(new TemplateMetadata("Manifest Type", getLogicalType(mets, METS_PARENT_LOGICAL_ID)));
-        logger.debug("Manuscript metadata Added");
+        final List<Metadata> meta = new ArrayList<>();
+        meta.add(Metadata.builder().label("Titel (aus Signatur)").value(getManifestTitle(mets)).build());
+        meta.add(Metadata.builder().label("Objekttitel").value(getSubtitle(mets)).build());
+        meta.add(Metadata.builder().label("Collection").value(getCollection(mets)).build());
+        meta.add(Metadata.builder().label("Medium").value(HANDSHRIFT_TYPE).build());
+        meta.add(Metadata.builder().label("Beschreibstoff").value(getMaterial(mets)).build());
+        meta.add(Metadata.builder().label("Umfang").value(getExtent(mets)).build());
+        meta.add(Metadata.builder().label("Abmessungen").value(getDimension(mets)).build());
+        meta.add(Metadata.builder().label("Sprache").value(getLanguageDescription(mets)).build());
+        meta.add(Metadata.builder().label("Lokalisierung").value(getLocation(mets)).build());
+        meta.add(Metadata.builder().label("Manuscripta Mediaevalia").value(getRecordIdentifier(mets)).build());
+        meta.add(Metadata.builder().label("Datierung").value(getDateCreated(mets)).build());
+        meta.add(Metadata.builder().label("Kitodo").value(getManuscriptIdByType(mets, "goobi")).build());
+        meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, "urn")).build());
+        meta.add(Metadata.builder().label("Signatur").value(getManuscriptIdByType(mets, "shelfmark")).build());
+        meta.add(Metadata.builder().label("Manifest Type").value(getLogicalType(mets, METS_PARENT_LOGICAL_ID)).build());
+        log.debug("Manuscript metadata Added");
         return meta;
     }
 }

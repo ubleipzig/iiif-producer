@@ -3,6 +3,8 @@ baseUrl: "https://iiif.ub.uni-leipzig.de/"
 viewerUrl: "https://digital.ub.uni-leipzig.de/object/viewid/"
 katalogUrl: "https://katalog.ub.uni-leipzig.de/urn/"
 
+dfgFilename: "presentation.xml"
+
 isUBLImageService: true
 imageServiceBaseUrl: "https://iiif.ub.uni-leipzig.de/iiif"
 imageServiceImageDirPrefix: "/j2k/"

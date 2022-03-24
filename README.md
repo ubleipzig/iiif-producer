@@ -3,71 +3,66 @@
 [![Build Status](https://travis-ci.org/ubleipzig/iiif-producer.png?branch=master)](https://travis-ci.org/ubleipzig/iiif-producer)
 [![codecov](https://codecov.io/gh/ubleipzig/iiif-producer/branch/master/graph/badge.svg)](https://codecov.io/gh/ubleipzig/iiif-producer)
 
-A CLI tool that generates IIIF Presentation 2.1 Manifests from METS/MODS (produced by Kitodo)
+A CLI tool that generates IIIF Presentation API v2 and v3 Manifests from METS/MODS (produced by Kitodo)
 
 ## Build
+
 `$ ./gradlew clean build`
 
 ## Test
+
 `$ gradle test`
 
 ## Install
+
 * find distribution archive in `producer/build/distributions`
 * extract archive
+
 ```bash
 $ cd producer-{$version}
 $ chmod +x bin/producer
 ```
+
 ## Configuration
+
 See `etc/producer-config.yml`
 
 ## Usage
+
 ```bash
-bin/producer -x xmlFile -o outputfile -v view_identifier -c configFile
+bin/producer -x xmlFile -o outputfile -v view_identifier -c configFile -f v2
 ```
 
-| Argument | Description | Example     |
-| -------- | ----------- | ----------- |
-| -x | A METS/MODS xml file path | /MS_187.xml |
-| -o | An JSON-LD output file path | /output.json |
-| -v | The name of the IIIF viewer identifer | 0004285964 |
-| -c, --config | a yaml configuration File | etc/producer-config.yml |
+| Argument     | Description                           | Example                 | Default                 |
+|--------------|---------------------------------------|---------------------------|-------------------------|
+| -x           | A METS/MODS xml file path             | /MS_187.xml               |                         |
+| -o           | An JSON-LD output file path           | /output.json              | /tmp/output.json       |
+| -v           | The name of the IIIF viewer identifer | 0004285964                |                         |
+| -c, --config | a yaml configuration File             | etc/producer-config.yml    | etc/producer-config.yml |
+| -f, --format | a Presentation API version format     | v2                        | v3                      |
 
 ## Images
+
 The images must already be present on the image server consistent the semantics of the service URL builder.
 
 Example: `https://iiif.ub.uni-leipzig.de/iiif/j2k/{$viewId[0-4]}/{$viewId[5-8]}/{$viewId[0-10]}/{imageIndex[0-8]}.jpx`
 
 ## Java
+
 * This requires Java 8 or higher
 
 ## Local Testing
 
-* change configuration settings
+If using IntelliJ, enable the built-in webserver (requires the PHP plugin).  See Preferences -> Build,Execution,Deployment -> Debugger.
 
- ```yaml
- isUBLImageService: false
- imageServiceBaseUrl: "http://localhost:5000/iiif/"
- imageServiceFileExtension: ".tif"
- ```
-```bash
-$ cp {$imageSourceDir} /mnt/serialization/binaries/{$viewId}
-$ docker-compose up
+Install Mirador 3 
 ```
-A Mirador instance is available at 
-`http://localhost:9000`
-
-The image service URI defaults to:
- * `http://localhost:5000/iiif/{viewId}/{file name.tif}`
-
-* If your package images are not pyramidal tifs, then run these commands in the image directory:
-```bash
-$ mogrify -define tiff:tile-geometry=256x256 -depth 8 -format ptif *.tif
-$ rm *.tif
-$ rename 's/.ptif$/.tif/' *.ptif
+npm install mirador
 ```
-* Note: generated manifests can published to `/mnt/http-server`
-```bash
-$ bin/producer -x xmlFile -i /mnt/serialization/binaries/{$imageSoureDir} -o /mnt/http-server/outputfile -v {$imageSoureDir} -c configFile [-s]
-``` 
-The manifest URI will be `http://localhost:3000/{$your_outputfile.jsonld}`
+Start Mirador
+```
+npm start
+```
+
+Add local manifest to catalogue e.g. 
+`http://localhost:63342/iiif-producer/converter/src/test/resources/HSP.json`

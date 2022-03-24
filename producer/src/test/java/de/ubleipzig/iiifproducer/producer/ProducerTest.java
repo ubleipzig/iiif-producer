@@ -20,6 +20,8 @@ package de.ubleipzig.iiifproducer.producer;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 /**
  * ProducerTest.
  *
@@ -29,13 +31,19 @@ class ProducerTest {
 
     @Test
     void testApp() {
-        final String sourceFile = ProducerTest.class.getResource("/BlhDie_004285964.xml").getPath();
+        final String xmlFile = Objects.requireNonNull(
+                ProducerTest.class.getResource("/BlhDie_004285964.xml")).getPath();
 
-        final Config config = new Config();
-        config.setXmlFile(sourceFile);
-        config.setOutputFile("/tmp/test.json");
-        config.setViewId("004285964");
-        new IIIFProducer(config);
+        final MetsAccessor mets = MetsImpl.builder()
+                .xmlFile(xmlFile)
+                .mets()
+                .xlinkmap()
+                .build();
+        final IIIFProducer producer = IIIFProducer.builder()
+                .mets(mets)
+                .outputFile("/tmp/test.json")
+                .viewId("004285964")
+                .build();
     }
 }
 
