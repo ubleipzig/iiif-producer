@@ -70,8 +70,6 @@ public class IIIFProducer {
     private String fulltextFileGrp = "FULLTEXT";
     private IRIBuilder iriBuilder;
     @Builder.Default
-    private String katalogUrl = "https://katalog.ub.uni-leipzig.de/urn/";
-    @Builder.Default
     private String manifestFileName = "manifest.json";
     private MetsAccessor mets;
     private String outputFile;
@@ -105,11 +103,14 @@ public class IIIFProducer {
                            final boolean isHspCatalog) {
         final ArrayList<String> related = new ArrayList<>();
         if (!isHspCatalog) {
-            log.info("Kein HSP-Manifest");
-            related.add(katalogUrl + urn);
+            log.info("Not a Handschriftenportal manifest - add catalog, viewer references");
+            String catalogReference = mets.getCatalogReference();
+            if (catalogReference != null && catalogReference.length() > 0) {
+                related.add(catalogReference);
+            }
             related.add(viewerUrl + viewIdFormatted);
         } else {
-            log.info("Ist HSP-Manifest");
+            log.info("Not a Handschriftenportal manifest - skip catalog, viewer references");
         }
         related.add(baseUrl + viewIdFormatted + separator + manifestFileName);
         if (!isHspCatalog) {

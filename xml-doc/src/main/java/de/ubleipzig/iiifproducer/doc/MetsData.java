@@ -202,6 +202,9 @@ public interface MetsData {
     @XBRead("//*[local-name()='shelfLocator']")
     Optional<String> getCallNumber();
 
+    @XBRead("//*[local-name()='links']/*[local-name()='reference']")
+    Optional<String> getCatalogReference();
+
     /**
      * @return String
      */

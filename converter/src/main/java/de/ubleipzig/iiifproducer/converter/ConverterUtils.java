@@ -65,25 +65,17 @@ public final class ConverterUtils {
     }
 
 
-    public List<Homepage> buildHomepages(final String viewId, final String urn, boolean isHSP) {
+    public List<Homepage> buildHomepages(List<String> related) {
         final ArrayList<Homepage> homepages = new ArrayList<>();
-        String katalogId = katalogUrl + urn;
-        String viewerId = viewerUrl + viewId;
-        if (!isHSP) {
-            if (urn != null) {
-                final Homepage katalogReference = Homepage.builder()
-                        .id(katalogId)
+        for (String rel : related) {
+            if (!rel.endsWith(".json") && !rel.endsWith(".xml")) {
+                final Homepage homepage = Homepage.builder()
+                        .id(rel)
                         .format("text/html")
                         .type(TEXT)
                         .build();
-                homepages.add(katalogReference);
+                homepages.add(homepage);
             }
-            final Homepage viewerReference = Homepage.builder()
-                    .id(viewerId)
-                    .format("text/html")
-                    .type(TEXT)
-                    .build();
-            homepages.add(viewerReference);
         }
         return homepages;
     }

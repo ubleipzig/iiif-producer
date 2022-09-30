@@ -210,7 +210,7 @@ public class ConverterVersion3 {
 
         //build Homepages
         boolean isHSP = converterUtils.isHspManifest(manifest);
-        final List<Homepage> homepages = converterUtils.buildHomepages(viewId, finalURN, isHSP);
+        final List<Homepage> homepages = converterUtils.buildHomepages(related);
 
         //build manifest label
         final String manifestLabel = manifest.getLabel();

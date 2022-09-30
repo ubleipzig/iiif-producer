@@ -89,6 +89,11 @@ public interface MetsAccessor {
     String getUrnReference();
 
     /**
+     * @return String
+     */
+    String getCatalogReference();
+
+    /**
      * @return List
      */
     List<String> getPhysical();
