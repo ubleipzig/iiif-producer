@@ -1,140 +1,210 @@
-<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd">  
-  <mets:metsHdr CREATEDATE="2022-09-26T15:17:25.768802"> 
-      <mets:agent OTHERTYPE="SOFTWARE" ROLE="CREATOR" TYPE="OTHER"> 
-         <mets:name>Heisenberg</mets:name>  
-         <mets:note>Java based program</mets:note> 
-      </mets:agent> 
-  </mets:metsHdr>  
-  <mets:dmdSec ID="DMDLOG_0000"> 
-      <mets:mdWrap MDTYPE="MODS"> 
-         <mets:xmlData> 
-            <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 https://www.loc.gov/standards/mods/v3/mods-3-7.xsd">  
-               <mods:identifier type="uri">https://kalliope-verbund.info/DE-611-HS-3476320</mods:identifier>  
-               <mods:recordInfo> 
-                  <mods:recordIdentifier source="DE-611">DE-611-HS-3476320</mods:recordIdentifier>  
-                  <mods:recordCreationDate encoding="iso8601">20190405</mods:recordCreationDate>  
-                  <mods:recordChangeDate encoding="iso8601">20190405</mods:recordChangeDate>  
-                  <mods:recordChangeDate encoding="w3cdtf">2022-04-01T23:46:25+01:00</mods:recordChangeDate>  
-                  <mods:recordContentSource authority="German ISIL- and Library Codes Agency" authorityURI="http://ld.zdb-services.de/resource/organisations/" valueURI="http://ld.zdb-services.de/resource/organisations/DE-2344">Archiv der Max-Planck-Gesellschaft</mods:recordContentSource>  
-                  <mods:languageOfCataloging> 
-                     <mods:languageTerm authority="iso639-2b" type="code" authorityURI="http://id.loc.gov/vocabulary/iso639-2/" valueURI="http://id.loc.gov/vocabulary/iso639-2/ger">ger</mods:languageTerm>  
-                     <mods:languageTerm type="text" lang="ger">Deutsch</mods:languageTerm> 
-                  </mods:languageOfCataloging> 
-               </mods:recordInfo>  
-               <mods:relatedItem type="host"> 
-                  <mods:recordInfo> 
-                     <mods:recordIdentifier source="DE-611">DE-611-BF-74224</mods:recordIdentifier> 
-                  </mods:recordInfo>  
-                  <mods:identifier type="uri">https://kalliope-verbund.info/DE-611-BF-74224</mods:identifier>  
-                  <mods:titleInfo> 
-                     <mods:title>11. IV. Institutionen, 1. Korrespondenz: Afro-Asiatische Studenten-Union</mods:title> 
-                  </mods:titleInfo> 
-               </mods:relatedItem>  
-               <mods:relatedItem type="series"> 
-                  <mods:recordInfo> 
-                     <mods:recordIdentifier source="DE-611">DE-611-BF-73161</mods:recordIdentifier> 
-                  </mods:recordInfo>  
-                  <mods:identifier type="uri">https://kalliope-verbund.info/DE-611-BF-73161</mods:identifier>  
-                  <mods:titleInfo> 
-                     <mods:title>Nachlass Werner Heisenberg</mods:title> 
-                  </mods:titleInfo> 
-               </mods:relatedItem>  
-               <mods:typeOfResource collection="yes">text</mods:typeOfResource>  
-               <mods:name type="personal" authority="DE-588" authorityURI="https://d-nb.info/gnd/" valueURI="https://d-nb.info/gnd/118548670"> 
-                  <mods:namePart>Heisenberg, Werner (1901-1976)</mods:namePart>  
-                  <mods:role> 
-                     <mods:roleTerm authority="MARC Code List for Relators Scheme" authorityURI="http://id.loc.gov/vocabulary/relators/" type="code" lang="eng" valueURI="http://id.loc.gov/vocabulary/relators/cre">cre</mods:roleTerm>  
-                     <mods:roleTerm type="text" lang="ger">Verfasser</mods:roleTerm> 
-                  </mods:role> 
-               </mods:name>  
-               <mods:name type="personal" authority="DE-588" authorityURI="https://d-nb.info/gnd/" valueURI="https://d-nb.info/gnd/171481623"> 
-                  <mods:namePart>Heise, Karl Fritz (1925-2004)</mods:namePart>  
-                  <mods:role> 
-                     <mods:roleTerm authority="MARC Code List for Relators Scheme" authorityURI="http://id.loc.gov/vocabulary/relators/" type="code" lang="eng" valueURI="http://id.loc.gov/vocabulary/relators/rcp">rcp</mods:roleTerm>  
-                     <mods:roleTerm type="text" lang="ger">Adressat</mods:roleTerm> 
-                  </mods:role> 
-               </mods:name>  
-               <mods:name type="corporate" authority="DE-588" authorityURI="https://d-nb.info/gnd/" valueURI="https://d-nb.info/gnd/5235912-8"> 
-                  <mods:namePart>Afro-Asiatische Studenten-Union (1957-1959)</mods:namePart>  
-                  <mods:role> 
-                     <mods:roleTerm type="text" lang="ger">Behandelt</mods:roleTerm> 
-                  </mods:role> 
-               </mods:name>  
-               <mods:genre lang="ger" authorityURI="https://d-nb.info/gnd/" valueURI="https://d-nb.info/gnd/4008240-4" authority="DE-588">Brief</mods:genre>  
-               <mods:titleInfo> 
-                  <mods:title>Brief von Werner Heisenberg an Karl Fritz Heise</mods:title> 
-               </mods:titleInfo>  
-               <mods:abstract type="content">Dank für Auskunft über die Afro-Asiatische Studenten-Union. Heisenberg wird Teil des Freundeskreises ohne aktive Mitarbeit.</mods:abstract>  
-               <mods:originInfo> 
-                  <mods:dateCreated encoding="w3cdtf" keyDate="yes" point="start">1962-11-15</mods:dateCreated>  
-                  <mods:dateCreated>15.11.1962</mods:dateCreated>  
-                  <mods:place> 
-                     <mods:placeTerm type="text">o.O.</mods:placeTerm> 
-                  </mods:place> 
-               </mods:originInfo>  
-               <mods:language> 
-                  <mods:languageTerm authority="iso639-2b" authorityURI="http://id.loc.gov/vocabulary/iso639-2/" valueURI="http://id.loc.gov/vocabulary/iso639-2/ger" type="code">ger</mods:languageTerm>  
-                  <mods:languageTerm type="text" lang="ger">Deutsch</mods:languageTerm> 
-               </mods:language>  
-               <mods:location> 
-                  <mods:shelfLocator>III/93/11/13-14</mods:shelfLocator>  
-                  <mods:physicalLocation authority="German ISIL- and Library Codes Agency" authorityURI="http://ld.zdb-services.de/resource/organisations/" valueURI="http://ld.zdb-services.de/resource/organisations/DE-2344">Archiv der Max-Planck-Gesellschaft</mods:physicalLocation> 
-               </mods:location>  
-               <mods:physicalDescription> 
-                  <mods:extent>1 Bl. (1 masch. S.)</mods:extent> 
-               </mods:physicalDescription>  
-               <mods:note type="systemDetails">Handschrift</mods:note>  
-               <mods:identifier type="urn">urn:nbn:de:bsz:15-0022-378392</mods:identifier>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd">
+   <mets:metsHdr CREATEDATE="2022-10-04T12:59:42.988531">
+      <mets:agent OTHERTYPE="SOFTWARE" ROLE="CREATOR" TYPE="OTHER">
+         <mets:name>Heisenberg</mets:name>
+         <mets:note>Java based program</mets:note>
+      </mets:agent>
+   </mets:metsHdr>
+   <mets:dmdSec ID="DMDLOG_0000">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods xmlns:mods="http://www.loc.gov/mods/v3"
+                       xsi:schemaLocation="http://www.loc.gov/mods/v3 https://www.loc.gov/standards/mods/v3/mods-3-7.xsd">
+               <mods:identifier type="uri">https://kalliope-verbund.info/DE-611-HS-3476090</mods:identifier>
+               <mods:recordInfo>
+                  <mods:recordIdentifier source="DE-611">DE-611-HS-3476090</mods:recordIdentifier>
+                  <mods:recordCreationDate encoding="iso8601">20190404</mods:recordCreationDate>
+                  <mods:recordChangeDate encoding="iso8601">20190404</mods:recordChangeDate>
+                  <mods:recordChangeDate encoding="w3cdtf">2022-04-01T23:46:39+01:00</mods:recordChangeDate>
+                  <mods:recordContentSource authority="German ISIL- and Library Codes Agency"
+                                            authorityURI="http://ld.zdb-services.de/resource/organisations/"
+                                            valueURI="http://ld.zdb-services.de/resource/organisations/DE-2344">Archiv der Max-Planck-Gesellschaft</mods:recordContentSource>
+                  <mods:languageOfCataloging>
+                     <mods:languageTerm authority="iso639-2b"
+                                        type="code"
+                                        authorityURI="http://id.loc.gov/vocabulary/iso639-2/"
+                                        valueURI="http://id.loc.gov/vocabulary/iso639-2/ger">ger</mods:languageTerm>
+                     <mods:languageTerm type="text" lang="ger">Deutsch</mods:languageTerm>
+                  </mods:languageOfCataloging>
+               </mods:recordInfo>
+               <mods:relatedItem type="host">
+                  <mods:recordInfo>
+                     <mods:recordIdentifier source="DE-611">DE-611-BF-74212</mods:recordIdentifier>
+                  </mods:recordInfo>
+                  <mods:identifier type="uri">https://kalliope-verbund.info/DE-611-BF-74212</mods:identifier>
+                  <mods:titleInfo>
+                     <mods:title>9. IV. Institutionen, 1. Korrespondenz: Academy of Human Rights, Rüschlikon bei Zürich</mods:title>
+                  </mods:titleInfo>
+               </mods:relatedItem>
+               <mods:relatedItem type="series">
+                  <mods:recordInfo>
+                     <mods:recordIdentifier source="DE-611">DE-611-BF-73161</mods:recordIdentifier>
+                  </mods:recordInfo>
+                  <mods:identifier type="uri">https://kalliope-verbund.info/DE-611-BF-73161</mods:identifier>
+                  <mods:titleInfo>
+                     <mods:title>Nachlass Werner Heisenberg</mods:title>
+                  </mods:titleInfo>
+               </mods:relatedItem>
+               <mods:typeOfResource collection="yes">text</mods:typeOfResource>
+               <mods:name type="personal"
+                          authority="DE-588"
+                          authorityURI="https://d-nb.info/gnd/"
+                          valueURI="https://d-nb.info/gnd/118548670">
+                  <mods:namePart>Heisenberg, Werner (1901-1976)</mods:namePart>
+                  <mods:role>
+                     <mods:roleTerm authority="MARC Code List for Relators Scheme"
+                                    authorityURI="http://id.loc.gov/vocabulary/relators/"
+                                    type="code"
+                                    lang="eng"
+                                    valueURI="http://id.loc.gov/vocabulary/relators/cre">cre</mods:roleTerm>
+                     <mods:roleTerm type="text" lang="ger">Verfasser</mods:roleTerm>
+                     <mods:roleTerm authority="marcrelator" type="code">aut</mods:roleTerm>
+                  </mods:role>
+                  <mods:displayForm>Heisenberg, Werner (1901-1976)</mods:displayForm>
+               </mods:name>
+               <mods:name type="personal"
+                          authority="DE-588"
+                          authorityURI="https://d-nb.info/gnd/"
+                          valueURI="https://d-nb.info/gnd/135937566">
+                  <mods:namePart>Teutsch, Gotthard M. (1918-2009)</mods:namePart>
+                  <mods:role>
+                     <mods:roleTerm authority="MARC Code List for Relators Scheme"
+                                    authorityURI="http://id.loc.gov/vocabulary/relators/"
+                                    type="code"
+                                    lang="eng"
+                                    valueURI="http://id.loc.gov/vocabulary/relators/rcp">rcp</mods:roleTerm>
+                     <mods:roleTerm type="text" lang="ger">Adressat</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:name type="corporate"
+                          authority="DE-588"
+                          authorityURI="https://d-nb.info/gnd/"
+                          valueURI="https://d-nb.info/gnd/1098163109">
+                  <mods:namePart>Academy of Human Rights (1956-)</mods:namePart>
+                  <mods:role>
+                     <mods:roleTerm authority="MARC Code List for Relators Scheme"
+                                    authorityURI="http://id.loc.gov/vocabulary/relators/"
+                                    type="code"
+                                    lang="eng"
+                                    valueURI="http://id.loc.gov/vocabulary/relators/rcp">rcp</mods:roleTerm>
+                     <mods:roleTerm type="text" lang="ger">Adressat</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:name type="corporate"
+                          authority="DE-588"
+                          authorityURI="https://d-nb.info/gnd/"
+                          valueURI="https://d-nb.info/gnd/1084821370">
+                  <mods:namePart>The Emergency Committee of Atomic Scientists</mods:namePart>
+                  <mods:role>
+                     <mods:roleTerm type="text" lang="ger">Behandelt</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:genre lang="ger"
+                           authorityURI="https://d-nb.info/gnd/"
+                           valueURI="https://d-nb.info/gnd/4008240-4"
+                           authority="DE-588">Brief</mods:genre>
+               <mods:titleInfo>
+                  <mods:title>Brief von Werner Heisenberg an Gotthard M. Teutsch an Academy of Human Rights</mods:title>
+               </mods:titleInfo>
+               <mods:abstract type="content">Heisenberg kann nicht beurteilen ob eine Erneuerung des "Emergency Committee of Atomic Scientists" auf internationaler Basis jetzt möglich wäre bezugnehmend auf die aktuelle Diskussion über Atomwaffen und das internationale Klima, welches ungünstig beeinflusst wurde durch die Ereignisse im Herbst 1956. Heisenberg glaubt nicht, dass eine Initiative in dieser Richtung von Deutschland ausgehen sollte. Die Atomphysiker haben sich mit vollem Bewusstsein an die eigene Regierung gewandt [Göttinger Manifest]. Interesse an weiterer Entwicklung in anderen Ländern.</mods:abstract>
+               <mods:originInfo>
+                  <mods:dateCreated encoding="w3cdtf" keyDate="yes" point="start">1957-05-21</mods:dateCreated>
+                  <mods:dateCreated>21.05.1957</mods:dateCreated>
+                  <mods:place>
+                     <mods:placeTerm type="text">o.O.</mods:placeTerm>
+                  </mods:place>
+                  <mods:dateIssued encoding="w3cdtf" keyDate="yes" point="start">1957-05-21</mods:dateIssued>
+                  <mods:dateIssued>21.05.1957</mods:dateIssued>
+               </mods:originInfo>
+               <mods:language>
+                  <mods:languageTerm authority="iso639-2b"
+                                     authorityURI="http://id.loc.gov/vocabulary/iso639-2/"
+                                     valueURI="http://id.loc.gov/vocabulary/iso639-2/ger"
+                                     type="code">ger</mods:languageTerm>
+                  <mods:languageTerm type="text" lang="ger">Deutsch</mods:languageTerm>
+               </mods:language>
+               <mods:location>
+                  <mods:shelfLocator>III/93/9/27-28</mods:shelfLocator>
+                  <mods:physicalLocation authority="German ISIL- and Library Codes Agency"
+                                         authorityURI="http://ld.zdb-services.de/resource/organisations/"
+                                         valueURI="http://ld.zdb-services.de/resource/organisations/DE-2344">Archiv der Max-Planck-Gesellschaft</mods:physicalLocation>
+               </mods:location>
+               <mods:physicalDescription>
+                  <mods:extent>1 Bl. (1 masch. S.)</mods:extent>
+               </mods:physicalDescription>
+               <mods:note type="systemDetails">Handschrift</mods:note>
+               <mods:identifier type="urn">urn:nbn:de:bsz:15-0022-378421</mods:identifier>
+               <mods:accessCondition type="use and reproduction"
+                                     href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</mods:accessCondition>
+               <mods:accessCondition displayLabel="Access Status"
+                                     type="restriction on access"
+                                     href="http://purl.org/coar/access_right/c_abf2">Open Access</mods:accessCondition>
             </mods:mods>
-         </mets:xmlData> 
-      </mets:mdWrap> 
-  </mets:dmdSec>  
-  <mets:amdSec ID="AMD"> 
-      <mets:rightsMD ID="RIGHTS"> 
-         <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVRIGHTS"> 
-            <mets:xmlData> 
-               <dv:rights xmlns:dv="http://dfg-viewer.de/">  
-                  <dv:owner>Leipzig University Library</dv:owner>  
-                  <dv:ownerLogo/>  
-                  <dv:ownerSiteURL>https://ub.uni-leipzig.de</dv:ownerSiteURL>  
-                  <dv:ownerContact>mailto:info@ub.uni-leipzig.de</dv:ownerContact> 
-               </dv:rights> 
-            </mets:xmlData> 
-         </mets:mdWrap> 
-      </mets:rightsMD>  
-      <mets:digiprovMD ID="DIGIPROV"> 
-         <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVLINKS"> 
-            <mets:xmlData> 
-               <dv:links xmlns:dv="http://dfg-viewer.de/">  
-                  <dv:reference>https://katalog.ub.uni-leipzig.de/urn/urn:nbn:de:bsz:15-0022-378392</dv:reference>  
-                  <dv:presentation>http://nbn-resolving.de/urn:nbn:de:bsz:15-0022-378392</dv:presentation> 
-               </dv:links> 
-            </mets:xmlData> 
-         </mets:mdWrap> 
-      </mets:digiprovMD> 
-  </mets:amdSec>  
-  <mets:fileSec>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:amdSec ID="AMD">
+      <mets:rightsMD ID="RIGHTS">
+         <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVRIGHTS">
+            <mets:xmlData>
+               <dv:rights xmlns:dv="http://dfg-viewer.de/">
+                  <dv:owner>Archiv der Max-Planck-Gesellschaft</dv:owner>
+                  <dv:ownerLogo/>
+                  <dv:ownerSiteURL>https://www.archiv-berlin.mpg.de/</dv:ownerSiteURL>
+                  <dv:ownerContact>mailto:mpg-archiv@archiv-berlin.mpg.de</dv:ownerContact>
+               </dv:rights>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:rightsMD>
+      <mets:digiprovMD ID="DIGIPROV">
+         <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVLINKS">
+            <mets:xmlData>
+               <dv:links xmlns:dv="http://dfg-viewer.de/">
+                  <dv:reference>https://kalliope-verbund.info/DE-611-HS-3476090</dv:reference>
+                  <dv:presentation>http://nbn-resolving.de/urn:nbn:de:bsz:15-0022-378421</dv:presentation>
+               </dv:links>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:fileSec>
       <mets:fileGrp USE="MAX">
          <mets:file ID="FILE_0001_MAX" MIMETYPE="application/vnd.kitodo.iiif">
-            <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=/j2k/0000/0356/0000035682/00000001.jpx"/>
+            <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink"
+                         LOCTYPE="URL"
+                         xlink:href="https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=/j2k/0000/0356/0000035691/00000001.jpx"/>
          </mets:file>
          <mets:file ID="FILE_0002_MAX" MIMETYPE="application/vnd.kitodo.iiif">
-            <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=/j2k/0000/0356/0000035682/00000002.jpx"/>
+            <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink"
+                         LOCTYPE="URL"
+                         xlink:href="https://iiif.ub.uni-leipzig.de/fcgi-bin/iipsrv.fcgi?iiif=/j2k/0000/0356/0000035691/00000002.jpx"/>
          </mets:file>
       </mets:fileGrp>
-  </mets:fileSec>
-  <mets:structMap TYPE="PHYSICAL">
+   </mets:fileSec>
+   <mets:structMap TYPE="PHYSICAL">
       <mets:div DMDID="DMDPHYS_0000" ID="PHYS_0000" TYPE="physSequence">
-         <mets:div ID="PHYS_0001" ORDER="1" ORDERLABEL="III_093_0011_01_013" TYPE="page">
+         <mets:div ID="PHYS_0001"
+                   ORDER="1"
+                   ORDERLABEL="III_093_0009_01_027"
+                   TYPE="page">
             <mets:fptr FILEID="FILE_0001_MAX"/>
          </mets:div>
-         <mets:div ID="PHYS_0002" ORDER="2" ORDERLABEL="III_093_0011_01_014" TYPE="page">
+         <mets:div ID="PHYS_0002"
+                   ORDER="2"
+                   ORDERLABEL="III_093_0009_01_028"
+                   TYPE="page">
             <mets:fptr FILEID="FILE_0002_MAX"/>
          </mets:div>
       </mets:div>
-  </mets:structMap>
-  <mets:structLink>
-      <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0001" xlink:from="LOG_0000"/>
-      <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0002" xlink:from="LOG_0000"/>
-  </mets:structLink>
+   </mets:structMap>
+   <mets:structLink>
+      <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink"
+                   xlink:to="PHYS_0001"
+                   xlink:from="LOG_0000"/>
+      <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink"
+                   xlink:to="PHYS_0002"
+                   xlink:from="LOG_0000"/>
+   </mets:structLink>
 </mets:mets>
