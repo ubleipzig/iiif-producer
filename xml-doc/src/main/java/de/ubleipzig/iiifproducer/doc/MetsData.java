@@ -184,6 +184,9 @@ public interface MetsData {
     @XBRead("//*[local-name()='relatedItem']/*[local-name()='titleInfo']/*[local-name()='title']")
     Optional<String> getCollection();
 
+    @XBRead("//*[local-name()='relatedItem']/*[local-name()='titleInfo']/*[local-name()='title']")
+    List<String> getCollections();
+
     /**
      * @return String
      */
