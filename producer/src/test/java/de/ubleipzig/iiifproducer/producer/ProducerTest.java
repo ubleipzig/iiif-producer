@@ -52,10 +52,9 @@ class ProducerTest {
                 .build();
     }
 
-    @Test
-    void testRelated() {
+    private IIIFProducer getProducer(String metsFile, String viewId) {
         final String xmlFile = Objects.requireNonNull(
-                ProducerTest.class.getResource("/JohaSpha_1499_470272783.xml")).getPath();
+                ProducerTest.class.getResource(metsFile)).getPath();
 
         final MetsAccessor mets = MetsImpl.builder()
                 .xmlFile(xmlFile)
@@ -65,8 +64,14 @@ class ProducerTest {
         final IIIFProducer producer = IIIFProducer.builder()
                 .mets(mets)
                 .outputFile("/tmp/test.json")
-                .viewId("00123456")
+                .viewId(viewId)
                 .build();
+        return producer;
+    }
+
+    @Test
+    void testRelated() {
+        IIIFProducer producer = getProducer("/JohaSpha_1499_470272783.xml", "00123456");
         final Manifest manifest = Manifest.builder()
                 .context(SC.CONTEXT)
                 .id("http://example.com/00123456")
@@ -78,6 +83,34 @@ class ProducerTest {
         assertTrue(related.contains("https://digital.ub.uni-leipzig.de/object/viewid/00123456"));
         assertTrue(related.contains("https://iiif.ub.uni-leipzig.de/00123456/manifest.json"));
         assertTrue(related.contains("https://iiif.ub.uni-leipzig.de/00123456/presentation.xml"));
+    }
+
+    @Test
+    void testRelatedWithoutCatalogUri() {
+        IIIFProducer producer = getProducer("/MS_85.xml", "00123456");
+        final Manifest manifest = Manifest.builder()
+                .context(SC.CONTEXT)
+                .id("http://example.com/00123456")
+                .build();
+        producer.setRelated(manifest, "urn:1234", "00123456", false);
+        List<String> related = (List)manifest.getRelated();
+        assertEquals(3, related.size());
+        assertTrue(related.contains("https://digital.ub.uni-leipzig.de/object/viewid/00123456"));
+        assertTrue(related.contains("https://iiif.ub.uni-leipzig.de/00123456/manifest.json"));
+        assertTrue(related.contains("https://iiif.ub.uni-leipzig.de/00123456/presentation.xml"));
+    }
+
+    @Test
+    void testRelatedForHspCatalogs() {
+        IIIFProducer producer = getProducer("/DieHadeT_1525437259.xml", "00123456");
+        final Manifest manifest = Manifest.builder()
+                .context(SC.CONTEXT)
+                .id("http://example.com/00123456")
+                .build();
+        producer.setRelated(manifest, "urn:1234", "00123456", true);
+        List<String> related = (List)manifest.getRelated();
+        assertEquals(1, related.size());
+        assertTrue(related.contains("https://iiif.ub.uni-leipzig.de/00123456/manifest.json"));
     }
 }
 
