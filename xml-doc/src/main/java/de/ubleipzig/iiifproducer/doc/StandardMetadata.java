@@ -23,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.GOOBI_TYPE;
@@ -90,6 +91,9 @@ public class StandardMetadata {
         meta.add(Metadata.builder().label("Physical description").value(getPhysState(mets)).build());
         meta.add(Metadata.builder().label("Manifest Type").value(getLogicalType(mets, METS_PARENT_LOGICAL_ID)).build());
         log.debug("Standard Metadata Added");
-        return meta;
+        return meta.stream()
+                .filter(Objects::nonNull)
+                .filter(v -> !(v.getValue() instanceof String) || !((String) v.getValue()).isEmpty())
+                .collect(Collectors.toList());
     }
 }
