@@ -181,10 +181,11 @@ public class ConverterVersion3 {
         final String rights = manifest.getLicense().stream().findFirst().orElse(null);
 
         //build Logo
-        final ManifestVersion3.Logo logo = ManifestVersion3.Logo.builder()
-                .id(domainLogo)
+        final String logoRef = manifest.getLogo() instanceof String ? (String) manifest.getLogo() : null;
+        final ManifestVersion3.Logo logo = logoRef != null ? ManifestVersion3.Logo.builder()
+                .id(logoRef)
                 .type(IMAGE)
-                .build();
+                .build() : null;
 
         // build Metadata
         List<MetadataVersion3> finalMetadata = metadataBuilderVersion3.execute();
@@ -209,7 +210,6 @@ public class ConverterVersion3 {
         final List<SeeAlso> seeAlso = converterUtils.buildSeeAlso(viewId, finalURN, related);
 
         //build Homepages
-        boolean isHSP = converterUtils.isHspManifest(manifest);
         final List<Homepage> homepages = converterUtils.buildHomepages(related);
 
         //build manifest label
@@ -223,7 +223,7 @@ public class ConverterVersion3 {
                 .id(id)
                 .items(canvases)
                 .label(manifestLabelMap)
-                .logo(!isHSP ? logo : null)
+                .logo(logo)
                 .metadata(finalMetadata)
                 .requiredStatement(requiredStatement)
                 .rights(rights)

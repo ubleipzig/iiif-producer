@@ -137,15 +137,4 @@ public final class ConverterUtils {
                 .value(value)
                 .build();
     }
-
-    public boolean isHspManifest(Manifest manifest) {
-        final Optional<Metadata> mType = manifest.getMetadata().stream().filter(m -> "Manifest Type".equals(m.getLabel())).findFirst();
-        boolean isHSP = false;
-        if (mType.isPresent()) {
-            if  ("HSP".equals(mType.get().getValue())) {
-                isHSP = true;
-            }
-        }
-        return isHSP;
-    }
 }
