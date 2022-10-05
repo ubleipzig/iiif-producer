@@ -69,21 +69,17 @@ public class StandardMetadata {
         }
         meta.add(Metadata.builder().label("Source PPN (SWB)").value(getManuscriptIdByType(mets, SWB_TYPE)).build());
         boolean isProjectHeisenberg = getCollections(mets).stream().filter(col -> col.contains("Heisenberg")).collect(Collectors.toList()).size() > 0;
-        if (getCollection(mets).contains("TestCollection") || isProjectHeisenberg) {
+        if (isProjectHeisenberg) {
             List<String> collections = getCollections(mets);
             for (String collection: collections) {
                 meta.add(Metadata.builder().label("Collection").value(collection).build());
             }
-            meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
-            meta.add(Metadata.builder().label("Place of publication").value(getPlace(mets)).build());
-            meta.add(Metadata.builder().label("Date of publication").value(getDate(mets)).build());
-            meta.add(Metadata.builder().label("Kalliope-ID").value(getKalliopeID(mets)).build());
         } else {
             meta.add(Metadata.builder().label("Collection").value(getCollection(mets)).build());
-            meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
-            meta.add(Metadata.builder().label("Place of publication").value(getPlace(mets)).build());
-            meta.add(Metadata.builder().label("Date of publication").value(getDate(mets)).build());
         }
+        meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
+        meta.add(Metadata.builder().label("Place of publication").value(getPlace(mets)).build());
+        meta.add(Metadata.builder().label("Date of publication").value(getDate(mets)).build());
         meta.add(Metadata.builder().label("Owner").value(getOwner(mets)).build());
         meta.add(Metadata.builder().label("Author").value(getAuthor(mets)).build());
         meta.add(Metadata.builder().label("Addressee").value(getAddressee(mets)).build());
