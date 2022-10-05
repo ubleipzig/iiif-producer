@@ -110,7 +110,7 @@ public class IIIFProducer {
             }
             related.add(viewerUrl + viewIdFormatted);
         } else {
-            log.info("Not a Handschriftenportal manifest - skip catalog, viewer references");
+            log.info("Handschriftenportal manifest - skip catalog, viewer references");
         }
         related.add(baseUrl + viewIdFormatted + separator + manifestFileName);
         if (!isHspCatalog) {

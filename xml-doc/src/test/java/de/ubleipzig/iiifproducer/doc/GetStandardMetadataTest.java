@@ -69,6 +69,6 @@ public class GetStandardMetadataTest {
         List<String> collections = info.stream().filter(v -> "Collection".equals(v.getLabel())).map(v -> (String) v.getValue()).collect(Collectors.toList());
         assertEquals(2, collections.size());
         assertTrue(collections.contains("Nachlass Werner Heisenberg"));
-        assertTrue(collections.contains("11. IV. Institutionen, 1. Korrespondenz: Afro-Asiatische Studenten-Union"));
+        assertTrue(collections.contains("9. IV. Institutionen, 1. Korrespondenz: Academy of Human Rights, Rüschlikon bei Zürich"));
     }
 }
