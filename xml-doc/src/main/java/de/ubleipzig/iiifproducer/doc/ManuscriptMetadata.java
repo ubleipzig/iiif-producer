@@ -71,7 +71,10 @@ public class ManuscriptMetadata {
         log.debug("Manuscript metadata Added");
         return meta.stream()
                 .filter(Objects::nonNull)
-                .filter(v -> !(v.getValue() instanceof String) || !((String) v.getValue()).isEmpty())
+                .filter(v -> v.getValue() != null && (
+                        (v.getValue() instanceof String && !((String) v.getValue()).isEmpty()) ||
+                                (v.getValue() instanceof List && !((List)v.getValue()).isEmpty())
+                ))
                 .collect(Collectors.toList());
     }
 }

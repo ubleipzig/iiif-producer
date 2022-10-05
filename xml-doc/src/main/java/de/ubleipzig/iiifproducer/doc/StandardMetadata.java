@@ -74,9 +74,9 @@ public class StandardMetadata {
             for (String collection: collections) {
                 meta.add(Metadata.builder().label("Collection").value(collection).build());
             }
-            meta.add(Metadata.builder().label("Call number").value(getCallNumbers(mets)).build());
+            meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
             meta.add(Metadata.builder().label("Place of publication").value(getPlace(mets)).build());
-            meta.add(Metadata.builder().label("Date of publication").value(getDates(mets)).build());
+            meta.add(Metadata.builder().label("Date of publication").value(getDate(mets)).build());
             meta.add(Metadata.builder().label("Kalliope-ID").value(getKalliopeID(mets)).build());
         } else {
             meta.add(Metadata.builder().label("Collection").value(getCollection(mets)).build());
@@ -91,9 +91,13 @@ public class StandardMetadata {
         meta.add(Metadata.builder().label("Physical description").value(getPhysState(mets)).build());
         meta.add(Metadata.builder().label("Manifest Type").value(getLogicalType(mets, METS_PARENT_LOGICAL_ID)).build());
         log.debug("Standard Metadata Added");
+        meta.stream().forEach(m -> System.err.println(m.getLabel() + ": '" + m.getValue() + "'"));
         return meta.stream()
                 .filter(Objects::nonNull)
-                .filter(v -> !(v.getValue() instanceof String) || !((String) v.getValue()).isEmpty())
+                .filter(v -> v.getValue() != null && (
+                        (v.getValue() instanceof String && !((String) v.getValue()).isEmpty()) ||
+                                (v.getValue() instanceof List && !((List)v.getValue()).isEmpty())
+                ))
                 .collect(Collectors.toList());
     }
 }
