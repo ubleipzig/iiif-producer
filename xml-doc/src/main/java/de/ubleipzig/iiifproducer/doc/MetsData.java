@@ -184,6 +184,9 @@ public interface MetsData {
     @XBRead("//*[local-name()='relatedItem']/*[local-name()='titleInfo']/*[local-name()='title']")
     Optional<String> getCollection();
 
+    @XBRead("//*[local-name()='relatedItem']/*[local-name()='titleInfo']/*[local-name()='title']")
+    List<String> getCollections();
+
     /**
      * @return String
      */
@@ -201,6 +204,9 @@ public interface MetsData {
      */
     @XBRead("//*[local-name()='shelfLocator']")
     Optional<String> getCallNumber();
+
+    @XBRead("//*[local-name()='links']/*[local-name()='reference']")
+    Optional<String> getCatalogReference();
 
     /**
      * @return String

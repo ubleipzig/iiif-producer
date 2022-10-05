@@ -201,6 +201,11 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
+    public String getCatalogReference() {
+        return mets.getCatalogReference().orElse("").trim();
+    }
+
+    @Override
     public List<String> getPhysical() {
         return getPhysicalDivs(mets);
     }

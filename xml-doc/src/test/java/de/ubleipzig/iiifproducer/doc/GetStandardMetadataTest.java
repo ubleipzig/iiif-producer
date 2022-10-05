@@ -22,9 +22,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GetStandardMetadataTest {
 
@@ -37,6 +39,10 @@ public class GetStandardMetadataTest {
         final List<Metadata> info = man.getInfo();
         assertEquals(1, (int) info.stream().filter(
                 v -> v.getLabel() instanceof String && ((String) v.getLabel()).contains("VD17")).count());
+        List<String> collections = info.stream().filter(v -> "Collection".equals(v.getLabel())).map(v -> (String) v.getValue()).collect(Collectors.toList());
+        assertEquals(2, collections.size());
+        assertTrue(collections.contains("VD17"));
+        assertTrue(collections.contains("Drucke des 17. Jahrhunderts"));
     }
 
     @Test
@@ -48,5 +54,21 @@ public class GetStandardMetadataTest {
         final List<Metadata> info = man.getInfo();
         assertEquals(1, (int) info.stream().filter(
                 v -> v.getLabel() instanceof String && ((String) v.getLabel()).contains("VD16")).count());
+        List<String> collections = info.stream().filter(v -> "Collection".equals(v.getLabel())).map(v -> (String) v.getValue()).collect(Collectors.toList());
+        assertEquals(2, collections.size());
+        assertTrue(collections.contains("VD16"));
+    }
+
+    @Test
+    void getStandardMetadataWithMultipleCollections() {
+        final String sourceFile = Objects.requireNonNull(
+                GetValuesFromMetsTest.class.getResource("/mets/Heisenberg.xml")).getPath();
+        final MetsData mets = getMets(sourceFile);
+        final StandardMetadata man = new StandardMetadata(mets);
+        final List<Metadata> info = man.getInfo();
+        List<String> collections = info.stream().filter(v -> "Collection".equals(v.getLabel())).map(v -> (String) v.getValue()).collect(Collectors.toList());
+        assertEquals(2, collections.size());
+        assertTrue(collections.contains("Nachlass Werner Heisenberg"));
+        assertTrue(collections.contains("9. IV. Institutionen, 1. Korrespondenz: Academy of Human Rights, Rüschlikon bei Zürich"));
     }
 }

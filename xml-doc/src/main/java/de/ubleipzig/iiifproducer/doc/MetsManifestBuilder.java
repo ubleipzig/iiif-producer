@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import static org.slf4j.LoggerFactory.getLogger;
 import static org.xmlbeam.XBProjector.Flags.TO_STRING_RENDERS_XML;
@@ -272,6 +273,10 @@ public final class MetsManifestBuilder {
      */
     public static String getCollection(final MetsData mets) {
         return mets.getCollection().orElse("").trim();
+    }
+
+    public static List<String> getCollections(final MetsData mets) {
+        return mets.getCollections().stream().map(col -> col.trim()).collect(Collectors.toList());
     }
 
     /**

@@ -51,13 +51,13 @@ public class HspCatalogMetadata {
      */
     public List<Metadata> getInfo() {
         final List<Metadata> metadata = new ArrayList<>();
-        metadata.add(Metadata.builder().label("Manifest Type").value("HSP").build());
         metadata.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, URN_TYPE)).build());
         metadata.add(Metadata.builder().label("Autor:in").value(getAuthor(mets)).build());
         metadata.add(Metadata.builder().label("Erscheinungsort").value(getPlace(mets)).build());
         metadata.add(Metadata.builder().label("Verlag").value(getPublisher(mets)).build());
         metadata.add(Metadata.builder().label("Erscheinungsjahr").value(getDate(mets)).build());
         metadata.add(Metadata.builder().label("Umfang").value(getPhysState(mets)).build());
+        metadata.add(Metadata.builder().label("Manifest Type").value("HSP").build());
         log.debug("Added HSP catalog metadata.");
         return metadata;
     }

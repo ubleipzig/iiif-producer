@@ -23,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.GOOBI_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
@@ -66,23 +68,32 @@ public class StandardMetadata {
             meta.add(Metadata.builder().label("Collection").value("VD17").build());
         }
         meta.add(Metadata.builder().label("Source PPN (SWB)").value(getManuscriptIdByType(mets, SWB_TYPE)).build());
-        meta.add(Metadata.builder().label("Collection").value(getCollection(mets)).build());
-        if (getCollection(mets).contains("TestCollection") ^ getCollection(mets).contains("Heisenberg")) {
-            meta.add(Metadata.builder().label("Call number").value(getCallNumbers(mets)).build());
-            meta.add(Metadata.builder().label("Date of publication").value(getDates(mets)).build());
-            meta.add(Metadata.builder().label("Kalliope-ID").value(getKalliopeID(mets)).build());
+        boolean isProjectHeisenberg = getCollections(mets).stream().filter(col -> col.contains("Heisenberg")).collect(Collectors.toList()).size() > 0;
+        if (isProjectHeisenberg) {
+            List<String> collections = getCollections(mets);
+            for (String collection: collections) {
+                meta.add(Metadata.builder().label("Collection").value(collection).build());
+            }
         } else {
-            meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
-            meta.add(Metadata.builder().label("Date of publication").value(getDate(mets)).build());
+            meta.add(Metadata.builder().label("Collection").value(getCollection(mets)).build());
         }
+        meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
+        meta.add(Metadata.builder().label("Place of publication").value(getPlace(mets)).build());
+        meta.add(Metadata.builder().label("Date of publication").value(getDate(mets)).build());
         meta.add(Metadata.builder().label("Owner").value(getOwner(mets)).build());
         meta.add(Metadata.builder().label("Author").value(getAuthor(mets)).build());
         meta.add(Metadata.builder().label("Addressee").value(getAddressee(mets)).build());
-        meta.add(Metadata.builder().label("Place of publication").value(getPlace(mets)).build());
         meta.add(Metadata.builder().label("Publisher").value(getPublisher(mets)).build());
         meta.add(Metadata.builder().label("Physical description").value(getPhysState(mets)).build());
         meta.add(Metadata.builder().label("Manifest Type").value(getLogicalType(mets, METS_PARENT_LOGICAL_ID)).build());
         log.debug("Standard Metadata Added");
-        return meta;
+        meta.stream().forEach(m -> System.err.println(m.getLabel() + ": '" + m.getValue() + "'"));
+        return meta.stream()
+                .filter(Objects::nonNull)
+                .filter(v -> v.getValue() != null && (
+                        (v.getValue() instanceof String && !((String) v.getValue()).isEmpty()) ||
+                                (v.getValue() instanceof List && !((List)v.getValue()).isEmpty())
+                ))
+                .collect(Collectors.toList());
     }
 }

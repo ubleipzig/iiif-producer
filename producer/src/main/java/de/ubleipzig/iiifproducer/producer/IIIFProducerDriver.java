@@ -101,7 +101,6 @@ public final class IIIFProducerDriver implements Callable<Integer> {
                 .format(format)
                 .fulltextFileGrp(props.getProperty("fulltextFileGrp"))
                 .iriBuilder(iriBuilder)
-                .katalogUrl(props.getProperty("katalogUrl"))
                 .manifestFileName(props.getProperty("manifestFilename"))
                 .mets(mets)
                 .outputFile(outputFile)

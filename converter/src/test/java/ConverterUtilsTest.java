@@ -23,6 +23,7 @@ import de.ubleipzig.iiifproducer.model.v3.SeeAlso;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,17 +38,15 @@ public class ConverterUtilsTest {
 
     @Test
     void buildHomePagesTest() {
-        List<Homepage> homepages = utils.buildHomepages("123456", "xyz:1144:55", false);
+        String[] relatedArray = {
+            "https://katalog.ub.uni-leipzig.de/urn/xyz:1144:55", "http://example.com/123456",
+                "presentation.xml", "manifest.json"
+        };
+        List<Homepage> homepages = utils.buildHomepages(Arrays.asList(relatedArray));
         Homepage hp = homepages.stream().findFirst().orElse(null);
         assert hp != null;
         assertEquals("https://katalog.ub.uni-leipzig.de/urn/xyz:1144:55", hp.getId());
-    }
-
-    @Test
-    void buildHSPHomePagesTest() {
-        List<Homepage> homepages = utils.buildHomepages("123456", "xyz:1144:55", true);
-        Homepage hp = homepages.stream().findFirst().orElse(null);
-        assert hp == null;
+        assertEquals(2, homepages.size());
     }
 
     @Test
