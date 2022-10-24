@@ -18,7 +18,6 @@
 
 package de.ubleipzig.iiifproducer.converter;
 
-import de.ubleipzig.iiifproducer.model.Metadata;
 import de.ubleipzig.iiifproducer.model.v2.Manifest;
 import de.ubleipzig.iiifproducer.model.v3.Homepage;
 import de.ubleipzig.iiifproducer.model.v3.MetadataVersion3;
