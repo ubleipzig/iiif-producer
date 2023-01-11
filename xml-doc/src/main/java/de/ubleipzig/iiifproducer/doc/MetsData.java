@@ -67,6 +67,9 @@ public interface MetsData {
     @XBRead("//*[local-name()='accessCondition']")
     List<String> getRightsValue();
 
+    @XBRead("//*[local-name()='roleTerm'][text()='cph']/parent::node()/parent::node()/*[local-name()='displayForm']")
+    List<String> getCopyrightHolders();
+
     /**
      * @return String
      */
