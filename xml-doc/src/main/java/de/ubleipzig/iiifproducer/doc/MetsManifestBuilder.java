@@ -140,7 +140,7 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
-     * @return List<String>
+     * @return List
      */
     public static List<String> getCopyrightHolders(final MetsData mets) {
         return mets.getCopyrightHolders();
