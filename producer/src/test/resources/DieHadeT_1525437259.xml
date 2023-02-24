@@ -56,6 +56,12 @@
                     <mods:accessCondition type="use and reproduction" href="http://rightsstatements.org/vocab/InC/1.0/">
                         Urheberrechtsschutz 1.0
                     </mods:accessCondition>
+                    <mods:name type="corporate">
+                        <mods:displayForm>Otto Harrassowitz GmbH &amp; Co. KG</mods:displayForm>
+                        <mods:role>
+                            <mods:roleTerm type="code" authority="marcrelator">cph</mods:roleTerm>
+                        </mods:role>
+                    </mods:name>
                 </mods:mods>
             </mets:xmlData>
         </mets:mdWrap>

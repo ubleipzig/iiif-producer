@@ -245,13 +245,16 @@ public class MetsImpl implements MetsAccessor {
     @Override
     public void setAttribution(final Manifest body) {
         // TODO HTML should be wellformed XML https://iiif.io/api/presentation/2.1/#html-markup-in-property-values
-        if (getRightsValue(mets).isEmpty()) {
+        if (getRightsValue(mets).isEmpty() && getCopyrightHolders(mets).isEmpty()) {
             body.setAttribution(
                     attributionKey + getAttribution(mets) + "<br/>" + attributionLicenseNote);
         } else {
             final StringBuilder content = new StringBuilder();
             for (String value : getRightsValue(mets)) {
                 content.append(value).append("<br/>");
+            }
+            for (String cph : getCopyrightHolders(mets)) {
+                content.append(cph).append("<br/>");
             }
             body.setAttribution(content.toString());
         }

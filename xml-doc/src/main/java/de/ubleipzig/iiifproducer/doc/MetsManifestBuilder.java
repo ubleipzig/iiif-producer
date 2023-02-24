@@ -137,6 +137,15 @@ public final class MetsManifestBuilder {
         return mets.getRightsValue();
     }
 
+
+    /**
+     * @param mets MetsData
+     * @return List
+     */
+    public static List<String> getCopyrightHolders(final MetsData mets) {
+        return mets.getCopyrightHolders();
+    }
+
     /**
      * @param mets MetsData
      * @return String

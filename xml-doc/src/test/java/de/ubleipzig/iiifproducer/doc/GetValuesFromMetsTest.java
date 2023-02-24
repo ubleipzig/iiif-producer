@@ -20,10 +20,7 @@ package de.ubleipzig.iiifproducer.doc;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
@@ -31,6 +28,7 @@ import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -185,5 +183,15 @@ class GetValuesFromMetsTest {
         assertTrue(!mets.getFileIdInFileGrp("FILE_0002_FULLTEXT", "ORIGINAL"));
         assertTrue(mets.getFileIdInFileGrp("FILE_0002_FULLTEXT", "FULLTEXT"));
         assertTrue(!mets.getFileIdInFileGrp("FILE_0002_ORIGINAL", "FULLTEXT"));
+    }
+
+    @Test
+    void testGetCopyrightHolders() {
+        final String sourceFile
+                = Objects.requireNonNull(
+                HspCatalogStructureMetadataTest.class.getResource("/mets/DieHadeT_1525437259.xml")).getPath();
+        final MetsData mets = getMets(sourceFile);
+        final List<String> copyrightHolders = getCopyrightHolders(mets);
+        assertIterableEquals(copyrightHolders, Collections.singletonList("Otto Harrassowitz GmbH & Co. KG"));
     }
 }

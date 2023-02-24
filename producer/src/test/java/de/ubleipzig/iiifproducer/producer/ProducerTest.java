@@ -112,5 +112,15 @@ class ProducerTest {
         assertEquals(1, related.size());
         assertTrue(related.contains("https://iiif.ub.uni-leipzig.de/00123456/manifest.json"));
     }
+
+    void testAttributionWithCopyrightHolder() {
+        IIIFProducer producer = getProducer("/DieHadeT_1525437259.xml", "00123456");
+        final Manifest manifest = Manifest.builder()
+                .context(SC.CONTEXT)
+                .id("http://example.com/00123456")
+                .build();
+        String attribution = manifest.getAttribution();
+        assertTrue(attribution.contains("Otto Harrassowitz GmbH & Co. KG"));
+    }
 }
 
