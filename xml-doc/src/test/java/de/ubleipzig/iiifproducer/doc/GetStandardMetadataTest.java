@@ -29,6 +29,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GetStandardMetadataTest {
 
+    private List<String> getMetaDataValuesWithLabel(StandardMetadata md, String label) {
+        final List<Metadata> info = md.getInfo();
+        return info
+                .stream()
+                .filter(v -> v.getLabel() instanceof String && ((String) v.getLabel()).equals(label))
+                .filter(v -> v.getValue() instanceof String)
+                .map(v -> (String)v.getValue())
+                .collect(Collectors.toList());
+    }
+
     @Test
     void getStandardMetadataWithOptionalCollection() {
         final String sourceFile = Objects.requireNonNull(
@@ -36,9 +46,9 @@ public class GetStandardMetadataTest {
         final MetsData mets = getMets(sourceFile);
         final StandardMetadata man = new StandardMetadata(mets);
         final List<Metadata> info = man.getInfo();
-        assertEquals(1, (int) info.stream().filter(
+        assertEquals(1, (int)  info.stream().filter(
                 v -> v.getLabel() instanceof String && ((String) v.getLabel()).contains("VD17")).count());
-        List<String> collections = info.stream().filter(v -> "Collection".equals(v.getLabel())).map(v -> (String) v.getValue()).collect(Collectors.toList());
+        List<String> collections = getMetaDataValuesWithLabel(man, "Collection");
         assertEquals(1, collections.size());
         assertFalse(collections.contains("VD17"));
         assertTrue(collections.contains("Drucke des 17. Jahrhunderts"));
@@ -53,7 +63,7 @@ public class GetStandardMetadataTest {
         final List<Metadata> info = man.getInfo();
         assertEquals(1, (int) info.stream().filter(
                 v -> v.getLabel() instanceof String && ((String) v.getLabel()).contains("VD16")).count());
-        List<String> collections = info.stream().filter(v -> "Collection".equals(v.getLabel())).map(v -> (String) v.getValue()).collect(Collectors.toList());
+        List<String> collections = getMetaDataValuesWithLabel(man, "Collection");
         assertEquals(1, collections.size());
         assertTrue(collections.contains("VD16"));
     }
@@ -65,9 +75,46 @@ public class GetStandardMetadataTest {
         final MetsData mets = getMets(sourceFile);
         final StandardMetadata man = new StandardMetadata(mets);
         final List<Metadata> info = man.getInfo();
-        List<String> collections = info.stream().filter(v -> "Collection".equals(v.getLabel())).map(v -> (String) v.getValue()).collect(Collectors.toList());
+        List<String> collections = getMetaDataValuesWithLabel(man, "Collection");
         assertEquals(2, collections.size());
         assertTrue(collections.contains("Nachlass Werner Heisenberg"));
         assertTrue(collections.contains("9. IV. Institutionen, 1. Korrespondenz: Academy of Human Rights, Rüschlikon bei Zürich"));
+    }
+
+    void getStandardDataWithOwnerOfOriginal() {
+        final String sourceFile = GetValuesFromMetsTest.class.getResource("/mets/ProMSiG_1800085370.xml").getPath();
+        MetsData mets = getMets(sourceFile);
+        StandardMetadata md = new StandardMetadata(mets);
+        List<String> ownerOfOriginal = getMetaDataValuesWithLabel(md, "Owner of Original");
+        assertEquals(1, ownerOfOriginal.size());
+        assertTrue(ownerOfOriginal.contains("Annaberg-Buchholz, Evangelisch-Lutherische Kirchgemeinde Annaberg-Buchholz"));
+    }
+
+    void getStandardDataWithoutOwnerOfOriginal() {
+        final String sourceFile = GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml").getPath();
+        MetsData mets = getMets(sourceFile);
+        StandardMetadata md = new StandardMetadata(mets);
+        List<String> ownerOfOriginal = getMetaDataValuesWithLabel(md, "Owner of Original");
+        assertEquals(0, ownerOfOriginal.size());
+    }
+
+    void getStandardDataWithOwnerOfDigitalCopy() {
+        final String sourceFileUBL = GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml").getPath();
+        MetsData metsUBL = getMets(sourceFileUBL);
+        StandardMetadata mdUBL = new StandardMetadata(metsUBL);
+        List<String> ownersUBL = getMetaDataValuesWithLabel(mdUBL, "Owner");
+        assertEquals(0, ownersUBL.size());
+        List<String> ownersOfDigitalCopyUBL = getMetaDataValuesWithLabel(mdUBL, "Owner of digital copy");
+        assertEquals(1, ownersUBL.size());
+        assertTrue(ownersOfDigitalCopyUBL.contains("Leipzig University Library"));
+
+        final String sourceFileAnnaberg = GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml").getPath();
+        MetsData metsAnnaberg = getMets(sourceFileAnnaberg);
+        StandardMetadata mdAnnaberg = new StandardMetadata(metsAnnaberg);
+        List<String> ownersAnnaberg = getMetaDataValuesWithLabel(mdAnnaberg, "Owner");
+        assertEquals(0, ownersAnnaberg.size());
+        List<String> ownersOfDigitalCopyAnnaberg = getMetaDataValuesWithLabel(mdAnnaberg, "Owner of digital copy");
+        assertEquals(1, ownersAnnaberg.size());
+        assertTrue(ownersOfDigitalCopyAnnaberg.contains("Leipzig University Library"));
     }
 }

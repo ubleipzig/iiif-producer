@@ -215,8 +215,13 @@ public interface MetsData {
      * @return String
      */
     @XBRead("//*[local-name()='owner']")
-    Optional<String> getOwner();
+    Optional<String> getOwnerOfDigitalCopy();
 
+    /**
+     * @return Optional<String>
+     */
+    @XBRead("//*[local-name()='roleTerm'][text()='len']/parent::node()/parent::node()/*[local-name()='displayForm']")
+    Optional<String> getOwnerOfOriginal();
     /**
      * @return String
      */
