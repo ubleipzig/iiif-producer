@@ -40,7 +40,7 @@ public class GetStandardMetadataTest {
     }
 
     @Test
-    void getStandardMetadataWithOptionalCollection() {
+    void testGetStandardMetadataWithOptionalCollection() {
         final String sourceFile = Objects.requireNonNull(
                 GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml")).getPath();
         final MetsData mets = getMets(sourceFile);
@@ -55,7 +55,7 @@ public class GetStandardMetadataTest {
     }
 
     @Test
-    void getStandardMetadataWithOptionalCollection2() {
+    void testGetStandardMetadataWithOptionalCollection2() {
         final String sourceFile = Objects.requireNonNull(
                 GetValuesFromMetsTest.class.getResource("/mets/LuthEnch_029330009.xml")).getPath();
         final MetsData mets = getMets(sourceFile);
@@ -69,7 +69,7 @@ public class GetStandardMetadataTest {
     }
 
     @Test
-    void getStandardMetadataWithMultipleCollections() {
+    void testGetStandardMetadataWithMultipleCollections() {
         final String sourceFile = Objects.requireNonNull(
                 GetValuesFromMetsTest.class.getResource("/mets/Heisenberg.xml")).getPath();
         final MetsData mets = getMets(sourceFile);
@@ -82,7 +82,7 @@ public class GetStandardMetadataTest {
     }
 
     @Test
-    void getStandardDataWithOwnerOfOriginal() {
+    void testGetStandardDataWithOwnerOfOriginal() {
         final String sourceFile = GetValuesFromMetsTest.class.getResource("/mets/ProMSiG_1800085370.xml").getPath();
         MetsData mets = getMets(sourceFile);
         StandardMetadata md = new StandardMetadata(mets);
@@ -92,7 +92,7 @@ public class GetStandardMetadataTest {
     }
 
     @Test
-    void getStandardDataWithoutOwnerOfOriginal() {
+    void testGetStandardDataWithoutOwnerOfOriginal() {
         final String sourceFile = GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml").getPath();
         MetsData mets = getMets(sourceFile);
         StandardMetadata md = new StandardMetadata(mets);
@@ -101,7 +101,7 @@ public class GetStandardMetadataTest {
     }
 
     @Test
-    void getStandardDataWithOwnerOfDigitalCopy() {
+    void testGetStandardDataWithOwnerOfDigitalCopy() {
         final String sourceFileUBL = GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml").getPath();
         MetsData metsUBL = getMets(sourceFileUBL);
         StandardMetadata mdUBL = new StandardMetadata(metsUBL);
