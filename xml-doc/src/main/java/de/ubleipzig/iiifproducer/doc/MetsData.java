@@ -218,7 +218,7 @@ public interface MetsData {
     Optional<String> getOwnerOfDigitalCopy();
 
     /**
-     * @return Optional<String>
+     * @return String
      */
     @XBRead("//*[local-name()='roleTerm'][text()='len']/parent::node()/parent::node()/*[local-name()='displayForm']")
     Optional<String> getOwnerOfOriginal();
