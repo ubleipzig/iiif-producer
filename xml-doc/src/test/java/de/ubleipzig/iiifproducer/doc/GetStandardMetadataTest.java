@@ -105,8 +105,10 @@ public class GetStandardMetadataTest {
         final String sourceFileUBL = GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml").getPath();
         MetsData metsUBL = getMets(sourceFileUBL);
         StandardMetadata mdUBL = new StandardMetadata(metsUBL);
+        // Ensure that old "Owner" label is no longer used
         List<String> ownersUBL = getMetaDataValuesWithLabel(mdUBL, "Owner");
         assertEquals(0, ownersUBL.size());
+        // Check current desired output
         List<String> ownersOfDigitalCopyUBL = getMetaDataValuesWithLabel(mdUBL, "Owner of digital copy");
         assertEquals(1, ownersOfDigitalCopyUBL.size());
         assertTrue(ownersOfDigitalCopyUBL.contains("Leipzig University Library"));
