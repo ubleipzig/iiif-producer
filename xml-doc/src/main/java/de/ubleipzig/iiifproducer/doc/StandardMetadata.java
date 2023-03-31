@@ -56,16 +56,13 @@ public class StandardMetadata {
         final List<Metadata> meta = new ArrayList<>();
         meta.add(Metadata.builder().label("Kitodo").value(getManuscriptIdByType(mets, GOOBI_TYPE)).build());
         meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, URN_TYPE)).build());
-        //this is ugly, but this is the way that collections are tagged in the XML
         final String vd16 = getManuscriptIdByType(mets, "vd16");
         final String vd17 = getManuscriptIdByType(mets, "vd17");
         if (!vd16.equals("")) {
             meta.add(Metadata.builder().label("VD16").value(vd16).build());
-            meta.add(Metadata.builder().label("Collection").value("VD16").build());
         }
         if (!vd17.equals("")) {
             meta.add(Metadata.builder().label("VD17").value(vd17).build());
-            meta.add(Metadata.builder().label("Collection").value("VD17").build());
         }
         meta.add(Metadata.builder().label("Source PPN (SWB)").value(getManuscriptIdByType(mets, SWB_TYPE)).build());
         boolean isProjectHeisenberg = getCollections(mets).stream().filter(col -> col.contains("Heisenberg")).collect(Collectors.toList()).size() > 0;
