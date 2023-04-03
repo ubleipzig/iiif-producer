@@ -113,7 +113,7 @@ public class GetStandardMetadataTest {
         assertEquals(1, ownersOfDigitalCopyUBL.size());
         assertTrue(ownersOfDigitalCopyUBL.contains("Leipzig University Library"));
 
-        final String sourceFileAnnaberg = GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml").getPath();
+        final String sourceFileAnnaberg = GetValuesFromMetsTest.class.getResource("/mets/ProMSiG_1800085370.xml").getPath();
         MetsData metsAnnaberg = getMets(sourceFileAnnaberg);
         StandardMetadata mdAnnaberg = new StandardMetadata(metsAnnaberg);
         List<String> ownersAnnaberg = getMetaDataValuesWithLabel(mdAnnaberg, "Owner");
