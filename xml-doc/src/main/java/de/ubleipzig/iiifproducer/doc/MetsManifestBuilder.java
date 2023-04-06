@@ -316,8 +316,16 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
-    public static String getOwner(final MetsData mets) {
-        return mets.getOwner().orElse("").trim();
+    public static String getOwnerOfDigitalCopy(final MetsData mets) {
+        return mets.getOwnerOfDigitalCopy().orElse("").trim();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
+    public static String getOwnerOfOriginal(final MetsData mets) {
+        return mets.getOwnerOfOriginal().orElse("");
     }
 
     /**

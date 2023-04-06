@@ -77,7 +77,8 @@ public class StandardMetadata {
         meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
         meta.add(Metadata.builder().label("Place of publication").value(getPlace(mets)).build());
         meta.add(Metadata.builder().label("Date of publication").value(getDate(mets)).build());
-        meta.add(Metadata.builder().label("Owner").value(getOwner(mets)).build());
+        meta.add(Metadata.builder().label("Owner of digital copy").value(getOwnerOfDigitalCopy(mets)).build());
+        meta.add(Metadata.builder().label("Owner of original").value(getOwnerOfOriginal(mets)).build());
         meta.add(Metadata.builder().label("Author").value(getAuthor(mets)).build());
         meta.add(Metadata.builder().label("Addressee").value(getAddressee(mets)).build());
         meta.add(Metadata.builder().label("Publisher").value(getPublisher(mets)).build());

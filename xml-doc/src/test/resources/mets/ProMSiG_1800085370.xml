@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis-v2-0.xsd http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/mods.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.loc.gov/mix/v10 http://www.loc.gov/standards/mix/mix10/mix10.xsd">
+  <mets:metsHdr CREATEDATE="2023-02-28T14:41:05">
+    <mets:agent OTHERTYPE="SOFTWARE" ROLE="CREATOR" TYPE="OTHER">
+      <mets:name>Kitodo - kitodo-ugh-2.1.3-kitodo-ugh-2.1.1-11-g4b06eaa - 30−July−2019</mets:name>
+      <mets:note>Kitodo</mets:note>
+    </mets:agent>
+  </mets:metsHdr>
+  <mets:dmdSec ID="DMDLOG_0000">
+    <mets:mdWrap MDTYPE="MODS">
+      <mets:xmlData>
+        <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+          <mods:identifier type="goobi">23042</mods:identifier>
+          <mods:relatedItem type="series">
+            <mods:titleInfo>
+              <mods:title lang="ger">Annaberg-Buchholz, Evangelisch-Lutherische Kirchgemeinde Annaberg-Buchholz, Archiv</mods:title>
+            </mods:titleInfo>
+          </mods:relatedItem>
+          <mods:identifier type="urn">urn:nbn:de:bsz:15-0025-509845</mods:identifier>
+          <mods:identifier type="swb-ppn">1800085370</mods:identifier>
+          <mods:extension>
+            <slub:slub xmlns:slub="http://slub-dresden.de/">
+              <slub:id type="source">1800085370</slub:id>
+              <slub:id type="tsl-ats">ProMSiG</slub:id>
+            </slub:slub>
+          </mods:extension>
+          <mods:identifier type="vd17">VD17 3086:753621E</mods:identifier>
+          <mods:titleInfo>
+            <mods:title>Pro M. Simonis Grunæi Ad Ecclesiæ Lignic. Marianæ Pastorum inauguratione solenn.</mods:title>
+          </mods:titleInfo>
+          <mods:language>
+            <mods:languageTerm authority="rfc3066" type="code">lat</mods:languageTerm>
+          </mods:language>
+          <mods:originInfo>
+            <mods:place>
+              <mods:placeTerm type="text">Lignici[i]</mods:placeTerm>
+            </mods:place>
+            <mods:dateIssued keyDate="yes">[1612?]</mods:dateIssued>
+            <mods:dateOther encoding="w3cdtf" type="order">1612</mods:dateOther>
+            <mods:publisher>Typis Sartorianis</mods:publisher>
+          </mods:originInfo>
+          <mods:physicalDescription>
+            <mods:extent>1 ungezähltes Blatt, 6 ungezählte Seiten</mods:extent>
+          </mods:physicalDescription>
+          <mods:name>
+            <mods:role>
+              <mods:roleTerm authority="marcrelator" type="code">len</mods:roleTerm>
+            </mods:role>
+            <mods:displayForm>Annaberg-Buchholz, Evangelisch-Lutherische Kirchgemeinde Annaberg-Buchholz</mods:displayForm>
+          </mods:name>
+          <mods:note type="comment">Teil eines Sammelbandes (612)</mods:note>
+          <mods:accessCondition type="use and reproduction" href="http://creativecommons.org/publicdomain/mark/1.0/">Public Domain Mark 1.0</mods:accessCondition>
+          <mods:accessCondition displayLabel="Access Status" type="restriction on access" href="http://purl.org/coar/access_right/c_abf2">Open Access</mods:accessCondition>
+        </mods:mods>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:dmdSec ID="DMDPHYS_0000">
+    <mets:mdWrap MDTYPE="MODS">
+      <mets:xmlData>
+        <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+          <mods:location>
+            <mods:physicalLocation authority="marcorg" displayLabel="Leipzig University Library, Leipzig, Germany">DE-15</mods:physicalLocation>
+            <mods:shelfLocator>Annaberg-Buchholz, Evangelisch-Lutherische Kirchgemeinde Annaberg-Buchholz, Archiv, C 612/7</mods:shelfLocator>
+          </mods:location>
+          <mods:physicalDescription>
+            <mods:extent>4°</mods:extent>
+          </mods:physicalDescription>
+        </mods:mods>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="AMD">
+    <mets:rightsMD ID="RIGHTS">
+      <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVRIGHTS">
+        <mets:xmlData>
+          <dv:rights xmlns:dv="http://dfg-viewer.de/">
+            <dv:owner>Leipzig University Library</dv:owner>
+            <dv:ownerLogo>https://iiif.ub.uni-leipzig.de/ubl-logo.png</dv:ownerLogo>
+            <dv:ownerSiteURL>https://ub.uni-leipzig.de</dv:ownerSiteURL>
+            <dv:ownerContact>mailto:info@ub.uni-leipzig.de</dv:ownerContact>
+          </dv:rights>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:rightsMD>
+    <mets:digiprovMD ID="DIGIPROV">
+      <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVLINKS">
+        <mets:xmlData>
+          <dv:links xmlns:dv="http://dfg-viewer.de/">
+            <dv:reference>https://opac.k10plus.de/DB=2.299/PPNSET?PPN=1800085370</dv:reference>
+            <dv:presentation>http://nbn-resolving.de/urn:nbn:de:bsz:15-0025-509845</dv:presentation>
+          </dv:links>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:fileSec>
+    <mets:fileGrp USE="ORIGINAL">
+      <mets:file ID="FILE_0001_ORIGINAL" MIMETYPE="image/tiff">
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ProMSiG_1800085370_media/00000001.tif"/>
+      </mets:file>
+      <mets:file ID="FILE_0002_ORIGINAL" MIMETYPE="image/tiff">
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ProMSiG_1800085370_media/00000002.tif"/>
+      </mets:file>
+      <mets:file ID="FILE_0003_ORIGINAL" MIMETYPE="image/tiff">
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ProMSiG_1800085370_media/00000003.tif"/>
+      </mets:file>
+      <mets:file ID="FILE_0004_ORIGINAL" MIMETYPE="image/tiff">
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ProMSiG_1800085370_media/00000004.tif"/>
+      </mets:file>
+      <mets:file ID="FILE_0005_ORIGINAL" MIMETYPE="image/tiff">
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ProMSiG_1800085370_media/00000005.tif"/>
+      </mets:file>
+      <mets:file ID="FILE_0006_ORIGINAL" MIMETYPE="image/tiff">
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ProMSiG_1800085370_media/00000006.tif"/>
+      </mets:file>
+      <mets:file ID="FILE_0007_ORIGINAL" MIMETYPE="image/tiff">
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ProMSiG_1800085370_media/00000007.tif"/>
+      </mets:file>
+      <mets:file ID="FILE_0008_ORIGINAL" MIMETYPE="image/tiff">
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ProMSiG_1800085370_media/00000008.tif"/>
+      </mets:file>
+      <mets:file ID="FILE_0009_ORIGINAL" MIMETYPE="image/tiff">
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" LOCTYPE="URL" xlink:href="ProMSiG_1800085370_media/00000009.tif"/>
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
+  <mets:structMap TYPE="LOGICAL">
+    <mets:div ADMID="AMD" DMDID="DMDLOG_0000" ID="LOG_0000" LABEL="Pro M. Simonis Grunæi Ad Ecclesiæ Lignic. Marianæ Pastorum inauguratione solenn." ORDERLABEL="Pro M. Simonis Grunæi Ad Ecclesiæ Lignic. Marianæ Pastorum inauguratione solenn." TYPE="monograph"/>
+  </mets:structMap>
+  <mets:structMap TYPE="PHYSICAL">
+    <mets:div DMDID="DMDPHYS_0000" ID="PHYS_0000" TYPE="physSequence">
+      <mets:div ID="PHYS_0001" ORDER="1" ORDERLABEL="[-]" TYPE="page">
+        <mets:fptr FILEID="FILE_0001_ORIGINAL"/>
+      </mets:div>
+      <mets:div ID="PHYS_0002" ORDER="2" ORDERLABEL="[-]" TYPE="page">
+        <mets:fptr FILEID="FILE_0002_ORIGINAL"/>
+      </mets:div>
+      <mets:div ID="PHYS_0003" ORDER="3" ORDERLABEL="[-]" TYPE="page">
+        <mets:fptr FILEID="FILE_0003_ORIGINAL"/>
+      </mets:div>
+      <mets:div ID="PHYS_0004" ORDER="4" ORDERLABEL="[-]" TYPE="page">
+        <mets:fptr FILEID="FILE_0004_ORIGINAL"/>
+      </mets:div>
+      <mets:div ID="PHYS_0005" ORDER="5" ORDERLABEL="[-]" TYPE="page">
+        <mets:fptr FILEID="FILE_0005_ORIGINAL"/>
+      </mets:div>
+      <mets:div ID="PHYS_0006" ORDER="6" ORDERLABEL="[-]" TYPE="page">
+        <mets:fptr FILEID="FILE_0006_ORIGINAL"/>
+      </mets:div>
+      <mets:div ID="PHYS_0007" ORDER="7" ORDERLABEL="[-]" TYPE="page">
+        <mets:fptr FILEID="FILE_0007_ORIGINAL"/>
+      </mets:div>
+      <mets:div ID="PHYS_0008" ORDER="8" ORDERLABEL="[-]" TYPE="page">
+        <mets:fptr FILEID="FILE_0008_ORIGINAL"/>
+      </mets:div>
+      <mets:div ID="PHYS_0009" ORDER="9" ORDERLABEL="[-] mit Farbkeil" TYPE="page">
+        <mets:fptr FILEID="FILE_0009_ORIGINAL"/>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+  <mets:structLink>
+    <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0001" xlink:from="LOG_0000"/>
+    <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0002" xlink:from="LOG_0000"/>
+    <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0003" xlink:from="LOG_0000"/>
+    <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0004" xlink:from="LOG_0000"/>
+    <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0005" xlink:from="LOG_0000"/>
+    <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0006" xlink:from="LOG_0000"/>
+    <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0007" xlink:from="LOG_0000"/>
+    <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0008" xlink:from="LOG_0000"/>
+    <mets:smLink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:to="PHYS_0009" xlink:from="LOG_0000"/>
+  </mets:structLink>
+</mets:mets>

@@ -194,4 +194,26 @@ class GetValuesFromMetsTest {
         final List<String> copyrightHolders = getCopyrightHolders(mets);
         assertIterableEquals(copyrightHolders, Collections.singletonList("Otto Harrassowitz GmbH & Co. KG"));
     }
+
+    @Test
+    void testGetOwnerOfDigitalCopy() {
+        final MetsData metsStandard = getMets(sourceFile);
+        assertEquals("Leipzig University Library", getOwnerOfDigitalCopy(metsStandard));
+
+        final String specialSourceFile = Objects.requireNonNull(
+                HspCatalogStructureMetadataTest.class.getResource("/mets/ProMSiG_1800085370.xml")).getPath();
+        final MetsData metsSpecial = getMets(specialSourceFile);
+        assertEquals("Leipzig University Library", getOwnerOfDigitalCopy(metsSpecial));
+    }
+
+    @Test
+    void testGetOwnerOfOriginal() {
+        final MetsData metsStandard = getMets(sourceFile);
+        assertEquals("", getOwnerOfOriginal(metsStandard));
+
+        final String specialSourceFile = Objects.requireNonNull(
+                HspCatalogStructureMetadataTest.class.getResource("/mets/ProMSiG_1800085370.xml")).getPath();
+        final MetsData metsSpecial = getMets(specialSourceFile);
+        assertEquals("Annaberg-Buchholz, Evangelisch-Lutherische Kirchgemeinde Annaberg-Buchholz", getOwnerOfOriginal(metsSpecial));
+    }
 }
