@@ -25,8 +25,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GetStandardMetadataTest {
 
@@ -40,8 +39,8 @@ public class GetStandardMetadataTest {
         assertEquals(1, (int) info.stream().filter(
                 v -> v.getLabel() instanceof String && ((String) v.getLabel()).contains("VD17")).count());
         List<String> collections = info.stream().filter(v -> "Collection".equals(v.getLabel())).map(v -> (String) v.getValue()).collect(Collectors.toList());
-        assertEquals(2, collections.size());
-        assertTrue(collections.contains("VD17"));
+        assertEquals(1, collections.size());
+        assertFalse(collections.contains("VD17"));
         assertTrue(collections.contains("Drucke des 17. Jahrhunderts"));
     }
 
@@ -55,7 +54,7 @@ public class GetStandardMetadataTest {
         assertEquals(1, (int) info.stream().filter(
                 v -> v.getLabel() instanceof String && ((String) v.getLabel()).contains("VD16")).count());
         List<String> collections = info.stream().filter(v -> "Collection".equals(v.getLabel())).map(v -> (String) v.getValue()).collect(Collectors.toList());
-        assertEquals(2, collections.size());
+        assertEquals(1, collections.size());
         assertTrue(collections.contains("VD16"));
     }
 
