@@ -87,6 +87,9 @@ public class MetsImpl implements MetsAccessor {
     @Override
     public List<String> getCanvases(final String logical) {
         final List<String> canvases = new ArrayList<>();
+        if (!xlinkmap.containsKey(logical)) {
+            throw new RuntimeException("Logical structure " + logical + " is not linked to any physical structures.");
+        }
         final List<String> physicals = xlinkmap.get(logical).stream().map(MetsData.Xlink::getXLinkTo).collect(toList());
         physicals.forEach(physical -> {
             canvases.add(iriBuilder.buildCanvasIRIfromPhysical(physical));
