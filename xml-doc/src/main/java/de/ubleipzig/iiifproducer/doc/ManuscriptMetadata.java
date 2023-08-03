@@ -67,6 +67,8 @@ public class ManuscriptMetadata {
         meta.add(Metadata.builder().label("Kitodo").value(getManuscriptIdByType(mets, "goobi")).build());
         meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, "urn")).build());
         meta.add(Metadata.builder().label("Signatur").value(getManuscriptIdByType(mets, "shelfmark")).build());
+        meta.add(Metadata.builder().label("Besitzer des Digitalisats").value(getOwnerOfDigitalCopy(mets)).build());
+        meta.add(Metadata.builder().label("Besitzer des Originals").value(getOwnerOfOriginal(mets)).build());
         meta.add(Metadata.builder().label("Manifest Type").value(getLogicalType(mets, METS_PARENT_LOGICAL_ID)).build());
         log.debug("Manuscript metadata Added");
         return meta.stream()
