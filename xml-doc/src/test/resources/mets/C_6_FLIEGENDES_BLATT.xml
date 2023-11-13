@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mets:mets
+        xsi:schemaLocation="info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis-v2-0.xsd http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/mods.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.loc.gov/mix/v10 http://www.loc.gov/standards/mix/mix10/mix10.xsd"
+        xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <mets:metsHdr CREATEDATE="2023-07-27T19:01:44">
+        <mets:agent OTHERTYPE="SOFTWARE" ROLE="CREATOR" TYPE="OTHER">
+            <mets:name>Kitodo - kitodo-ugh-2.1.3-kitodo-ugh-2.1.1-11-g4b06eaa - 30−July−2019</mets:name>
+            <mets:note>Kitodo</mets:note>
+        </mets:agent>
+    </mets:metsHdr>
+    <mets:dmdSec ID="DMDLOG_0000">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:identifier type="goobi">24386</mods:identifier>
+                    <mods:relatedItem type="series">
+                        <mods:titleInfo>
+                            <mods:title lang="ger">Evangelisch-lutherische Kirchgemeinde Annaberg-Buchholz,
+                                Kirchenbibliothek
+                            </mods:title>
+                        </mods:titleInfo>
+                    </mods:relatedItem>
+                    <mods:identifier type="urn">urn:nbn:de:bsz:15-0026-530790</mods:identifier>
+                    <mods:titleInfo>
+                        <mods:title>Annaberg-Buchholz, Evangelisch-Lutherische Kirchgemeinde Annaberg-Buchholz, Archiv,
+                            C 6, fliegendes Blatt
+                        </mods:title>
+                        <mods:subTitle>Homiliarium (Fragm.)</mods:subTitle>
+                    </mods:titleInfo>
+                    <mods:accessCondition type="use and reproduction"
+                                          href="http://creativecommons.org/publicdomain/mark/1.0/">Public Domain Mark
+                        1.0
+                    </mods:accessCondition>
+                    <mods:accessCondition displayLabel="Access Status" type="restriction on access"
+                                          href="http://purl.org/coar/access_right/c_abf2">Open Access
+                    </mods:accessCondition>
+                    <mods:name>
+                        <mods:role>
+                            <mods:roleTerm authority="marcrelator" type="code">len</mods:roleTerm>
+                        </mods:role>
+                        <mods:displayForm>Evangelisch-lutherische Kirchgemeinde Annaberg-Buchholz</mods:displayForm>
+                    </mods:name>
+                    <mods:location>
+                        <mods:physicalLocation>Annaberg-Buchholz</mods:physicalLocation>
+                        <mods:physicalLocation>Evangelisch-Lutherische Kirchgemeinde Annaberg-Buchholz, Archiv
+                        </mods:physicalLocation>
+                    </mods:location>
+                    <mods:identifier displayLabel="Signatur" type="shelfmark">C 6, fliegendes Blatt</mods:identifier>
+                    <mods:typeOfResource manuscript="yes">Handschrift</mods:typeOfResource>
+                    <mods:physicalDescription>
+                        <mods:form type="material">Pergament</mods:form>
+                        <mods:extent unit="leaves">2 Bll. (2 Einzelblätter)</mods:extent>
+                    </mods:physicalDescription>
+                    <mods:language>
+                        <mods:languageTerm type="text">lateinisch</mods:languageTerm>
+                    </mods:language>
+                    <mods:originInfo>
+                        <mods:place eventType="manufacture">Deutschland / Westsachsen (?)</mods:place>
+                        <mods:dateCreated qualifier="inferred">Wende 13./14. Jahrhundert</mods:dateCreated>
+                        <mods:dateCreated keyDate="yes" point="start" qualifier="inferred">1296</mods:dateCreated>
+                        <mods:dateCreated point="end" qualifier="inferred">1305</mods:dateCreated>
+                    </mods:originInfo>
+                    <mods:recordInfo>
+                        <mods:recordIdentifier>http://www.manuscripta-mediaevalia.de/dokumente/html/obj31651251
+                        </mods:recordIdentifier>
+                    </mods:recordInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0001">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>Fragment</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0002">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>fliegendes Blatt vorn</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0003">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>Homiliarium</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0004">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>fliegendes Blatt hinten</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0005">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>Homiliarium</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0006">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>Trägerband</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0007">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>Einband</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0008">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>Druck</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0009">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>Paul Wann: Sermones dominicales per anni circulum</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0010">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>leer</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0011">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>Einband</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:dmdSec ID="DMDLOG_0012">
+        <mets:mdWrap MDTYPE="MODS">
+            <mets:xmlData>
+                <mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+                    <mods:titleInfo>
+                        <mods:title>Farbkeil</mods:title>
+                    </mods:titleInfo>
+                </mods:mods>
+            </mets:xmlData>
+        </mets:mdWrap>
+    </mets:dmdSec>
+    <mets:amdSec ID="AMD">
+        <mets:rightsMD ID="RIGHTS">
+            <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVRIGHTS">
+                <mets:xmlData>
+                    <dv:rights xmlns:dv="http://dfg-viewer.de/">
+                        <dv:owner>Leipzig University Library</dv:owner>
+                        <dv:ownerLogo>https://iiif.ub.uni-leipzig.de/ubl-logo.png</dv:ownerLogo>
+                        <dv:ownerSiteURL>https://ub.uni-leipzig.de</dv:ownerSiteURL>
+                        <dv:ownerContact>mailto:info@ub.uni-leipzig.de</dv:ownerContact>
+                    </dv:rights>
+                </mets:xmlData>
+            </mets:mdWrap>
+        </mets:rightsMD>
+        <mets:digiprovMD ID="DIGIPROV">
+            <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVLINKS">
+                <mets:xmlData>
+                    <dv:links xmlns:dv="http://dfg-viewer.de/">
+                        <dv:reference>http://www.manuscripta-mediaevalia.de/dokumente/html/obj31651251</dv:reference>
+                        <dv:presentation>http://nbn-resolving.de/urn:nbn:de:bsz:15-0026-530790</dv:presentation>
+                    </dv:links>
+                </mets:xmlData>
+            </mets:mdWrap>
+        </mets:digiprovMD>
+    </mets:amdSec>
+    <mets:fileSec>
+        <mets:fileGrp USE="ORIGINAL">
+            <mets:file ID="FILE_0001_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000001.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0002_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000002.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0003_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000003.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0004_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000004.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0005_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000005.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0006_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000006.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0007_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000007.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0008_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000008.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0009_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000009.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0010_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000010.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0011_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000011.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0012_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000012.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0013_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000013.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0014_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000014.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0015_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000015.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0016_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000016.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0017_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000017.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0018_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000018.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0019_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000019.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0020_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000020.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0021_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000021.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+            <mets:file ID="FILE_0022_ORIGINAL" MIMETYPE="image/tiff">
+                <mets:FLocat LOCTYPE="URL" xlink:href="C_6_FLIEGENDES_BLATT_media/00000022.tif"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            </mets:file>
+        </mets:fileGrp>
+    </mets:fileSec>
+    <mets:structMap TYPE="LOGICAL">
+        <mets:div ADMID="AMD" DMDID="DMDLOG_0000" ID="LOG_0000"
+                  LABEL="Annaberg-Buchholz, Evangelisch-Lutherische Kirchgemeinde Annaberg-Buchholz, Archiv, C 6, fliegendes Blatt"
+                  TYPE="manuscript">
+            <mets:div DMDID="DMDLOG_0001" ID="LOG_0001" LABEL="Fragment" TYPE="other">
+                <mets:div DMDID="DMDLOG_0002" ID="LOG_0002" LABEL="fliegendes Blatt vorn" TYPE="other">
+                    <mets:div DMDID="DMDLOG_0003" ID="LOG_0003" LABEL="Homiliarium" TYPE="other"/>
+                </mets:div>
+                <mets:div DMDID="DMDLOG_0004" ID="LOG_0004" LABEL="fliegendes Blatt hinten" TYPE="other">
+                    <mets:div DMDID="DMDLOG_0005" ID="LOG_0005" LABEL="Homiliarium" TYPE="other"/>
+                </mets:div>
+            </mets:div>
+            <mets:div DMDID="DMDLOG_0006" ID="LOG_0006" LABEL="Trägerband" TYPE="other">
+                <mets:div DMDID="DMDLOG_0007" ID="LOG_0007" LABEL="Einband" TYPE="other"/>
+                <mets:div DMDID="DMDLOG_0008" ID="LOG_0008" LABEL="Druck" TYPE="other">
+                    <mets:div DMDID="DMDLOG_0009" ID="LOG_0009"
+                              LABEL="Paul Wann: Sermones dominicales per anni circulum" TYPE="other"/>
+                    <mets:div DMDID="DMDLOG_0010" ID="LOG_0010" LABEL="leer" TYPE="other"/>
+                </mets:div>
+                <mets:div DMDID="DMDLOG_0011" ID="LOG_0011" LABEL="Einband" TYPE="other"/>
+            </mets:div>
+            <mets:div DMDID="DMDLOG_0012" ID="LOG_0012" LABEL="Farbkeil" TYPE="other"/>
+        </mets:div>
+    </mets:structMap>
+    <mets:structMap TYPE="PHYSICAL">
+        <mets:div ID="PHYS_0000" TYPE="physSequence">
+            <mets:div ID="PHYS_0001" ORDER="1" ORDERLABEL="1r" TYPE="page">
+                <mets:fptr FILEID="FILE_0001_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0002" ORDER="2" ORDERLABEL="1v" TYPE="page">
+                <mets:fptr FILEID="FILE_0002_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0003" ORDER="3" ORDERLABEL="2r" TYPE="page">
+                <mets:fptr FILEID="FILE_0003_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0004" ORDER="4" ORDERLABEL="2v" TYPE="page">
+                <mets:fptr FILEID="FILE_0004_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0005" ORDER="5" ORDERLABEL="3r" TYPE="page">
+                <mets:fptr FILEID="FILE_0005_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0006" ORDER="6" ORDERLABEL="3v" TYPE="page">
+                <mets:fptr FILEID="FILE_0006_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0007" ORDER="7" ORDERLABEL="4r" TYPE="page">
+                <mets:fptr FILEID="FILE_0007_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0008" ORDER="8" ORDERLABEL="4v" TYPE="page">
+                <mets:fptr FILEID="FILE_0008_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0009" ORDER="9" ORDERLABEL="Vorderdeckel" TYPE="page">
+                <mets:fptr FILEID="FILE_0009_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0010" ORDER="10" ORDERLABEL="Vorderspiegel" TYPE="page">
+                <mets:fptr FILEID="FILE_0010_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0011" ORDER="11" ORDERLABEL="Druck: Titelblatt (recto)" TYPE="page">
+                <mets:fptr FILEID="FILE_0011_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0012" ORDER="12" ORDERLABEL="Druck: Titelblatt (verso)" TYPE="page">
+                <mets:fptr FILEID="FILE_0012_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0013" ORDER="13" ORDERLABEL="Druck: letztes Blatt (recto)" TYPE="page">
+                <mets:fptr FILEID="FILE_0013_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0014" ORDER="14" ORDERLABEL="Druck: letztes Blatt (verso)" TYPE="page">
+                <mets:fptr FILEID="FILE_0014_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0015" ORDER="15" ORDERLABEL="Hinterspiegel" TYPE="page">
+                <mets:fptr FILEID="FILE_0015_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0016" ORDER="16" ORDERLABEL="Hinterdeckel" TYPE="page">
+                <mets:fptr FILEID="FILE_0016_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0017" ORDER="17" ORDERLABEL="Rücken" TYPE="page">
+                <mets:fptr FILEID="FILE_0017_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0018" ORDER="18" ORDERLABEL="Schnitt oben" TYPE="page">
+                <mets:fptr FILEID="FILE_0018_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0019" ORDER="19" ORDERLABEL="Schnitt seitlich" TYPE="page">
+                <mets:fptr FILEID="FILE_0019_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0020" ORDER="20" ORDERLABEL="Schnitt unten" TYPE="page">
+                <mets:fptr FILEID="FILE_0020_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0021" ORDER="21" ORDERLABEL="Trägerband mit Farbkeil" TYPE="page">
+                <mets:fptr FILEID="FILE_0021_ORIGINAL"/>
+            </mets:div>
+            <mets:div ID="PHYS_0022" ORDER="22" ORDERLABEL="Fragment mit Farbkeil" TYPE="page">
+                <mets:fptr FILEID="FILE_0022_ORIGINAL"/>
+            </mets:div>
+        </mets:div>
+    </mets:structMap>
+    <mets:structLink>
+        <mets:smLink xlink:to="PHYS_0001" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0002" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0003" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0004" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0005" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0006" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0007" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0008" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0009" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0010" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0011" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0012" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0013" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0014" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0015" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0016" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0017" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0018" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0019" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0020" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0021" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0022" xlink:from="LOG_0000" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0001" xlink:from="LOG_0001" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0002" xlink:from="LOG_0001" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0003" xlink:from="LOG_0001" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0004" xlink:from="LOG_0001" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0005" xlink:from="LOG_0001" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0006" xlink:from="LOG_0001" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0007" xlink:from="LOG_0001" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0008" xlink:from="LOG_0001" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0001" xlink:from="LOG_0002" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0002" xlink:from="LOG_0002" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0003" xlink:from="LOG_0002" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0004" xlink:from="LOG_0002" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0001" xlink:from="LOG_0003" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0002" xlink:from="LOG_0003" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0003" xlink:from="LOG_0003" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0004" xlink:from="LOG_0003" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0005" xlink:from="LOG_0004" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0006" xlink:from="LOG_0004" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0007" xlink:from="LOG_0004" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0008" xlink:from="LOG_0004" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0005" xlink:from="LOG_0005" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0006" xlink:from="LOG_0005" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0007" xlink:from="LOG_0005" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0008" xlink:from="LOG_0005" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0009" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0010" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0011" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0012" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0013" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0014" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0015" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0016" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0017" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0018" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0019" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0020" xlink:from="LOG_0006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0009" xlink:from="LOG_0007" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0010" xlink:from="LOG_0007" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0011" xlink:from="LOG_0008" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0012" xlink:from="LOG_0008" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0013" xlink:from="LOG_0008" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0014" xlink:from="LOG_0008" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0011" xlink:from="LOG_0009" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0012" xlink:from="LOG_0009" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0013" xlink:from="LOG_0010" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0014" xlink:from="LOG_0010" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0015" xlink:from="LOG_0011" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0016" xlink:from="LOG_0011" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0017" xlink:from="LOG_0011" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0018" xlink:from="LOG_0011" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0019" xlink:from="LOG_0011" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0020" xlink:from="LOG_0011" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0021" xlink:from="LOG_0012" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        <mets:smLink xlink:to="PHYS_0022" xlink:from="LOG_0012" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+    </mets:structLink>
+</mets:mets>
