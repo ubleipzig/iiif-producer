@@ -71,6 +71,7 @@ public class StandardMetadata {
             for (String collection: collections) {
                 meta.add(Metadata.builder().label("Collection").value(collection).build());
             }
+            meta.add(Metadata.builder().label("Kalliope-ID").value(getKalliopeID(mets)).build());
         } else {
             meta.add(Metadata.builder().label("Collection").value(getCollection(mets)).build());
         }
