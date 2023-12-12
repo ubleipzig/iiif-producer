@@ -193,7 +193,7 @@ public interface MetsData {
     /**
      * @return String
      */
-    @XBRead("//*[local-name()='extension']/*[local-name()='slub']/*[local-name()='id'][@type='source']")
+    @XBRead("//*[local-name()='mods']/*[local-name()='recordInfo']/*[local-name()='recordIdentifier'][@source='DE-611']")
     List<String> getKalliopeID();
 
     /**
