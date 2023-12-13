@@ -19,14 +19,17 @@
 package de.ubleipzig.iiifproducer.producer;
 
 import de.ubleipzig.iiif.vocabulary.SC;
+import de.ubleipzig.iiifproducer.model.ImageServiceResponse;
 import de.ubleipzig.iiifproducer.model.v2.Manifest;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * ProducerTest.
@@ -122,5 +125,15 @@ class ProducerTest {
         String attribution = manifest.getAttribution();
         assertTrue(attribution.contains("Otto Harrassowitz GmbH & Co. KG"));
     }
-}
 
+    @Test
+    void testMapServiceResponse() throws Exception {
+        String iri = "https://iiif.ub.uni-leipzig.de/iiif/j2k/0000/0107/0000010732/00000072.jpx";
+        final InputStream is = new URL(iri + "/info.json").openStream();
+        final ImageServiceResponse ir = IIIFProducer.mapServiceResponse(is);
+        assertNotNull(ir);
+        assertEquals(5284, ir.getWidth());
+        assertEquals(2410, ir.getHeight());
+        assertEquals(iri, ir.getId());
+    }
+}
