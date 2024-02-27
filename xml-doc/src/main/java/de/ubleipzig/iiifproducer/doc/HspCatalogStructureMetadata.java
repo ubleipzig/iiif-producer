@@ -41,12 +41,15 @@ public class HspCatalogStructureMetadata {
 
     private final String dmdLogId;
 
+    private final String logicalDivId;
+
     /**
      * @param mets         MetsData
      * @param logicalDivId logicalDivId
      */
     public HspCatalogStructureMetadata(final MetsData mets, final String logicalDivId) {
         this.mets = mets;
+        this.logicalDivId = logicalDivId;
         this.dmdLogId = mets.getLogicalDmdId(logicalDivId).orElse(null);
     }
 
@@ -58,6 +61,10 @@ public class HspCatalogStructureMetadata {
      * @return List
      */
     public List<Metadata> getInfo() {
+        if (this.dmdLogId == null) {
+            log.warn("No DMDID for logical div {}.", this.logicalDivId);
+            return null;
+        }
         final MetsData.HspCatalogMods mods = mets.getDmdMods(this.dmdLogId).orElse(null);
         if (mods != null) {
             final List<Metadata> meta = new ArrayList<>();
