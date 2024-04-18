@@ -110,8 +110,14 @@ public final class IRIBuilder {
      * @return String
      */
     public String buildCanvasIRIfromPhysical(final String physical) {
-        final Integer newId = valueOf(physical.substring(physical.indexOf("_") + 1));
-        return resourceContext + canvasContext + File.separator + format("%08d", newId);
+        if (physical.matches("^.+_\\d+$")) {
+            // XML from Kitodo 2, IDs like PHYS_0001
+            final Integer newId = valueOf(physical.substring(physical.indexOf("_") + 1));
+            return resourceContext + canvasContext + File.separator + format("%08d", newId);
+        } else {
+            // XML from Kitodo 3 or other, could be a UUID or something else
+            return resourceContext + canvasContext + File.separator + physical;
+        }
     }
 
     /**
