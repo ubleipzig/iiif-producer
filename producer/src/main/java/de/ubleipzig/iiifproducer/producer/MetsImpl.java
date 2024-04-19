@@ -34,7 +34,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
-import static java.io.File.separator;
 import static java.util.Collections.synchronizedList;
 import static java.util.Comparator.comparing;
 import static java.util.Comparator.naturalOrder;
@@ -63,8 +62,6 @@ public class MetsImpl implements MetsAccessor {
     private String license = "https://creativecommons.org/publicdomain/mark/1.0/";
 
     private MetsData mets;
-    @Builder.Default
-    private String rangeContext = "/range";
     private String resourceContext;
     private Map<String, List<MetsData.Xlink>> xlinkmap;
     private String xmlFile;
@@ -91,8 +88,10 @@ public class MetsImpl implements MetsAccessor {
             throw new RuntimeException("Logical structure " + logical + " is not linked to any physical structures.");
         }
         final List<String> physicals = xlinkmap.get(logical).stream().map(MetsData.Xlink::getXLinkTo).collect(toList());
+        final List<String> sequencePhysicalDivIds = mets.getPhysicalDivs();
         physicals.forEach(physical -> {
-            canvases.add(iriBuilder.buildCanvasIRIfromPhysical(physical));
+            int indexOfPhysicalId = sequencePhysicalDivIds.indexOf(physical);
+            canvases.add(iriBuilder.buildCanvasIRIfromPhysical(physical, indexOfPhysicalId));
         });
         return canvases;
     }
@@ -103,13 +102,12 @@ public class MetsImpl implements MetsAccessor {
 
         final List<MetsData.Logical> logs = getTopLogicals(mets);
         logs.forEach(logical -> {
-            final String rangeId = resourceContext + rangeContext + separator + logical.getLogicalId();
+            final String rangeId = iriBuilder.buildRangeId(logical.getLogicalId());
             ranges.add(0, rangeId);
         });
 
         final TopStructure st = TopStructure.builder()
-                .id(resourceContext + rangeContext + separator
-                        + MetsConstants.METS_PARENT_LOGICAL_ID)
+                .id(iriBuilder.buildRangeId(MetsConstants.METS_PARENT_LOGICAL_ID))
                 .label("Contents")
                 .build();
         ranges.sort(naturalOrder());
@@ -141,7 +139,7 @@ public class MetsImpl implements MetsAccessor {
                     final List<String> ranges = synchronizedList(new ArrayList<>());
                     lastChildren.forEach(desc -> {
                         final String descID = desc.getLogicalId().trim();
-                        final String rangeId = resourceContext + rangeContext + separator + descID;
+                        final String rangeId = iriBuilder.buildRangeId(descID);
                         final String descLabel = getLogicalLabel(mets, descID);
                         final Structure descSt = Structure.builder()
                                 .id(rangeId)
@@ -161,8 +159,7 @@ public class MetsImpl implements MetsAccessor {
                         descendents.add(0, descSt);
                     });
                     final Structure st = new Structure();
-                    final String structureIdDesc = resourceContext + rangeContext + separator +
-                            lastParentId;
+                    final String structureIdDesc = iriBuilder.buildRangeId(lastParentId);
                     st.setId(structureIdDesc);
                     final String logicalLabel = getLogicalLabel(mets, lastParentId);
                     final String logType = getLogicalType(mets, lastParentId);
@@ -174,8 +171,7 @@ public class MetsImpl implements MetsAccessor {
                     st.setCanvases(getCanvases(lastParentId));
                     if (!Objects.equals(
                             st.getId(),
-                            resourceContext + rangeContext + separator
-                                    + MetsConstants.METS_PARENT_LOGICAL_ID)) {
+                            iriBuilder.buildRangeId(MetsConstants.METS_PARENT_LOGICAL_ID))) {
                         structures.add(0, st);
                     }
                 });

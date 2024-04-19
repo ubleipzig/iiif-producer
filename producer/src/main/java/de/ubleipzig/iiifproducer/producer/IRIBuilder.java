@@ -58,6 +58,8 @@ public final class IRIBuilder {
     private String imageServiceImageDirPrefix = "/j2k/";
     @Builder.Default
     private boolean isUBLImageService = true;
+    @Builder.Default
+    private String rangeContext = "/range";
     private String resourceContext;
 
     /**
@@ -106,17 +108,17 @@ public final class IRIBuilder {
     }
 
     /**
-     * @param physical String
+     * @param physicalDivId String
      * @return String
      */
-    public String buildCanvasIRIfromPhysical(final String physical) {
-        if (physical.matches("^.+_\\d+$")) {
+    public String buildCanvasIRIfromPhysical(final String physicalDivId, final int indexOfPhysical) {
+        if (physicalDivId.matches("^.+_\\d+$")) {
             // XML from Kitodo 2, IDs like PHYS_0001
-            final Integer newId = valueOf(physical.substring(physical.indexOf("_") + 1));
+            final Integer newId = valueOf(physicalDivId.substring(physicalDivId.indexOf("_") + 1));
             return resourceContext + canvasContext + File.separator + format("%08d", newId);
         } else {
             // XML from Kitodo 3 or other, could be a UUID or something else
-            return resourceContext + canvasContext + File.separator + physical;
+            return resourceContext + canvasContext + File.separator + format("%08d", indexOfPhysical + 1);
         }
     }
 
@@ -125,5 +127,10 @@ public final class IRIBuilder {
      */
     public String buildAnnotationId() {
         return resourceContext + annotationContext + File.separator + UUID.randomUUID();
+    }
+
+    public String buildRangeId(final String logicalId) {
+        String eventualUuid = logicalId.replace("uuid-", "");
+        return resourceContext + rangeContext + separator + eventualUuid;
     }
 }

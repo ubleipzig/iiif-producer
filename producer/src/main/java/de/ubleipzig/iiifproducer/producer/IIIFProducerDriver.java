@@ -77,6 +77,7 @@ public final class IIIFProducerDriver implements Callable<Integer> {
                 .imageServiceFileExtension(props.getProperty("imageServiceFileExtension"))
                 .imageServiceImageDirPrefix(props.getProperty("imageServiceImageDirPrefix"))
                 .isUBLImageService((boolean) props.get("isUBLImageService"))
+                .rangeContext(props.getProperty("rangeContext"))
                 .resourceContext(resourceContext)
                 .build();
 
@@ -86,7 +87,6 @@ public final class IIIFProducerDriver implements Callable<Integer> {
                 .attributionLicenseNote(props.getProperty("attributionLicenseNote"))
                 .iriBuilder(iriBuilder)
                 .license(props.getProperty("license"))
-                .rangeContext(props.getProperty("rangeContext"))
                 .resourceContext(resourceContext)
                 .xmlFile(xmlFile)
                 .mets()
