@@ -107,9 +107,10 @@ public class MetsImpl implements MetsAccessor {
         });
 
         final TopStructure st = TopStructure.builder()
-                .id(iriBuilder.buildRangeId(MetsConstants.METS_PARENT_LOGICAL_ID))
+                .id(iriBuilder.buildRangeId(mets.getRootLogicalStructureId().orElse(MetsConstants.METS_PARENT_LOGICAL_ID)))
                 .label("Contents")
                 .build();
+        // FIXME there is no natural order for UUIDs
         ranges.sort(naturalOrder());
         st.setRanges(ranges);
         return st;
@@ -128,6 +129,7 @@ public class MetsImpl implements MetsAccessor {
     public List<Structure> buildStructures() {
         final List<Structure> structures = synchronizedList(new ArrayList<>());
         final List<Structure> descendents = synchronizedList(new ArrayList<>());
+        String rootLogicalId = mets.getRootLogicalStructureId().orElse(MetsConstants.METS_PARENT_LOGICAL_ID);
         xlinkmap.keySet().forEach(logical -> {
             final MetsData.Logical last = getLogicalLastDescendent(mets, logical);
             if (last != null) {
@@ -166,12 +168,13 @@ public class MetsImpl implements MetsAccessor {
                     final List<Metadata> metadataList = buildStructureMetadata(logType);
                     st.setLabel(logicalLabel);
                     st.setMetadata(metadataList);
+                    // FIXME there is no natural order for UUIDs
                     ranges.sort(naturalOrder());
                     st.setRanges(ranges);
                     st.setCanvases(getCanvases(lastParentId));
                     if (!Objects.equals(
                             st.getId(),
-                            iriBuilder.buildRangeId(MetsConstants.METS_PARENT_LOGICAL_ID))) {
+                            iriBuilder.buildRangeId(rootLogicalId))) {
                         structures.add(0, st);
                     }
                 });

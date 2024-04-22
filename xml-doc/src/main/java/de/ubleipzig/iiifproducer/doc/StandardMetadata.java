@@ -27,7 +27,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.GOOBI_TYPE;
-import static de.ubleipzig.iiifproducer.doc.MetsConstants.METS_PARENT_LOGICAL_ID;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.SWB_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.URN_TYPE;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
@@ -84,7 +83,9 @@ public class StandardMetadata {
         meta.add(Metadata.builder().label("Addressee").value(getAddressee(mets)).build());
         meta.add(Metadata.builder().label("Publisher").value(getPublisher(mets)).build());
         meta.add(Metadata.builder().label("Physical description").value(getPhysState(mets)).build());
-        meta.add(Metadata.builder().label("Manifest Type").value(getLogicalType(mets, METS_PARENT_LOGICAL_ID)).build());
+        meta.add(Metadata.builder().label("Manifest Type").value(
+                getLogicalType(mets, mets.getRootLogicalStructureId().orElse(MetsConstants.METS_PARENT_LOGICAL_ID))).build()
+        );
         log.debug("Standard Metadata Added");
         meta.stream().forEach(m -> System.err.println(m.getLabel() + ": '" + m.getValue() + "'"));
         return meta.stream()

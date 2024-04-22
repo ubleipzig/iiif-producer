@@ -313,6 +313,9 @@ public interface MetsData {
     @XBRead("//*[local-name()='structLink']/*[local-name()='smLink']")
     List<Xlink> getXlinks();
 
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()='div']/@ID")
+    Optional<String> getRootLogicalStructureId();
+
     /**
      * @param id String
      * @return Logical
