@@ -23,7 +23,6 @@ import de.ubleipzig.iiifproducer.model.ImageServiceResponse;
 import de.ubleipzig.iiifproducer.model.v2.Manifest;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
