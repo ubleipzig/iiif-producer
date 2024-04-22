@@ -36,7 +36,6 @@ import java.util.stream.Stream;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
 import static java.util.Collections.synchronizedList;
 import static java.util.Comparator.comparing;
-import static java.util.Comparator.naturalOrder;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
@@ -103,15 +102,13 @@ public class MetsImpl implements MetsAccessor {
         final List<MetsData.Logical> logs = getTopLogicals(mets);
         logs.forEach(logical -> {
             final String rangeId = iriBuilder.buildRangeId(logical.getLogicalId());
-            ranges.add(0, rangeId);
+            ranges.add(rangeId);
         });
 
         final TopStructure st = TopStructure.builder()
                 .id(iriBuilder.buildRangeId(mets.getRootLogicalStructureId().orElse(MetsConstants.METS_PARENT_LOGICAL_ID)))
                 .label("Contents")
                 .build();
-        // FIXME there is no natural order for UUIDs
-        ranges.sort(naturalOrder());
         st.setRanges(ranges);
         return st;
     }
@@ -148,7 +145,7 @@ public class MetsImpl implements MetsAccessor {
                                 .label(descLabel)
                                 .build();
                         final String logType = getLogicalType(mets, descID);
-                        ranges.add(0, rangeId);
+                        ranges.add(rangeId);
                         if (mets.isHspCatalog()) {
                             final HspCatalogStructureMetadata hspMd = new HspCatalogStructureMetadata(mets, descID);
                             final List<Metadata> metadataList = hspMd.getInfo();
@@ -168,8 +165,6 @@ public class MetsImpl implements MetsAccessor {
                     final List<Metadata> metadataList = buildStructureMetadata(logType);
                     st.setLabel(logicalLabel);
                     st.setMetadata(metadataList);
-                    // FIXME there is no natural order for UUIDs
-                    ranges.sort(naturalOrder());
                     st.setRanges(ranges);
                     st.setCanvases(getCanvases(lastParentId));
                     if (!Objects.equals(
