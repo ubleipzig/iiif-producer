@@ -154,6 +154,12 @@ public interface MetsData {
     /**
      * @return Optional
      */
+    @XBRead("//*[local-name()='identifier'][@type='hsp_kod_id']")
+    Optional<String> getHspKodIdentifier();
+
+    /**
+     * @return Optional
+     */
     @XBRead("//*[local-name()='dateCreated']")
     Optional<String> getDateCreated();
 

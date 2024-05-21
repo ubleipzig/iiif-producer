@@ -54,16 +54,20 @@ public class ManuscriptMetadata {
         final List<Metadata> meta = new ArrayList<>();
         meta.add(Metadata.builder().label("Titel (aus Signatur)").value(getManifestTitle(mets)).build());
         meta.add(Metadata.builder().label("Objekttitel").value(getSubtitle(mets)).build());
-        meta.add(Metadata.builder().label("Collection").value(getCollection(mets)).build());
+        List<String> collections = getCollections(mets);
+        for (String collection: collections) {
+            meta.add(Metadata.builder().label("Collection").value(collection).build());
+        }
         meta.add(Metadata.builder().label("Medium").value(HANDSHRIFT_TYPE).build());
         meta.add(Metadata.builder().label("Beschreibstoff").value(getMaterial(mets)).build());
         meta.add(Metadata.builder().label("Umfang").value(getExtent(mets)).build());
         meta.add(Metadata.builder().label("Abmessungen").value(getDimension(mets)).build());
         meta.add(Metadata.builder().label("Sprache").value(getLanguageDescription(mets)).build());
         meta.add(Metadata.builder().label("Lokalisierung").value(getLocation(mets)).build());
-        meta.add(Metadata.builder().label("Manuscripta Mediaevalia").value(getRecordIdentifier(mets)).build());
+        meta.add(Metadata.builder().label("Quelle der Angaben zur Handschrift").value(getRecordIdentifier(mets)).build());
+        meta.add(Metadata.builder().label("Informationen zur Handschrift").value(getHspKodIdentifier(mets)).build());
         meta.add(Metadata.builder().label("Datierung").value(getDateCreated(mets)).build());
-        meta.add(Metadata.builder().label("Kitodo").value(getManuscriptIdByType(mets, "goobi")).build());
+        meta.add(Metadata.builder().label("Kitodo").value(getManuscriptIdByType(mets, "kitodo")).build());
         meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, "urn")).build());
         meta.add(Metadata.builder().label("Signatur").value(getManuscriptIdByType(mets, "shelfmark")).build());
         meta.add(Metadata.builder().label("Besitzer des Digitalisats").value(getOwnerOfDigitalCopy(mets)).build());

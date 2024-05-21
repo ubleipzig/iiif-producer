@@ -247,6 +247,14 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
+    public static String getHspKodIdentifier(final MetsData mets) {
+        return mets.getHspKodIdentifier().orElse("").trim();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
     public static String getDateCreated(final MetsData mets) {
         return mets.getDateCreated().orElse("").trim();
     }
