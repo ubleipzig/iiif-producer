@@ -51,10 +51,15 @@ public interface MetsData {
     /**
      * @return String
      */
-    // FIXME This will no longer work with Kitodo.Production 3, "DMDLOG_0001" is replaced with a uuid
-    @XBRead("//*[local-name()='dmdSec'][@ID='DMDLOG_0001']//*[local-name()='mods']/*[local-name()" +
+    @XBRead("//*[local-name()='structMap'][@TYPE='LOGICAL']//*[local-name()='div'][@TYPE='volume']/@DMDID")
+    Optional<String> getVolumePartDmdId();
+
+    /**
+     * @return String
+     */
+    @XBRead("//*[local-name()='dmdSec'][@ID='{0}']//*[local-name()='mods']/*[local-name()" +
             "='titleInfo']/*[local-name()='title']")
-    Optional<String> getVolumePartTitle();
+    Optional<String> getVolumePartTitle(String dmdId);
 
     /**
      * @return String

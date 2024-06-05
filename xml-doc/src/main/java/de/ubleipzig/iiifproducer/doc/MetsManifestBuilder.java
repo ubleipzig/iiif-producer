@@ -102,7 +102,11 @@ public final class MetsManifestBuilder {
      * @return String
      */
     public static String getVolumePartTitleOrPartNumber(final MetsData mets) {
-        return mets.getVolumePartTitle().orElse(getCensus(mets)).trim();
+        String volumeDmdId = mets.getVolumePartDmdId().orElse(null);
+        if (volumeDmdId != null) {
+            return mets.getVolumePartTitle(volumeDmdId).orElse(getCensus(mets)).trim();
+        }
+        return getCensus(mets);
     }
 
     /**
