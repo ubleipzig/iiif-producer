@@ -74,11 +74,22 @@ public class GetStandardMetadataTest {
                 GetValuesFromMetsTest.class.getResource("/mets/Heisenberg.xml")).getPath();
         final MetsData mets = getMets(sourceFile);
         final StandardMetadata man = new StandardMetadata(mets);
-        final List<Metadata> info = man.getInfo();
         List<String> collections = getMetaDataValuesWithLabel(man, "Collection");
         assertEquals(2, collections.size());
         assertTrue(collections.contains("Nachlass Werner Heisenberg"));
         assertTrue(collections.contains("9. IV. Institutionen, 1. Korrespondenz: Academy of Human Rights, Rüschlikon bei Zürich"));
+    }
+
+    @Test
+    void testGetStandardMetadataWithMultipleCollections2() {
+        final String sourceFile = Objects.requireNonNull(
+                GetValuesFromMetsTest.class.getResource("/mets/AktezuGed_1121300006.xml")).getPath();
+        final MetsData mets = getMets(sourceFile);
+        final StandardMetadata man = new StandardMetadata(mets);
+        List<String> collections = getMetaDataValuesWithLabel(man, "Collection");
+        assertEquals(2, collections.size());
+        assertTrue(collections.contains("Saxonica"));
+        assertTrue(collections.contains("Veröffentlichungen des Meißner Dombauvereins"));
     }
 
     @Test

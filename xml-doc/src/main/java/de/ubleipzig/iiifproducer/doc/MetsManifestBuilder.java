@@ -104,9 +104,9 @@ public final class MetsManifestBuilder {
     public static String getVolumePartTitleOrPartNumber(final MetsData mets) {
         String volumeDmdId = mets.getVolumePartDmdId().orElse(null);
         if (volumeDmdId != null) {
-            return mets.getVolumePartTitle(volumeDmdId).orElse(getCensus(mets)).trim();
+            return mets.getVolumePartTitle(volumeDmdId).orElse(getCensusHost(mets)).trim();
         }
-        return getCensus(mets);
+        return getCensusHost(mets);
     }
 
     /**
@@ -284,8 +284,8 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
-    public static String getCensus(final MetsData mets) {
-        return mets.getCensus().orElse("").trim();
+    public static String getCensusHost(final MetsData mets) {
+        return mets.getCensusHost().orElse("").trim();
     }
 
     /**

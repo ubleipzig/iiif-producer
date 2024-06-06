@@ -190,8 +190,8 @@ public interface MetsData {
     /**
      * @return String
      */
-    @XBRead("//*[local-name()='number']")
-    Optional<String> getCensus();
+    @XBRead("//*[local-name()='part'][@type='host']/*[local-name()='detail']/*[local-name()='number']")
+    Optional<String> getCensusHost();
 
     /**
      * @return String

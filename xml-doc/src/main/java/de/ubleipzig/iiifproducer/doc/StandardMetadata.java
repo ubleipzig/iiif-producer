@@ -64,15 +64,15 @@ public class StandardMetadata {
             meta.add(Metadata.builder().label("VD17").value(vd17).build());
         }
         meta.add(Metadata.builder().label("Source PPN (SWB)").value(getManuscriptIdByType(mets, SWB_TYPE)).build());
-        boolean isProjectHeisenberg = getCollections(mets).stream().filter(col -> col.contains("Heisenberg")).collect(Collectors.toList()).size() > 0;
-        if (isProjectHeisenberg) {
-            List<String> collections = getCollections(mets);
-            for (String collection: collections) {
+        List<String> collections = getCollections(mets);
+        for (String collection : collections) {
+            if (!collection.contains("VD16") || !collection.contains("VD17")) {
                 meta.add(Metadata.builder().label("Collection").value(collection).build());
             }
+        }
+        boolean isProjectHeisenberg = getCollections(mets).stream().filter(col -> col.contains("Heisenberg")).collect(Collectors.toList()).size() > 0;
+        if (isProjectHeisenberg) {
             meta.add(Metadata.builder().label("Kalliope-ID").value(getKalliopeID(mets)).build());
-        } else {
-            meta.add(Metadata.builder().label("Collection").value(getCollection(mets)).build());
         }
         meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
         meta.add(Metadata.builder().label("Place of publication").value(getPlace(mets)).build());

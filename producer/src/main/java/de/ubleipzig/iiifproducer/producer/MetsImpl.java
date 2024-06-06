@@ -72,7 +72,7 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public Metadata getAnchorFileMetadata() {
-        return Metadata.builder().label(anchorKey).value(getMultiVolumeWorkTitle(mets) + "; " + getCensus(mets)).build();
+        return Metadata.builder().label(anchorKey).value(getMultiVolumeWorkTitle(mets) + "; " + getCensusHost(mets)).build();
     }
 
     @Override
@@ -289,7 +289,7 @@ public class MetsImpl implements MetsAccessor {
 
     @Override
     public void setManifestLabel(final Manifest body) {
-        if (!getCensus(mets).equals("")) {
+        if (!getCensusHost(mets).isEmpty()) {
             body.setLabel(getAnchorFileLabel());
         } else {
             if (getCollection(mets).contains("TestCollection") ^ getCollection(mets).contains("Heisenberg")) {
@@ -307,7 +307,7 @@ public class MetsImpl implements MetsAccessor {
         final StandardMetadata man = new StandardMetadata(mets);
         final List<Metadata> info = man.getInfo();
         final List<Metadata> metadata = new ArrayList<>(info);
-        if (!getCensus(mets).equals("")) {
+        if (!getCensusHost(mets).isEmpty()) {
             metadata.add(getAnchorFileMetadata());
         }
         final List<String> noteTypes = getNoteTypes(mets);

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:dv="http://dfg-viewer.de/" xmlns:kitodo="http://meta.kitodo.org/v1/" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:slub="http://www.slub-dresden.de/namespace" xmlns:slubarchiv="http://slubarchiv.slub-dresden.de/rights1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/mods.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd">
+  <mets:metsHdr CREATEDATE="2024-05-15T10:37:10.570+02:00" LASTMODDATE="2024-05-31T10:46:34.657+02:00" />
+  <mets:dmdSec ID="uuid-82d2315b-d6f4-3699-aec2-6c36f6aa8be1">
+    <mets:mdWrap MDTYPE="MODS">
+      <mets:xmlData>
+        <mods:mods>
+          <mods:titleInfo>
+            <mods:title>Aktenstücke zur Geschichte des Meissner Domes</mods:title>
+          </mods:titleInfo>
+          <mods:name type="corporate" authority="gnd" valueURI="http://d-nb.info/gnd/5004306-7">
+            <mods:namePart>Meißner Dombauverein</mods:namePart>
+            <mods:displayForm>Meißner Dombauverein</mods:displayForm>
+            <mods:nameIdentifier type="gnd">5004306-7</mods:nameIdentifier>
+            <mods:nameIdentifier type="ppn">102453659</mods:nameIdentifier>
+            <mods:role>
+              <mods:roleTerm type="code" authority="marcrelator">edt</mods:roleTerm>
+            </mods:role>
+          </mods:name>
+          <mods:name type="corporate">
+            <mods:displayForm>Leipzig University Library</mods:displayForm>
+            <mods:role>
+              <mods:roleTerm authority="marcrelator" type="code">own</mods:roleTerm>
+            </mods:role>
+          </mods:name>
+          <mods:name type="corporate">
+            <mods:displayForm>Leipzig University Library, Leipzig, Germany</mods:displayForm>
+            <mods:role>
+              <mods:roleTerm authority="marcrelator" type="code">len</mods:roleTerm>
+            </mods:role>
+          </mods:name>
+          <mods:name type="corporate">
+            <mods:displayForm>LDP Sachsen</mods:displayForm>
+            <mods:role>
+              <mods:roleTerm authority="marcrelator" type="code">fnd</mods:roleTerm>
+            </mods:role>
+          </mods:name>
+          <mods:originInfo eventType="publication">
+            <mods:place>
+              <mods:placeTerm type="text">Meißen</mods:placeTerm>
+            </mods:place>
+            <mods:publisher>Klinkicht</mods:publisher>
+            <mods:dateIssued encoding="iso8601" keyDate="yes">1904</mods:dateIssued>
+            <mods:displayDate>1904</mods:displayDate>
+          </mods:originInfo>
+          <mods:language>
+            <mods:languageTerm type="code" authority="rfc3066">ger</mods:languageTerm>
+            <mods:scriptTerm type="code" authority="iso15924">Latf</mods:scriptTerm>
+          </mods:language>
+          <mods:physicalDescription>
+            <mods:extent>20 S.</mods:extent>
+            <mods:digitalOrigin>reformatted digital</mods:digitalOrigin>
+          </mods:physicalDescription>
+          <mods:relatedItem type="series">
+            <mods:titleInfo>
+              <mods:title lang="ger">Saxonica</mods:title>
+            </mods:titleInfo>
+          </mods:relatedItem>
+          <mods:relatedItem type="series">
+            <mods:titleInfo>
+              <mods:title>Veröffentlichungen des Meißner Dombauvereins</mods:title>
+            </mods:titleInfo>
+            <mods:part type="volume">
+              <mods:detail>
+                <mods:number>2</mods:number>
+              </mods:detail>
+            </mods:part>
+          </mods:relatedItem>
+          <mods:identifier type="urn">urn:nbn:de:bsz:15-0028-574427</mods:identifier>
+          <mods:location>
+            <mods:physicalLocation valueURI="https://ld.zdb-services.de/resource/organisations/DE-15">Universitätsbibliothek Leipzig</mods:physicalLocation>
+            <mods:shelfLocator>01B-2019-2771</mods:shelfLocator>
+          </mods:location>
+          <mods:accessCondition type="use and reproduction" xlink:href="http://creativecommons.org/publicdomain/mark/1.0/">Public Domain Mark 1.0</mods:accessCondition>
+          <mods:accessCondition type="restriction on access" xlink:href="http://purl.org/coar/access_right/c_abf2" displayLabel="Access Status">Open Access</mods:accessCondition>
+          <mods:accessCondition type="slubRightsRecord">
+            <slubarchiv:rightsRecord>
+              <slubarchiv:copyrightStatus>publicdomain</slubarchiv:copyrightStatus>
+            </slubarchiv:rightsRecord>
+          </mods:accessCondition>
+          <mods:extension>
+            <slub:slub>
+              <slub:id type="kxp-ppn-source">1121300006</slub:id>
+              <slub:id type="tsl-ats">AktezuGed</slub:id>
+            </slub:slub>
+          </mods:extension>
+          <mods:recordInfo>
+            <mods:recordIdentifier source="https://digital.ub.uni-leipzig.de/ppn/">1121300006</mods:recordIdentifier>
+          </mods:recordInfo>
+        </mods:mods>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="AMD">
+    <mets:rightsMD ID="uuid-214e74e4-97a5-31fc-9b6a-258a141ecaae">
+      <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVRIGHTS">
+        <mets:xmlData>
+          <dv:rights>
+            <dv:owner>Leipzig University Library</dv:owner>
+            <dv:ownerLogo>https://iiif.ub.uni-leipzig.de/ubl-logo.png</dv:ownerLogo>
+            <dv:ownerSiteURL>https://ub.uni-leipzig.de</dv:ownerSiteURL>
+            <dv:ownerContact>mailto:info@ub.uni-leipzig.de</dv:ownerContact>
+            <dv:license>pdm</dv:license>
+          </dv:rights>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:rightsMD>
+    <mets:digiprovMD ID="uuid-3c31e89c-d785-3d51-b7d2-e770d850b2d4">
+      <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVLINKS">
+        <mets:xmlData>
+          <dv:links>
+            <dv:presentation>http://nbn-resolving.de/urn:nbn:de:bsz:15-0028-574427</dv:presentation>
+            <dv:reference>https://katalog.ub.uni-leipzig.de/urn/urn:nbn:de:bsz:15-0028-574427</dv:reference>
+          </dv:links>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:fileSec>
+    <mets:fileGrp USE="ORIGINAL">
+      <mets:file ID="uuid-3e519fa6-a578-4f87-81f5-30be318c62b7" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000001.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-6a27b3fa-c16d-4ba2-a08e-76fabe72e693" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000002.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-355b8473-8d69-4fcc-a410-b3778a45010b" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000003.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-2a04663f-0348-4eb1-a34f-0744eeb43463" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000004.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-dd6fb9a1-2f85-4fde-86e6-02264931a0bf" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000005.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-3df45219-c086-4f6e-8245-f7c51eae650a" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000006.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-4843b6e5-d13c-4241-803e-7a0e0e6f5a57" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000007.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-07ddc13b-4dc7-4007-b952-aab844874cbf" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000008.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-1dffaf1e-6824-4a7d-b633-c069314f6954" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000009.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-d8738aa3-8e2b-4c1c-b91c-cd17651e3f43" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000010.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-6e37aa5b-d047-4871-b48e-98e3689c60bb" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000011.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-bfe3f0fe-2c45-471e-a2f9-feb54976670e" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000012.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-62799b58-4589-4015-8e72-ace4cad985f9" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000013.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-bebfaa2a-b57d-4c5d-aaab-cd5ce66ba248" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000014.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-fb9ccd57-84bf-4741-b4b1-0cead3e2c51f" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000015.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-61aa751f-7fd5-40ba-8be7-48e32a8ce468" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000016.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-c99483a1-78e0-451d-8e27-fb3c515a6cf5" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000017.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-b8e5398a-122c-4bae-8fb6-af09503b81c7" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000018.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-326a0f6c-f721-4ac6-b77f-bf184746999c" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000019.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-da64d490-2c74-4d87-8868-a66c468fe182" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000020.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-3fcb12bd-951c-4c2d-bc68-860998ffcf60" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000021.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-da2a119f-3594-4b61-9f8e-9be83f585a37" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000022.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-eb046fd4-5fcc-4965-a112-806654f1246f" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000023.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-88ce8d5f-827e-4085-8c6b-84d059eb064c" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000024.tif" LOCTYPE="URL" />
+      </mets:file>
+      <mets:file ID="uuid-693574e1-2afb-4b1c-b4cd-13abe9a76f64" MIMETYPE="image/tiff">
+        <mets:FLocat xlink:href="AktezuGed_1121300006_media/00000025.tif" LOCTYPE="URL" />
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
+  <mets:structMap TYPE="PHYSICAL">
+    <mets:div TYPE="physSequence" ID="uuid-8e8722bb-14fc-4925-a74b-f92495c0abce">
+      <mets:div ID="uuid-f126fc4b-da6e-4aad-ada3-b826568a6a20" TYPE="page" ORDER="1" ORDERLABEL=" - ">
+        <mets:fptr FILEID="uuid-3e519fa6-a578-4f87-81f5-30be318c62b7" />
+      </mets:div>
+      <mets:div ID="uuid-41e12592-5047-462a-af2a-ebac605ebd83" TYPE="page" ORDER="2" ORDERLABEL=" - ">
+        <mets:fptr FILEID="uuid-6a27b3fa-c16d-4ba2-a08e-76fabe72e693" />
+      </mets:div>
+      <mets:div ID="uuid-a5fcffa9-6edc-43f5-97e4-01e2942acc1a" TYPE="page" ORDER="3" ORDERLABEL="1">
+        <mets:fptr FILEID="uuid-355b8473-8d69-4fcc-a410-b3778a45010b" />
+      </mets:div>
+      <mets:div ID="uuid-8cdbefd5-556a-46b0-ba48-814718036701" TYPE="page" ORDER="4" ORDERLABEL="2">
+        <mets:fptr FILEID="uuid-2a04663f-0348-4eb1-a34f-0744eeb43463" />
+      </mets:div>
+      <mets:div ID="uuid-992ba834-89f2-4e0a-a7b6-3dc96fbb7f74" TYPE="page" ORDER="5" ORDERLABEL="3">
+        <mets:fptr FILEID="uuid-dd6fb9a1-2f85-4fde-86e6-02264931a0bf" />
+      </mets:div>
+      <mets:div ID="uuid-92b8306f-bf35-4857-ab91-5d93ace63951" TYPE="page" ORDER="6" ORDERLABEL="4">
+        <mets:fptr FILEID="uuid-3df45219-c086-4f6e-8245-f7c51eae650a" />
+      </mets:div>
+      <mets:div ID="uuid-9ff0324e-09d4-4022-8905-c382bf48a329" TYPE="page" ORDER="7" ORDERLABEL="5">
+        <mets:fptr FILEID="uuid-4843b6e5-d13c-4241-803e-7a0e0e6f5a57" />
+      </mets:div>
+      <mets:div ID="uuid-cc3d6cf7-3726-4255-8ffd-b88cae71e387" TYPE="page" ORDER="8" ORDERLABEL="6">
+        <mets:fptr FILEID="uuid-07ddc13b-4dc7-4007-b952-aab844874cbf" />
+      </mets:div>
+      <mets:div ID="uuid-05658e33-55d9-4479-996e-1c716e61e7fd" TYPE="page" ORDER="9" ORDERLABEL="7">
+        <mets:fptr FILEID="uuid-1dffaf1e-6824-4a7d-b633-c069314f6954" />
+      </mets:div>
+      <mets:div ID="uuid-d45fa1d7-e44b-42ab-bae3-90c5b82b496c" TYPE="page" ORDER="10" ORDERLABEL="8">
+        <mets:fptr FILEID="uuid-d8738aa3-8e2b-4c1c-b91c-cd17651e3f43" />
+      </mets:div>
+      <mets:div ID="uuid-46d554f3-48be-4124-a206-d800fcbfd221" TYPE="page" ORDER="11" ORDERLABEL="9">
+        <mets:fptr FILEID="uuid-6e37aa5b-d047-4871-b48e-98e3689c60bb" />
+      </mets:div>
+      <mets:div ID="uuid-ff890663-d6e7-4256-a862-24c67d570603" TYPE="page" ORDER="12" ORDERLABEL="10">
+        <mets:fptr FILEID="uuid-bfe3f0fe-2c45-471e-a2f9-feb54976670e" />
+      </mets:div>
+      <mets:div ID="uuid-b33810bd-47b0-40c3-9172-ad76b05f82df" TYPE="page" ORDER="13" ORDERLABEL="11">
+        <mets:fptr FILEID="uuid-62799b58-4589-4015-8e72-ace4cad985f9" />
+      </mets:div>
+      <mets:div ID="uuid-a00d13e7-32b7-4942-a9f2-bb0f5eead91b" TYPE="page" ORDER="14" ORDERLABEL="12">
+        <mets:fptr FILEID="uuid-bebfaa2a-b57d-4c5d-aaab-cd5ce66ba248" />
+      </mets:div>
+      <mets:div ID="uuid-b657258d-141c-4545-8a12-b65bb69f0ca7" TYPE="page" ORDER="15" ORDERLABEL="13">
+        <mets:fptr FILEID="uuid-fb9ccd57-84bf-4741-b4b1-0cead3e2c51f" />
+      </mets:div>
+      <mets:div ID="uuid-2909ae6a-5011-4496-8eb0-aed054733b8e" TYPE="page" ORDER="16" ORDERLABEL="14">
+        <mets:fptr FILEID="uuid-61aa751f-7fd5-40ba-8be7-48e32a8ce468" />
+      </mets:div>
+      <mets:div ID="uuid-2f743655-fe28-46d8-a095-3844d19f49fd" TYPE="page" ORDER="17" ORDERLABEL="15">
+        <mets:fptr FILEID="uuid-c99483a1-78e0-451d-8e27-fb3c515a6cf5" />
+      </mets:div>
+      <mets:div ID="uuid-654d4426-d181-45a0-ba97-940fae0c6636" TYPE="page" ORDER="18" ORDERLABEL="16">
+        <mets:fptr FILEID="uuid-b8e5398a-122c-4bae-8fb6-af09503b81c7" />
+      </mets:div>
+      <mets:div ID="uuid-daa8a55c-63a5-46bd-9a4e-6de7412de49d" TYPE="page" ORDER="19" ORDERLABEL="17">
+        <mets:fptr FILEID="uuid-326a0f6c-f721-4ac6-b77f-bf184746999c" />
+      </mets:div>
+      <mets:div ID="uuid-4f60faed-1c04-450b-aef0-e027c76ab17a" TYPE="page" ORDER="20" ORDERLABEL="18">
+        <mets:fptr FILEID="uuid-da64d490-2c74-4d87-8868-a66c468fe182" />
+      </mets:div>
+      <mets:div ID="uuid-20deb8a0-a90e-4b88-bde6-66cdf9fc6174" TYPE="page" ORDER="21" ORDERLABEL="19">
+        <mets:fptr FILEID="uuid-3fcb12bd-951c-4c2d-bc68-860998ffcf60" />
+      </mets:div>
+      <mets:div ID="uuid-ae43c6ca-0a7f-4b9a-a1f2-888a60b941da" TYPE="page" ORDER="22" ORDERLABEL="20">
+        <mets:fptr FILEID="uuid-da2a119f-3594-4b61-9f8e-9be83f585a37" />
+      </mets:div>
+      <mets:div ID="uuid-2baacf5d-d77c-4e97-955a-346fbd7d45be" TYPE="page" ORDER="23" ORDERLABEL=" - ">
+        <mets:fptr FILEID="uuid-eb046fd4-5fcc-4965-a112-806654f1246f" />
+      </mets:div>
+      <mets:div ID="uuid-1edfb64a-1fb9-4f23-8086-abed76bdc559" TYPE="page" ORDER="24" ORDERLABEL=" - ">
+        <mets:fptr FILEID="uuid-88ce8d5f-827e-4085-8c6b-84d059eb064c" />
+      </mets:div>
+      <mets:div ID="uuid-49c70fb2-c129-4edc-83bd-1dc4309045e7" TYPE="page" ORDER="25" ORDERLABEL=" - ">
+        <mets:fptr FILEID="uuid-693574e1-2afb-4b1c-b4cd-13abe9a76f64" />
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+  <mets:structMap TYPE="LOGICAL">
+    <mets:div ID="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" LABEL="Aktenstücke zur Geschichte des Meissner Domes" ORDERLABEL="Aktenstücke zur Geschichte des Meissner Domes" DMDID="uuid-82d2315b-d6f4-3699-aec2-6c36f6aa8be1" ADMID="AMD" TYPE="monograph" />
+  </mets:structMap>
+  <mets:structLink>
+    <mets:smLink xlink:to="uuid-f126fc4b-da6e-4aad-ada3-b826568a6a20" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-41e12592-5047-462a-af2a-ebac605ebd83" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-a5fcffa9-6edc-43f5-97e4-01e2942acc1a" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-8cdbefd5-556a-46b0-ba48-814718036701" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-992ba834-89f2-4e0a-a7b6-3dc96fbb7f74" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-92b8306f-bf35-4857-ab91-5d93ace63951" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-9ff0324e-09d4-4022-8905-c382bf48a329" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-cc3d6cf7-3726-4255-8ffd-b88cae71e387" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-05658e33-55d9-4479-996e-1c716e61e7fd" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-d45fa1d7-e44b-42ab-bae3-90c5b82b496c" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-46d554f3-48be-4124-a206-d800fcbfd221" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-ff890663-d6e7-4256-a862-24c67d570603" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-b33810bd-47b0-40c3-9172-ad76b05f82df" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-a00d13e7-32b7-4942-a9f2-bb0f5eead91b" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-b657258d-141c-4545-8a12-b65bb69f0ca7" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-2909ae6a-5011-4496-8eb0-aed054733b8e" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-2f743655-fe28-46d8-a095-3844d19f49fd" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-654d4426-d181-45a0-ba97-940fae0c6636" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-daa8a55c-63a5-46bd-9a4e-6de7412de49d" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-4f60faed-1c04-450b-aef0-e027c76ab17a" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-20deb8a0-a90e-4b88-bde6-66cdf9fc6174" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-ae43c6ca-0a7f-4b9a-a1f2-888a60b941da" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-2baacf5d-d77c-4e97-955a-346fbd7d45be" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-1edfb64a-1fb9-4f23-8086-abed76bdc559" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+    <mets:smLink xlink:to="uuid-49c70fb2-c129-4edc-83bd-1dc4309045e7" xlink:from="uuid-d10fabcd-aaec-4706-aa00-f1b48fc5e0b0" />
+  </mets:structLink>
+</mets:mets>
