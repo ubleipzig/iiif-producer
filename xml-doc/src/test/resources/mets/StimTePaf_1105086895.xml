@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mets:mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           xmlns:kitodo="http://meta.kitodo.org/v1/"
+           xmlns:mets="http://www.loc.gov/METS/"
+           xmlns:dv="http://dfg-viewer.de/"
+           xmlns:mods="http://www.loc.gov/mods/v3"
+           xmlns:slub="http://www.slub-dresden.de/namespace"
+           xmlns:slubarchiv="http://slubarchiv.slub-dresden.de/rights1"
+           xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/mods.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd">
+   <mets:metsHdr CREATEDATE="2024-05-16T11:05:44.349+02:00"
+                 LASTMODDATE="2024-07-12T10:40:13.625+02:00"/>
+   <mets:dmdSec ID="uuid-93b899e2-5cb2-3774-9382-01ecbb4008e1">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>Stimme Teutscher Patrioten für Sachsen und dessen König</mods:title>
+               </mods:titleInfo>
+               <mods:name type="personal"
+                          authority="gnd"
+                          valueURI="http://d-nb.info/gnd/104114436">
+                  <mods:namePart type="family">Bischoff</mods:namePart>
+                  <mods:namePart type="given">Johann Nicolaus</mods:namePart>
+                  <mods:displayForm>Bischoff, Johann Nicolaus</mods:displayForm>
+                  <mods:nameIdentifier type="gnd">104114436</mods:nameIdentifier>
+                  <mods:nameIdentifier type="ppn">134403991</mods:nameIdentifier>
+                  <mods:role>
+                     <mods:roleTerm type="code" authority="marcrelator">aut</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:name type="corporate">
+                  <mods:displayForm>Leipzig University Library</mods:displayForm>
+                  <mods:role>
+                     <mods:roleTerm authority="marcrelator" type="code">own</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:name type="corporate">
+                  <mods:displayForm>Leipzig University Library, Leipzig, Germany</mods:displayForm>
+                  <mods:role>
+                     <mods:roleTerm authority="marcrelator" type="code">len</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:name type="corporate">
+                  <mods:displayForm>LDP Sachsen</mods:displayForm>
+                  <mods:role>
+                     <mods:roleTerm authority="marcrelator" type="code">fnd</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:originInfo eventType="publication">
+                  <mods:place>
+                     <mods:placeTerm type="text">Gera]</mods:placeTerm>
+                     <mods:placeTerm type="text">[Leipzig</mods:placeTerm>
+                  </mods:place>
+                  <mods:publisher>[Heinsius]</mods:publisher>
+                  <mods:dateIssued encoding="iso8601" keyDate="yes">1815</mods:dateIssued>
+                  <mods:displayDate>1815</mods:displayDate>
+                  <mods:edition>3. verb. Aufl.</mods:edition>
+               </mods:originInfo>
+               <mods:language>
+                  <mods:languageTerm type="code" authority="rfc3066">ger</mods:languageTerm>
+                  <mods:scriptTerm type="code" authority="iso15924">Latf</mods:scriptTerm>
+               </mods:language>
+               <mods:physicalDescription>
+                  <mods:extent>[4], 50, [2] S.</mods:extent>
+                  <mods:digitalOrigin>reformatted digital</mods:digitalOrigin>
+               </mods:physicalDescription>
+               <mods:relatedItem type="series">
+                  <mods:titleInfo>
+                     <mods:title lang="ger">Saxonica</mods:title>
+                  </mods:titleInfo>
+               </mods:relatedItem>
+               <mods:identifier type="urn">urn:nbn:de:bsz:15-0028-577178</mods:identifier>
+               <mods:location>
+                  <mods:physicalLocation valueURI="https://ld.zdb-services.de/resource/organisations/DE-15">Universitätsbibliothek Leipzig</mods:physicalLocation>
+                  <mods:shelfLocator>53-8-6255</mods:shelfLocator>
+               </mods:location>
+               <mods:accessCondition type="use and reproduction"
+                                     xlink:href="http://creativecommons.org/publicdomain/mark/1.0/">Public Domain Mark 1.0</mods:accessCondition>
+               <mods:accessCondition type="restriction on access"
+                                     xlink:href="http://purl.org/coar/access_right/c_abf2"
+                                     displayLabel="Access Status">Open Access</mods:accessCondition>
+               <mods:accessCondition type="slubRightsRecord">
+                  <slubarchiv:rightsRecord>
+                     <slubarchiv:copyrightStatus>publicdomain</slubarchiv:copyrightStatus>
+                  </slubarchiv:rightsRecord>
+               </mods:accessCondition>
+               <mods:extension>
+                  <slub:slub>
+                     <slub:id type="kxp-ppn-source">1105086895</slub:id>
+                     <slub:id type="tsl-ats">StimTePaf</slub:id>
+                  </slub:slub>
+               </mods:extension>
+               <mods:recordInfo>
+                  <mods:recordIdentifier source="https://digital.ub.uni-leipzig.de/ppn/">1105086895</mods:recordIdentifier>
+               </mods:recordInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-cdf6d4e7-c37e-3269-b179-4679a37e9173">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>Vorwort</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-4fa33787-65e0-3675-bb56-895203810bab">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>I. Benehmen des sächsischen Cabinets seit 1791 und gegen Preußen in den letztern Jahren; Folgen der Schlacht bei Jena; Posener Friede; Erwerb des Herzogthums Warschau; Benehmen der sächsischen Truppen 1812</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-5bc238ac-c16f-365e-bac9-a3edfdb7a462">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>II. Vertrag von Bayonne</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-674c521d-a333-39e1-adf3-56774b8263b0">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>III. Benehmen des Königs im Frühjahr 1813</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-53bc94c4-f5c2-3848-98f7-2560ff24ad96">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>IV. Kann Sachsen als ein erobertes Land betrachtet und darüber nach Willkühr disponirt werden?</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-80ce8aef-7fe9-3576-bc4f-69db10d1ba98">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>V. Kann die Convenienz Sachsens Zersplitterung oder Verschenkung anrathen?</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-04b915ce-9e42-354e-a32b-28c7d80edcec">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>VI. Beleuchtung einiger anderen, dem Könige von Sachsen und seiner Regierung gemachten Vorwürfe</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-29273201-5e07-30f6-a873-e6c39651346a">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>VII. Wünscht die Sächsische Nation einen anderen Regenten?</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-5f8c6594-2954-3571-8f41-1d7e656861fa">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>Nachwort</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-8fb661b4-e796-3467-8777-7eb2efb3f8b3">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>Folgende noch stehen gebliebene Druckfehler bittet man zu verzeihen und zu verbessern</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-dc0eda0d-aa13-3250-b68e-7ba00f6e52da">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>Anmerkung zu Seite 24</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:dmdSec ID="uuid-049b9051-6604-35d0-a8bc-c19a6c062132">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>[Farbkeil]</mods:title>
+               </mods:titleInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:amdSec ID="AMD">
+      <mets:rightsMD ID="uuid-5a33d74d-5d3d-3b1a-ae68-2342936511cc">
+         <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVRIGHTS">
+            <mets:xmlData>
+               <dv:rights>
+                  <dv:owner>Leipzig University Library</dv:owner>
+                  <dv:ownerLogo>https://iiif.ub.uni-leipzig.de/ubl-logo.png</dv:ownerLogo>
+                  <dv:ownerSiteURL>https://ub.uni-leipzig.de</dv:ownerSiteURL>
+                  <dv:ownerContact>mailto:info@ub.uni-leipzig.de</dv:ownerContact>
+                  <dv:license>pdm</dv:license>
+               </dv:rights>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:rightsMD>
+      <mets:digiprovMD ID="uuid-07538e75-0033-38f8-baa1-69d6bc622a0d">
+         <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVLINKS">
+            <mets:xmlData>
+               <dv:links>
+                  <dv:presentation>http://nbn-resolving.de/urn:nbn:de:bsz:15-0028-577178</dv:presentation>
+                  <dv:reference>https://katalog.ub.uni-leipzig.de/urn/urn:nbn:de:bsz:15-0028-577178</dv:reference>
+               </dv:links>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:fileSec>
+      <mets:fileGrp USE="ORIGINAL">
+         <mets:file ID="uuid-6d94194d-329a-4ba9-ae35-f46f3c59007e" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000001.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-fb6b5db6-cf3e-4f79-abb6-c50d2ca68459" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000002.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-472af00f-3ed6-4fe3-8b29-e0ffb6b493b2" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000003.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-827f6295-6d00-48f5-9565-db654fdecf36" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000004.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-6944ebad-53fe-488e-8900-daff0e1d2156" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000005.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-127a8c82-c502-493e-b305-02edc82df3b0" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000006.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-ad77d77e-9fc9-4bcc-8f56-f08f119e87ef" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000007.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-8cf13e96-ed5d-4d36-8ecd-44fbba2d7856" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000008.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-1112494e-9378-433f-9c6d-f6b60625e3bc" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000009.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-f0ad9a57-187a-4b6c-a606-5c2cc12e78d9" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000010.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-fbf4254c-305b-47c7-ab73-96dbbdd296da" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000011.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-b0e5ca78-49e4-466e-9d76-ac54ebdf8eff" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000012.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-838891b2-0bb6-419e-bc59-960dce762d67" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000013.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-05a9a2d1-b0d8-4172-9ad8-0d848c20a96c" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000014.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-b6616754-f70a-48ab-9121-5ad16475510a" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000015.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-4d75684a-5180-4800-bf77-a6efa4e2cc16" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000016.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-306156ef-038f-4006-afb4-a0f034722c43" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000017.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-35600d51-164d-4817-b865-30ac749a4d0b" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000018.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-5e7a209a-710b-4260-9dc9-02682abbdc78" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000019.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-97918421-1799-4845-a221-b8a429f90f35" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000020.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-d0455078-eb84-40f3-97de-95d74e3acede" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000021.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-6b37fed2-061d-438d-b820-e529e237eb7f" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000022.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-15edc518-39a6-4e9b-a1bc-1a96fec29815" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000023.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-627725fa-89f0-421e-9e6e-0a9a3630df53" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000024.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-86f10bdd-84a7-441a-a538-a278ec6bc08f" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000025.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-6d09735e-878f-45da-b189-87ee597beaec" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000026.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-0038265a-e3fc-4011-8552-53a51bf12b2e" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000027.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-ca853fab-6931-469f-a10d-9a2b1a674a73" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000028.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-321de5e9-fefe-49f3-8ce0-91d9612c3b99" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000029.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-fc977ab3-c167-4b44-9057-f1d59d09094f" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000030.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-4e65f803-dc32-4663-892a-82ac5089bbf0" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000031.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-f9dfecf4-9dbd-4b9b-9b20-1960e248758f" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000032.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-a5e65d28-fb33-42ab-8a46-38001f1191f7" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000033.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-4dbbe710-efee-401d-a383-0c3369e61d37" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000034.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-2b610ab8-fc2a-49d6-9548-c5900290cb6b" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000035.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-4feedc5d-bf06-4679-8606-5e045ca4d537" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000036.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-2fbc6b1f-5fe0-4200-b93b-60e8d6f90301" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000037.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-b4419579-2bda-436f-8466-e8409e02d72d" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000038.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-33a91a5f-3d72-42b4-ba7f-ec933395ce1a" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000039.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-3031085e-cdd4-4fdf-9ed2-b5dcf3f70e80" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000040.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-ecec418a-7057-4a22-aae9-6784a817eedc" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000041.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-54789821-344b-4ce3-8f39-ec1f7b45edbd" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000042.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-ccafb046-9ec4-474a-aa68-c48f98ec1c9d" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000043.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-8bf5ab49-c8b3-41e1-be80-0846b7935dab" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000044.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-ef2526e7-e452-4754-ab63-10af49146e7b" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000045.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-6dc6ee2a-104b-4071-8029-3c524a88d96d" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000046.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-699d2908-fb8d-4f2e-9536-dc6e0475f96f" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000047.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-42404f7b-e0cd-4847-b5db-26ce4aea5f6c" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000048.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-c4e71304-02f8-431a-a637-132a3f749e02" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000049.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-b5d7a175-6e4b-4f77-b615-5d6c743253a2" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000050.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-37ed2145-7f15-4454-a855-a38fb39ad0e9" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000051.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-db507400-fd6a-48e5-9c3f-75c9bea38fcb" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000052.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-8c6bbee8-d97e-4c6e-918f-9d3144d94be6" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000053.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-88dd132c-c913-4a8e-8375-9924c5397ccb" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000054.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-92bee093-8fd8-4ca7-8978-8ade3c9d0594" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000055.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-265191a4-dd35-414a-a3b4-1b031ae40618" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000056.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-e5343938-84b1-4c36-8b7d-71a84fcaf1b7" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000057.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-b11c0c00-bad4-4506-b587-6f7d8b606460" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000058.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-67c80b29-2367-4b95-b94f-649175389cf8" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000059.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-d704d070-f6d3-47a6-bb41-02ba89eb8f28" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000060.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-5d5c642f-0b07-447b-9e91-4ccf5abdf1ed" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="StimTePaf_1105086895_media/00000061.tif" LOCTYPE="URL"/>
+         </mets:file>
+      </mets:fileGrp>
+   </mets:fileSec>
+   <mets:structMap TYPE="PHYSICAL">
+      <mets:div TYPE="physSequence" ID="uuid-8d77bc69-49be-4af2-918d-d9c97bb52e37">
+         <mets:div ID="uuid-f5380c38-0b28-4d5e-8788-95c4584c6346"
+                   TYPE="page"
+                   ORDER="1"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-6d94194d-329a-4ba9-ae35-f46f3c59007e"/>
+         </mets:div>
+         <mets:div ID="uuid-36de2ba2-b4e9-413d-8259-35b623ed5085"
+                   TYPE="page"
+                   ORDER="2"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-fb6b5db6-cf3e-4f79-abb6-c50d2ca68459"/>
+         </mets:div>
+         <mets:div ID="uuid-8be57820-a4a2-44e6-b69a-7d186c01c029"
+                   TYPE="page"
+                   ORDER="3"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-472af00f-3ed6-4fe3-8b29-e0ffb6b493b2"/>
+         </mets:div>
+         <mets:div ID="uuid-e7fa7b4d-653f-4951-a7a0-a2e942136c3e"
+                   TYPE="page"
+                   ORDER="4"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-827f6295-6d00-48f5-9565-db654fdecf36"/>
+         </mets:div>
+         <mets:div ID="uuid-2539826f-0b96-4d3b-b18f-48ce2606de58"
+                   TYPE="page"
+                   ORDER="5"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-6944ebad-53fe-488e-8900-daff0e1d2156"/>
+         </mets:div>
+         <mets:div ID="uuid-c99aaff0-0aed-4dd2-921a-4dad733a7570"
+                   TYPE="page"
+                   ORDER="6"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-127a8c82-c502-493e-b305-02edc82df3b0"/>
+         </mets:div>
+         <mets:div ID="uuid-139ebe27-bec8-4680-abc0-0c1fdee9c84e"
+                   TYPE="page"
+                   ORDER="7"
+                   ORDERLABEL="1">
+            <mets:fptr FILEID="uuid-ad77d77e-9fc9-4bcc-8f56-f08f119e87ef"/>
+         </mets:div>
+         <mets:div ID="uuid-91fea86e-d911-45bb-8a49-910cdbda569f"
+                   TYPE="page"
+                   ORDER="8"
+                   ORDERLABEL="2">
+            <mets:fptr FILEID="uuid-8cf13e96-ed5d-4d36-8ecd-44fbba2d7856"/>
+         </mets:div>
+         <mets:div ID="uuid-47bbdee4-ce12-40a3-bb20-09eeee5abbbb"
+                   TYPE="page"
+                   ORDER="9"
+                   ORDERLABEL="3">
+            <mets:fptr FILEID="uuid-1112494e-9378-433f-9c6d-f6b60625e3bc"/>
+         </mets:div>
+         <mets:div ID="uuid-aee6c63c-d417-4acf-a4f9-8335dfd13021"
+                   TYPE="page"
+                   ORDER="10"
+                   ORDERLABEL="4">
+            <mets:fptr FILEID="uuid-f0ad9a57-187a-4b6c-a606-5c2cc12e78d9"/>
+         </mets:div>
+         <mets:div ID="uuid-d41bdcc5-e30f-4be4-b3c2-8d23125b894f"
+                   TYPE="page"
+                   ORDER="11"
+                   ORDERLABEL="5">
+            <mets:fptr FILEID="uuid-fbf4254c-305b-47c7-ab73-96dbbdd296da"/>
+         </mets:div>
+         <mets:div ID="uuid-b4472fca-1443-4525-8fc2-16fc422cd7f4"
+                   TYPE="page"
+                   ORDER="12"
+                   ORDERLABEL="6">
+            <mets:fptr FILEID="uuid-b0e5ca78-49e4-466e-9d76-ac54ebdf8eff"/>
+         </mets:div>
+         <mets:div ID="uuid-9b87f12f-f40c-416f-9e1f-6c9ccf1af52a"
+                   TYPE="page"
+                   ORDER="13"
+                   ORDERLABEL="7">
+            <mets:fptr FILEID="uuid-838891b2-0bb6-419e-bc59-960dce762d67"/>
+         </mets:div>
+         <mets:div ID="uuid-593c9e9e-0794-44bf-9294-ba58d10c4a80"
+                   TYPE="page"
+                   ORDER="14"
+                   ORDERLABEL="8">
+            <mets:fptr FILEID="uuid-05a9a2d1-b0d8-4172-9ad8-0d848c20a96c"/>
+         </mets:div>
+         <mets:div ID="uuid-212ca682-ac73-480b-a9e8-088250c06e10"
+                   TYPE="page"
+                   ORDER="15"
+                   ORDERLABEL="9">
+            <mets:fptr FILEID="uuid-b6616754-f70a-48ab-9121-5ad16475510a"/>
+         </mets:div>
+         <mets:div ID="uuid-aec96c2e-7a29-4d55-83d1-66c466fec65e"
+                   TYPE="page"
+                   ORDER="16"
+                   ORDERLABEL="10">
+            <mets:fptr FILEID="uuid-4d75684a-5180-4800-bf77-a6efa4e2cc16"/>
+         </mets:div>
+         <mets:div ID="uuid-010a1d7b-b92c-43bf-b31a-3db7f9ab9783"
+                   TYPE="page"
+                   ORDER="17"
+                   ORDERLABEL="11">
+            <mets:fptr FILEID="uuid-306156ef-038f-4006-afb4-a0f034722c43"/>
+         </mets:div>
+         <mets:div ID="uuid-017ec4e7-2137-4f57-be34-a44623220307"
+                   TYPE="page"
+                   ORDER="18"
+                   ORDERLABEL="12">
+            <mets:fptr FILEID="uuid-35600d51-164d-4817-b865-30ac749a4d0b"/>
+         </mets:div>
+         <mets:div ID="uuid-9ab74caf-d164-41a6-9ba0-df1169d098cc"
+                   TYPE="page"
+                   ORDER="19"
+                   ORDERLABEL="13">
+            <mets:fptr FILEID="uuid-5e7a209a-710b-4260-9dc9-02682abbdc78"/>
+         </mets:div>
+         <mets:div ID="uuid-7f153149-eac2-4e8e-abe5-d1073470c806"
+                   TYPE="page"
+                   ORDER="20"
+                   ORDERLABEL="14">
+            <mets:fptr FILEID="uuid-97918421-1799-4845-a221-b8a429f90f35"/>
+         </mets:div>
+         <mets:div ID="uuid-bcd15e4c-2127-4711-b2c2-2e60b4f84eab"
+                   TYPE="page"
+                   ORDER="21"
+                   ORDERLABEL="15">
+            <mets:fptr FILEID="uuid-d0455078-eb84-40f3-97de-95d74e3acede"/>
+         </mets:div>
+         <mets:div ID="uuid-b75eeec5-38ca-4f3c-b3bb-b5bbc8a9608e"
+                   TYPE="page"
+                   ORDER="22"
+                   ORDERLABEL="16">
+            <mets:fptr FILEID="uuid-6b37fed2-061d-438d-b820-e529e237eb7f"/>
+         </mets:div>
+         <mets:div ID="uuid-88eb7094-6f22-4ef0-9b1e-aa4dd0f6acc7"
+                   TYPE="page"
+                   ORDER="23"
+                   ORDERLABEL="17">
+            <mets:fptr FILEID="uuid-15edc518-39a6-4e9b-a1bc-1a96fec29815"/>
+         </mets:div>
+         <mets:div ID="uuid-57a0c9ef-82fb-4731-b332-3b1ba2998039"
+                   TYPE="page"
+                   ORDER="24"
+                   ORDERLABEL="18">
+            <mets:fptr FILEID="uuid-627725fa-89f0-421e-9e6e-0a9a3630df53"/>
+         </mets:div>
+         <mets:div ID="uuid-93fcd06a-a626-4f53-8fb0-abc807fcc6d2"
+                   TYPE="page"
+                   ORDER="25"
+                   ORDERLABEL="19">
+            <mets:fptr FILEID="uuid-86f10bdd-84a7-441a-a538-a278ec6bc08f"/>
+         </mets:div>
+         <mets:div ID="uuid-e04b578e-7596-4d3f-8b4a-64244a619a8d"
+                   TYPE="page"
+                   ORDER="26"
+                   ORDERLABEL="20">
+            <mets:fptr FILEID="uuid-6d09735e-878f-45da-b189-87ee597beaec"/>
+         </mets:div>
+         <mets:div ID="uuid-8cdfaa74-578d-4193-bece-eb70ff8b53c6"
+                   TYPE="page"
+                   ORDER="27"
+                   ORDERLABEL="21">
+            <mets:fptr FILEID="uuid-0038265a-e3fc-4011-8552-53a51bf12b2e"/>
+         </mets:div>
+         <mets:div ID="uuid-a2142d4a-ba7f-4370-bce6-13e4664752d2"
+                   TYPE="page"
+                   ORDER="28"
+                   ORDERLABEL="22">
+            <mets:fptr FILEID="uuid-ca853fab-6931-469f-a10d-9a2b1a674a73"/>
+         </mets:div>
+         <mets:div ID="uuid-bc2ed603-3f93-4ed1-b95f-50c17b9b4c84"
+                   TYPE="page"
+                   ORDER="29"
+                   ORDERLABEL="23">
+            <mets:fptr FILEID="uuid-321de5e9-fefe-49f3-8ce0-91d9612c3b99"/>
+         </mets:div>
+         <mets:div ID="uuid-f202367b-3508-4935-b7d7-6e2d76f8749c"
+                   TYPE="page"
+                   ORDER="30"
+                   ORDERLABEL="24">
+            <mets:fptr FILEID="uuid-fc977ab3-c167-4b44-9057-f1d59d09094f"/>
+         </mets:div>
+         <mets:div ID="uuid-4dc3a990-4931-45b7-9cd4-f64780fddbe5"
+                   TYPE="page"
+                   ORDER="31"
+                   ORDERLABEL="25">
+            <mets:fptr FILEID="uuid-4e65f803-dc32-4663-892a-82ac5089bbf0"/>
+         </mets:div>
+         <mets:div ID="uuid-d7fc4e1b-4830-47e6-be37-4a2b4faabe7b"
+                   TYPE="page"
+                   ORDER="32"
+                   ORDERLABEL="26">
+            <mets:fptr FILEID="uuid-f9dfecf4-9dbd-4b9b-9b20-1960e248758f"/>
+         </mets:div>
+         <mets:div ID="uuid-06c0b5e8-67da-4e99-8562-310d83236938"
+                   TYPE="page"
+                   ORDER="33"
+                   ORDERLABEL="27">
+            <mets:fptr FILEID="uuid-a5e65d28-fb33-42ab-8a46-38001f1191f7"/>
+         </mets:div>
+         <mets:div ID="uuid-a70a8f52-8a25-43bc-bd08-d96c921980f0"
+                   TYPE="page"
+                   ORDER="34"
+                   ORDERLABEL="28">
+            <mets:fptr FILEID="uuid-4dbbe710-efee-401d-a383-0c3369e61d37"/>
+         </mets:div>
+         <mets:div ID="uuid-0b24424a-f5db-491d-9969-c93026f849c1"
+                   TYPE="page"
+                   ORDER="35"
+                   ORDERLABEL="29">
+            <mets:fptr FILEID="uuid-2b610ab8-fc2a-49d6-9548-c5900290cb6b"/>
+         </mets:div>
+         <mets:div ID="uuid-7692dc5d-ac89-4532-b824-5e891818589c"
+                   TYPE="page"
+                   ORDER="36"
+                   ORDERLABEL="30">
+            <mets:fptr FILEID="uuid-4feedc5d-bf06-4679-8606-5e045ca4d537"/>
+         </mets:div>
+         <mets:div ID="uuid-bae3ce3f-749e-4d1e-a114-2b85b74e6f9e"
+                   TYPE="page"
+                   ORDER="37"
+                   ORDERLABEL="31">
+            <mets:fptr FILEID="uuid-2fbc6b1f-5fe0-4200-b93b-60e8d6f90301"/>
+         </mets:div>
+         <mets:div ID="uuid-c3c4e384-b434-42e5-b871-bcf4142560de"
+                   TYPE="page"
+                   ORDER="38"
+                   ORDERLABEL="32">
+            <mets:fptr FILEID="uuid-b4419579-2bda-436f-8466-e8409e02d72d"/>
+         </mets:div>
+         <mets:div ID="uuid-04ea0bf1-ebb6-4715-8f40-7b6b7440816b"
+                   TYPE="page"
+                   ORDER="39"
+                   ORDERLABEL="33">
+            <mets:fptr FILEID="uuid-33a91a5f-3d72-42b4-ba7f-ec933395ce1a"/>
+         </mets:div>
+         <mets:div ID="uuid-c4c2b0e5-15e4-4248-b026-406f9319eb0c"
+                   TYPE="page"
+                   ORDER="40"
+                   ORDERLABEL="34">
+            <mets:fptr FILEID="uuid-3031085e-cdd4-4fdf-9ed2-b5dcf3f70e80"/>
+         </mets:div>
+         <mets:div ID="uuid-fdf08234-8d74-40f2-8b98-3f501a3d72d7"
+                   TYPE="page"
+                   ORDER="41"
+                   ORDERLABEL="35">
+            <mets:fptr FILEID="uuid-ecec418a-7057-4a22-aae9-6784a817eedc"/>
+         </mets:div>
+         <mets:div ID="uuid-e8723e28-eed2-4796-980c-4e6b0f5960d9"
+                   TYPE="page"
+                   ORDER="42"
+                   ORDERLABEL="36">
+            <mets:fptr FILEID="uuid-54789821-344b-4ce3-8f39-ec1f7b45edbd"/>
+         </mets:div>
+         <mets:div ID="uuid-ccaef192-8e8b-4cd6-a5b0-e3e5eab3016b"
+                   TYPE="page"
+                   ORDER="43"
+                   ORDERLABEL="37">
+            <mets:fptr FILEID="uuid-ccafb046-9ec4-474a-aa68-c48f98ec1c9d"/>
+         </mets:div>
+         <mets:div ID="uuid-91bf588e-aa30-440b-a919-49efde1935d9"
+                   TYPE="page"
+                   ORDER="44"
+                   ORDERLABEL="38">
+            <mets:fptr FILEID="uuid-8bf5ab49-c8b3-41e1-be80-0846b7935dab"/>
+         </mets:div>
+         <mets:div ID="uuid-0dc17a01-35a5-4717-b94e-3eb452d87f83"
+                   TYPE="page"
+                   ORDER="45"
+                   ORDERLABEL="39">
+            <mets:fptr FILEID="uuid-ef2526e7-e452-4754-ab63-10af49146e7b"/>
+         </mets:div>
+         <mets:div ID="uuid-2ba560c0-2d09-4ba5-aeb1-3fe39830f150"
+                   TYPE="page"
+                   ORDER="46"
+                   ORDERLABEL="40">
+            <mets:fptr FILEID="uuid-6dc6ee2a-104b-4071-8029-3c524a88d96d"/>
+         </mets:div>
+         <mets:div ID="uuid-b27901d3-b208-42ac-8e7a-6e196db1bf1e"
+                   TYPE="page"
+                   ORDER="47"
+                   ORDERLABEL="41">
+            <mets:fptr FILEID="uuid-699d2908-fb8d-4f2e-9536-dc6e0475f96f"/>
+         </mets:div>
+         <mets:div ID="uuid-59400e45-11de-4924-af4b-978abe03cc35"
+                   TYPE="page"
+                   ORDER="48"
+                   ORDERLABEL="42">
+            <mets:fptr FILEID="uuid-42404f7b-e0cd-4847-b5db-26ce4aea5f6c"/>
+         </mets:div>
+         <mets:div ID="uuid-ff5c5558-584d-4b21-9c80-d8511fc2939b"
+                   TYPE="page"
+                   ORDER="49"
+                   ORDERLABEL="43">
+            <mets:fptr FILEID="uuid-c4e71304-02f8-431a-a637-132a3f749e02"/>
+         </mets:div>
+         <mets:div ID="uuid-c16db09b-84b9-4c3a-9b0a-e4436c0ecc9a"
+                   TYPE="page"
+                   ORDER="50"
+                   ORDERLABEL="44">
+            <mets:fptr FILEID="uuid-b5d7a175-6e4b-4f77-b615-5d6c743253a2"/>
+         </mets:div>
+         <mets:div ID="uuid-128ae247-cb2b-4f3e-b023-78b0b6180d64"
+                   TYPE="page"
+                   ORDER="51"
+                   ORDERLABEL="45">
+            <mets:fptr FILEID="uuid-37ed2145-7f15-4454-a855-a38fb39ad0e9"/>
+         </mets:div>
+         <mets:div ID="uuid-127aba63-978c-4ab5-84f7-aa44727f9e52"
+                   TYPE="page"
+                   ORDER="52"
+                   ORDERLABEL="46">
+            <mets:fptr FILEID="uuid-db507400-fd6a-48e5-9c3f-75c9bea38fcb"/>
+         </mets:div>
+         <mets:div ID="uuid-2d758f8d-2577-468c-832e-31089c297edf"
+                   TYPE="page"
+                   ORDER="53"
+                   ORDERLABEL="47">
+            <mets:fptr FILEID="uuid-8c6bbee8-d97e-4c6e-918f-9d3144d94be6"/>
+         </mets:div>
+         <mets:div ID="uuid-408c7cc4-e826-4738-89ca-21aa98be57a1"
+                   TYPE="page"
+                   ORDER="54"
+                   ORDERLABEL="48">
+            <mets:fptr FILEID="uuid-88dd132c-c913-4a8e-8375-9924c5397ccb"/>
+         </mets:div>
+         <mets:div ID="uuid-800c4321-cd33-453c-918e-7a435609ad3d"
+                   TYPE="page"
+                   ORDER="55"
+                   ORDERLABEL="49">
+            <mets:fptr FILEID="uuid-92bee093-8fd8-4ca7-8978-8ade3c9d0594"/>
+         </mets:div>
+         <mets:div ID="uuid-253cd841-46b5-4b28-984d-cff682af3d17"
+                   TYPE="page"
+                   ORDER="56"
+                   ORDERLABEL="50">
+            <mets:fptr FILEID="uuid-265191a4-dd35-414a-a3b4-1b031ae40618"/>
+         </mets:div>
+         <mets:div ID="uuid-7f1b0302-6a3f-4962-9f6b-7d839faec5f8"
+                   TYPE="page"
+                   ORDER="57"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-e5343938-84b1-4c36-8b7d-71a84fcaf1b7"/>
+         </mets:div>
+         <mets:div ID="uuid-0ad964eb-8349-4c3a-8d73-e330f7bb8563"
+                   TYPE="page"
+                   ORDER="58"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-b11c0c00-bad4-4506-b587-6f7d8b606460"/>
+         </mets:div>
+         <mets:div ID="uuid-73d13c25-8d7c-4863-b6e0-302bbe2ef866"
+                   TYPE="page"
+                   ORDER="59"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-67c80b29-2367-4b95-b94f-649175389cf8"/>
+         </mets:div>
+         <mets:div ID="uuid-fd8e7bc7-1fdf-4da1-83e9-1dfc9baa3504"
+                   TYPE="page"
+                   ORDER="60"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-d704d070-f6d3-47a6-bb41-02ba89eb8f28"/>
+         </mets:div>
+         <mets:div ID="uuid-120ac8f1-5576-4740-94c6-be402dea7163"
+                   TYPE="page"
+                   ORDER="61"
+                   ORDERLABEL=" - ">
+            <mets:fptr FILEID="uuid-5d5c642f-0b07-447b-9e91-4ccf5abdf1ed"/>
+         </mets:div>
+      </mets:div>
+   </mets:structMap>
+   <mets:structMap TYPE="LOGICAL">
+      <mets:div ID="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"
+                LABEL="Stimme Teutscher Patrioten für Sachsen und dessen König"
+                ORDERLABEL="Stimme Teutscher Patrioten für Sachsen und dessen König"
+                DMDID="uuid-93b899e2-5cb2-3774-9382-01ecbb4008e1"
+                ADMID="AMD"
+                TYPE="monograph">
+         <mets:div ID="uuid-2d9f455b-31ce-412a-8e81-c581726f9457"
+                   TYPE="binding"
+                   ORDER="1"/>
+         <mets:div ID="uuid-6eb9226b-b700-461a-93a5-d7086bfc2f7a"
+                   TYPE="title_page"
+                   ORDER="2"/>
+         <mets:div ID="uuid-dfc63053-d729-47c7-87c2-f34ad6f63e1e"
+                   TYPE="contents"
+                   ORDER="3"/>
+         <mets:div ID="uuid-ebf7fb85-03d6-47da-a421-e28f9aec7e28"
+                   LABEL="Vorwort"
+                   ORDERLABEL="Vorwort"
+                   DMDID="uuid-cdf6d4e7-c37e-3269-b179-4679a37e9173"
+                   TYPE="chapter"
+                   ORDER="4"/>
+         <mets:div ID="uuid-5eea8cdd-398d-4621-bb1c-36984f33c1dc"
+                   LABEL="I. Benehmen des sächsischen Cabinets seit 1791 und gegen Preußen in den letztern Jahren; Folgen der Schlacht bei Jena; Posener Friede; Erwerb des Herzogthums Warschau; Benehmen der sächsischen Truppen 1812"
+                   ORDERLABEL="I. Benehmen des sächsischen Cabinets seit 1791 und gegen Preußen in den letztern Jahren; Folgen der Schlacht bei Jena; Posener Friede; Erwerb des Herzogthums Warschau; Benehmen der sächsischen Truppen 1812"
+                   DMDID="uuid-4fa33787-65e0-3675-bb56-895203810bab"
+                   TYPE="chapter"
+                   ORDER="5"/>
+         <mets:div ID="uuid-5d500409-dbba-4090-85d0-284362bd3c29"
+                   LABEL="II. Vertrag von Bayonne"
+                   ORDERLABEL="II. Vertrag von Bayonne"
+                   DMDID="uuid-5bc238ac-c16f-365e-bac9-a3edfdb7a462"
+                   TYPE="chapter"
+                   ORDER="6"/>
+         <mets:div ID="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"
+                   LABEL="III. Benehmen des Königs im Frühjahr 1813"
+                   ORDERLABEL="III. Benehmen des Königs im Frühjahr 1813"
+                   DMDID="uuid-674c521d-a333-39e1-adf3-56774b8263b0"
+                   TYPE="chapter"
+                   ORDER="7"/>
+         <mets:div ID="uuid-ee0813e2-d88a-4b80-ac81-fc64ad351534"
+                   LABEL="IV. Kann Sachsen als ein erobertes Land betrachtet und darüber nach Willkühr disponirt werden?"
+                   ORDERLABEL="IV. Kann Sachsen als ein erobertes Land betrachtet und darüber nach Willkühr disponirt werden?"
+                   DMDID="uuid-53bc94c4-f5c2-3848-98f7-2560ff24ad96"
+                   TYPE="chapter"
+                   ORDER="8"/>
+         <mets:div ID="uuid-1b5386e9-3ecf-4c56-b23b-47a61ecf7237"
+                   LABEL="V. Kann die Convenienz Sachsens Zersplitterung oder Verschenkung anrathen?"
+                   ORDERLABEL="V. Kann die Convenienz Sachsens Zersplitterung oder Verschenkung anrathen?"
+                   DMDID="uuid-80ce8aef-7fe9-3576-bc4f-69db10d1ba98"
+                   TYPE="chapter"
+                   ORDER="9"/>
+         <mets:div ID="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"
+                   LABEL="VI. Beleuchtung einiger anderen, dem Könige von Sachsen und seiner Regierung gemachten Vorwürfe"
+                   ORDERLABEL="VI. Beleuchtung einiger anderen, dem Könige von Sachsen und seiner Regierung gemachten Vorwürfe"
+                   DMDID="uuid-04b915ce-9e42-354e-a32b-28c7d80edcec"
+                   TYPE="chapter"
+                   ORDER="10"/>
+         <mets:div ID="uuid-5e1e0266-82a3-424c-819b-b4a1b0ed9199"
+                   LABEL="VII. Wünscht die Sächsische Nation einen anderen Regenten?"
+                   ORDERLABEL="VII. Wünscht die Sächsische Nation einen anderen Regenten?"
+                   DMDID="uuid-29273201-5e07-30f6-a873-e6c39651346a"
+                   TYPE="chapter"
+                   ORDER="11"/>
+         <mets:div ID="uuid-a7a33efd-d204-4318-acd2-9e2f8c30da15"
+                   LABEL="Nachwort"
+                   ORDERLABEL="Nachwort"
+                   DMDID="uuid-5f8c6594-2954-3571-8f41-1d7e656861fa"
+                   TYPE="chapter"
+                   ORDER="12"/>
+         <mets:div ID="uuid-7693691a-3fbb-4bf6-9861-49c8158e12e0"
+                   LABEL="Folgende noch stehen gebliebene Druckfehler bittet man zu verzeihen und zu verbessern"
+                   ORDERLABEL="Folgende noch stehen gebliebene Druckfehler bittet man zu verzeihen und zu verbessern"
+                   DMDID="uuid-8fb661b4-e796-3467-8777-7eb2efb3f8b3"
+                   TYPE="chapter"
+                   ORDER="13"/>
+         <mets:div ID="uuid-5ce3d07d-69fe-4807-8eb3-6888103dbd30"
+                   LABEL="Anmerkung zu Seite 24"
+                   ORDERLABEL="Anmerkung zu Seite 24"
+                   DMDID="uuid-dc0eda0d-aa13-3250-b68e-7ba00f6e52da"
+                   TYPE="chapter"
+                   ORDER="14"/>
+         <mets:div ID="uuid-877fdbc4-df2b-4acf-9296-85510c9737f3"
+                   TYPE="binding"
+                   ORDER="15"/>
+         <mets:div ID="uuid-40bf36a1-b56a-4978-87f3-63f88c0a3832"
+                   LABEL="[Farbkeil]"
+                   ORDERLABEL="[Farbkeil]"
+                   DMDID="uuid-049b9051-6604-35d0-a8bc-c19a6c062132"
+                   TYPE="other"
+                   ORDER="16"/>
+      </mets:div>
+   </mets:structMap>
+   <mets:structLink>
+      <mets:smLink xlink:to="uuid-f5380c38-0b28-4d5e-8788-95c4584c6346"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-36de2ba2-b4e9-413d-8259-35b623ed5085"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-8be57820-a4a2-44e6-b69a-7d186c01c029"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-e7fa7b4d-653f-4951-a7a0-a2e942136c3e"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-2539826f-0b96-4d3b-b18f-48ce2606de58"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-c99aaff0-0aed-4dd2-921a-4dad733a7570"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-139ebe27-bec8-4680-abc0-0c1fdee9c84e"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-91fea86e-d911-45bb-8a49-910cdbda569f"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-47bbdee4-ce12-40a3-bb20-09eeee5abbbb"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-aee6c63c-d417-4acf-a4f9-8335dfd13021"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-d41bdcc5-e30f-4be4-b3c2-8d23125b894f"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-b4472fca-1443-4525-8fc2-16fc422cd7f4"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-9b87f12f-f40c-416f-9e1f-6c9ccf1af52a"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-593c9e9e-0794-44bf-9294-ba58d10c4a80"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-212ca682-ac73-480b-a9e8-088250c06e10"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-aec96c2e-7a29-4d55-83d1-66c466fec65e"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-010a1d7b-b92c-43bf-b31a-3db7f9ab9783"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-017ec4e7-2137-4f57-be34-a44623220307"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-9ab74caf-d164-41a6-9ba0-df1169d098cc"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-7f153149-eac2-4e8e-abe5-d1073470c806"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-bcd15e4c-2127-4711-b2c2-2e60b4f84eab"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-b75eeec5-38ca-4f3c-b3bb-b5bbc8a9608e"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-88eb7094-6f22-4ef0-9b1e-aa4dd0f6acc7"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-57a0c9ef-82fb-4731-b332-3b1ba2998039"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-93fcd06a-a626-4f53-8fb0-abc807fcc6d2"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-e04b578e-7596-4d3f-8b4a-64244a619a8d"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-8cdfaa74-578d-4193-bece-eb70ff8b53c6"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-a2142d4a-ba7f-4370-bce6-13e4664752d2"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-bc2ed603-3f93-4ed1-b95f-50c17b9b4c84"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-f202367b-3508-4935-b7d7-6e2d76f8749c"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-4dc3a990-4931-45b7-9cd4-f64780fddbe5"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-d7fc4e1b-4830-47e6-be37-4a2b4faabe7b"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-06c0b5e8-67da-4e99-8562-310d83236938"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-a70a8f52-8a25-43bc-bd08-d96c921980f0"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-0b24424a-f5db-491d-9969-c93026f849c1"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-7692dc5d-ac89-4532-b824-5e891818589c"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-bae3ce3f-749e-4d1e-a114-2b85b74e6f9e"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-c3c4e384-b434-42e5-b871-bcf4142560de"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-04ea0bf1-ebb6-4715-8f40-7b6b7440816b"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-c4c2b0e5-15e4-4248-b026-406f9319eb0c"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-fdf08234-8d74-40f2-8b98-3f501a3d72d7"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-e8723e28-eed2-4796-980c-4e6b0f5960d9"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-ccaef192-8e8b-4cd6-a5b0-e3e5eab3016b"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-91bf588e-aa30-440b-a919-49efde1935d9"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-0dc17a01-35a5-4717-b94e-3eb452d87f83"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-2ba560c0-2d09-4ba5-aeb1-3fe39830f150"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-b27901d3-b208-42ac-8e7a-6e196db1bf1e"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-59400e45-11de-4924-af4b-978abe03cc35"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-ff5c5558-584d-4b21-9c80-d8511fc2939b"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-c16db09b-84b9-4c3a-9b0a-e4436c0ecc9a"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-128ae247-cb2b-4f3e-b023-78b0b6180d64"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-127aba63-978c-4ab5-84f7-aa44727f9e52"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-2d758f8d-2577-468c-832e-31089c297edf"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-408c7cc4-e826-4738-89ca-21aa98be57a1"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-800c4321-cd33-453c-918e-7a435609ad3d"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-253cd841-46b5-4b28-984d-cff682af3d17"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-7f1b0302-6a3f-4962-9f6b-7d839faec5f8"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-0ad964eb-8349-4c3a-8d73-e330f7bb8563"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-73d13c25-8d7c-4863-b6e0-302bbe2ef866"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-fd8e7bc7-1fdf-4da1-83e9-1dfc9baa3504"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-120ac8f1-5576-4740-94c6-be402dea7163"
+                   xlink:from="uuid-aa4b827c-3693-48bd-9926-602d2bb97a79"/>
+      <mets:smLink xlink:to="uuid-f5380c38-0b28-4d5e-8788-95c4584c6346"
+                   xlink:from="uuid-2d9f455b-31ce-412a-8e81-c581726f9457"/>
+      <mets:smLink xlink:to="uuid-8be57820-a4a2-44e6-b69a-7d186c01c029"
+                   xlink:from="uuid-6eb9226b-b700-461a-93a5-d7086bfc2f7a"/>
+      <mets:smLink xlink:to="uuid-2539826f-0b96-4d3b-b18f-48ce2606de58"
+                   xlink:from="uuid-dfc63053-d729-47c7-87c2-f34ad6f63e1e"/>
+      <mets:smLink xlink:to="uuid-c99aaff0-0aed-4dd2-921a-4dad733a7570"
+                   xlink:from="uuid-dfc63053-d729-47c7-87c2-f34ad6f63e1e"/>
+      <mets:smLink xlink:to="uuid-139ebe27-bec8-4680-abc0-0c1fdee9c84e"
+                   xlink:from="uuid-ebf7fb85-03d6-47da-a421-e28f9aec7e28"/>
+      <mets:smLink xlink:to="uuid-91fea86e-d911-45bb-8a49-910cdbda569f"
+                   xlink:from="uuid-ebf7fb85-03d6-47da-a421-e28f9aec7e28"/>
+      <mets:smLink xlink:to="uuid-47bbdee4-ce12-40a3-bb20-09eeee5abbbb"
+                   xlink:from="uuid-ebf7fb85-03d6-47da-a421-e28f9aec7e28"/>
+      <mets:smLink xlink:to="uuid-aee6c63c-d417-4acf-a4f9-8335dfd13021"
+                   xlink:from="uuid-ebf7fb85-03d6-47da-a421-e28f9aec7e28"/>
+      <mets:smLink xlink:to="uuid-aee6c63c-d417-4acf-a4f9-8335dfd13021"
+                   xlink:from="uuid-5eea8cdd-398d-4621-bb1c-36984f33c1dc"/>
+      <mets:smLink xlink:to="uuid-d41bdcc5-e30f-4be4-b3c2-8d23125b894f"
+                   xlink:from="uuid-5eea8cdd-398d-4621-bb1c-36984f33c1dc"/>
+      <mets:smLink xlink:to="uuid-b4472fca-1443-4525-8fc2-16fc422cd7f4"
+                   xlink:from="uuid-5eea8cdd-398d-4621-bb1c-36984f33c1dc"/>
+      <mets:smLink xlink:to="uuid-9b87f12f-f40c-416f-9e1f-6c9ccf1af52a"
+                   xlink:from="uuid-5eea8cdd-398d-4621-bb1c-36984f33c1dc"/>
+      <mets:smLink xlink:to="uuid-593c9e9e-0794-44bf-9294-ba58d10c4a80"
+                   xlink:from="uuid-5eea8cdd-398d-4621-bb1c-36984f33c1dc"/>
+      <mets:smLink xlink:to="uuid-212ca682-ac73-480b-a9e8-088250c06e10"
+                   xlink:from="uuid-5eea8cdd-398d-4621-bb1c-36984f33c1dc"/>
+      <mets:smLink xlink:to="uuid-aec96c2e-7a29-4d55-83d1-66c466fec65e"
+                   xlink:from="uuid-5d500409-dbba-4090-85d0-284362bd3c29"/>
+      <mets:smLink xlink:to="uuid-010a1d7b-b92c-43bf-b31a-3db7f9ab9783"
+                   xlink:from="uuid-5d500409-dbba-4090-85d0-284362bd3c29"/>
+      <mets:smLink xlink:to="uuid-017ec4e7-2137-4f57-be34-a44623220307"
+                   xlink:from="uuid-5d500409-dbba-4090-85d0-284362bd3c29"/>
+      <mets:smLink xlink:to="uuid-9ab74caf-d164-41a6-9ba0-df1169d098cc"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-7f153149-eac2-4e8e-abe5-d1073470c806"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-bcd15e4c-2127-4711-b2c2-2e60b4f84eab"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-b75eeec5-38ca-4f3c-b3bb-b5bbc8a9608e"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-88eb7094-6f22-4ef0-9b1e-aa4dd0f6acc7"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-57a0c9ef-82fb-4731-b332-3b1ba2998039"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-93fcd06a-a626-4f53-8fb0-abc807fcc6d2"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-e04b578e-7596-4d3f-8b4a-64244a619a8d"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-8cdfaa74-578d-4193-bece-eb70ff8b53c6"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-a2142d4a-ba7f-4370-bce6-13e4664752d2"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-bc2ed603-3f93-4ed1-b95f-50c17b9b4c84"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-f202367b-3508-4935-b7d7-6e2d76f8749c"
+                   xlink:from="uuid-cbdc23e4-adf7-436d-a562-22688c2fc448"/>
+      <mets:smLink xlink:to="uuid-f202367b-3508-4935-b7d7-6e2d76f8749c"
+                   xlink:from="uuid-ee0813e2-d88a-4b80-ac81-fc64ad351534"/>
+      <mets:smLink xlink:to="uuid-4dc3a990-4931-45b7-9cd4-f64780fddbe5"
+                   xlink:from="uuid-ee0813e2-d88a-4b80-ac81-fc64ad351534"/>
+      <mets:smLink xlink:to="uuid-d7fc4e1b-4830-47e6-be37-4a2b4faabe7b"
+                   xlink:from="uuid-ee0813e2-d88a-4b80-ac81-fc64ad351534"/>
+      <mets:smLink xlink:to="uuid-06c0b5e8-67da-4e99-8562-310d83236938"
+                   xlink:from="uuid-ee0813e2-d88a-4b80-ac81-fc64ad351534"/>
+      <mets:smLink xlink:to="uuid-06c0b5e8-67da-4e99-8562-310d83236938"
+                   xlink:from="uuid-1b5386e9-3ecf-4c56-b23b-47a61ecf7237"/>
+      <mets:smLink xlink:to="uuid-a70a8f52-8a25-43bc-bd08-d96c921980f0"
+                   xlink:from="uuid-1b5386e9-3ecf-4c56-b23b-47a61ecf7237"/>
+      <mets:smLink xlink:to="uuid-0b24424a-f5db-491d-9969-c93026f849c1"
+                   xlink:from="uuid-1b5386e9-3ecf-4c56-b23b-47a61ecf7237"/>
+      <mets:smLink xlink:to="uuid-7692dc5d-ac89-4532-b824-5e891818589c"
+                   xlink:from="uuid-1b5386e9-3ecf-4c56-b23b-47a61ecf7237"/>
+      <mets:smLink xlink:to="uuid-bae3ce3f-749e-4d1e-a114-2b85b74e6f9e"
+                   xlink:from="uuid-1b5386e9-3ecf-4c56-b23b-47a61ecf7237"/>
+      <mets:smLink xlink:to="uuid-c3c4e384-b434-42e5-b871-bcf4142560de"
+                   xlink:from="uuid-1b5386e9-3ecf-4c56-b23b-47a61ecf7237"/>
+      <mets:smLink xlink:to="uuid-04ea0bf1-ebb6-4715-8f40-7b6b7440816b"
+                   xlink:from="uuid-1b5386e9-3ecf-4c56-b23b-47a61ecf7237"/>
+      <mets:smLink xlink:to="uuid-04ea0bf1-ebb6-4715-8f40-7b6b7440816b"
+                   xlink:from="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"/>
+      <mets:smLink xlink:to="uuid-c4c2b0e5-15e4-4248-b026-406f9319eb0c"
+                   xlink:from="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"/>
+      <mets:smLink xlink:to="uuid-fdf08234-8d74-40f2-8b98-3f501a3d72d7"
+                   xlink:from="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"/>
+      <mets:smLink xlink:to="uuid-e8723e28-eed2-4796-980c-4e6b0f5960d9"
+                   xlink:from="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"/>
+      <mets:smLink xlink:to="uuid-ccaef192-8e8b-4cd6-a5b0-e3e5eab3016b"
+                   xlink:from="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"/>
+      <mets:smLink xlink:to="uuid-91bf588e-aa30-440b-a919-49efde1935d9"
+                   xlink:from="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"/>
+      <mets:smLink xlink:to="uuid-0dc17a01-35a5-4717-b94e-3eb452d87f83"
+                   xlink:from="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"/>
+      <mets:smLink xlink:to="uuid-2ba560c0-2d09-4ba5-aeb1-3fe39830f150"
+                   xlink:from="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"/>
+      <mets:smLink xlink:to="uuid-b27901d3-b208-42ac-8e7a-6e196db1bf1e"
+                   xlink:from="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"/>
+      <mets:smLink xlink:to="uuid-59400e45-11de-4924-af4b-978abe03cc35"
+                   xlink:from="uuid-56cd2d2c-0fe1-40a0-9608-cd6538fbdbed"/>
+      <mets:smLink xlink:to="uuid-ff5c5558-584d-4b21-9c80-d8511fc2939b"
+                   xlink:from="uuid-5e1e0266-82a3-424c-819b-b4a1b0ed9199"/>
+      <mets:smLink xlink:to="uuid-c16db09b-84b9-4c3a-9b0a-e4436c0ecc9a"
+                   xlink:from="uuid-5e1e0266-82a3-424c-819b-b4a1b0ed9199"/>
+      <mets:smLink xlink:to="uuid-128ae247-cb2b-4f3e-b023-78b0b6180d64"
+                   xlink:from="uuid-5e1e0266-82a3-424c-819b-b4a1b0ed9199"/>
+      <mets:smLink xlink:to="uuid-127aba63-978c-4ab5-84f7-aa44727f9e52"
+                   xlink:from="uuid-5e1e0266-82a3-424c-819b-b4a1b0ed9199"/>
+      <mets:smLink xlink:to="uuid-2d758f8d-2577-468c-832e-31089c297edf"
+                   xlink:from="uuid-a7a33efd-d204-4318-acd2-9e2f8c30da15"/>
+      <mets:smLink xlink:to="uuid-408c7cc4-e826-4738-89ca-21aa98be57a1"
+                   xlink:from="uuid-a7a33efd-d204-4318-acd2-9e2f8c30da15"/>
+      <mets:smLink xlink:to="uuid-800c4321-cd33-453c-918e-7a435609ad3d"
+                   xlink:from="uuid-a7a33efd-d204-4318-acd2-9e2f8c30da15"/>
+      <mets:smLink xlink:to="uuid-253cd841-46b5-4b28-984d-cff682af3d17"
+                   xlink:from="uuid-a7a33efd-d204-4318-acd2-9e2f8c30da15"/>
+      <mets:smLink xlink:to="uuid-253cd841-46b5-4b28-984d-cff682af3d17"
+                   xlink:from="uuid-7693691a-3fbb-4bf6-9861-49c8158e12e0"/>
+      <mets:smLink xlink:to="uuid-7f1b0302-6a3f-4962-9f6b-7d839faec5f8"
+                   xlink:from="uuid-5ce3d07d-69fe-4807-8eb3-6888103dbd30"/>
+      <mets:smLink xlink:to="uuid-0ad964eb-8349-4c3a-8d73-e330f7bb8563"
+                   xlink:from="uuid-5ce3d07d-69fe-4807-8eb3-6888103dbd30"/>
+      <mets:smLink xlink:to="uuid-fd8e7bc7-1fdf-4da1-83e9-1dfc9baa3504"
+                   xlink:from="uuid-877fdbc4-df2b-4acf-9296-85510c9737f3"/>
+      <mets:smLink xlink:to="uuid-120ac8f1-5576-4740-94c6-be402dea7163"
+                   xlink:from="uuid-40bf36a1-b56a-4978-87f3-63f88c0a3832"/>
+   </mets:structLink>
+</mets:mets>

@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GetStandardMetadataTest {
 
-    private List<String> getMetaDataValuesWithLabel(StandardMetadata md, String label) {
+    private List<String> getMetaDataAtomicValuesWithLabel(StandardMetadata md, String label) {
         final List<Metadata> info = md.getInfo();
         return info
                 .stream()
@@ -38,6 +38,17 @@ public class GetStandardMetadataTest {
                 .map(v -> (String)v.getValue())
                 .collect(Collectors.toList());
     }
+
+    private List<String> getMetaDataListValuesWithLabel(StandardMetadata md, String label) {
+        final List<Metadata> info = md.getInfo();
+        return info
+                .stream()
+                .filter(v -> v.getLabel() instanceof String && ((String) v.getLabel()).equals(label))
+                .filter(v -> v.getValue() instanceof List)
+                .flatMap(v -> ((List<String>) v.getValue()).stream())
+                .collect(Collectors.toList());
+    }
+
 
     @Test
     void testGetStandardMetadataWithOptionalCollection() {
@@ -48,7 +59,7 @@ public class GetStandardMetadataTest {
         final List<Metadata> info = man.getInfo();
         assertEquals(1, (int)  info.stream().filter(
                 v -> v.getLabel() instanceof String && ((String) v.getLabel()).contains("VD17")).count());
-        List<String> collections = getMetaDataValuesWithLabel(man, "Collection");
+        List<String> collections = getMetaDataAtomicValuesWithLabel(man, "Collection");
         assertEquals(1, collections.size());
         assertFalse(collections.contains("VD17"));
         assertTrue(collections.contains("Drucke des 17. Jahrhunderts"));
@@ -63,7 +74,7 @@ public class GetStandardMetadataTest {
         final List<Metadata> info = man.getInfo();
         assertEquals(1, (int) info.stream().filter(
                 v -> v.getLabel() instanceof String && ((String) v.getLabel()).contains("VD16")).count());
-        List<String> collections = getMetaDataValuesWithLabel(man, "Collection");
+        List<String> collections = getMetaDataAtomicValuesWithLabel(man, "Collection");
         assertEquals(1, collections.size());
         assertTrue(collections.contains("VD16"));
     }
@@ -74,7 +85,7 @@ public class GetStandardMetadataTest {
                 GetValuesFromMetsTest.class.getResource("/mets/Heisenberg.xml")).getPath();
         final MetsData mets = getMets(sourceFile);
         final StandardMetadata man = new StandardMetadata(mets);
-        List<String> collections = getMetaDataValuesWithLabel(man, "Collection");
+        List<String> collections = getMetaDataAtomicValuesWithLabel(man, "Collection");
         assertEquals(2, collections.size());
         assertTrue(collections.contains("Nachlass Werner Heisenberg"));
         assertTrue(collections.contains("9. IV. Institutionen, 1. Korrespondenz: Academy of Human Rights, Rüschlikon bei Zürich"));
@@ -86,7 +97,7 @@ public class GetStandardMetadataTest {
                 GetValuesFromMetsTest.class.getResource("/mets/AktezuGed_1121300006.xml")).getPath();
         final MetsData mets = getMets(sourceFile);
         final StandardMetadata man = new StandardMetadata(mets);
-        List<String> collections = getMetaDataValuesWithLabel(man, "Collection");
+        List<String> collections = getMetaDataAtomicValuesWithLabel(man, "Collection");
         assertEquals(2, collections.size());
         assertTrue(collections.contains("Saxonica"));
         assertTrue(collections.contains("Veröffentlichungen des Meißner Dombauvereins"));
@@ -97,7 +108,7 @@ public class GetStandardMetadataTest {
         final String sourceFile = GetValuesFromMetsTest.class.getResource("/mets/ProMSiG_1800085370.xml").getPath();
         MetsData mets = getMets(sourceFile);
         StandardMetadata md = new StandardMetadata(mets);
-        List<String> ownerOfOriginal = getMetaDataValuesWithLabel(md, "Owner of original");
+        List<String> ownerOfOriginal = getMetaDataAtomicValuesWithLabel(md, "Owner of original");
         assertEquals(1, ownerOfOriginal.size());
         assertTrue(ownerOfOriginal.contains("Annaberg-Buchholz, Evangelisch-Lutherische Kirchgemeinde Annaberg-Buchholz"));
     }
@@ -107,7 +118,7 @@ public class GetStandardMetadataTest {
         final String sourceFile = GetValuesFromMetsTest.class.getResource("/mets/AllgCaHaD_045008345.xml").getPath();
         MetsData mets = getMets(sourceFile);
         StandardMetadata md = new StandardMetadata(mets);
-        List<String> ownerOfOriginal = getMetaDataValuesWithLabel(md, "Owner of original");
+        List<String> ownerOfOriginal = getMetaDataAtomicValuesWithLabel(md, "Owner of original");
         assertEquals(0, ownerOfOriginal.size());
     }
 
@@ -117,20 +128,45 @@ public class GetStandardMetadataTest {
         MetsData metsUBL = getMets(sourceFileUBL);
         StandardMetadata mdUBL = new StandardMetadata(metsUBL);
         // Ensure that old "Owner" label is no longer used
-        List<String> ownersUBL = getMetaDataValuesWithLabel(mdUBL, "Owner");
+        List<String> ownersUBL = getMetaDataAtomicValuesWithLabel(mdUBL, "Owner");
         assertEquals(0, ownersUBL.size());
         // Check current desired output
-        List<String> ownersOfDigitalCopyUBL = getMetaDataValuesWithLabel(mdUBL, "Owner of digital copy");
+        List<String> ownersOfDigitalCopyUBL = getMetaDataAtomicValuesWithLabel(mdUBL, "Owner of digital copy");
         assertEquals(1, ownersOfDigitalCopyUBL.size());
         assertTrue(ownersOfDigitalCopyUBL.contains("Leipzig University Library"));
 
         final String sourceFileAnnaberg = GetValuesFromMetsTest.class.getResource("/mets/ProMSiG_1800085370.xml").getPath();
         MetsData metsAnnaberg = getMets(sourceFileAnnaberg);
         StandardMetadata mdAnnaberg = new StandardMetadata(metsAnnaberg);
-        List<String> ownersAnnaberg = getMetaDataValuesWithLabel(mdAnnaberg, "Owner");
+        List<String> ownersAnnaberg = getMetaDataAtomicValuesWithLabel(mdAnnaberg, "Owner");
         assertEquals(0, ownersAnnaberg.size());
-        List<String> ownersOfDigitalCopyAnnaberg = getMetaDataValuesWithLabel(mdAnnaberg, "Owner of digital copy");
+        List<String> ownersOfDigitalCopyAnnaberg = getMetaDataAtomicValuesWithLabel(mdAnnaberg, "Owner of digital copy");
         assertEquals(1, ownersOfDigitalCopyAnnaberg.size());
         assertTrue(ownersOfDigitalCopyAnnaberg.contains("Leipzig University Library"));
+    }
+
+    @Test
+    void testGetPlaces() {
+        final String sourceFileWithSinglePlace = GetValuesFromMetsTest.class.getResource("/mets/ProMSiG_1800085370.xml").getPath();
+        MetsData metsWithSinglePlace = getMets(sourceFileWithSinglePlace);
+        StandardMetadata mdWithSinglePlace = new StandardMetadata(metsWithSinglePlace);
+        List<String> placesSingle = getMetaDataListValuesWithLabel(mdWithSinglePlace, "Place of publication");
+        assertEquals(1, placesSingle.size());
+        assertEquals("Lignici[i]", placesSingle.get(0));
+
+        final String sourceFileWithMultiplePlaces = GetValuesFromMetsTest.class.getResource("/mets/StimTePaf_1105086895.xml").getPath();
+        MetsData metsWithMultiplePlaces = getMets(sourceFileWithMultiplePlaces);
+        StandardMetadata mdWithMultiplePlaces = new StandardMetadata(metsWithMultiplePlaces);
+        List<String> placesMultiple = getMetaDataListValuesWithLabel(mdWithMultiplePlaces, "Place of publication");
+        assertEquals(2, placesMultiple.size());
+        assertEquals("Gera]", placesMultiple.get(0));
+        assertEquals("[Leipzig", placesMultiple.get(1));
+
+        final String sourceFileWithSinglePlaceButMultiplePlaceTerms = GetValuesFromMetsTest.class.getResource("/mets/DieHadeT_1525437259.xml").getPath();
+        MetsData metsWithSinglePlaceButMultiplePlaceTerms = getMets(sourceFileWithSinglePlaceButMultiplePlaceTerms);
+        StandardMetadata mdWithSinglePlaceButMultiplePlaceTerms = new StandardMetadata(metsWithSinglePlaceButMultiplePlaceTerms);
+        List<String> singlePlaceFromMultiplePlaceTerms = getMetaDataListValuesWithLabel(mdWithSinglePlaceButMultiplePlaceTerms, "Place of publication");
+        assertEquals(1, singlePlaceFromMultiplePlaceTerms.size());
+        assertEquals("Wiesbaden", singlePlaceFromMultiplePlaceTerms.get(0));
     }
 }

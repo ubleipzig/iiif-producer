@@ -75,7 +75,7 @@ public class StandardMetadata {
             meta.add(Metadata.builder().label("Kalliope-ID").value(getKalliopeID(mets)).build());
         }
         meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
-        meta.add(Metadata.builder().label("Place of publication").value(getPlace(mets)).build());
+        meta.add(Metadata.builder().label("Place of publication").value(getPlaces(mets)).build());
         meta.add(Metadata.builder().label("Date of publication").value(getDate(mets)).build());
         meta.add(Metadata.builder().label("Owner of digital copy").value(getOwnerOfDigitalCopy(mets)).build());
         meta.add(Metadata.builder().label("Owner of original").value(getOwnerOfOriginal(mets)).build());

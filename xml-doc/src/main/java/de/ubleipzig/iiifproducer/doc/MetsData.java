@@ -249,8 +249,8 @@ public interface MetsData {
     /**
      * @return String
      */
-    @XBRead("//*[local-name()='placeTerm']")
-    Optional<String> getPlace();
+    @XBRead("//*[local-name()='originInfo' and not(@eventType=\"manufacture\")]/*[local-name()='place']/*[local-name()='placeTerm']")
+    List<String> getPlaces();
 
     /**
      * @return String

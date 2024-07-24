@@ -360,8 +360,8 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
-    public static String getPlace(final MetsData mets) {
-        return mets.getPlace().orElse("").trim();
+    public static List<String> getPlaces(final MetsData mets) {
+        return mets.getPlaces();
     }
 
     /**
