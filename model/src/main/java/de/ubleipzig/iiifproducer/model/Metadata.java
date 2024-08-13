@@ -18,6 +18,7 @@
 
 package de.ubleipzig.iiifproducer.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -43,5 +44,6 @@ public class Metadata {
     @JsonProperty("label")
     private Object label;
     @JsonProperty("value")
+    @JsonFormat(with = JsonFormat.Feature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED)
     private Object value;
 }
