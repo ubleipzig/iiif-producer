@@ -21,7 +21,9 @@ package de.ubleipzig.iiifproducer.doc;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import java.util.Objects;
 
 public class MetsManifestBuilderTest {
@@ -40,5 +42,22 @@ public class MetsManifestBuilderTest {
         MetsData metsK3 = MetsManifestBuilder.getMetsFromFile(fileK3);
         assertEquals("Exhibens Epistolas Apostolicas Universas, Et Apocalypsin Johanneam",
                 MetsManifestBuilder.getVolumePartTitleOrPartNumber(metsK3));
+    }
+
+    @Test
+    void testGetRightsUrl() {
+        String fileWithWrongHref = Objects.requireNonNull(GetValuesFromMetsTest.class.getResource("/mets/ProMSiG_1800085370.xml")).getPath();
+        MetsData metsWithWrongHref = MetsManifestBuilder.getMetsFromFile(fileWithWrongHref);
+        List<String> urisFromWrongHref = MetsManifestBuilder.getRightsUrl(metsWithWrongHref);
+        assertEquals(2, urisFromWrongHref.size());
+        assertTrue(urisFromWrongHref.contains("http://creativecommons.org/publicdomain/mark/1.0/"));
+        assertTrue(urisFromWrongHref.contains("http://purl.org/coar/access_right/c_abf2"));
+
+        String fileWithXlinkHref = Objects.requireNonNull(GetValuesFromMetsTest.class.getResource("/mets/AktezuGed_1121300006.xml")).getPath();
+        MetsData metsWithXlinkHref = MetsManifestBuilder.getMetsFromFile(fileWithXlinkHref);
+        List<String> urisFromXlinkHref = MetsManifestBuilder.getRightsUrl(metsWithXlinkHref);
+        assertEquals(2, urisFromXlinkHref.size());
+        assertTrue(urisFromXlinkHref.contains("http://creativecommons.org/publicdomain/mark/1.0/"));
+        assertTrue(urisFromXlinkHref.contains("http://purl.org/coar/access_right/c_abf2"));
     }
 }

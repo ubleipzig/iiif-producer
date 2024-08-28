@@ -64,7 +64,7 @@ public interface MetsData {
     /**
      * @return String
      */
-    @XBRead("//*[local-name()='accessCondition']/@href")
+    @XBRead("//*[local-name()='accessCondition']/@*[local-name()='href']")
     List<String> getRightsUrl();
 
     /**
