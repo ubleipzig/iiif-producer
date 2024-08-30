@@ -76,7 +76,11 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
                 .filter(m -> m.getValue() != null && !StringUtils.isBlank(m.getValue().toString())
                         && !m.getValue().toString().startsWith("\""))
                 .forEach(m -> {
-                    map.put((String) m.getLabel(), (String) m.getValue());
+                    if (m.getValue() instanceof Collection) {
+                        map.putAll((String) m.getLabel(), (Collection) m.getValue());
+                    } else {
+                        map.put((String) m.getLabel(), (String) m.getValue());
+                    }
                 });
         return map;
     }
