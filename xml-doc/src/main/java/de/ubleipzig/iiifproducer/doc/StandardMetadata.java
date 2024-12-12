@@ -57,11 +57,15 @@ public class StandardMetadata {
         meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, URN_TYPE)).build());
         final String vd16 = getManuscriptIdByType(mets, "vd16");
         final String vd17 = getManuscriptIdByType(mets, "vd17");
-        if (!vd16.equals("")) {
+        final String vd18 = getManuscriptIdByType(mets, "vd18");
+        if (!vd16.isBlank()) {
             meta.add(Metadata.builder().label("VD16").value(vd16).build());
         }
-        if (!vd17.equals("")) {
+        if (!vd17.isBlank()) {
             meta.add(Metadata.builder().label("VD17").value(vd17).build());
+        }
+        if (!vd18.isBlank()) {
+            meta.add(Metadata.builder().label("VD18").value(vd18).build());
         }
         meta.add(Metadata.builder().label("Source PPN (SWB)").value(getManuscriptIdByType(mets, SWB_TYPE)).build());
         List<String> collections = getCollections(mets);

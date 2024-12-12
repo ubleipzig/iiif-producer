@@ -169,4 +169,28 @@ public class GetStandardMetadataTest {
         assertEquals(1, singlePlaceFromMultiplePlaceTerms.size());
         assertEquals("Wiesbaden", singlePlaceFromMultiplePlaceTerms.get(0));
     }
+
+    @Test
+    void testGetVd16Vd17Vd18() {
+        final String sourceVd16 = GetStandardMetadataTest.class.getResource("/mets/BntItin_021340072.xml").getPath();
+        MetsData metsVd16 = getMets(sourceVd16);
+        StandardMetadata mdVd16 = new StandardMetadata(metsVd16);
+        List<String> vd16 = getMetaDataAtomicValuesWithLabel(mdVd16, "VD16");
+        assertEquals(1, vd16.size());
+        assertEquals("VD16 ZV 2668", vd16.get(0));
+
+        final String sourceVd17 = GetStandardMetadataTest.class.getResource("/mets/ProMSiG_1800085370.xml").getPath();
+        MetsData metsVd17 = getMets(sourceVd17);
+        StandardMetadata mdVd17 = new StandardMetadata(metsVd17);
+        List<String> vd17 = getMetaDataAtomicValuesWithLabel(mdVd17, "VD17");
+        assertEquals(1, vd17.size());
+        assertEquals("VD17 3086:753621E", vd17.get(0));
+
+        final String sourceVd18 = GetStandardMetadataTest.class.getResource("/mets/AdAmEtC_1107922216.xml").getPath();
+        MetsData metsVd18 = getMets(sourceVd18);
+        StandardMetadata mdVd18 = new StandardMetadata(metsVd18);
+        List<String> vd18 = getMetaDataAtomicValuesWithLabel(mdVd18, "VD18");
+        assertEquals(1, vd18.size());
+        assertEquals("VD18 14080044", vd18.get(0));
+    }
 }

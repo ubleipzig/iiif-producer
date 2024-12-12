@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mets:mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           xmlns:kitodo="http://meta.kitodo.org/v1/"
+           xmlns:mets="http://www.loc.gov/METS/"
+           xmlns:dv="http://dfg-viewer.de/"
+           xmlns:mods="http://www.loc.gov/mods/v3"
+           xmlns:slub="http://www.slub-dresden.de/namespace"
+           xmlns:slubarchiv="http://slubarchiv.slub-dresden.de/rights1"
+           xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/mods.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd">
+   <mets:metsHdr CREATEDATE="2024-12-06T12:04:50.140+01:00"
+                 LASTMODDATE="2024-12-09T10:39:46.513+01:00"/>
+   <mets:dmdSec ID="uuid-098629dc-56af-31d5-b17d-5763f70e2eb9">
+      <mets:mdWrap MDTYPE="MODS">
+         <mets:xmlData>
+            <mods:mods>
+               <mods:titleInfo>
+                  <mods:title>Ad Amplissimvm. Et. Clarissimvm Virvm Ioannem. Avgvstvm Ernesti Philos. Mag. Et. Scholae. Thomanae. Rectorem. De. Collato. Ipsi Litteras. Hvmaniores Docendi In. Academia. Lipsiensi Extraordinario Mvnere Gratvlatio</mods:title>
+               </mods:titleInfo>
+               <mods:name type="personal"
+                          authority="gnd"
+                          valueURI="http://d-nb.info/gnd/11645864X">
+                  <mods:namePart type="family">Carpzov</mods:namePart>
+                  <mods:namePart type="given">Johann Benedict</mods:namePart>
+                  <mods:displayForm>Carpzov, Johann Benedict</mods:displayForm>
+                  <mods:nameIdentifier type="gnd">11645864X</mods:nameIdentifier>
+                  <mods:nameIdentifier type="ppn">134371895</mods:nameIdentifier>
+                  <mods:role>
+                     <mods:roleTerm type="code" authority="marcrelator">aut</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:name type="personal"
+                          authority="gnd"
+                          valueURI="http://d-nb.info/gnd/100804500">
+                  <mods:namePart type="family">Ernesti</mods:namePart>
+                  <mods:namePart type="given">Johann August</mods:namePart>
+                  <mods:displayForm>Ernesti, Johann August</mods:displayForm>
+                  <mods:nameIdentifier type="gnd">100804500</mods:nameIdentifier>
+                  <mods:nameIdentifier type="ppn">133735257</mods:nameIdentifier>
+                  <mods:role>
+                     <mods:roleTerm type="code" authority="marcrelator">hnr</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:name type="corporate"
+                          authority="gnd"
+                          valueURI="http://d-nb.info/gnd/16118087-5">
+                  <mods:namePart>Breitkopf</mods:namePart>
+                  <mods:namePart>Firma</mods:namePart>
+                  <mods:displayForm>Breitkopf</mods:displayForm>
+                  <mods:nameIdentifier type="gnd">16118087-5</mods:nameIdentifier>
+                  <mods:nameIdentifier type="ppn">709773293</mods:nameIdentifier>
+                  <mods:role>
+                     <mods:roleTerm type="code" authority="marcrelator">prt</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:name type="corporate">
+                  <mods:displayForm>Leipzig University Library</mods:displayForm>
+                  <mods:role>
+                     <mods:roleTerm authority="marcrelator" type="code">own</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:name type="corporate">
+                  <mods:displayForm>Leipzig University Library, Leipzig, Germany</mods:displayForm>
+                  <mods:role>
+                     <mods:roleTerm authority="marcrelator" type="code">len</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:name type="corporate">
+                  <mods:displayForm>Deutsche Forschungsgemeinschaft</mods:displayForm>
+                  <mods:role>
+                     <mods:roleTerm authority="marcrelator" type="code">fnd</mods:roleTerm>
+                  </mods:role>
+               </mods:name>
+               <mods:originInfo eventType="publication">
+                  <mods:place>
+                     <mods:placeTerm type="text">Lipsiae</mods:placeTerm>
+                  </mods:place>
+                  <mods:publisher>Litteris. Breitkopfianis</mods:publisher>
+                  <mods:dateIssued encoding="iso8601" keyDate="yes">1755</mods:dateIssued>
+                  <mods:displayDate>[1755?]</mods:displayDate>
+               </mods:originInfo>
+               <mods:language>
+                  <mods:languageTerm type="code" authority="rfc3066">lat</mods:languageTerm>
+                  <mods:scriptTerm type="code" authority="iso15924">Latn</mods:scriptTerm>
+               </mods:language>
+               <mods:physicalDescription>
+                  <mods:extent>[4] Seiten</mods:extent>
+                  <mods:digitalOrigin>reformatted digital</mods:digitalOrigin>
+               </mods:physicalDescription>
+               <mods:relatedItem type="series">
+                  <mods:titleInfo>
+                     <mods:title lang="ger">Drucke des 18. Jahrhunderts</mods:title>
+                  </mods:titleInfo>
+               </mods:relatedItem>
+               <mods:identifier type="urn">urn:nbn:de:bsz:15-0028-580047</mods:identifier>
+               <mods:identifier type="vd18">VD18 14080044</mods:identifier>
+               <mods:location>
+                  <mods:physicalLocation valueURI="https://ld.zdb-services.de/resource/organisations/DE-15">Universitätsbibliothek Leipzig</mods:physicalLocation>
+                  <mods:shelfLocator>Vit.N.498</mods:shelfLocator>
+               </mods:location>
+               <mods:accessCondition type="use and reproduction"
+                                     xlink:href="http://creativecommons.org/publicdomain/mark/1.0/">Public Domain Mark 1.0</mods:accessCondition>
+               <mods:accessCondition type="restriction on access"
+                                     xlink:href="http://purl.org/coar/access_right/c_abf2"
+                                     displayLabel="Access Status">Open Access</mods:accessCondition>
+               <mods:accessCondition type="slubRightsRecord">
+                  <slubarchiv:rightsRecord>
+                     <slubarchiv:copyrightStatus>publicdomain</slubarchiv:copyrightStatus>
+                  </slubarchiv:rightsRecord>
+               </mods:accessCondition>
+               <mods:extension>
+                  <slub:slub>
+                     <slub:id type="kxp-ppn-source">1107922216</slub:id>
+                     <slub:id type="tsl-ats">AdAmEtC</slub:id>
+                  </slub:slub>
+               </mods:extension>
+               <mods:recordInfo>
+                  <mods:recordIdentifier source="https://digital.ub.uni-leipzig.de/ppn/">1107922216</mods:recordIdentifier>
+               </mods:recordInfo>
+            </mods:mods>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:amdSec ID="AMD">
+      <mets:rightsMD ID="uuid-f5a80719-9ac1-330e-8872-27f5ec6553cf">
+         <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVRIGHTS">
+            <mets:xmlData>
+               <dv:rights>
+                  <dv:owner>Leipzig University Library</dv:owner>
+                  <dv:ownerLogo>https://iiif.ub.uni-leipzig.de/ubl-logo.png</dv:ownerLogo>
+                  <dv:ownerSiteURL>https://ub.uni-leipzig.de</dv:ownerSiteURL>
+                  <dv:ownerContact>mailto:info@ub.uni-leipzig.de</dv:ownerContact>
+                  <dv:license>pdm</dv:license>
+               </dv:rights>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:rightsMD>
+      <mets:digiprovMD ID="uuid-da90e454-2476-3410-aa5d-7e590712afb8">
+         <mets:mdWrap MDTYPE="OTHER" MIMETYPE="text/xml" OTHERMDTYPE="DVLINKS">
+            <mets:xmlData>
+               <dv:links>
+                  <dv:presentation>http://nbn-resolving.de/urn:nbn:de:bsz:15-0028-580047</dv:presentation>
+                  <dv:reference>https://katalog.ub.uni-leipzig.de/urn/urn:nbn:de:bsz:15-0028-580047</dv:reference>
+               </dv:links>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:fileSec>
+      <mets:fileGrp USE="ORIGINAL">
+         <mets:file ID="uuid-feb81fe9-fdd2-418e-9bc3-03769f35e907" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="AdAmEtC_1107922216_media/00000001.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-edf8d5b2-e607-4dfc-9440-f8dd01c1c938" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="AdAmEtC_1107922216_media/00000002.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-9b0e7243-ac4c-400e-893c-81988e766597" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="AdAmEtC_1107922216_media/00000003.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-c21dbc99-3046-4775-90d8-5b09c89e810a" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="AdAmEtC_1107922216_media/00000004.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-1d4e1a71-f74b-49ce-b83e-337b746b60f7" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="AdAmEtC_1107922216_media/00000005.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-60de01fd-01c0-410b-b096-5c6ffc01832c" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="AdAmEtC_1107922216_media/00000006.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-533cb6b9-a2ce-4bae-a863-4b041a271fcd" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="AdAmEtC_1107922216_media/00000007.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-d21da441-be4f-45ac-897b-23bdc89ca0e5" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="AdAmEtC_1107922216_media/00000008.tif" LOCTYPE="URL"/>
+         </mets:file>
+         <mets:file ID="uuid-04a4cce7-e096-4bfd-9a20-253f8042e7d4" MIMETYPE="image/tiff">
+            <mets:FLocat xlink:href="AdAmEtC_1107922216_media/00000009.tif" LOCTYPE="URL"/>
+         </mets:file>
+      </mets:fileGrp>
+   </mets:fileSec>
+   <mets:structMap TYPE="PHYSICAL">
+      <mets:div TYPE="physSequence" ID="uuid-08d80d86-f0ed-4217-bdff-82b188d14969">
+         <mets:div ID="uuid-78814197-23bd-453a-b8ea-dea734e11b2c"
+                   TYPE="page"
+                   ORDER="1"
+                   ORDERLABEL="Vorderdeckel">
+            <mets:fptr FILEID="uuid-feb81fe9-fdd2-418e-9bc3-03769f35e907"/>
+         </mets:div>
+         <mets:div ID="uuid-442c4c69-9562-44e3-a5a9-af57134b88db"
+                   TYPE="page"
+                   ORDER="2"
+                   ORDERLABEL="Vorderspiegel">
+            <mets:fptr FILEID="uuid-edf8d5b2-e607-4dfc-9440-f8dd01c1c938"/>
+         </mets:div>
+         <mets:div ID="uuid-e01685b6-4c42-447d-81db-18ff499417bd"
+                   TYPE="page"
+                   ORDER="3"
+                   ORDERLABEL="[1]">
+            <mets:fptr FILEID="uuid-9b0e7243-ac4c-400e-893c-81988e766597"/>
+         </mets:div>
+         <mets:div ID="uuid-4fb8a01d-9072-45a4-bfb7-9d5cbf1dccbd"
+                   TYPE="page"
+                   ORDER="4"
+                   ORDERLABEL="[2]">
+            <mets:fptr FILEID="uuid-c21dbc99-3046-4775-90d8-5b09c89e810a"/>
+         </mets:div>
+         <mets:div ID="uuid-bd5e7e78-b285-4a64-9966-4b310a427509"
+                   TYPE="page"
+                   ORDER="5"
+                   ORDERLABEL="[3]">
+            <mets:fptr FILEID="uuid-1d4e1a71-f74b-49ce-b83e-337b746b60f7"/>
+         </mets:div>
+         <mets:div ID="uuid-c41a77d1-4eac-4be8-bfab-918a14a7317b"
+                   TYPE="page"
+                   ORDER="6"
+                   ORDERLABEL="[4]">
+            <mets:fptr FILEID="uuid-60de01fd-01c0-410b-b096-5c6ffc01832c"/>
+         </mets:div>
+         <mets:div ID="uuid-765693c6-7092-4cbf-a73b-f368c4ad67f6"
+                   TYPE="page"
+                   ORDER="7"
+                   ORDERLABEL="Hinterspiegel">
+            <mets:fptr FILEID="uuid-533cb6b9-a2ce-4bae-a863-4b041a271fcd"/>
+         </mets:div>
+         <mets:div ID="uuid-77bb38d4-71a2-41ed-8174-406cafa79264"
+                   TYPE="page"
+                   ORDER="8"
+                   ORDERLABEL="Hinterdeckel">
+            <mets:fptr FILEID="uuid-d21da441-be4f-45ac-897b-23bdc89ca0e5"/>
+         </mets:div>
+         <mets:div ID="uuid-44bbd2e1-104d-4d09-8bb0-e8ca75641c2f"
+                   TYPE="page"
+                   ORDER="9"
+                   ORDERLABEL="Hinterdeckel mit Farbkeil">
+            <mets:fptr FILEID="uuid-04a4cce7-e096-4bfd-9a20-253f8042e7d4"/>
+         </mets:div>
+      </mets:div>
+   </mets:structMap>
+   <mets:structMap TYPE="LOGICAL">
+      <mets:div ID="uuid-f1f2fdae-f1a4-405a-8f90-74889771ee16"
+                LABEL="Ad Amplissimvm. Et. Clarissimvm Virvm Ioannem. Avgvstvm Ernesti Philos. Mag. Et. Scholae. Thomanae. Rectorem. De. Collato. Ipsi Litteras. Hvmaniores Docendi In. Academia. Lipsiensi Extraordinario Mvnere Gratvlatio"
+                ORDERLABEL="Ad Amplissimvm. Et. Clarissimvm Virvm Ioannem. Avgvstvm Ernesti Philos. Mag. Et. Scholae. Thomanae. Rectorem. De. Collato. Ipsi Litteras. Hvmaniores Docendi In. Academia. Lipsiensi Extraordinario Mvnere Gratvlatio"
+                DMDID="uuid-098629dc-56af-31d5-b17d-5763f70e2eb9"
+                ADMID="AMD"
+                TYPE="monograph"/>
+   </mets:structMap>
+   <mets:structLink>
+      <mets:smLink xlink:to="uuid-78814197-23bd-453a-b8ea-dea734e11b2c"
+                   xlink:from="uuid-f1f2fdae-f1a4-405a-8f90-74889771ee16"/>
+      <mets:smLink xlink:to="uuid-442c4c69-9562-44e3-a5a9-af57134b88db"
+                   xlink:from="uuid-f1f2fdae-f1a4-405a-8f90-74889771ee16"/>
+      <mets:smLink xlink:to="uuid-e01685b6-4c42-447d-81db-18ff499417bd"
+                   xlink:from="uuid-f1f2fdae-f1a4-405a-8f90-74889771ee16"/>
+      <mets:smLink xlink:to="uuid-4fb8a01d-9072-45a4-bfb7-9d5cbf1dccbd"
+                   xlink:from="uuid-f1f2fdae-f1a4-405a-8f90-74889771ee16"/>
+      <mets:smLink xlink:to="uuid-bd5e7e78-b285-4a64-9966-4b310a427509"
+                   xlink:from="uuid-f1f2fdae-f1a4-405a-8f90-74889771ee16"/>
+      <mets:smLink xlink:to="uuid-c41a77d1-4eac-4be8-bfab-918a14a7317b"
+                   xlink:from="uuid-f1f2fdae-f1a4-405a-8f90-74889771ee16"/>
+      <mets:smLink xlink:to="uuid-765693c6-7092-4cbf-a73b-f368c4ad67f6"
+                   xlink:from="uuid-f1f2fdae-f1a4-405a-8f90-74889771ee16"/>
+      <mets:smLink xlink:to="uuid-77bb38d4-71a2-41ed-8174-406cafa79264"
+                   xlink:from="uuid-f1f2fdae-f1a4-405a-8f90-74889771ee16"/>
+      <mets:smLink xlink:to="uuid-44bbd2e1-104d-4d09-8bb0-e8ca75641c2f"
+                   xlink:from="uuid-f1f2fdae-f1a4-405a-8f90-74889771ee16"/>
+   </mets:structLink>
+</mets:mets>
