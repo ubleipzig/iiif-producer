@@ -211,6 +211,14 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
+    public static List<String> getMaterials(final MetsData mets) {
+        return mets.getMaterials();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
     public static String getExtent(final MetsData mets) {
         return mets.getExtent().orElse("").trim();
     }

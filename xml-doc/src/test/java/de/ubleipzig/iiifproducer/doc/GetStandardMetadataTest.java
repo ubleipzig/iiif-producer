@@ -49,6 +49,16 @@ public class GetStandardMetadataTest {
                 .collect(Collectors.toList());
     }
 
+    private List<String> getMetaDataListValuesWithLabelFromManuscripts(ManuscriptMetadata md, String label) {
+        final List<Metadata> info = md.getInfo();
+        return info
+                .stream()
+                .filter(v -> v.getLabel() instanceof String && ((String) v.getLabel()).equals(label))
+                .filter(v -> v.getValue() instanceof List)
+                .flatMap(v -> ((List<String>) v.getValue()).stream())
+                .collect(Collectors.toList());
+    }
+
 
     @Test
     void testGetStandardMetadataWithOptionalCollection() {
@@ -168,6 +178,24 @@ public class GetStandardMetadataTest {
         List<String> singlePlaceFromMultiplePlaceTerms = getMetaDataListValuesWithLabel(mdWithSinglePlaceButMultiplePlaceTerms, "Place of publication");
         assertEquals(1, singlePlaceFromMultiplePlaceTerms.size());
         assertEquals("Wiesbaden", singlePlaceFromMultiplePlaceTerms.get(0));
+    }
+
+    @Test
+    void testGetMaterials() {
+        final String sourceFileWithSingleMaterial = GetValuesFromMetsTest.class.getResource("/mets/MS_85.xml").getPath();
+        MetsData metsWithSingleMaterial = getMets(sourceFileWithSingleMaterial);
+        ManuscriptMetadata mdWithSingleMaterial = new ManuscriptMetadata(metsWithSingleMaterial);
+        List<String> material = getMetaDataListValuesWithLabelFromManuscripts(mdWithSingleMaterial, "Beschreibstoff");
+        assertEquals(1, material.size());
+        assertEquals("Pergament", material.get(0));
+
+        final String sourceFileWithMultipleMaterials = GetValuesFromMetsTest.class.getResource("/mets/MS_187.xml").getPath();
+        MetsData metsWithMultipleMaterials = getMets(sourceFileWithMultipleMaterials);
+        ManuscriptMetadata mdWithMultipleMaterials = new ManuscriptMetadata(metsWithMultipleMaterials);
+        List<String> materials = getMetaDataListValuesWithLabelFromManuscripts(mdWithMultipleMaterials, "Beschreibstoff");
+        assertEquals(2, materials.size());
+        assertEquals("Pergament", materials.get(0));
+        assertEquals("Papier", materials.get(1));
     }
 
     @Test

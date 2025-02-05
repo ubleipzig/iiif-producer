@@ -127,6 +127,12 @@ public interface MetsData {
     Optional<String> getMaterial();
 
     /**
+     * @return List
+     */
+    @XBRead("//*[local-name()='form'][@type='material']")
+    List<String> getMaterials();
+
+    /**
      * @return Optional
      */
     @XBRead("//*[local-name()='extent'][@unit='leaves']")

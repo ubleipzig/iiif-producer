@@ -59,7 +59,7 @@ public class ManuscriptMetadata {
             meta.add(Metadata.builder().label("Collection").value(collection).build());
         }
         meta.add(Metadata.builder().label("Medium").value(HANDSHRIFT_TYPE).build());
-        meta.add(Metadata.builder().label("Beschreibstoff").value(getMaterial(mets)).build());
+        meta.add(Metadata.builder().label("Beschreibstoff").value(getMaterials(mets)).build());
         meta.add(Metadata.builder().label("Umfang").value(getExtent(mets)).build());
         meta.add(Metadata.builder().label("Abmessungen").value(getDimension(mets)).build());
         meta.add(Metadata.builder().label("Sprache").value(getLanguageDescription(mets)).build());

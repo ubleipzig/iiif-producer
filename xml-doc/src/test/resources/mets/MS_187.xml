@@ -31,6 +31,7 @@
                     <mods:typeOfResource manuscript="yes">Handschrift</mods:typeOfResource>
                     <mods:physicalDescription>
                         <mods:form type="material">Pergament</mods:form>
+                        <mods:form type="material">Papier</mods:form>
                         <mods:extent unit="leaves">184 Bll.</mods:extent>
                         <mods:extent unit="cm">35 x 24,5 cm</mods:extent>
                     </mods:physicalDescription>
