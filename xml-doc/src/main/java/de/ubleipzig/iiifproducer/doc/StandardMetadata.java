@@ -19,6 +19,7 @@
 package de.ubleipzig.iiifproducer.doc;
 
 import de.ubleipzig.iiifproducer.model.Metadata;
+import de.ubleipzig.iiifproducer.model.v2.LabelObject;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -67,26 +68,28 @@ public class StandardMetadata {
         if (!vd18.isBlank()) {
             meta.add(Metadata.builder().label("VD18").value(vd18).build());
         }
-        meta.add(Metadata.builder().label("Source PPN (SWB)").value(getManuscriptIdByType(mets, SWB_TYPE)).build());
+        // LabelObject.multiLingual("de", "", "en", "")
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Quelle (K10Plus)", "en", "Source (K10Plus)")).value(getManuscriptIdByType(mets, SWB_TYPE)).build());
         List<String> collections = getCollections(mets);
         for (String collection : collections) {
             if (!collection.contains("VD16") || !collection.contains("VD17")) {
-                meta.add(Metadata.builder().label("Collection").value(collection).build());
+                meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Kollektion", "en", "Collection")).value(collection).build());
             }
         }
         boolean isProjectHeisenberg = getCollections(mets).stream().filter(col -> col.contains("Heisenberg")).collect(Collectors.toList()).size() > 0;
         if (isProjectHeisenberg) {
-            meta.add(Metadata.builder().label("Kalliope-ID").value(getKalliopeID(mets)).build());
+            meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Kalliope-ID", "en", "Kalliope ID")).value(getKalliopeID(mets)).build());
         }
-        meta.add(Metadata.builder().label("Call number").value(getCallNumber(mets)).build());
-        meta.add(Metadata.builder().label("Place of publication").value(getPlaces(mets)).build());
-        meta.add(Metadata.builder().label("Date of publication").value(getDate(mets)).build());
-        meta.add(Metadata.builder().label("Owner of digital copy").value(getOwnerOfDigitalCopy(mets)).build());
-        meta.add(Metadata.builder().label("Owner of original").value(getOwnerOfOriginal(mets)).build());
-        meta.add(Metadata.builder().label("Author").value(getAuthor(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Signatur", "en", "Call number")).value(getCallNumber(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Erscheinungsort", "en", "Place of publication")).value(getPlaces(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Erscheinungsjahr", "en", "Date of publication")).value(getDate(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Besitznachweis der Reproduktion", "en", "Owner of digital copy")).value(getOwnerOfDigitalCopy(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Besitznachweis des reproduzierten Exemplars", "en", "Owner of original")).value(getOwnerOfOriginal(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Person / Körperschaft", "en", "Author")).value(getAuthor(mets)).build());
+        // TODO translate
         meta.add(Metadata.builder().label("Addressee").value(getAddressee(mets)).build());
-        meta.add(Metadata.builder().label("Publisher").value(getPublisher(mets)).build());
-        meta.add(Metadata.builder().label("Physical description").value(getPhysState(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Verlag", "en", "Publisher")).value(getPublisher(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("de", "Umfang", "en", "Physical description")).value(getPhysState(mets)).build());
         meta.add(Metadata.builder().label("Manifest Type").value(
                 getLogicalType(mets, mets.getRootLogicalStructureId().orElse(MetsConstants.METS_PARENT_LOGICAL_ID))).build()
         );
