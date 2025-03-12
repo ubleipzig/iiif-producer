@@ -19,6 +19,7 @@
 package de.ubleipzig.iiifproducer.converter;
 
 import de.ubleipzig.iiifproducer.model.Metadata;
+import de.ubleipzig.iiifproducer.model.v2.LabelObject;
 import de.ubleipzig.iiifproducer.model.v2.Structure;
 import de.ubleipzig.iiifproducer.model.v3.MetadataVersion3;
 import lombok.AllArgsConstructor;
@@ -69,6 +70,9 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
             return null;
         }
     }
+    MetadataVersion3 buildMetadata(final Map<String, List<String>> languageLabels, List<String> values) {
+        return buildMetadata(languageLabels, values, 0);
+    }
 
     public MultiValuedMap<String, String> convertListToMap(List<Metadata> metadata) {
         MultiValuedMap<String, String> map = new ArrayListValuedHashMap<>();
@@ -77,9 +81,11 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
                         && !m.getValue().toString().startsWith("\""))
                 .forEach(m -> {
                     if (m.getValue() instanceof Collection) {
-                        map.putAll((String) m.getLabel(), (Collection) m.getValue());
+                        String key = m.getLabel() instanceof String ? (String) m.getLabel() : ((LabelObject[])m.getLabel())[0].getValue();
+                        map.putAll(key, (Collection) m.getValue());
                     } else {
-                        map.put((String) m.getLabel(), (String) m.getValue());
+                        String key = m.getLabel() instanceof String ? (String) m.getLabel() : ((LabelObject[])m.getLabel())[0].getValue();
+                        map.put(key, (String) m.getValue());
                     }
                 });
         return map;
@@ -88,29 +94,21 @@ public class MetadataImplVersion3 extends MetadataObjectTypes {
     public List<MetadataVersion3> buildFinalMetadata() {
         MultiValuedMap<String, String> newMetadata = convertListToMap(metadata);
         finalMetadata = new ArrayList<>();
-
-        final String manifestTypeKey = MANIFESTTYPE.getApiKey();
-        final List<String> manifestTypeList = new ArrayList<>(newMetadata.get("Manifest Type"));
-        String manifestType = manifestTypeList.stream().findFirst().orElse(null);
-        if (manifestType != null) {
-            final String manifestTypeLabelDisplayOrderKey = manifestTypeKey + PERIOD + DISPLAYORDER.getApiKey();
-            final Integer displayOrder = Integer.valueOf(englishLabels.getString(manifestTypeLabelDisplayOrderKey));
-            if (manifestType.equals(MANUSCRIPT.getApiKey())) {
-                List<String> values = new ArrayList<>(newMetadata.get("Objekttitel"));
-                Map<String, List<String>> labelMap = new HashMap<>();
-                labelMap.put(DEUTSCH, Collections.singletonList("Objekttitel"));
-                final MetadataVersion3 m = buildMetadata(labelMap, values, displayOrder);
-                if (m != null && !m.getValue().isEmpty()) {
-                    finalMetadata.add(m);
-                }
-            } else {
-                List<String> values = new ArrayList<>(newMetadata.get("Subtitle"));
-                Map<String, List<String>> labelMap = new HashMap<>();
-                labelMap.put(DEUTSCH, Collections.singletonList("Subtitle"));
-                final MetadataVersion3 m = buildMetadata(labelMap, values, displayOrder);
-                if (m != null && !m.getValue().isEmpty()) {
-                    finalMetadata.add(m);
-                }
+        if (newMetadata.containsKey("Manuscripta Mediaevalia")) {
+            List<String> values = new ArrayList<>(newMetadata.get("Objekttitel"));
+            Map<String, List<String>> labelMap = new HashMap<>();
+            labelMap.put(DEUTSCH, Collections.singletonList("Objekttitel"));
+            final MetadataVersion3 m = buildMetadata(labelMap, values);
+            if (m != null && !m.getValue().isEmpty()) {
+                finalMetadata.add(m);
+            }
+        } else {
+            List<String> values = new ArrayList<>(newMetadata.get("Subtitle"));
+            Map<String, List<String>> labelMap = new HashMap<>();
+            labelMap.put(DEUTSCH, Collections.singletonList("Subtitle"));
+            final MetadataVersion3 m = buildMetadata(labelMap, values);
+            if (m != null && !m.getValue().isEmpty()) {
+                finalMetadata.add(m);
             }
         }
 

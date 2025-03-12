@@ -18,8 +18,10 @@
 package de.ubleipzig.iiifproducer.doc;
 
 import de.ubleipzig.iiifproducer.model.Metadata;
+import de.ubleipzig.iiifproducer.model.v2.LabelObject;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -33,7 +35,7 @@ public class GetStandardMetadataTest {
         final List<Metadata> info = md.getInfo();
         return info
                 .stream()
-                .filter(v -> v.getLabel() instanceof String && ((String) v.getLabel()).equals(label))
+                .filter(v -> v.getLabel() instanceof String && ((String) v.getLabel()).equals(label) || v.getLabel() instanceof LabelObject[] && Arrays.stream(((LabelObject[]) v.getLabel())).anyMatch(l -> l.getValue().equals(label)))
                 .filter(v -> v.getValue() instanceof String)
                 .map(v -> (String)v.getValue())
                 .collect(Collectors.toList());
@@ -43,7 +45,7 @@ public class GetStandardMetadataTest {
         final List<Metadata> info = md.getInfo();
         return info
                 .stream()
-                .filter(v -> v.getLabel() instanceof String && ((String) v.getLabel()).equals(label))
+                .filter(v -> v.getLabel() instanceof String && ((String) v.getLabel()).equals(label) || v.getLabel() instanceof LabelObject[] && Arrays.stream(((LabelObject[]) v.getLabel())).anyMatch(l -> l.getValue().equals(label)))
                 .filter(v -> v.getValue() instanceof List)
                 .flatMap(v -> ((List<String>) v.getValue()).stream())
                 .collect(Collectors.toList());
@@ -53,7 +55,7 @@ public class GetStandardMetadataTest {
         final List<Metadata> info = md.getInfo();
         return info
                 .stream()
-                .filter(v -> v.getLabel() instanceof String && ((String) v.getLabel()).equals(label))
+                .filter(v -> v.getLabel() instanceof String && ((String) v.getLabel()).equals(label) || v.getLabel() instanceof LabelObject[] && Arrays.stream(((LabelObject[]) v.getLabel())).anyMatch(l -> l.getValue().equals(label)))
                 .filter(v -> v.getValue() instanceof List)
                 .flatMap(v -> ((List<String>) v.getValue()).stream())
                 .collect(Collectors.toList());
