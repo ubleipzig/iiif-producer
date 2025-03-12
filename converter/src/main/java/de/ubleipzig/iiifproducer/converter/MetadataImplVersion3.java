@@ -39,8 +39,6 @@ import static de.ubleipzig.iiifproducer.converter.DomainConstants.ENGLISH;
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.NONE;
 import static de.ubleipzig.iiifproducer.converter.DomainConstants.PERIOD;
 import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.DISPLAYORDER;
-import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANIFESTTYPE;
-import static de.ubleipzig.iiifproducer.converter.MetadataApiEnum.MANUSCRIPT;
 
 @Builder
 @Setter
