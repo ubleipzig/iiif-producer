@@ -52,8 +52,12 @@ public class StandardMetadata {
      */
     public List<Metadata> getInfo() {
         final List<Metadata> meta = new ArrayList<>();
-        meta.add(Metadata.builder().label("Kitodo").value(getManuscriptIdByType(mets, GOOBI_TYPE)).build());
-        meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, URN_TYPE)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Author", "de", "Person / Körperschaft")).value(getAuthor(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Addressee", "de", "Adressierte Person")).value(getAddressee(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Date of publication", "de", "Erscheinungsjahr")).value(getDate(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Place of publication", "de", "Erscheinungsort")).value(getPlaces(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Publisher", "de", "Verlag")).value(getPublisher(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Physical description", "de", "Umfang")).value(getPhysState(mets)).build());
         final String vd16 = getManuscriptIdByType(mets, "vd16");
         final String vd17 = getManuscriptIdByType(mets, "vd17");
         final String vd18 = getManuscriptIdByType(mets, "vd18");
@@ -66,32 +70,26 @@ public class StandardMetadata {
         if (!vd18.isBlank()) {
             meta.add(Metadata.builder().label("VD18").value(vd18).build());
         }
-        // LabelObject.multiLingual("de", "", "en", "")
+        meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, URN_TYPE)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Call number", "de", "Signatur")).value(getCallNumber(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Source (K10Plus)", "de", "Quelle (K10Plus)")).value(getManuscriptIdByType(mets, K10PLUS_TYPE)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Source (SWB)", "de", "Quelle (SWB)")).value(getManuscriptIdByType(mets, SWB_TYPE)).build());
+        boolean isProjectHeisenberg = getCollections(mets).stream().filter(col -> col.contains("Heisenberg")).collect(Collectors.toList()).size() > 0;
+        if (isProjectHeisenberg) {
+            meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Source (Kalliope ID)", "de", "Quelle (Kalliope-ID)")).value(getKalliopeID(mets)).build());
+        }
         List<String> collections = getCollections(mets);
         for (String collection : collections) {
             if (!collection.contains("VD16") || !collection.contains("VD17")) {
                 meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Collection", "de", "Kollektion")).value(collection).build());
             }
         }
-        boolean isProjectHeisenberg = getCollections(mets).stream().filter(col -> col.contains("Heisenberg")).collect(Collectors.toList()).size() > 0;
-        if (isProjectHeisenberg) {
-            meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Source (Kalliope ID)", "de", "Quelle (Kalliope-ID)")).value(getKalliopeID(mets)).build());
-        }
-        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Call number", "de", "Signatur")).value(getCallNumber(mets)).build());
-        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Place of publication", "de", "Erscheinungsort")).value(getPlaces(mets)).build());
-        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Date of publication", "de", "Erscheinungsjahr")).value(getDate(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Owner of digital copy", "de", "Besitznachweis der Reproduktion")).value(getOwnerOfDigitalCopy(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Owner of original", "de", "Besitznachweis des reproduzierten Exemplars")).value(getOwnerOfOriginal(mets)).build());
-        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Author", "de", "Person / Körperschaft")).value(getAuthor(mets)).build());
-        // TODO translate
-        meta.add(Metadata.builder().label("Addressee").value(getAddressee(mets)).build());
-        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Publisher", "de", "Verlag")).value(getPublisher(mets)).build());
-        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Physical description", "de", "Umfang")).value(getPhysState(mets)).build());
-        meta.add(Metadata.builder().label("Manifest Type").value(
-                getLogicalType(mets, mets.getRootLogicalStructureId().orElse(MetsConstants.METS_PARENT_LOGICAL_ID))).build()
-        );
+//        meta.add(Metadata.builder().label("Kitodo").value(getManuscriptIdByType(mets, GOOBI_TYPE)).build());
+//        meta.add(Metadata.builder().label("Manifest Type").value(
+//                getLogicalType(mets, mets.getRootLogicalStructureId().orElse(MetsConstants.METS_PARENT_LOGICAL_ID))).build()
+//        );
         log.debug("Standard Metadata Added");
         meta.stream().forEach(m -> System.err.println(m.getLabel() + ": '" + m.getValue() + "'"));
         return meta.stream()
