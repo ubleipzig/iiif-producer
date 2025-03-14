@@ -72,7 +72,7 @@ public class StandardMetadata {
         }
         meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, URN_TYPE)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Call number", "de", "Signatur")).value(getCallNumber(mets)).build());
-        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Source (K10Plus)", "de", "Quelle (K10Plus)")).value(getManuscriptIdByType(mets, K10PLUS_TYPE)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Source (K10Plus)", "de", "Quelle (K10Plus)")).value(getIdentifierByAttribute(mets, "source", "https://digital.ub.uni-leipzig.de/ppn/")).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Source (SWB)", "de", "Quelle (SWB)")).value(getManuscriptIdByType(mets, SWB_TYPE)).build());
         boolean isProjectHeisenberg = getCollections(mets).stream().filter(col -> col.contains("Heisenberg")).collect(Collectors.toList()).size() > 0;
         if (isProjectHeisenberg) {

@@ -223,4 +223,14 @@ public class GetStandardMetadataTest {
         assertEquals(1, vd18.size());
         assertEquals("VD18 14080044", vd18.get(0));
     }
+
+    @Test
+    void testIdentifiers() {
+        final String sourceIdentifiers = GetStandardMetadataTest.class.getResource("mets/AdAmEtC_1107922216.xml").getPath();
+        MetsData metsIdentifiers = getMets(sourceIdentifiers);
+        StandardMetadata mdIdentifiers = new StandardMetadata(metsIdentifiers);
+        List<String> k10plus = getMetaDataAtomicValuesWithLabel(mdIdentifiers, "Quelle (K10Plus)");
+        assertEquals(1, k10plus.size());
+        assertEquals("1107922216", k10plus.get(0));
+    }
 }

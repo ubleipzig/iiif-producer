@@ -105,8 +105,12 @@ public interface MetsData {
      * @param idType String
      * @return String
      */
+    // FIXME why is this called manuscript id
     @XBRead("//*[local-name()='identifier'][@type='{0}']")
     Optional<String> getManuscriptIdByType(String idType);
+
+    @XBRead("//*[local-name()='identifier'][@{0}='{1}']")
+    Optional<String> getIdentifierByAttribute(String attribute, String value);
 
     /**
      * @return Optional

@@ -191,6 +191,10 @@ public final class MetsManifestBuilder {
         return mets.getManuscriptIdByType(idType).orElse("").trim();
     }
 
+    public static String getIdentifierByAttribute(final MetsData mets, final String attribute, final String value) {
+        return mets.getIdentifierByAttribute(attribute, value).orElse("").trim();
+    }
+
     /**
      * @param mets MetsData
      * @return String
