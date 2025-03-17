@@ -308,8 +308,10 @@ public class MetsImpl implements MetsAccessor {
         final List<Metadata> info = man.getInfo();
         final List<Metadata> metadata = new ArrayList<>(info);
         if (!getCensusHost(mets).isEmpty()) {
+            // FIXME move to StandardMetadata
             metadata.add(getAnchorFileMetadata());
         }
+        // FIXME move to StandardMetadata
         final List<String> noteTypes = getNoteTypes(mets);
         for (String nt : noteTypes) {
             metadata.add(Metadata.builder().label(nt).value(getNotesByType(mets, nt).trim()).build());

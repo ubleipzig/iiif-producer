@@ -191,8 +191,8 @@ public final class MetsManifestBuilder {
         return mets.getManuscriptIdByType(idType).orElse("").trim();
     }
 
-    public static String getIdentifierByAttribute(final MetsData mets, final String attribute, final String value) {
-        return mets.getIdentifierByAttribute(attribute, value).orElse("").trim();
+    public static String getRecordIdentifierByAttribute(final MetsData mets, final String attribute, final String value) {
+        return mets.getRecordIdentifierByAttribute(attribute, value).orElse("").trim();
     }
 
     /**
@@ -247,8 +247,24 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
+    public static List<String> getLanguageTexts(final MetsData mets) {
+        return mets.getLanguageTexts();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
     public static String getLocation(final MetsData mets) {
         return mets.getLocation().orElse("").trim();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
+    public static List<String> getManufactureLocations(final MetsData mets) {
+        return mets.getManufactureLocations();
     }
 
     /**
@@ -273,6 +289,14 @@ public final class MetsManifestBuilder {
      */
     public static String getDateCreated(final MetsData mets) {
         return mets.getDateCreated().orElse("").trim();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
+    public static List<String> getDatesCreated(final MetsData mets) {
+        return mets.getDatesCreated();
     }
 
     /**

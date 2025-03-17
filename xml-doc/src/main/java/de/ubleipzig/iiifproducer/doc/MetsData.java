@@ -109,8 +109,8 @@ public interface MetsData {
     @XBRead("//*[local-name()='identifier'][@type='{0}']")
     Optional<String> getManuscriptIdByType(String idType);
 
-    @XBRead("//*[local-name()='identifier'][@{0}='{1}']")
-    Optional<String> getIdentifierByAttribute(String attribute, String value);
+    @XBRead("//*[local-name()='recordIdentifier'][@{0}='{1}']")
+    Optional<String> getRecordIdentifierByAttribute(String attribute, String value);
 
     /**
      * @return Optional
@@ -155,10 +155,29 @@ public interface MetsData {
     Optional<String> getLanguageDescription();
 
     /**
+     * @return List
+     */
+    @XBRead("//*[local-name()='languageTerm'][@type='text']")
+    List<String> getLanguageTexts();
+
+    /**
+     * @return List
+     */
+    @XBRead("//*[local-name()='languageTerm'][@type='code']")
+    List<String> getLanguageCodes();
+
+    /**
      * @return Optional
      */
     @XBRead("//*[local-name()='placeTerm']")
     Optional<String> getLocation();
+
+    /**
+     * @return List
+     */
+    // FIXME zu allgemein
+    @XBRead("//*[local-name()='originInfo'][@eventType='manufacture']/*[local-name()='place']/*[local-name()='placeTerm']")
+    List<String> getManufactureLocations();
 
     /**
      * @return Optional
@@ -177,6 +196,13 @@ public interface MetsData {
      */
     @XBRead("//*[local-name()='dateCreated']")
     Optional<String> getDateCreated();
+
+    /**
+     *
+     * @return List
+     */
+    @XBRead("//*[local-name()='dateCreated']")
+    List<String> getDatesCreated();
 
     /**
      * @return String

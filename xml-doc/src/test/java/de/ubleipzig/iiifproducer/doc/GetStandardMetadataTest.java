@@ -226,7 +226,7 @@ public class GetStandardMetadataTest {
 
     @Test
     void testIdentifiers() {
-        final String sourceIdentifiers = GetStandardMetadataTest.class.getResource("mets/AdAmEtC_1107922216.xml").getPath();
+        final String sourceIdentifiers = GetStandardMetadataTest.class.getResource("/mets/AdAmEtC_1107922216.xml").getPath();
         MetsData metsIdentifiers = getMets(sourceIdentifiers);
         StandardMetadata mdIdentifiers = new StandardMetadata(metsIdentifiers);
         List<String> k10plus = getMetaDataAtomicValuesWithLabel(mdIdentifiers, "Quelle (K10Plus)");
