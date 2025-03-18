@@ -57,15 +57,14 @@ public class ManuscriptMetadata {
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Title (from shelfmark)", "de", "Titel (aus Signatur)")).value(getManifestTitle(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Title", "de", "Objekttitel")).value(getSubtitle(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Media type", "de", "Medium")).value(HANDSHRIFT_TYPE).build());
-        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Material", "de", "Beschreibstoff")).value(getMaterials(mets)).build()); // TODO check mehrwertig
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Material", "de", "Beschreibstoff")).value(getMaterials(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Extent", "de", "Umfang")).value(getExtent(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Dimensions", "de", "Abmessungen")).value(getDimension(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Date of origin", "de", "Datierung")).value(getDatesCreated(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Place of origin", "de", "Lokalisierung")).value(getManufactureLocations(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Language", "de", "Sprache")).value(getLanguageTexts(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Source", "de", "Quelle der Angaben zur Handschrift")).value(getRecordIdentifier(mets)).build());
-        // TODO was ist mit HSP?
-        meta.add(Metadata.builder().label("Informationen zur Handschrift").value(getHspKodIdentifier(mets)).build());
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Further information", "de", "Informationen zur Handschrift")).value(getHspKodIdentifier(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Shelfmark", "de", "Signatur")).value(getManuscriptIdByType(mets, "shelfmark")).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Owner of physical object", "de", "Besitzer des Originals")).value(getOwnerOfOriginal(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Owner of digital copy", "de", "Besitzer des Digitalisats")).value(getOwnerOfDigitalCopy(mets)).build());
@@ -78,7 +77,6 @@ public class ManuscriptMetadata {
         ).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Identifier Kitodo", "de", "Kitodo-ID")).value(getManuscriptIdByType(mets, "kitodo")).build());
         meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, "urn")).build());
-        // TODO Bemerkung / Note
         log.debug("Manuscript metadata Added");
         return meta.stream()
                 .filter(Objects::nonNull)

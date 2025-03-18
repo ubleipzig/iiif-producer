@@ -175,7 +175,6 @@ public interface MetsData {
     /**
      * @return List
      */
-    // FIXME zu allgemein
     @XBRead("//*[local-name()='originInfo'][@eventType='manufacture']/*[local-name()='place']/*[local-name()='placeTerm']")
     List<String> getManufactureLocations();
 
