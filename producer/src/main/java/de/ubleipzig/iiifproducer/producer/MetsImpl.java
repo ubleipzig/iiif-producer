@@ -315,6 +315,10 @@ public class MetsImpl implements MetsAccessor {
         final List<String> noteTypesNonUnique = getNoteTypes(mets);
         final Set<String> noteTypes = new LinkedHashSet<>(noteTypesNonUnique);
         for (String nt : noteTypes) {
+            if (nt.equals("comment")) {
+                // this is already in StandardMetadata
+                continue;
+            }
             // TODO https://projekte.ub.uni-leipzig.de/issues/25028
             for (String value: getNotesByType(mets, nt)) {
                 metadata.add(Metadata.builder().label(nt).value(value.trim()).build());

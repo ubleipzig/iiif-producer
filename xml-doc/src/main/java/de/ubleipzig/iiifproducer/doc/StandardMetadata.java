@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.doc.MetsConstants.*;
 import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.*;
+import static de.ubleipzig.iiifproducer.doc.MetsManifestBuilder.getNotesByType;
 
 /**
  * StandardMetadata.
@@ -70,6 +71,9 @@ public class StandardMetadata {
         }
         if (!vd18.isBlank()) {
             meta.add(Metadata.builder().label("VD18").value(vd18).build());
+        }
+        for (String comment: getNotesByType(mets, "comment")) {
+            meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Comment", "de", "Bemerkung")).value(comment).build());
         }
         meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, URN_TYPE)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Call number", "de", "Signatur")).value(getCallNumber(mets)).build());
