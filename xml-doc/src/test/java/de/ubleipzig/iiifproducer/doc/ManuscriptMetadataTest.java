@@ -29,7 +29,6 @@ import java.util.stream.Collectors;
 
 import static de.ubleipzig.iiifproducer.doc.ResourceLoader.getMets;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 public class ManuscriptMetadataTest {
