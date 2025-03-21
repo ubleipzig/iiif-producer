@@ -220,7 +220,7 @@ public interface MetsData {
      * @return String
      */
     @XBRead("//*[local-name()='note'][@type='{0}']")
-    Optional<String> getNotesByType(String noteType);
+    List<String> getNotesByType(String noteType);
 
     /**
      * @return String

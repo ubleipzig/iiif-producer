@@ -312,9 +312,13 @@ public class MetsImpl implements MetsAccessor {
             metadata.add(getAnchorFileMetadata());
         }
         // FIXME move to StandardMetadata
-        final List<String> noteTypes = getNoteTypes(mets);
+        final List<String> noteTypesNonUnique = getNoteTypes(mets);
+        final Set<String> noteTypes = new LinkedHashSet<>(noteTypesNonUnique);
         for (String nt : noteTypes) {
-            metadata.add(Metadata.builder().label(nt).value(getNotesByType(mets, nt).trim()).build());
+            // TODO https://projekte.ub.uni-leipzig.de/issues/25028
+            for (String value: getNotesByType(mets, nt)) {
+                metadata.add(Metadata.builder().label(nt).value(value.trim()).build());
+            }
         }
         body.setMetadata(metadata);
     }

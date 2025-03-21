@@ -312,8 +312,8 @@ public final class MetsManifestBuilder {
      * @param type String
      * @return String
      */
-    public static String getNotesByType(final MetsData mets, final String type) {
-        return mets.getNotesByType(type).orElse("").trim();
+    public static List<String> getNotesByType(final MetsData mets, final String type) {
+        return mets.getNotesByType(type);
     }
 
     /**
