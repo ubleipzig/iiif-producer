@@ -278,6 +278,7 @@ public interface MetsData {
     /**
      * @return String
      */
+    // TODO 1. "displayForm" fehlt oft, meistens ist aber "namePart" angegeben. 2. Mehrere Empfänger möglich
     @XBRead("//*[local-name()='roleTerm'][text()='rcp']/parent::node()/parent::node()/*[local-name()='displayForm']")
     Optional<String> getAddressee();
 
