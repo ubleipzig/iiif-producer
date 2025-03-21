@@ -92,7 +92,7 @@ public class StandardMetadata {
 //                getLogicalType(mets, mets.getRootLogicalStructureId().orElse(MetsConstants.METS_PARENT_LOGICAL_ID))).build()
 //        );
         log.debug("Standard Metadata Added");
-        meta.stream().forEach(m -> System.err.println(m.getLabel() + ": '" + m.getValue() + "'"));
+        meta.stream().forEach(m -> log.debug(m.getFirstAvailableLabel() + ": '" + m.getValue() + "'"));
         return meta.stream()
                 .filter(Objects::nonNull)
                 .filter(v -> v.getValue() != null && (
