@@ -45,11 +45,17 @@ public class ParentMetadataTest {
     void testGetAnchorFileMetadata() {
         final String sourceFile = GetValuesFromMetsTest.class.getResource("/mets/BntItin_021340072.xml").getPath();
         MetsData mets = getMets(sourceFile);
-
         StandardMetadata metaData = new StandardMetadata(mets);
 
         final List<String> partOf = getMetaDataAtomicValuesWithLabel(metaData, "Part of");
         assertEquals(1, partOf.size());
         assertEquals("Itinerarivm Sacrae Scriptvrae, Das ist: Ein Reisebuch vber die gantze heilige Schrifft; 1", partOf.get(0));
+
+        final String sourceFileNoParent = GetValuesFromMetsTest.class.getResource("/mets/LuthEnch_029330009.xml").getPath();
+        MetsData metsNoParent = getMets(sourceFileNoParent);
+        StandardMetadata metaDataNoParent = new StandardMetadata(metsNoParent);
+
+        final List<String> emptyPartOf = getMetaDataAtomicValuesWithLabel(metaDataNoParent, "Part of");
+        assertEquals(0, emptyPartOf.size());
     }
 }
