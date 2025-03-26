@@ -197,10 +197,9 @@ public interface MetsData {
     Optional<String> getDateCreated();
 
     /**
-     *
      * @return List
      */
-    @XBRead("//*[local-name()='dateCreated']")
+    @XBRead("//*[local-name()='dateCreated'][@qualifier='inferred' and not(@point)]")
     List<String> getDatesCreated();
 
     /**

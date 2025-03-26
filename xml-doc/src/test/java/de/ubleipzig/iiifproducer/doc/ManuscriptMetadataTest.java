@@ -42,6 +42,15 @@ public class ManuscriptMetadataTest {
                 .collect(Collectors.toList());
     }
 
+    private List<String> getMetaDataListValuesWithLabel(final List<Metadata> info, String label) {
+        return info
+                .stream()
+                .filter(v -> v.getLabel() instanceof String && ((String) v.getLabel()).equals(label) || v.getLabel() instanceof LabelObject[] && Arrays.stream(((LabelObject[]) v.getLabel())).anyMatch(l -> l.getValue().equals(label)))
+                .filter(v -> v.getValue() instanceof List)
+                .flatMap(v -> ((List<String>) v.getValue()).stream())
+                .collect(Collectors.toList());
+    }
+
     @Test
     void testManuscriptMetadataDoesNotContainOwners() {
         final String sourceFile = Objects.requireNonNull(
@@ -74,5 +83,16 @@ public class ManuscriptMetadataTest {
         List<String> annabergEigentuemerDigitalisat = getMetaDataAtomicValuesWithLabel(annabergMetadata, "Besitzer des Digitalisats");
         assertEquals(1, annabergEigentuemerDigitalisat.size());
         assertEquals("Leipzig University Library", annabergEigentuemerDigitalisat.get(0));
+    }
+
+    @Test
+    void testManuscriptMetadataDateCreated() {
+        final String sourceFile = Objects.requireNonNull(
+                GetValuesFromMetsTest.class.getResource("/mets/MS_187.xml")).getPath();
+        final MetsData mets = getMets(sourceFile);
+        final List<Metadata> metadata = new ManuscriptMetadata(mets).getInfo();
+        List<String> datesCreated = getMetaDataListValuesWithLabel(metadata, "Date of origin");
+        assertEquals(1, datesCreated.size());
+        assertEquals("13. Jahrhundert", datesCreated.get(0));
     }
 }
