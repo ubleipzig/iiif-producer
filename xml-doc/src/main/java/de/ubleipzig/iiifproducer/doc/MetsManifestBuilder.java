@@ -565,6 +565,14 @@ public final class MetsManifestBuilder {
     }
 
     /**
+     * @param mets
+     * @return
+     */
+    public static String getPartOf(final MetsData mets) {
+        return getMultiVolumeWorkTitle(mets) + "; " + getCensusHost(mets);
+    }
+
+    /**
      * @param mods MetaData.HspCatalogMods
      * @return String
      */

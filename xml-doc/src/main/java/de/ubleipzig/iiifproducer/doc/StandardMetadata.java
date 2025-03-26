@@ -54,6 +54,7 @@ public class StandardMetadata {
     public List<Metadata> getInfo() {
         // N.B. that additional metadata is added in de.ubleipzig.iiifproducer.producer.MetsImpl.setMetadata
         final List<Metadata> meta = new ArrayList<>();
+        meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Part of", "de", "Teil von")).value(getPartOf(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Author", "de", "Person / Körperschaft")).value(getAuthor(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Addressee", "de", "Adressierte Person")).value(getAddressee(mets)).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Date of publication", "de", "Erscheinungsjahr")).value(getDate(mets)).build());

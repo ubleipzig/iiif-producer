@@ -71,11 +71,6 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public Metadata getAnchorFileMetadata() {
-        return Metadata.builder().label(anchorKey).value(getMultiVolumeWorkTitle(mets) + "; " + getCensusHost(mets)).build();
-    }
-
-    @Override
     public String getAnchorFileLabel() {
         return getMultiVolumeWorkTitle(mets) + "; " + getVolumePartTitleOrPartNumber(mets);
     }
@@ -307,10 +302,6 @@ public class MetsImpl implements MetsAccessor {
         final StandardMetadata man = new StandardMetadata(mets);
         final List<Metadata> info = man.getInfo();
         final List<Metadata> metadata = new ArrayList<>(info);
-        if (!getCensusHost(mets).isEmpty()) {
-            // FIXME move to StandardMetadata
-            metadata.add(getAnchorFileMetadata());
-        }
         // FIXME move to StandardMetadata
         final List<String> noteTypesNonUnique = getNoteTypes(mets);
         final Set<String> noteTypes = new LinkedHashSet<>(noteTypesNonUnique);
