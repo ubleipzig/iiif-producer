@@ -72,9 +72,6 @@ public class ManuscriptMetadata {
         for (String collection: collections) {
             meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Collection", "de", "Kollektion")).value(collection).build());
         }
-        meta.add(Metadata.builder().label("Manifest Type").value(
-                getLogicalType(mets, mets.getRootLogicalStructureId().orElse(MetsConstants.METS_PARENT_LOGICAL_ID))
-        ).build());
         meta.add(Metadata.builder().label(LabelObject.multiLingual("en", "Identifier Kitodo", "de", "Kitodo-ID")).value(getManuscriptIdByType(mets, "kitodo")).build());
         meta.add(Metadata.builder().label("URN").value(getManuscriptIdByType(mets, "urn")).build());
         log.debug("Manuscript metadata Added");
