@@ -42,11 +42,6 @@ public interface MetsAccessor {
     }
 
     /**
-     * @return Metadata
-     */
-    Metadata getAnchorFileMetadata();
-
-    /**
      * @return String
      */
     String getAnchorFileLabel();

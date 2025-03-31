@@ -105,8 +105,12 @@ public interface MetsData {
      * @param idType String
      * @return String
      */
+    // FIXME why is this called manuscript id
     @XBRead("//*[local-name()='identifier'][@type='{0}']")
     Optional<String> getManuscriptIdByType(String idType);
+
+    @XBRead("//*[local-name()='recordIdentifier'][@{0}='{1}']")
+    Optional<String> getRecordIdentifierByAttribute(String attribute, String value);
 
     /**
      * @return Optional
@@ -151,10 +155,28 @@ public interface MetsData {
     Optional<String> getLanguageDescription();
 
     /**
+     * @return List
+     */
+    @XBRead("//*[local-name()='languageTerm'][@type='text']")
+    List<String> getLanguageTexts();
+
+    /**
+     * @return List
+     */
+    @XBRead("//*[local-name()='languageTerm'][@type='code']")
+    List<String> getLanguageCodes();
+
+    /**
      * @return Optional
      */
     @XBRead("//*[local-name()='placeTerm']")
     Optional<String> getLocation();
+
+    /**
+     * @return List
+     */
+    @XBRead("//*[local-name()='originInfo'][@eventType='manufacture']/*[local-name()='place']/*[local-name()='placeTerm']")
+    List<String> getManufactureLocations();
 
     /**
      * @return Optional
@@ -175,6 +197,12 @@ public interface MetsData {
     Optional<String> getDateCreated();
 
     /**
+     * @return List
+     */
+    @XBRead("//*[local-name()='dateCreated'][@qualifier='inferred' and not(@point)]")
+    List<String> getDatesCreated();
+
+    /**
      * @return String
      */
     @XBRead("//*[local-name()='note']")
@@ -191,7 +219,7 @@ public interface MetsData {
      * @return String
      */
     @XBRead("//*[local-name()='note'][@type='{0}']")
-    Optional<String> getNotesByType(String noteType);
+    List<String> getNotesByType(String noteType);
 
     /**
      * @return String
@@ -249,6 +277,7 @@ public interface MetsData {
     /**
      * @return String
      */
+    // TODO 1. "displayForm" fehlt oft, meistens ist aber "namePart" angegeben. 2. Mehrere Empfänger möglich
     @XBRead("//*[local-name()='roleTerm'][text()='rcp']/parent::node()/parent::node()/*[local-name()='displayForm']")
     Optional<String> getAddressee();
 

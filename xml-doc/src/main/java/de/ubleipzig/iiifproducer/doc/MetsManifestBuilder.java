@@ -191,6 +191,10 @@ public final class MetsManifestBuilder {
         return mets.getManuscriptIdByType(idType).orElse("").trim();
     }
 
+    public static String getRecordIdentifierByAttribute(final MetsData mets, final String attribute, final String value) {
+        return mets.getRecordIdentifierByAttribute(attribute, value).orElse("").trim();
+    }
+
     /**
      * @param mets MetsData
      * @return String
@@ -243,8 +247,24 @@ public final class MetsManifestBuilder {
      * @param mets MetsData
      * @return String
      */
+    public static List<String> getLanguageTexts(final MetsData mets) {
+        return mets.getLanguageTexts();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
     public static String getLocation(final MetsData mets) {
         return mets.getLocation().orElse("").trim();
+    }
+
+    /**
+     * @param mets MetsData
+     * @return String
+     */
+    public static List<String> getManufactureLocations(final MetsData mets) {
+        return mets.getManufactureLocations();
     }
 
     /**
@@ -273,6 +293,14 @@ public final class MetsManifestBuilder {
 
     /**
      * @param mets MetsData
+     * @return String
+     */
+    public static List<String> getDatesCreated(final MetsData mets) {
+        return mets.getDatesCreated();
+    }
+
+    /**
+     * @param mets MetsData
      * @return List
      */
     public static List<String> getNoteTypes(final MetsData mets) {
@@ -284,8 +312,8 @@ public final class MetsManifestBuilder {
      * @param type String
      * @return String
      */
-    public static String getNotesByType(final MetsData mets, final String type) {
-        return mets.getNotesByType(type).orElse("").trim();
+    public static List<String> getNotesByType(final MetsData mets, final String type) {
+        return mets.getNotesByType(type);
     }
 
     /**
@@ -534,6 +562,14 @@ public final class MetsManifestBuilder {
      */
     public static List<MetsData.Xlink> getXlinks(final MetsData mets) {
         return mets.getXlinks();
+    }
+
+    /**
+     * @param mets
+     * @return
+     */
+    public static String getPartOf(final MetsData mets) {
+        return getMultiVolumeWorkTitle(mets) + "; " + getCensusHost(mets);
     }
 
     /**

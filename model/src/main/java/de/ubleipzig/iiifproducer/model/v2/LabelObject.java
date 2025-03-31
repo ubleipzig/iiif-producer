@@ -35,4 +35,12 @@ public class LabelObject {
 
     @JsonProperty("@value")
     String value;
+
+    public static LabelObject[] multiLingual(String... params) {
+        LabelObject[] result = new LabelObject[params.length / 2];
+        for (int i = 0; i < params.length; i += 2) {
+            result[i / 2] = LabelObject.builder().language(params[i]).value(params[i + 1]).build();
+        }
+        return result;
+    }
 }

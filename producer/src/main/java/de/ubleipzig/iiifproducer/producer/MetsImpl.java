@@ -71,11 +71,6 @@ public class MetsImpl implements MetsAccessor {
     }
 
     @Override
-    public Metadata getAnchorFileMetadata() {
-        return Metadata.builder().label(anchorKey).value(getMultiVolumeWorkTitle(mets) + "; " + getCensusHost(mets)).build();
-    }
-
-    @Override
     public String getAnchorFileLabel() {
         return getMultiVolumeWorkTitle(mets) + "; " + getVolumePartTitleOrPartNumber(mets);
     }
@@ -307,12 +302,19 @@ public class MetsImpl implements MetsAccessor {
         final StandardMetadata man = new StandardMetadata(mets);
         final List<Metadata> info = man.getInfo();
         final List<Metadata> metadata = new ArrayList<>(info);
-        if (!getCensusHost(mets).isEmpty()) {
-            metadata.add(getAnchorFileMetadata());
-        }
-        final List<String> noteTypes = getNoteTypes(mets);
+        // FIXME move to StandardMetadata
+        final List<String> noteTypesNonUnique = getNoteTypes(mets);
+        final Set<String> noteTypes = new LinkedHashSet<>(noteTypesNonUnique);
         for (String nt : noteTypes) {
-            metadata.add(Metadata.builder().label(nt).value(getNotesByType(mets, nt).trim()).build());
+            if (nt.equals("comment") || nt.equals("annotation")) {
+                // "comment" is already handled in StandardMetadata
+                // "annotation" is not required https://projekte.ub.uni-leipzig.de/issues/27442#note-9
+                continue;
+            }
+            // TODO https://projekte.ub.uni-leipzig.de/issues/25028
+            for (String value: getNotesByType(mets, nt)) {
+                metadata.add(Metadata.builder().label(nt).value(value.trim()).build());
+            }
         }
         body.setMetadata(metadata);
     }

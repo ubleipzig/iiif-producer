@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import de.ubleipzig.iiifproducer.model.v2.LabelObject;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -46,4 +47,15 @@ public class Metadata {
     @JsonProperty("value")
     @JsonFormat(with = JsonFormat.Feature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED)
     private Object value;
+
+    @JsonIgnore
+    public String getFirstAvailableLabel() {
+        if (label instanceof String) {
+            return (String) label;
+        }
+        if (label instanceof LabelObject[]) {
+            return ((LabelObject[]) label)[0].getValue();
+        }
+        return null;
+    }
 }
