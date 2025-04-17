@@ -232,5 +232,12 @@ public class GetStandardMetadataTest {
         List<String> k10plus = getMetaDataAtomicValuesWithLabel(mdIdentifiers, "Quelle (K10Plus)");
         assertEquals(1, k10plus.size());
         assertEquals("1107922216", k10plus.get(0));
+
+        final String sourcePartOfMultipart = GetStandardMetadataTest.class.getResource("/mets/multivolume_part_k3.xml").getPath();
+        MetsData metsPartOfMultipart = getMets(sourcePartOfMultipart);
+        StandardMetadata mdPartOfMultipart = new StandardMetadata(metsPartOfMultipart);
+        List<String> k10plusVolume = getMetaDataAtomicValuesWithLabel(mdPartOfMultipart, "Quelle (K10Plus)");
+        assertEquals(1, k10plusVolume.size());
+        assertEquals("536169683", k10plusVolume.get(0));
     }
 }

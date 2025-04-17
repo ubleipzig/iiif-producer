@@ -109,7 +109,7 @@ public interface MetsData {
     @XBRead("//*[local-name()='identifier'][@type='{0}']")
     Optional<String> getManuscriptIdByType(String idType);
 
-    @XBRead("//*[local-name()='recordIdentifier'][@{0}='{1}']")
+    @XBRead("//*[local-name()!='relatedItem']/*[local-name()='recordInfo']/*[local-name()='recordIdentifier'][@{0}='{1}']")
     Optional<String> getRecordIdentifierByAttribute(String attribute, String value);
 
     /**
